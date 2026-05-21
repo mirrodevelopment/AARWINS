@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Aarwins — Premium tropical coconut wellness beverages crafted with natural ingredients."/>
+  <title>Aarwins — Tropical Daily Refreshment</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317313B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5'/></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/aarwins.css"/>
+  <link rel="stylesheet" href="/css/editorial.css"/>
+  <link rel="stylesheet" href="/css/luxury-spacing.css"/>
+
+  <!-- Custom Luxury Overrides and Section Styles -->
+  <style>
+    /* ─── TYPOGRAPHY ─── */
+    .playfair-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    /* ─── REVIEWS SECTION ─── */
+    .hp-reviews-section {
+      background: #FFFFFF;
+      padding: 160px 0;
+      font-family: 'DM Sans', sans-serif;
+      border-top: 1px solid #ECECEC;
+    }
+    .hp-reviews-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .hp-reviews-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 90px auto;
+    }
+    .hp-reviews-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: #888888;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: block;
+    }
+    .hp-reviews-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      line-height: 1.1;
+      font-weight: 500;
+      color: #17313B;
+      margin-bottom: 24px;
+    }
+    .hp-reviews-subtitle {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555555;
+      font-weight: 300;
+    }
+    .hp-reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+    }
+    .hp-review-card {
+      background: #FFFFFF;
+      border: 1px solid #ECECEC;
+      border-radius: 28px;
+      padding: 42px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+    }
+    .hp-review-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+    .hp-review-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 28px;
+      color: #17313B;
+    }
+    .hp-review-star-svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+    .hp-review-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      line-height: 1.8;
+      color: #17313B;
+      font-style: italic;
+      margin-bottom: 36px;
+      flex-grow: 1;
+    }
+    .hp-review-author-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid #ECECEC;
+      padding-top: 24px;
+    }
+    .hp-review-author-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .hp-review-author-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #17313B;
+      margin-bottom: 4px;
+    }
+    .hp-review-author-loc {
+      font-size: 14px;
+      color: #777777;
+      font-weight: 400;
+    }
+    
+    /* ─── CONTACT SECTION ─── */
+    .hp-contact-section {
+      background: #FFFFFF;
+      padding: 180px 0;
+      font-family: 'DM Sans', sans-serif;
+      border-top: 1px solid #ECECEC;
+    }
+    .hp-contact-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .hp-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 80px;
+      align-items: start;
+    }
+    .hp-contact-left {
+      max-width: 460px;
+    }
+    .hp-contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      line-height: 1.05;
+      font-weight: 500;
+      color: #17313B;
+      margin-bottom: 32px;
+    }
+    .hp-contact-desc {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555555;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+    .hp-contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .hp-contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hp-contact-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #999999;
+    }
+    .hp-contact-item-value {
+      font-size: 18px;
+      color: #17313B;
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+    .hp-contact-item-value:hover {
+      color: #447F98;
+    }
+    .hp-contact-right {
+      background: #FFFFFF;
+    }
+    .hp-contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .hp-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hp-form-input, .hp-form-textarea {
+      width: 100%;
+      background: transparent;
+      border: 1px solid #DADADA;
+      border-radius: 16px;
+      color: #17313B;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hp-form-input {
+      height: 64px;
+      padding: 0 24px;
+    }
+    .hp-form-textarea {
+      height: 180px;
+      padding: 24px;
+      resize: none;
+    }
+    .hp-form-input:focus, .hp-form-textarea:focus {
+      outline: none;
+      border-color: #17313B;
+      box-shadow: 0 0 0 4px rgba(23, 49, 59, 0.05);
+    }
+    .hp-form-submit {
+      align-self: flex-start;
+      height: 58px;
+      padding: 0 34px;
+      border: none;
+      border-radius: 100px;
+      background: #17313B;
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+    }
+    .hp-form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(23, 49, 59, 0.15);
+      background: #254652;
+    }
+    
+    /* ─── SEARCH OVERLAY ─── */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .search-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .search-close {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #17313B;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    .search-close:hover {
+      opacity: 1;
+    }
+    .search-inner {
+      width: 100%;
+      max-width: 700px;
+      padding: 0 40px;
+      text-align: center;
+      transform: translateY(30px);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .search-overlay.active .search-inner {
+      transform: translateY(0);
+    }
+    .search-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #888888;
+      margin-bottom: 24px;
+      display: block;
+    }
+    .search-form {
+      position: relative;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    .search-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      color: #17313B;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .search-input::placeholder {
+      color: #CCCCCC;
+    }
+    .search-underline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #DADADA;
+      transform: scaleX(0.8);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s;
+    }
+    .search-input:focus ~ .search-underline {
+      transform: scaleX(1);
+      background: #17313B;
+    }
+    .search-help {
+      font-size: 13px;
+      color: #888888;
+    }
+    
+    /* ─── ACCOUNT DROPDOWN ─── */
+    .account-dropdown {
+      position: absolute;
+      top: calc(100% + 15px);
+      right: -10px;
+      background: #FFFFFF;
+      border: 1px solid #ECECEC;
+      border-radius: 16px;
+      width: 200px;
+      padding: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 10001;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .account-dropdown.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+    .account-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: #17313B !important;
+      font-weight: 500;
+      border-radius: 10px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .account-dropdown a:hover {
+      background: #F4F8FA;
+      color: #447F98 !important;
+    }
+    .account-dropdown svg {
+      opacity: 0.6;
+    }
+    .account-dropdown a:hover svg {
+      opacity: 1;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background: #ECECEC;
+      margin: 6px 0;
+    }
+    .account-dropdown a.logout-link {
+      color: #D32F2F !important;
+    }
+    .account-dropdown a.logout-link:hover {
+      background: #FFEBEE;
+      color: #D32F2F !important;
+    }
+    
+    /* ─── MINI CART PANEL & OVERLAY ─── */
+    .mini-cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 49, 59, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10002;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .mini-cart-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mini-cart-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 480px;
+      background: #FFFFFF;
+      box-shadow: -15px 0 40px rgba(0, 0, 0, 0.05);
+      z-index: 10003;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .mini-cart-panel.active {
+      transform: translateX(0);
+    }
+    .mcp-header {
+      padding: 30px 40px;
+      border-bottom: 1px solid #ECECEC;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mcp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: #17313B;
+    }
+    .mcp-close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #17313B;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .mcp-close:hover {
+      opacity: 1;
+    }
+    .mcp-body {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .mcp-item {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .mcp-item-thumb {
+      width: 80px;
+      height: 80px;
+      background: #F8F8F6;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .mcp-item-details {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .mcp-item-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #17313B;
+      margin-bottom: 4px;
+    }
+    .mcp-item-meta {
+      font-size: 13px;
+      color: #777777;
+      margin-bottom: 8px;
+    }
+    .mcp-item-price {
+      font-size: 14px;
+      font-weight: 500;
+      color: #17313B;
+    }
+    .mcp-footer {
+      padding: 40px;
+      border-top: 1px solid #ECECEC;
+      background: #FCFCFA;
+    }
+    .mcp-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .mcp-total-label {
+      font-size: 14px;
+      color: #777777;
+    }
+    .mcp-total-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: #17313B;
+    }
+    .mcp-tax-info {
+      font-size: 12px;
+      color: #888888;
+      margin-bottom: 24px;
+    }
+    .mcp-checkout-btn {
+      width: 100%;
+      height: 58px;
+      border: none;
+      border-radius: 100px;
+      background: #17313B;
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+    }
+    .mcp-checkout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(23, 49, 59, 0.15);
+      background: #254652;
+    }
+    
+
+    
+    /* ─── RESPONSIVE SPACING ─── */
+    @media (max-width: 1024px) {
+      .hp-reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      .hp-reviews-heading {
+        font-size: 52px;
+      }
+      .hp-contact-title {
+        font-size: 56px;
+      }
+      .hp-contact-grid {
+        gap: 40px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hp-reviews-section {
+        padding: 100px 0;
+      }
+      .hp-reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .hp-reviews-heading {
+        font-size: 40px;
+      }
+      .hp-contact-section {
+        padding: 100px 0;
+      }
+      .hp-contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+      .hp-contact-title {
+        font-size: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ SEARCH OVERLAY ════════ -->
+<div class="search-overlay" id="search-overlay">
+  <button class="search-close" id="search-close" aria-label="Close search">✕</button>
+  <div class="search-inner">
+    <span class="search-label">SEARCH AARWINS</span>
+    <form class="search-form" onsubmit="event.preventDefault(); showToast('Searching for: ' + document.getElementById('search-input').value);">
+      <input type="text" id="search-input" class="search-input" placeholder="Type to search..." autocomplete="off"/>
+      <div class="search-underline"></div>
+    </form>
+    <p class="search-help">Press Enter to search, or ESC to exit</p>
+  </div>
+</div>
+
+<!-- ════════ MINI CART OVERLAY & PANEL ════════ -->
+<div class="mini-cart-overlay" id="mini-cart-overlay"></div>
+<div class="mini-cart-panel" id="mini-cart-panel">
+  <div class="mcp-header">
+    <h3 class="mcp-title">Shopping Bag</h3>
+    <button class="mcp-close" id="mcp-close" aria-label="Close cart">✕</button>
+  </div>
+  
+  <div class="mcp-body">
+    <!-- Mock Product Item 1 -->
+    <div class="mcp-item">
+      <div class="mcp-item-thumb">
+        <svg viewBox="0 0 180 380" style="height: 60px; width: auto;" aria-hidden="true">
+          <rect x="78" y="57" width="24" height="28" rx="1" fill="#A8C880" opacity="0.9"/>
+          <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="#A8C880"/>
+          <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+      <div class="mcp-item-details">
+        <span class="mcp-item-name">Matcha Coconut Wellness</span>
+        <span class="mcp-item-meta">330ml • 1 unit</span>
+        <span class="mcp-item-price">$4.99</span>
+      </div>
+    </div>
+
+    <!-- Mock Product Item 2 -->
+    <div class="mcp-item">
+      <div class="mcp-item-thumb">
+        <svg viewBox="0 0 180 380" style="height: 60px; width: auto;" aria-hidden="true">
+          <rect x="78" y="57" width="24" height="28" rx="1" fill="#C8B4A0" opacity="0.9"/>
+          <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="#C8B4A0"/>
+          <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+      <div class="mcp-item-details">
+        <span class="mcp-item-name">Chocolate Coconut Calm</span>
+        <span class="mcp-item-meta">330ml • 1 unit</span>
+        <span class="mcp-item-price">$4.99</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mcp-footer">
+    <div class="mcp-total-row">
+      <span class="mcp-total-label">Subtotal</span>
+      <span class="mcp-total-value">$9.98</span>
+    </div>
+    <p class="mcp-tax-info">Shipping and taxes calculated at checkout.</p>
+    <button class="mcp-checkout-btn" onclick="showToast('Proceeding to checkout...');">PROCEED TO CHECKOUT</button>
+  </div>
+</div>
+
+<!-- ════════ NAVBAR ════════ -->
+<header class="site-header" id="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="nav-logo" href="#home">
+      <img src="/images/logo.png" alt="Aarwins Logo" class="nav-logo-img" style="height: 58px; width: 58px; object-fit: contain; border-radius: 50%;"/>
+      <span>AARWINS</span>
+    </a>
+    
+    <div class="nav-links">
+      <a href="/collections">Collections</a>
+      <a href="#editorial">Philosophy</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+
+    <div class="nav-right">
+      <span class="nav-lang">UA | EN</span>
+      <button class="nav-icon-btn" id="nav-search-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <div class="nav-user-container" style="position: relative; display: inline-block;">
+        <button class="nav-icon-btn" id="nav-user-btn" aria-label="Account">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </button>
+        <!-- Minimal luxury dropdown design -->
+        <div class="account-dropdown" id="account-dropdown">
+          <a href="#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+          <a href="#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>Orders</a>
+          <a href="#wishlist"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>Wishlist</a>
+          <div class="dropdown-divider"></div>
+          <a href="#logout" class="logout-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Logout</a>
+        </div>
+      </div>
+      <button class="nav-icon-btn" id="nav-wishlist-btn" aria-label="Wishlist">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </button>
+      <button class="nav-icon-btn" id="nav-cart-btn" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      </button>
+      <a href="#contact-section" class="nav-shop-btn">Contact us</a>
+    </div>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer">
+  <button class="drawer-close" id="drawer-close">✕</button>
+  <a href="/collections">Collections</a>
+  <a href="#editorial">Philosophy</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact-section">Contact us</a>
+</div>
+
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="home">
+  <!-- Premium Glacier Atmosphere Glow -->
+  <div class="hero-glow-bg">
+    <div class="glow-radial-1"></div>
+    <div class="glow-radial-2"></div>
+  </div>
+
+  <div class="hero-inner">
+    <!-- LEFT COLUMN -->
+    <div class="hero-left anim-fade-up">
+      <h1 class="hero-heading">PURE COCONUT<br>ENERGY</h1>
+      
+      <!-- Small Floating Info Card -->
+      <div class="hero-floating-info-card">
+        <div class="hfic-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=150&auto=format&fit=crop"
+            alt="Young green coconut"
+          />
+        </div>
+        <div class="hfic-content">
+          <span class="hfic-title">Coconut Water</span>
+          <p class="hfic-text">Transforming daily hydration into silky smooth wellness.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER/RIGHT PRODUCT IMAGE CENTERPIECE -->
+    <div class="hero-centerpiece-wrap anim-fade-up anim-delay-1">
+      <img
+        src="https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop"
+        alt="Aarwins premium coconut energy beverage centerpiece bottle"
+        class="hero-centerpiece-img"
+      />
+      <div class="hero-centerpiece-reflection"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════ EDITORIAL SECTION ════════ -->
+<div class="ed-page" id="editorial">
+
+  <!-- Replaced category nav with ABOUT US editorial layout -->
+  <div class="ed-cats">
+    <span class="ed-cats-label">AARWINS</span>
+    <h2 class="ed-cats-title">ABOUT US</h2>
+    <p class="ed-cats-desc">Aarwins blends tropical coconut wellness with modern minimalist hydration culture.</p>
+  </div>
+
+
+  <!-- SECTION 2 — Left copy / Right large placeholder -->
+  <div class="ed-wrap ed-s2">
+
+    <div class="ed-copy-block reveal">
+      <h2 class="ed-h2">Crafted with<br>tropical<br>philosophy</h2>
+      <p class="ed-body">Minimalism has become part of the Aarwins philosophy.<br><br>And this is not a tribute to fashion, but a conscious decision. We know that how a product tastes is as important as how it feels.</p>
+      <button class="ed-pill-btn">Discover</button>
+    </div>
+
+    <div class="ed-visual-block reveal reveal-delay">
+      <!-- Large product placeholder -->
+      <a href="/product/1" class="ed-ph ed-ph--hero" style="text-decoration: none; color: inherit; display: block;">
+        <div class="ed-ph-inner">
+          <div class="ed-ph-label">AARWINS<br>No. 01</div>
+          <div class="ed-ph-sub">Island Breeze<br>Coconut Water</div>
+        </div>
+        <!-- Scattered grain dots underneath -->
+        <div class="ed-grain-row" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </a>
+    </div>
+
+  </div><!-- /ed-s2 -->
+
+
+  <!-- SECTION 3 — Left two placeholders / Right copy -->
+  <div class="ed-wrap ed-s3">
+
+    <div class="ed-ph-pair reveal">
+      <a href="/product/4" class="ed-ph ed-ph--card" style="text-decoration: none; color: inherit; display: block;">
+        <div class="ed-ph-inner">
+          <div class="ed-ph-label">No. 02</div>
+          <div class="ed-ph-sub">Citrus Rush</div>
+        </div>
+      </a>
+      <a href="/product/2" class="ed-ph ed-ph--card" style="text-decoration: none; color: inherit; display: block;">
+        <div class="ed-ph-inner">
+          <div class="ed-ph-label">No. 03</div>
+          <div class="ed-ph-sub">Coconut Mint</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="ed-copy-block reveal reveal-delay">
+      <h2 class="ed-h2 ed-h2--sm">New products<br>for tropical<br>wellness</h2>
+      <p class="ed-body">Coconut water / 29th moon. Moments free from endless affairs and thoughts. An opportunity to find time for yourself in the hustle and bustle of everyday life.</p>
+      <button class="ed-pill-btn">Shop now</button>
+    </div>
+
+  </div><!-- /ed-s3 -->
+
+
+  <!-- Divider -->
+  <div class="ed-divider" aria-hidden="true"></div>
+
+</div><!-- /ed-page -->
+
+
+<!-- ════════ THE COLLECTION ════════ -->
+<section class="coll-section" id="collection">
+  <div class="coll-container">
+    <h2 class="coll-top-title">THE COLLECTION</h2>
+
+    <div class="coll-grid">
+
+      <!-- Featured: Chocolate Coconut Wellness -->
+      <a href="/product/1" class="coll-card anim-fade-up" style="text-decoration: none;">
+        <div class="coll-img-wrap">
+          <svg viewBox="0 0 180 380" class="coll-bottle-svg" aria-label="Chocolate Coconut Bottle">
+            <defs>
+              <linearGradient id="chocoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#C8B4A0"/>
+                <stop offset="30%" stop-color="#EDE0D4"/>
+                <stop offset="60%" stop-color="#C4A88E"/>
+                <stop offset="100%" stop-color="#A8927E"/>
+              </linearGradient>
+              <linearGradient id="capChoco" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#4A2C1A"/>
+                <stop offset="50%" stop-color="#7A4A2E"/>
+                <stop offset="100%" stop-color="#3A1C0E"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(90,50,20,0.08)"/>
+            <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capChoco)"/>
+            <rect x="74" y="50" width="32" height="7" rx="1" fill="#5A3220"/>
+            <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#chocoGrad)" opacity="0.9"/>
+            <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#chocoGrad)"/>
+            <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.3"/>
+            <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#D8C4B0" stroke-width="0.8"/>
+            <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#4A2C1A" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+            <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" font-weight="400" fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Chocolate</text>
+            <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" font-weight="400" fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Coconut</text>
+            <line x1="72" y1="240" x2="108" y2="240" stroke="#D0B8A0" stroke-width="0.6"/>
+            <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8A7060" text-anchor="middle" letter-spacing="0.8">EST. 2025 • 330ML</text>
+          </svg>
+        </div>
+        <div class="coll-item-divider"></div>
+        <h3 class="coll-item-title">CHOCOLATE COCONUT</h3>
+        <button class="coll-add-btn" onclick="event.preventDefault(); window.location.href='/product/1';">VIEW PRODUCT</button>
+      </a>
+
+      <!-- Featured: Matcha Coconut Balance -->
+      <a href="/product/3" class="coll-card anim-fade-up anim-delay-1" style="text-decoration: none;">
+        <div class="coll-img-wrap">
+          <svg viewBox="0 0 180 380" class="coll-bottle-svg" aria-label="Matcha Coconut Bottle">
+            <defs>
+              <linearGradient id="matchaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#A8C880"/>
+                <stop offset="35%" stop-color="#D4E8B8"/>
+                <stop offset="65%" stop-color="#98B870"/>
+                <stop offset="100%" stop-color="#88A860"/>
+              </linearGradient>
+              <linearGradient id="capMatcha" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1A3010"/>
+                <stop offset="50%" stop-color="#3A5828"/>
+                <stop offset="100%" stop-color="#102008"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(40,80,20,0.06)"/>
+            <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capMatcha)"/>
+            <rect x="74" y="50" width="32" height="7" rx="1" fill="#2A4818"/>
+            <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#matchaGrad)" opacity="0.9"/>
+            <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#matchaGrad)"/>
+            <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.32"/>
+            <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#B8D898" stroke-width="0.8"/>
+            <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#1A3010" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+            <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#102008" text-anchor="middle" font-style="italic">Matcha</text>
+            <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#102008" text-anchor="middle" font-style="italic">Coconut</text>
+            <line x1="72" y1="240" x2="108" y2="240" stroke="#B8D890" stroke-width="0.6"/>
+            <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#6A9050" text-anchor="middle" letter-spacing="0.8">330ML • EST. 2025</text>
+          </svg>
+        </div>
+        <div class="coll-item-divider"></div>
+        <h3 class="coll-item-title">MATCHA COCONUT</h3>
+        <button class="coll-add-btn" onclick="event.preventDefault(); window.location.href='/product/3';">VIEW PRODUCT</button>
+      </a>
+
+      <!-- Featured: Lavender Coconut Calm -->
+      <a href="/product/4" class="coll-card anim-fade-up anim-delay-2" style="text-decoration: none;">
+        <div class="coll-img-wrap">
+          <svg viewBox="0 0 180 380" class="coll-bottle-svg" aria-label="Lavender Coconut Bottle">
+            <defs>
+              <linearGradient id="lavGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#C0A8D8"/>
+                <stop offset="35%" stop-color="#E0D0F0"/>
+                <stop offset="65%" stop-color="#B098C8"/>
+                <stop offset="100%" stop-color="#9880B8"/>
+              </linearGradient>
+              <linearGradient id="capLav" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2A1A40"/>
+                <stop offset="50%" stop-color="#5A3A78"/>
+                <stop offset="100%" stop-color="#1A0A28"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(80,40,120,0.07)"/>
+            <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capLav)"/>
+            <rect x="74" y="50" width="32" height="7" rx="1" fill="#3A2050"/>
+            <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#lavGrad)" opacity="0.9"/>
+            <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#lavGrad)"/>
+            <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.3"/>
+            <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#C8B0E0" stroke-width="0.8"/>
+            <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#2A1A40" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+            <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#1A0A28" text-anchor="middle" font-style="italic">Lavender</text>
+            <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#1A0A28" text-anchor="middle" font-style="italic">Coconut</text>
+            <line x1="72" y1="240" x2="108" y2="240" stroke="#C0A8D8" stroke-width="0.6"/>
+            <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8070A0" text-anchor="middle" letter-spacing="0.8">330ML • EST. 2025</text>
+          </svg>
+        </div>
+        <div class="coll-item-divider"></div>
+        <h3 class="coll-item-title">LAVENDER COCONUT</h3>
+        <button class="coll-add-btn" onclick="event.preventDefault(); window.location.href='/product/4';">VIEW PRODUCT</button>
+      </a>
+
+    </div>
+
+    <!-- BOTTOM EDITORIAL SECTION -->
+    <div class="coll-bottom-grid">
+      <!-- Left Lifestyle SVG -->
+      <div class="coll-bts-visual anim-fade-up">
+        <svg viewBox="0 0 420 540" class="coll-bts-img-svg" aria-label="Aarwins Behind the Scenes Lifestyle Preview">
+          <rect x="0" y="0" width="420" height="540" fill="#FFFFFF" stroke="#ECECEC" stroke-width="1"/>
+          <rect x="15" y="15" width="390" height="510" fill="none" stroke="#ECECEC" stroke-width="1"/>
+          <path d="M 210 520 Q 210 200 80 180" fill="none" stroke="#9E9E9C" stroke-width="2"/>
+          <path d="M 80 180 Q 120 220 150 250" fill="none" stroke="#B8B8B6" stroke-width="1.5"/>
+          <path d="M 100 190 Q 140 215 170 240" fill="none" stroke="#B8B8B6" stroke-width="1.5"/>
+          <path d="M 210 520 Q 240 150 350 120" fill="none" stroke="#7A7A78" stroke-width="2.5"/>
+          <path d="M 350 120 Q 300 160 270 200" fill="none" stroke="#A8A8A6" stroke-width="1.5"/>
+          <radialGradient id="studioLight" cx="0.2" cy="0.2" r="0.8">
+            <stop offset="0%" stop-color="#FCFCFA" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#BCBCBA" stop-opacity="0.5"/>
+          </radialGradient>
+          <rect x="15" y="15" width="390" height="510" fill="url(#studioLight)" style="mix-blend-mode: multiply;"/>
+          <text x="210" y="460" font-family="'Syne', sans-serif" font-size="12" font-weight="500" fill="#222" text-anchor="middle" letter-spacing="3">AARWINS LIFESTYLE</text>
+          <text x="210" y="482" font-family="'DM Sans', sans-serif" font-size="7" font-weight="600" fill="#777" text-anchor="middle" letter-spacing="2">EDITORIAL CAMPAIGN NO. 01</text>
+          <line x1="170" y1="495" x2="250" y2="495" stroke="#777" stroke-width="0.5" opacity="0.5"/>
+          <text x="210" y="508" font-family="'DM Sans', sans-serif" font-size="6" fill="#999" text-anchor="middle" letter-spacing="1">PREVIEW • ALL RIGHTS RESERVED</text>
+        </svg>
+      </div>
+
+      <!-- Right Editorial Copy -->
+      <div class="coll-bts-copy anim-fade-up anim-delay-1">
+        <div class="coll-bts-divider"></div>
+        <span class="coll-bts-label">BEYOND THE BOTTLE</span>
+        <h3 class="coll-bts-heading">THE COLLECTION</h3>
+        <p class="coll-bts-text">
+          Six exceptional tropical blends. Each crafted with organic ingredients, designed with intention, and bottled with care. Discover the full Aarwins collection — from our featured favourites to every flavour in the range.
+        </p>
+        <a href="/collections" style="display:inline-flex;align-items:center;height:44px;padding:0 28px;border:1px solid #111;background:transparent;color:#111;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-top:24px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#111';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#111'">View All Flavours</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════ REVIEWS SECTION ════════ -->
+<section class="hp-reviews-section" id="reviews">
+  <div class="hp-reviews-container">
+    <div class="hp-reviews-header">
+      <span class="hp-reviews-label">TESTIMONIALS</span>
+      <h2 class="hp-reviews-heading">Voices of Tropical Wellness</h2>
+      <p class="hp-reviews-subtitle">Real experiences from individuals who have embraced the quiet elegance and physical vitality of the Aarwins lifestyle.</p>
+    </div>
+    
+    <div class="hp-reviews-grid">
+      <!-- Card 1 -->
+      <div class="hp-review-card">
+        <div>
+          <div class="hp-review-stars">
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="hp-review-quote">"Refreshing, clean, and beautifully balanced. The Matcha Coconut blend feels premium and calming."</p>
+        </div>
+        <div class="hp-review-author-wrap">
+          <div class="hp-review-author-info">
+            <span class="hp-review-author-name">Amelia Hart</span>
+            <span class="hp-review-author-loc">California</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="hp-review-card">
+        <div>
+          <div class="hp-review-stars">
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="hp-review-quote">"The Coconut Coffee flavour became part of my daily wellness routine."</p>
+        </div>
+        <div class="hp-review-author-wrap">
+          <div class="hp-review-author-info">
+            <span class="hp-review-author-name">Daniel Ross</span>
+            <span class="hp-review-author-loc">New York</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="hp-review-card">
+        <div>
+          <div class="hp-review-stars">
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg class="hp-review-star-svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="hp-review-quote">"Minimal ingredients, elegant flavour, and premium presentation."</p>
+        </div>
+        <div class="hp-review-author-wrap">
+          <div class="hp-review-author-info">
+            <span class="hp-review-author-name">Sophia Lane</span>
+            <span class="hp-review-author-loc">London</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT SECTION ════════ -->
+<section class="hp-contact-section" id="contact-section">
+  <div class="hp-contact-container">
+    <div class="hp-contact-grid">
+      <!-- Left Column -->
+      <div class="hp-contact-left">
+        <h2 class="hp-contact-title">Let's Start a Conversation</h2>
+        <p class="hp-contact-desc">Whether you are interested in wholesale partnerships, media requests, or simply wish to share your wellness journey, our editorial team is here to assist.</p>
+        <div class="hp-contact-details">
+          <div class="hp-contact-item">
+            <span class="hp-contact-item-label">Email</span>
+            <a href="mailto:hello@aarwins.com" class="hp-contact-item-value">hello@aarwins.com</a>
+          </div>
+          <div class="hp-contact-item">
+            <span class="hp-contact-item-label">Phone</span>
+            <a href="tel:+18005550190" class="hp-contact-item-value">+1 (800) 555-0190</a>
+          </div>
+          <div class="hp-contact-item">
+            <span class="hp-contact-item-label">Location</span>
+            <span class="hp-contact-item-value">120 Ocean Drive, Suite 400<br>Miami, FL 33139</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column -->
+      <div class="hp-contact-right">
+        <form class="hp-contact-form" onsubmit="handleContact(event)">
+          <div class="hp-form-group">
+            <input type="text" placeholder="Your name" class="hp-form-input" required/>
+          </div>
+          <div class="hp-form-group">
+            <input type="email" placeholder="Your email" class="hp-form-input" required/>
+          </div>
+          <div class="hp-form-group">
+            <input type="text" placeholder="How can we help?" class="hp-form-input" required/>
+          </div>
+          <div class="hp-form-group">
+            <textarea placeholder="Write your message here..." class="hp-form-textarea" required></textarea>
+          </div>
+          <button type="submit" class="hp-form-submit">SEND MESSAGE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="footer-black" id="contact">
+  <div class="fb-inner">
+    <div class="fb-brand">
+      <div class="fb-logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M8 14 Q14 6 20 14 Q14 22 8 14Z" fill="white" opacity="0.8"/></svg>
+        AARWINS
+      </div>
+      <p class="fb-tagline">Pure tropical refreshment,<br>crafted with love.</p>
+      <div class="fb-socials">
+        <a href="#" aria-label="Instagram" class="fb-social">IG</a>
+        <a href="#" aria-label="Facebook" class="fb-social">FB</a>
+        <a href="#" aria-label="Twitter" class="fb-social">TW</a>
+      </div>
+      <div class="fb-contact-list">
+        <div>Contact Us</div>
+        <div>Track Order</div>
+        <div>Sign In</div>
+        <div>Store Locator</div>
+      </div>
+    </div>
+    <div class="fb-col">
+      <div class="fb-col-title">Company</div>
+      <a href="#">About Us</a>
+      <a href="#">Join Us</a>
+    </div>
+    <div class="fb-col">
+      <div class="fb-col-title">Customer Care</div>
+      <a href="#">FAQ</a>
+      <a href="#">Disposal Instructions</a>
+      <a href="#">Return Policy</a>
+      <a href="#">Promotion Terms &amp; Conditions</a>
+      <div class="fb-col-title" style="margin-top:24px;">Gift Cards</div>
+      <a href="#">Purchase</a>
+      <a href="#">Check Balance</a>
+    </div>
+    <div class="fb-newsletter">
+      <div class="fb-col-title">Let's stay<br>in touch.</div>
+      <form class="fb-form" id="footer-form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="E-mail address" class="fb-input" required/>
+        <div class="fb-form-line"></div>
+      </form>
+      <p class="fb-disclaimer">By clicking on the "Subscribe" button, you agree to the terms.</p>
+    </div>
+  </div>
+  <div class="fb-bottom">
+    <span>&copy; 2025 Aarwins. All rights reserved.</span>
+    <div class="fb-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast / Back-to-top -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+<button class="back-top" id="back-top" aria-label="Back to top">&#8593;</button>
+
+<script src="/js/aarwins.js"></script>
+<script>
+/* Editorial category tabs */
+document.querySelectorAll('.ed-cat').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.ed-cat').forEach(function(b) {
+      b.classList.remove('ed-cat--active');
+      b.classList.remove('is-active');
+    });
+    btn.classList.add('ed-cat--active');
+    btn.classList.add('is-active');
+  });
+});
+
+/* Scroll reveal */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { io.observe(el); });
+})();
+
+/* Mobile hamburger drawer (toggles open & is-open) */
+var hamburger = document.getElementById('nav-hamburger');
+var drawer = document.getElementById('nav-drawer');
+var drawerClose = document.getElementById('drawer-close');
+
+if (hamburger && drawer) {
+  hamburger.addEventListener('click', function() {
+    drawer.classList.add('open');
+    drawer.classList.add('is-open');
+  });
+}
+if (drawerClose && drawer) {
+  drawerClose.addEventListener('click', function() {
+    drawer.classList.remove('open');
+    drawer.classList.remove('is-open');
+  });
+}
+if (drawer) {
+  drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      drawer.classList.remove('open');
+      drawer.classList.remove('is-open');
+    });
+  });
+}
+
+/* ─── Search Overlay Interactions ─── */
+var searchBtn = document.getElementById('nav-search-btn');
+var searchOverlay = document.getElementById('search-overlay');
+var searchClose = document.getElementById('search-close');
+var searchInput = document.getElementById('search-input');
+
+if (searchBtn && searchOverlay) {
+  searchBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    searchOverlay.classList.add('active');
+    if (searchInput) {
+      setTimeout(function() { searchInput.focus(); }, 100);
+    }
+  });
+}
+if (searchClose && searchOverlay) {
+  searchClose.addEventListener('click', function() {
+    searchOverlay.classList.remove('active');
+  });
+}
+
+/* ─── Account Dropdown Interactions ─── */
+var userBtn = document.getElementById('nav-user-btn');
+var accountDropdown = document.getElementById('account-dropdown');
+
+if (userBtn && accountDropdown) {
+  userBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    accountDropdown.classList.toggle('active');
+  });
+}
+
+/* ─── Mini-Cart Panel Interactions ─── */
+var cartBtn = document.getElementById('nav-cart-btn');
+var cartOverlay = document.getElementById('mini-cart-overlay');
+var cartPanel = document.getElementById('mini-cart-panel');
+var cartClose = document.getElementById('mcp-close');
+
+if (cartBtn && cartOverlay && cartPanel) {
+  cartBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    cartOverlay.classList.add('active');
+    cartPanel.classList.add('active');
+  });
+}
+if (cartClose && cartOverlay && cartPanel) {
+  cartClose.addEventListener('click', function() {
+    cartOverlay.classList.remove('active');
+    cartPanel.classList.remove('active');
+  });
+}
+if (cartOverlay && cartPanel) {
+  cartOverlay.addEventListener('click', function() {
+    cartOverlay.classList.remove('active');
+    cartPanel.classList.remove('active');
+  });
+}
+
+/* ─── Universal Close Events (ESC, Click Outside) ─── */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (searchOverlay) searchOverlay.classList.remove('active');
+    if (accountDropdown) accountDropdown.classList.remove('active');
+    if (cartOverlay && cartPanel) {
+      cartOverlay.classList.remove('active');
+      cartPanel.classList.remove('active');
+    }
+    if (drawer) {
+      drawer.classList.remove('open');
+      drawer.classList.remove('is-open');
+    }
+  }
+});
+
+document.addEventListener('click', function(e) {
+  // Close account dropdown when clicking outside
+  if (accountDropdown && accountDropdown.classList.contains('active')) {
+    if (!accountDropdown.contains(e.target) && !userBtn.contains(e.target)) {
+      accountDropdown.classList.remove('active');
+    }
+  }
+});
+</script>
+</body>
+</html>
