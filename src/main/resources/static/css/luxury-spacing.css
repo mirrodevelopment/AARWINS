@@ -342,8 +342,8 @@ body {
 }
 
 .hero-centerpiece-img {
-  width: 340px !important; /* specific image width */
-  max-height: 440px;
+  width: 510px !important; /* specific image width */
+  max-height: 660px;
   object-fit: contain;
   filter: drop-shadow(0 20px 48px rgba(23, 49, 59, 0.18)); /* premium beverage drop shadow */
   animation: floatBottle 5s ease-in-out infinite;
@@ -357,7 +357,7 @@ body {
 .hero-centerpiece-reflection {
   position: absolute;
   bottom: -20px;
-  width: 240px;
+  width: 360px;
   height: 30px;
   background: radial-gradient(ellipse, rgba(68, 127, 152, 0.22) 0%, transparent 70%); /* realistic reflection shadow */
   filter: blur(6px);
@@ -666,7 +666,7 @@ body {
     order: 2 !important;
   }
   .hero-centerpiece-img {
-    width: 240px !important;
+    width: 360px !important;
   }
 }
 
@@ -774,7 +774,7 @@ body {
   }
 
   .hero-centerpiece-img {
-    width: 220px !important;
+    width: 330px !important;
     max-height: none !important;
     margin: auto !important;
     filter: drop-shadow(0 12px 30px rgba(23, 49, 59, 0.15)) !important;
@@ -783,7 +783,7 @@ body {
   }
 
   .hero-centerpiece-reflection {
-    width: 180px !important;
+    width: 270px !important;
     bottom: -10px !important;
   }
 
