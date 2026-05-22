@@ -1657,6 +1657,116 @@ body {
   }
 }
 
+/* ─── BASE HERO SHOP DISPLAY ON DESKTOP ─── */
+.hero-shop-mobile {
+  display: none !important;
+}
+
+/* ─── HOME PAGE MOBILE VIEW CENTERING AND HERO ORDERING ─── */
+@media (max-width: 768px) {
+  /* Hero section updates */
+  .hero-shop-desktop {
+    display: none !important;
+  }
+  .hero-shop-mobile {
+    display: inline-flex !important;
+    margin: 20px auto 0 !important;
+    width: fit-content !important;
+    order: 3 !important;
+  }
+  .hero-left {
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .hero-heading {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Editorial/Philosophy section centering */
+  .ed-copy-block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .ed-h2, .ed-h2--sm {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .ed-body {
+    text-align: center !important;
+  }
+  .ed-pill-btn {
+    margin: 0 auto !important;
+    display: inline-flex !important;
+  }
+
+  /* Reviews section centering */
+  .hp-review-stars {
+    justify-content: center !important;
+  }
+  .hp-review-quote {
+    text-align: center !important;
+  }
+  .hp-review-author-wrap {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .hp-review-author-info {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Contact section centering */
+  .hp-contact-left {
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .hp-contact-title, .hp-contact-desc {
+    text-align: center !important;
+  }
+  .hp-contact-details, .hp-contact-item {
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .hp-form-submit {
+    align-self: center !important;
+  }
+
+  /* Footer black section centering */
+  .fb-brand, .fb-col, .fb-newsletter {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .fb-socials {
+    justify-content: center !important;
+  }
+  .fb-contact-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .fb-form {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+  .fb-input {
+    text-align: center !important;
+  }
+}
+
+
 
 
 
