@@ -9,9 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/css/aarwins.css"/>
-  <link rel="stylesheet" href="/css/editorial.css"/>
-  <link rel="stylesheet" href="/css/luxury-spacing.css"/>
+  <link rel="stylesheet" href="/css/aarwins.css?v=1.2"/>
+  <link rel="stylesheet" href="/css/editorial.css?v=1.2"/>
+  <link rel="stylesheet" href="/css/luxury-spacing.css?v=1.2"/>
+  <link rel="stylesheet" href="/css/cinematic.css?v=1.2"/>
+
+  <!-- GSAP, ScrollTrigger, Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
   <!-- Custom Luxury Overrides and Section Styles -->
   <style>
@@ -227,22 +233,31 @@
       align-self: flex-start;
       height: 58px;
       padding: 0 34px;
-      border: none;
-      border-radius: 100px;
-      background: #17313B;
-      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50px;
+      background: linear-gradient(180deg, #ff9d00 0%, #ff5e00 100%);
+      color: #fff;
       font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       cursor: pointer;
-      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+      box-shadow: 
+        inset 0px 15px 20px rgba(255, 255, 255, 0.6), 
+        inset 0px -5px 15px rgba(200, 50, 0, 0.5), 
+        0px 10px 20px rgba(255, 94, 0, 0.4);
+      text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .hp-form-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(23, 49, 59, 0.15);
-      background: #254652;
+      background: linear-gradient(180deg, #ffaf33 0%, #ff6a00 100%);
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 
+        inset 0px 15px 20px rgba(255, 255, 255, 0.7), 
+        inset 0px -5px 15px rgba(200, 50, 0, 0.6), 
+        0px 15px 25px rgba(255, 94, 0, 0.5);
     }
     
     /* ─── SEARCH OVERLAY ─── */
@@ -530,22 +545,31 @@
     .mcp-checkout-btn {
       width: 100%;
       height: 58px;
-      border: none;
-      border-radius: 100px;
-      background: #17313B;
-      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50px;
+      background: linear-gradient(180deg, #ff9d00 0%, #ff5e00 100%);
+      color: #fff;
       font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       cursor: pointer;
-      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+      box-shadow: 
+        inset 0px 15px 20px rgba(255, 255, 255, 0.6), 
+        inset 0px -5px 15px rgba(200, 50, 0, 0.5), 
+        0px 10px 20px rgba(255, 94, 0, 0.4);
+      text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .mcp-checkout-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(23, 49, 59, 0.15);
-      background: #254652;
+      background: linear-gradient(180deg, #ffaf33 0%, #ff6a00 100%);
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 
+        inset 0px 15px 20px rgba(255, 255, 255, 0.7), 
+        inset 0px -5px 15px rgba(200, 50, 0, 0.6), 
+        0px 15px 25px rgba(255, 94, 0, 0.5);
     }
     
 
@@ -727,26 +751,15 @@
     <div class="hero-left anim-fade-up">
       <h1 class="hero-heading">PURE COCONUT<br>ENERGY</h1>
       
-      <!-- Small Floating Info Card -->
-      <div class="hero-floating-info-card">
-        <div class="hfic-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=150&auto=format&fit=crop"
-            alt="Young green coconut"
-          />
-        </div>
-        <div class="hfic-content">
-          <span class="hfic-title">Coconut Water</span>
-          <p class="hfic-text">Transforming daily hydration into silky smooth wellness.</p>
-        </div>
-      </div>
+      <!-- Call to Action Shop Button -->
+      <a href="/collections" class="btn-primary" style="margin-top: 20px;">SHOP NOW</a>
     </div>
 
     <!-- CENTER/RIGHT PRODUCT IMAGE CENTERPIECE -->
     <div class="hero-centerpiece-wrap anim-fade-up anim-delay-1">
       <img
-        src="https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop"
-        alt="Aarwins premium coconut energy beverage centerpiece bottle"
+        src="/images/bunny%20fox.png"
+        alt="Aarwins premium mascot"
         class="hero-centerpiece-img"
       />
       <div class="hero-centerpiece-reflection"></div>
@@ -777,7 +790,7 @@
 
     <div class="ed-visual-block reveal reveal-delay">
       <!-- Large product placeholder -->
-      <a href="/product/1" class="ed-ph ed-ph--hero" style="text-decoration: none; color: inherit; display: block;">
+      <a href="/product/1" class="ed-ph ed-ph--hero ed-ph--1" style="text-decoration: none; color: inherit; display: block;">
         <div class="ed-ph-inner">
           <div class="ed-ph-label">AARWINS<br>No. 01</div>
           <div class="ed-ph-sub">Island Breeze<br>Coconut Water</div>
@@ -799,13 +812,13 @@
   <div class="ed-wrap ed-s3">
 
     <div class="ed-ph-pair reveal">
-      <a href="/product/4" class="ed-ph ed-ph--card" style="text-decoration: none; color: inherit; display: block;">
+      <a href="/product/4" class="ed-ph ed-ph--card ed-ph--2" style="text-decoration: none; color: inherit; display: block;">
         <div class="ed-ph-inner">
           <div class="ed-ph-label">No. 02</div>
           <div class="ed-ph-sub">Citrus Rush</div>
         </div>
       </a>
-      <a href="/product/2" class="ed-ph ed-ph--card" style="text-decoration: none; color: inherit; display: block;">
+      <a href="/product/2" class="ed-ph ed-ph--card ed-ph--3" style="text-decoration: none; color: inherit; display: block;">
         <div class="ed-ph-inner">
           <div class="ed-ph-label">No. 03</div>
           <div class="ed-ph-sub">Coconut Mint</div>
@@ -947,26 +960,9 @@
 
     <!-- BOTTOM EDITORIAL SECTION -->
     <div class="coll-bottom-grid">
-      <!-- Left Lifestyle SVG -->
+      <!-- Left Lifestyle Image -->
       <div class="coll-bts-visual anim-fade-up">
-        <svg viewBox="0 0 420 540" class="coll-bts-img-svg" aria-label="Aarwins Behind the Scenes Lifestyle Preview">
-          <rect x="0" y="0" width="420" height="540" fill="#FFFFFF" stroke="#ECECEC" stroke-width="1"/>
-          <rect x="15" y="15" width="390" height="510" fill="none" stroke="#ECECEC" stroke-width="1"/>
-          <path d="M 210 520 Q 210 200 80 180" fill="none" stroke="#9E9E9C" stroke-width="2"/>
-          <path d="M 80 180 Q 120 220 150 250" fill="none" stroke="#B8B8B6" stroke-width="1.5"/>
-          <path d="M 100 190 Q 140 215 170 240" fill="none" stroke="#B8B8B6" stroke-width="1.5"/>
-          <path d="M 210 520 Q 240 150 350 120" fill="none" stroke="#7A7A78" stroke-width="2.5"/>
-          <path d="M 350 120 Q 300 160 270 200" fill="none" stroke="#A8A8A6" stroke-width="1.5"/>
-          <radialGradient id="studioLight" cx="0.2" cy="0.2" r="0.8">
-            <stop offset="0%" stop-color="#FCFCFA" stop-opacity="0.6"/>
-            <stop offset="100%" stop-color="#BCBCBA" stop-opacity="0.5"/>
-          </radialGradient>
-          <rect x="15" y="15" width="390" height="510" fill="url(#studioLight)" style="mix-blend-mode: multiply;"/>
-          <text x="210" y="460" font-family="'Syne', sans-serif" font-size="12" font-weight="500" fill="#222" text-anchor="middle" letter-spacing="3">AARWINS LIFESTYLE</text>
-          <text x="210" y="482" font-family="'DM Sans', sans-serif" font-size="7" font-weight="600" fill="#777" text-anchor="middle" letter-spacing="2">EDITORIAL CAMPAIGN NO. 01</text>
-          <line x1="170" y1="495" x2="250" y2="495" stroke="#777" stroke-width="0.5" opacity="0.5"/>
-          <text x="210" y="508" font-family="'DM Sans', sans-serif" font-size="6" fill="#999" text-anchor="middle" letter-spacing="1">PREVIEW • ALL RIGHTS RESERVED</text>
-        </svg>
+        <img src="/images/collection.jpeg" alt="Aarwins Lifestyle Campaign" class="coll-bts-img" />
       </div>
 
       <!-- Right Editorial Copy -->

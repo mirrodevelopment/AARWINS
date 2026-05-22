@@ -1,0 +1,278 @@
+/* ════════════════════════════════════════════════
+   AARWINS — Cinematic UI & Interactions
+   ════════════════════════════════════════════════ */
+
+:root {
+  --cinematic-glow: radial-gradient(circle, rgba(0, 201, 184, 0.08) 0%, rgba(158, 240, 26, 0.03) 70%, transparent 100%);
+  --cinematic-font-serif: 'Playfair Display', serif;
+  --cinematic-font-sans: 'Inter', sans-serif;
+  --cinematic-easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Smooth Scroll (Lenis support) ── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis-stopped {
+  overflow: hidden;
+}
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ── Ambient Background Glow ── */
+#cinematic-ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: var(--cinematic-glow);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  filter: blur(80px);
+  opacity: 0;
+  transition: opacity 1.5s var(--cinematic-easing);
+  will-change: transform;
+}
+body.cinematic-active #cinematic-ambient-glow {
+  opacity: 1;
+}
+
+/* ── Custom 3D Cursor ── */
+#cinematic-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border: 1px solid rgba(0, 201, 184, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, width, height, margin;
+  transition: width 0.3s var(--cinematic-easing), height 0.3s var(--cinematic-easing), margin 0.3s var(--cinematic-easing), border-color 0.3s;
+}
+#cinematic-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  background: #00c9b8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+body.cursor-hovering #cinematic-cursor {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(0, 201, 184, 0.05);
+  border-color: rgba(0, 201, 184, 0.8);
+}
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  body.cinematic-active,
+  body.cinematic-active a,
+  body.cinematic-active button,
+  body.cinematic-active input,
+  body.cinematic-active select,
+  body.cinematic-active textarea,
+  body.cinematic-active .product-card,
+  body.cinematic-active .coll-card {
+    cursor: none !important;
+  }
+}
+@media (max-width: 991px) {
+  #cinematic-cursor, #cinematic-cursor-dot {
+    display: none !important;
+  }
+}
+
+/* ── Cinematic Preloader ── */
+#cinematic-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #faf9f6;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.preloader-logo {
+  font-family: var(--cinematic-font-serif);
+  font-size: 2.5rem;
+  letter-spacing: 0.2em;
+  font-weight: 300;
+  color: #1a302b;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.preloader-bar-wrap {
+  width: 160px;
+  height: 2px;
+  background: rgba(26, 48, 43, 0.1);
+  overflow: hidden;
+  position: relative;
+  border-radius: 1px;
+}
+.preloader-bar {
+  width: 100%;
+  height: 100%;
+  background: #00c9b8;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* ── Page Transition Dissolve ── */
+#cinematic-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #faf9f6;
+  z-index: 99998;
+  pointer-events: none;
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(1.02);
+  transition: filter 0.8s var(--cinematic-easing), opacity 0.8s var(--cinematic-easing), transform 0.8s var(--cinematic-easing);
+  will-change: opacity, filter, transform;
+}
+#cinematic-transition.active {
+  pointer-events: auto;
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1);
+}
+
+/* ── Mascot Container (Noko) ── */
+#cinematic-mascot-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 201, 184, 0.15);
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s var(--cinematic-easing), box-shadow 0.3s;
+}
+#cinematic-mascot-container:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 15px 35px rgba(0, 201, 184, 0.15);
+}
+.mascot-svg {
+  width: 60px;
+  height: 60px;
+  overflow: visible;
+}
+.mascot-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  background: #1a302b;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 18px 18px 4px 18px;
+  font-family: var(--cinematic-font-sans);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.95);
+  transform-origin: bottom right;
+  transition: opacity 0.3s var(--cinematic-easing), transform 0.3s var(--cinematic-easing);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+.mascot-bubble.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Responsive mascot rules */
+@media (max-width: 768px) {
+  #cinematic-mascot-container {
+    bottom: 16px;
+    right: 16px;
+    width: 70px;
+    height: 70px;
+  }
+  .mascot-svg {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ── Typography & Image Reveal Effects ── */
+.cinematic-word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.cinematic-word {
+  display: inline-block;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+.cinematic-reveal-img {
+  overflow: hidden;
+  position: relative;
+}
+.cinematic-reveal-img img {
+  transform: scale(1.15);
+  transition: transform 1.2s var(--cinematic-easing);
+  will-change: transform;
+}
+.cinematic-reveal-img.revealed img {
+  transform: scale(1);
+}
+
+/* 3D Interactive Card tilt styling */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.tilt-card-inner {
+  transition: transform 0.1s ease;
+  will-change: transform;
+}

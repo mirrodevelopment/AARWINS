@@ -115,24 +115,34 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 24px;
-  border-radius: 100px;
-  background: #DADEE1;
-  color: #17313B;
+  height: 46px;
+  padding: 0 30px;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #ff9d00 0%, #ff5e00 100%);
+  color: #fff;
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-  transition: background 0.22s ease, transform 0.22s ease;
+  box-shadow: 
+    inset 0px 15px 20px rgba(255, 255, 255, 0.6), 
+    inset 0px -5px 15px rgba(200, 50, 0, 0.5), 
+    0px 10px 20px rgba(255, 94, 0, 0.4);
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   width: max-content;
 }
 
 .ed-pill-btn:hover {
-  background: #c8cdd1;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #ffaf33 0%, #ff6a00 100%);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    inset 0px 15px 20px rgba(255, 255, 255, 0.7), 
+    inset 0px -5px 15px rgba(200, 50, 0, 0.6), 
+    0px 15px 25px rgba(255, 94, 0, 0.5);
 }
 
 
@@ -188,6 +198,32 @@
   padding: 24px;
   justify-content: flex-start;
 }
+
+/* Individual backgrounds from user uploads */
+.ed-ph.ed-ph--1 {
+  background: url('../images/about_us_1.png') center/cover no-repeat !important;
+}
+
+.ed-ph.ed-ph--2 {
+  background: url('../images/about_us_2.png') center/cover no-repeat !important;
+}
+
+.ed-ph.ed-ph--3 {
+  background: url('../images/about_us_3.png') center/cover no-repeat !important;
+}
+
+.ed-ph.ed-ph--1 .ed-ph-inner,
+.ed-ph.ed-ph--2 .ed-ph-inner,
+.ed-ph.ed-ph--3 .ed-ph-inner,
+.ed-ph.ed-ph--bunny-fox .ed-ph-inner {
+  display: none; /* Hide visual text overlays since text is beautifully integrated into the luxury assets */
+}
+
+.ed-ph.ed-ph--bunny-fox {
+  background: url('../images/bunny%20fox.png') center/cover no-repeat !important;
+}
+
+
 
 .ed-ph-inner {
   display: flex;

@@ -65,41 +65,59 @@ button { font-family: inherit; cursor: pointer; }
   gap: 8px;
   height: 54px;
   padding: 0 32px;
-  border-radius: var(--radius-pill);
-  background: var(--grad-main);
+  border-radius: 50px;
+  background: linear-gradient(180deg, #ff9d00 0%, #ff5e00 100%);
   color: #fff;
   font-family: var(--font-display);
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  border: none;
-  box-shadow: 0 6px 20px rgba(68,127,152,0.25);
-  transition: var(--transition);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    inset 0px 15px 20px rgba(255, 255, 255, 0.6), 
+    inset 0px -5px 15px rgba(200, 50, 0, 0.5), 
+    0px 10px 20px rgba(255, 94, 0, 0.4);
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(68,127,152,0.35);
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #ffaf33 0%, #ff6a00 100%);
+  box-shadow: 
+    inset 0px 15px 20px rgba(255, 255, 255, 0.7), 
+    inset 0px -5px 15px rgba(200, 50, 0, 0.6), 
+    0px 15px 25px rgba(255, 94, 0, 0.5);
 }
 .btn-primary.btn-sm { height: 44px; padding: 0 22px; font-size: 13px; }
 
 .btn-ghost {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   height: 54px;
   padding: 0 32px;
-  border-radius: var(--radius-pill);
-  background: rgba(255,255,255,0.18);
-  color: var(--dark);
+  border-radius: 50px;
+  background: linear-gradient(180deg, #ff9d00 0%, #ff5e00 100%);
+  color: #fff;
   font-family: var(--font-display);
   font-size: 14px;
-  font-weight: 600;
-  border: 1px solid rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
-  transition: var(--transition);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    inset 0px 15px 20px rgba(255, 255, 255, 0.6), 
+    inset 0px -5px 15px rgba(200, 50, 0, 0.5), 
+    0px 10px 20px rgba(255, 94, 0, 0.4);
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .btn-ghost:hover {
-  background: rgba(255,255,255,0.35);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #ffaf33 0%, #ff6a00 100%);
+  box-shadow: 
+    inset 0px 15px 20px rgba(255, 255, 255, 0.7), 
+    inset 0px -5px 15px rgba(200, 50, 0, 0.6), 
+    0px 15px 25px rgba(255, 94, 0, 0.5);
 }
 
 /* ── Section typography ── */
@@ -1080,12 +1098,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .cta-input::placeholder { color: rgba(255,255,255,0.6); }
 .cta-input:focus { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.7); }
-.cta-form .btn-primary {
-  background: #fff;
-  color: var(--turquoise);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-.cta-form .btn-primary:hover { background: #f0f4f6; }
+
 
 /* ════════════════════════════════════════════════
    CONTACT
