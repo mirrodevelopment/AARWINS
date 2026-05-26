@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/css/aarwins.css?v=1.2"/>
-  <link rel="stylesheet" href="/css/editorial.css?v=1.2"/>
+  <link rel="stylesheet" href="/css/aarwins.css?v=2.0"/>
+  <link rel="stylesheet" href="/css/editorial.css?v=2.0"/>
   <link rel="stylesheet" href="/css/luxury-spacing.css?v=1.2"/>
   <link rel="stylesheet" href="/css/cinematic.css?v=1.2"/>
 
@@ -208,26 +208,28 @@
     .hp-form-input, .hp-form-textarea {
       width: 100%;
       background: transparent;
-      border: 1px solid #DADADA;
-      border-radius: 16px;
+      border: none;
+      border-bottom: 1px solid rgba(23, 49, 59, 0.18);
+      border-radius: 0;
       color: #17313B;
       font-family: 'DM Sans', sans-serif;
       font-size: 15px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .hp-form-input {
-      height: 64px;
-      padding: 0 24px;
+      height: 54px;
+      padding: 0;
     }
     .hp-form-textarea {
-      height: 180px;
-      padding: 24px;
+      height: 140px;
+      padding: 16px 0;
       resize: none;
     }
     .hp-form-input:focus, .hp-form-textarea:focus {
       outline: none;
-      border-color: #17313B;
-      box-shadow: 0 0 0 4px rgba(23, 49, 59, 0.05);
+      border-bottom-color: #447F98;
+      box-shadow: 0 6px 12px -6px rgba(68, 127, 152, 0.18);
     }
     .hp-form-submit {
       align-self: flex-start;
@@ -435,8 +437,11 @@
       bottom: 0;
       width: 100%;
       max-width: 480px;
-      background: #FFFFFF;
-      box-shadow: -15px 0 40px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.72) !important;
+      backdrop-filter: blur(35px) saturate(190%) !important;
+      -webkit-backdrop-filter: blur(35px) saturate(190%) !important;
+      border-left: 1px solid rgba(255, 255, 255, 0.45) !important;
+      box-shadow: -15px 0 40px rgba(0, 0, 0, 0.03);
       z-index: 10003;
       display: flex;
       flex-direction: column;
@@ -448,7 +453,7 @@
     }
     .mcp-header {
       padding: 30px 40px;
-      border-bottom: 1px solid #ECECEC;
+      border-bottom: 1px solid rgba(23, 49, 59, 0.08) !important;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -487,7 +492,8 @@
     .mcp-item-thumb {
       width: 80px;
       height: 80px;
-      background: #F8F8F6;
+      background: rgba(255, 255, 255, 0.45) !important;
+      border: 1px solid rgba(255, 255, 255, 0.5) !important;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -518,8 +524,8 @@
     }
     .mcp-footer {
       padding: 40px;
-      border-top: 1px solid #ECECEC;
-      background: #FCFCFA;
+      border-top: 1px solid rgba(23, 49, 59, 0.08) !important;
+      background: rgba(255, 255, 255, 0.4) !important;
     }
     .mcp-total-row {
       display: flex;
@@ -591,43 +597,111 @@
       }
     }
     @media (max-width: 768px) {
+      /* Global container padding increase for more spacious home page layout */
+      .container, .ed-wrap, .hp-reviews-container, .hp-contact-container, .editorial-wrap {
+        padding-left: 36px !important;
+        padding-right: 36px !important;
+      }
+      
+      /* Increase section vertical paddings for breathing space */
+      .editorial {
+        padding: 130px 0 !important;
+      }
+      .products {
+        padding: 130px 0 !important;
+      }
       .hp-reviews-section {
-        padding: 100px 0;
+        padding: 140px 0 !important;
       }
       .hp-reviews-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 36px;
       }
       .hp-reviews-heading {
         font-size: 40px;
       }
       .hp-contact-section {
-        padding: 100px 0;
+        padding: 140px 0 !important;
       }
       .hp-contact-grid {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 64px;
       }
       .hp-contact-title {
         font-size: 44px;
       }
+      .fb-inner {
+        padding-left: 36px !important;
+        padding-right: 36px !important;
+        padding-bottom: 60px !important;
+      }
+      .fb-bottom {
+        padding-left: 36px !important;
+        padding-right: 36px !important;
+      }
     }
   </style>
 </head>
-<body>
-
-<!-- ════════ SEARCH OVERLAY ════════ -->
-<div class="search-overlay" id="search-overlay">
-  <button class="search-close" id="search-close" aria-label="Close search">✕</button>
-  <div class="search-inner">
-    <span class="search-label">SEARCH AARWINS</span>
-    <form class="search-form" onsubmit="event.preventDefault(); showToast('Searching for: ' + document.getElementById('search-input').value);">
-      <input type="text" id="search-input" class="search-input" placeholder="Type to search..." autocomplete="off"/>
-      <div class="search-underline"></div>
-    </form>
-    <p class="search-help">Press Enter to search, or ESC to exit</p>
+<body id="home">
+<!-- ════════ CINEMATIC LOADING SCREEN ════════ -->
+<div id="aw-loader" aria-hidden="true">
+  <script>
+    if (sessionStorage.getItem('aw-loader-seen')) {
+      document.getElementById('aw-loader').style.display = 'none';
+    }
+    // Bulletproof fallback to ensure the page is never locked by a stuck preloader
+    setTimeout(function() {
+      var loader = document.getElementById('aw-loader');
+      if (loader && loader.style.display !== 'none' && !document.body.classList.contains('aw-loaded')) {
+        loader.style.transition = 'opacity 0.8s ease, filter 0.8s ease';
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+        document.body.classList.add('aw-loaded');
+        // Show core page elements instantly
+        var header = document.getElementById('site-header');
+        if (header) header.style.opacity = '1';
+        var heroInner = document.querySelector('.hero-inner');
+        if (heroInner) heroInner.style.opacity = '1';
+        var heroGlow = document.querySelector('.hero-glow-bg');
+        if (heroGlow) heroGlow.style.opacity = '1';
+        setTimeout(function() { loader.style.display = 'none'; }, 800);
+      }
+    }, 3500);
+  </script>
+  <div class="aw-loader-glow"></div>
+  <div class="aw-loader-brand">
+    <span class="aw-loader-letter">A</span>
+    <span class="aw-loader-letter">A</span>
+    <span class="aw-loader-letter">R</span>
+    <span class="aw-loader-letter">W</span>
+    <span class="aw-loader-letter">I</span>
+    <span class="aw-loader-letter">N</span>
+    <span class="aw-loader-letter">S</span>
   </div>
+  <div class="aw-loader-bar-wrap">
+    <div class="aw-loader-bar-fill"></div>
+  </div>
+  <p class="aw-loader-tagline">Pure Coconut Energy</p>
 </div>
+
+<!-- ════════ SCROLL PROGRESS ════════ -->
+<div id="aw-progress-bar" aria-hidden="true"></div>
+
+<!-- ════════ CUSTOM CURSOR ════════ -->
+<div id="aw-cursor-glow"  aria-hidden="true"></div>
+<div id="aw-cursor-ring"  aria-hidden="true"><div id="aw-cursor-tooltip"></div></div>
+<div id="aw-cursor-dot"   aria-hidden="true"></div>
+
+<!-- ════════ AMBIENT MOUSE LIGHT ════════ -->
+<div id="aw-ambient-light" aria-hidden="true"></div>
+
+<!-- ════════ FILM GRAIN OVERLAY ════════ -->
+<div id="aw-grain" aria-hidden="true"></div>
+
+<!-- ════════ FLOATING PARTICLES ════════ -->
+<div id="aw-particles" aria-hidden="true"></div>
+
+
 
 <!-- ════════ MINI CART OVERLAY & PANEL ════════ -->
 <div class="mini-cart-overlay" id="mini-cart-overlay"></div>
@@ -697,9 +771,13 @@
 
     <div class="nav-right">
       <span class="nav-lang">UA | EN</span>
-      <button class="nav-icon-btn" id="nav-search-btn" aria-label="Search">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      </button>
+      <div class="nav-search-wrapper" id="nav-search-wrapper">
+        <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Search..." autocomplete="off"/>
+        <span class="nav-search-divider"></span>
+        <button class="nav-search-btn" id="nav-search-btn" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
       <div class="nav-user-container" style="position: relative; display: inline-block;">
         <button class="nav-icon-btn" id="nav-user-btn" aria-label="Account">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -728,13 +806,67 @@
   </nav>
 </header>
 
+<!-- Mobile Drawer Backdrop Overlay -->
+<div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
+
 <!-- Mobile drawer -->
-<div class="nav-drawer" id="nav-drawer">
-  <button class="drawer-close" id="drawer-close">✕</button>
-  <a href="/collections">Collections</a>
-  <a href="#editorial">Philosophy</a>
-  <a href="#reviews">Reviews</a>
-  <a href="#contact-section">Contact us</a>
+<div class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
+  <!-- Gradient Orbs & Lighting -->
+  <div class="drawer-glow-container" aria-hidden="true">
+    <div class="drawer-glow-orb orb-blue"></div>
+    <div class="drawer-glow-orb orb-pink"></div>
+    <div class="drawer-glow-orb orb-lavender"></div>
+    <div class="drawer-glow-orb orb-teal"></div>
+  </div>
+  
+  <!-- Grain Overlay inside menu panel -->
+  <div class="drawer-grain" aria-hidden="true"></div>
+  
+  <div class="drawer-content">
+    <!-- Top Area -->
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="drawer-logo-text">AARWINS</span>
+        <span class="drawer-editorial-label">Tropical Wellness</span>
+      </div>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
+    </div>
+    
+    <!-- Center Navigation Links -->
+    <nav class="drawer-nav" aria-label="Mobile Navigation">
+      <a href="/#home" class="drawer-nav-item" style="--stagger-index: 1;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Home</span>
+      </a>
+      <a href="/collections" class="drawer-nav-item" style="--stagger-index: 2;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Collections</span>
+      </a>
+      <a href="/#reviews" class="drawer-nav-item" style="--stagger-index: 3;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <span>Reviews</span>
+      </a>
+      <a href="/#contact-section" class="drawer-nav-item" style="--stagger-index: 4;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>Contact</span>
+      </a>
+      
+      <div class="drawer-nav-divider" style="--stagger-index: 5;"></div>
+      
+      <a href="/#profile" class="drawer-nav-item" style="--stagger-index: 6;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Account</span>
+      </a>
+      <a href="#" id="drawer-nav-link-cart" class="drawer-nav-item" style="--stagger-index: 7;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Cart</span>
+      </a>
+      <a href="/#wishlist" class="drawer-nav-item" style="--stagger-index: 8;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span>Wishlist</span>
+      </a>
+    </nav>
+  </div>
 </div>
 
 
@@ -770,6 +902,15 @@
   </div>
 </section>
 
+<!-- ════════ SECTION 1 — CINEMATIC QUOTE TRANSITION ════════ -->
+<section class="aw-quote-section" id="quote-transition">
+  <div class="aw-quote-glow"></div>
+  <div class="aw-quote-container">
+    <blockquote class="aw-quote-text playfair-serif">
+      Tropical wellness begins in stillness.
+    </blockquote>
+  </div>
+</section>
 
 <!-- ════════ EDITORIAL SECTION ════════ -->
 <div class="ed-page" id="editorial">
@@ -843,6 +984,75 @@
 
 </div><!-- /ed-page -->
 
+<!-- ════════ SECTION 2 — IMMERSIVE INGREDIENT STORY (ROLLS-ROYCE PINNED SCROLL) ════════ -->
+<section class="aw-ingredients-section" id="ingredients-story">
+  <div class="aw-ingredients-glow"></div>
+  <div class="aw-ingredients-container">
+    
+    <!-- LEFT SIDE: STATIC / PINNED -->
+    <div class="aw-ingredients-left">
+      <span class="aw-ingredients-label">AARWINS INGREDIENTS</span>
+      <h2 class="aw-ingredients-heading playfair-serif">Crafted Through<br>Tropical Purity</h2>
+      <p class="aw-ingredients-text">
+        Every drop of Aarwins is a testament to natural stillness. We select the finest young coconuts, cold-pressing their raw nectar to preserve active electrolytes, and blend them with calming organic botanicals. It is a slow, tactile philosophy designed to bring modern tropical wellness into your everyday life.
+      </p>
+      <button class="ed-pill-btn" style="margin-top: 36px;" onclick="showToast('Exploring ingredient philosophy...');">Explore Philosophy</button>
+    </div>
+
+    <!-- RIGHT SIDE: VERTICALLY SCROLLABLE STACK -->
+    <div class="aw-ingredients-right">
+      <div class="aw-ingredients-scroll-track">
+        
+        <!-- Card 1: Coconut -->
+        <div class="aw-ingredient-card" data-index="1">
+          <img src="/images/ing_coconut.png" alt="Luxury coconut composition" class="aw-card-img" />
+          <div class="aw-card-overlay">
+            <span class="aw-card-num">01</span>
+            <span class="aw-card-title-text">COCONUT ELIXIR</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Lavender -->
+        <div class="aw-ingredient-card" data-index="2">
+          <img src="/images/ing_lavender.png" alt="Lavender ingredient atmosphere" class="aw-card-img" />
+          <div class="aw-card-overlay">
+            <span class="aw-card-num">02</span>
+            <span class="aw-card-title-text">CALMING LAVENDER</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Matcha -->
+        <div class="aw-ingredient-card" data-index="3">
+          <img src="/images/ing_matcha.png" alt="Matcha wellness editorial" class="aw-card-img" />
+          <div class="aw-card-overlay">
+            <span class="aw-card-num">03</span>
+            <span class="aw-card-title-text">UJI MATCHA</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Coffee -->
+        <div class="aw-ingredient-card" data-index="4">
+          <img src="/images/ing_coffee.png" alt="Coffee infusion aesthetic" class="aw-card-img" />
+          <div class="aw-card-overlay">
+            <span class="aw-card-num">04</span>
+            <span class="aw-card-title-text">ROASTED ARABICA</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Cocoa -->
+        <div class="aw-ingredient-card" data-index="5">
+          <img src="/images/ing_cocoa.png" alt="Chocolate tropical composition" class="aw-card-img" />
+          <div class="aw-card-overlay">
+            <span class="aw-card-num">05</span>
+            <span class="aw-card-title-text">TROPICAL COCOA</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- ════════ THE COLLECTION ════════ -->
 <section class="coll-section" id="collection">
@@ -852,7 +1062,7 @@
     <div class="coll-grid">
 
       <!-- Featured: Chocolate Coconut Wellness -->
-      <a href="/product/1" class="coll-card anim-fade-up" style="text-decoration: none;">
+      <a href="/product/1" class="coll-card anim-fade-up" data-detail="Rich Cocoa &amp; Pure Young Coconut Elixir" style="text-decoration: none;">
         <div class="coll-img-wrap">
           <svg viewBox="0 0 180 380" class="coll-bottle-svg" aria-label="Chocolate Coconut Bottle">
             <defs>
@@ -888,7 +1098,7 @@
       </a>
 
       <!-- Featured: Matcha Coconut Balance -->
-      <a href="/product/3" class="coll-card anim-fade-up anim-delay-1" style="text-decoration: none;">
+      <a href="/product/3" class="coll-card anim-fade-up anim-delay-1" data-detail="Ceremonial Uji Matcha &amp; Coconut Hydration" style="text-decoration: none;">
         <div class="coll-img-wrap">
           <svg viewBox="0 0 180 380" class="coll-bottle-svg" aria-label="Matcha Coconut Bottle">
             <defs>
@@ -924,7 +1134,7 @@
       </a>
 
       <!-- Featured: Lavender Coconut Calm -->
-      <a href="/product/4" class="coll-card anim-fade-up anim-delay-2" style="text-decoration: none;">
+      <a href="/product/4" class="coll-card anim-fade-up anim-delay-2" data-detail="Calming Organic Lavender &amp; Coconut Calm" style="text-decoration: none;">
         <div class="coll-img-wrap">
           <svg viewBox="0 0 180 380" class="coll-bottle-svg" aria-label="Lavender Coconut Bottle">
             <defs>
@@ -976,13 +1186,26 @@
         <p class="coll-bts-text">
           Six exceptional tropical blends. Each crafted with organic ingredients, designed with intention, and bottled with care. Discover the full Aarwins collection — from our featured favourites to every flavour in the range.
         </p>
-        <a href="/collections" style="display:inline-flex;align-items:center;height:44px;padding:0 28px;border:1px solid #111;background:transparent;color:#111;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-top:24px;transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='#111';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#111'">View All Flavours</a>
+        <a href="/collections" class="btn-primary" style="margin-top:24px;">View All Flavours</a>
       </div>
     </div>
   </div>
 </section>
 
-
+<!-- ════════ SECTION 3 — CINEMATIC PRODUCT FOCUS ════════ -->
+<section class="aw-product-focus-section" id="product-focus">
+  <div class="aw-product-focus-glow"></div>
+  <div class="aw-product-focus-container">
+    <div class="aw-product-showcase-wrap" data-detail="Aarwins Bespoke Bottle">
+      <div class="aw-product-showcase-img">
+        <img src="/images/bespoke_bottle.png" alt="Aarwins Bespoke Bottle" class="aw-showcase-bottle-img" />
+      </div>
+      <div class="aw-product-showcase-reflection"></div>
+    </div>
+    
+    <h2 class="aw-product-focus-title">Hydration Reimagined</h2>
+  </div>
+</section>
 
 <!-- ════════ REVIEWS SECTION ════════ -->
 <section class="hp-reviews-section" id="reviews">
@@ -1054,6 +1277,17 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 4 — EDITORIAL SCROLL TRANSITION ════════ -->
+<section class="aw-scroll-divider-section" id="scroll-divider-transition">
+  <div class="aw-scroll-divider-bg"></div>
+  <div class="aw-scroll-divider-content">
+    <div class="aw-scroll-divider-line"></div>
+    <p class="aw-scroll-divider-text playfair-serif">
+      Designed for modern tropical living.
+    </p>
   </div>
 </section>
 
@@ -1188,52 +1422,7 @@ document.querySelectorAll('.ed-cat').forEach(function(btn) {
   els.forEach(function(el) { io.observe(el); });
 })();
 
-/* Mobile hamburger drawer (toggles open & is-open) */
-var hamburger = document.getElementById('nav-hamburger');
-var drawer = document.getElementById('nav-drawer');
-var drawerClose = document.getElementById('drawer-close');
-
-if (hamburger && drawer) {
-  hamburger.addEventListener('click', function() {
-    drawer.classList.add('open');
-    drawer.classList.add('is-open');
-  });
-}
-if (drawerClose && drawer) {
-  drawerClose.addEventListener('click', function() {
-    drawer.classList.remove('open');
-    drawer.classList.remove('is-open');
-  });
-}
-if (drawer) {
-  drawer.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      drawer.classList.remove('open');
-      drawer.classList.remove('is-open');
-    });
-  });
-}
-
-/* ─── Search Overlay Interactions ─── */
-var searchBtn = document.getElementById('nav-search-btn');
-var searchOverlay = document.getElementById('search-overlay');
-var searchClose = document.getElementById('search-close');
-var searchInput = document.getElementById('search-input');
-
-if (searchBtn && searchOverlay) {
-  searchBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    searchOverlay.classList.add('active');
-    if (searchInput) {
-      setTimeout(function() { searchInput.focus(); }, 100);
-    }
-  });
-}
-if (searchClose && searchOverlay) {
-  searchClose.addEventListener('click', function() {
-    searchOverlay.classList.remove('active');
-  });
-}
+/* Mobile drawer inline event listeners removed to use unified aarwins.js logic */
 
 /* ─── Account Dropdown Interactions ─── */
 var userBtn = document.getElementById('nav-user-btn');
@@ -1298,5 +1487,8 @@ document.addEventListener('click', function(e) {
   }
 });
 </script>
+
+<!-- ════════ CINEMATIC ENGINE ════════ -->
+<script src="/js/cinematic-home.js?v=2.0"></script>
 </body>
 </html>

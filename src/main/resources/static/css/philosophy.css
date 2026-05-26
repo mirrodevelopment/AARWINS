@@ -1,0 +1,1620 @@
+/* ════════════════════════════════════════════════
+   AARWINS — Philosophy Page Styling
+   ════════════════════════════════════════════════ */
+
+:root {
+  --color-dark-bg: #070e10;
+  --color-tropical-blue: #0b222c;
+  --color-luxury-gold: #c8b4a0;
+  --color-mint-glow: #00c9b8;
+  --font-editorial-serif: 'Playfair Display', Georgia, serif;
+  --font-editorial-sans: 'Syne', sans-serif;
+  --font-editorial-body: 'DM Sans', sans-serif;
+  --cinematic-easing-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hide global floating mascot widget on this page to avoid redundancy */
+#cinematic-mascot-container {
+  display: none !important;
+}
+
+/* ── Base Styling overrides ── */
+body.philosophy-page {
+  background-color: var(--color-dark-bg);
+  color: #faf9f6;
+  font-family: var(--font-editorial-body);
+  overflow-x: hidden;
+}
+
+/* Active Philosophy link styling in navbar */
+.site-header--cinematic .nav-links a.active {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* ── Fullscreen Section Block ── */
+.section-fullscreen {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 140px 0;
+  box-sizing: border-box;
+}
+
+.container-cinematic {
+  width: 88%;
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.flex-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Background Atmosphere Lights ── */
+.glow-source {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(140px);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  z-index: 1;
+}
+
+.glow-blue-top {
+  top: -10%;
+  right: 10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.35) 0%, rgba(11, 34, 44, 0.1) 70%, transparent 100%);
+  animation: glowPulse 10s ease-in-out infinite alternate;
+}
+
+.glow-green-bottom {
+  bottom: -10%;
+  left: -5%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(0, 201, 184, 0.25) 0%, rgba(7, 14, 16, 0.1) 70%, transparent 100%);
+  animation: glowPulse 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+  50% { transform: scale(1.1) translate(3%, -5%); opacity: 0.45; }
+  100% { transform: scale(0.95) translate(-2%, 4%); opacity: 0.25; }
+}
+
+/* ── SVG Film Grain Overlay ── */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  background: transparent;
+}
+
+.grain-overlay::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: #000;
+  filter: url(#noise-filter);
+  opacity: 0.16;
+  animation: grain-animation 7s steps(10) infinite;
+}
+
+@keyframes grain-animation {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* ── Typography Styling ── */
+.cinematic-label {
+  font-family: var(--font-editorial-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--color-luxury-gold);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: block;
+}
+
+.cinematic-heading-giant {
+  font-family: var(--font-editorial-serif);
+  font-size: 140px;
+  line-height: 0.85;
+  font-weight: 500;
+  letter-spacing: -4px;
+  color: #ffffff;
+  margin: 0 0 32px 0;
+}
+
+.cinematic-heading-editorial {
+  font-family: var(--font-editorial-serif);
+  font-size: 78px;
+  line-height: 1.0;
+  font-weight: 400;
+  letter-spacing: -2px;
+  color: #ffffff;
+  margin: 0 0 28px 0;
+}
+
+.cinematic-paragraph-editorial {
+  font-family: var(--font-editorial-body);
+  font-size: 17px;
+  line-height: 1.85;
+  color: rgba(250, 249, 246, 0.7);
+  font-weight: 300;
+  max-width: 520px;
+}
+
+/* Split-Type Text Character Reveals styles */
+.char-wrapper {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.char-item {
+  display: inline-block;
+  transform: translateY(105%) rotate(5deg);
+  filter: blur(8px);
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  transition: transform 1.2s var(--cinematic-easing-luxury), filter 1.2s var(--cinematic-easing-luxury), opacity 1.2s var(--cinematic-easing-luxury);
+}
+
+.char-item.in-view {
+  transform: translateY(0) rotate(0deg);
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* ── Hero Scene Layout ── */
+.s-hero {
+  background-color: var(--color-dark-bg);
+}
+
+.s-hero__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.s-hero__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Immersive Visual Composition (Hero Right) ── */
+.hero-visual-composite {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Volumetric lighting rays */
+.light-ray {
+  position: absolute;
+  width: 160px;
+  height: 800px;
+  background: linear-gradient(to bottom, rgba(0, 201, 184, 0.12) 0%, transparent 80%);
+  transform-origin: top center;
+  pointer-events: none;
+  filter: blur(30px);
+  opacity: 0.7;
+}
+
+.light-ray-1 {
+  top: -100px;
+  left: 20%;
+  transform: rotate(-25deg);
+}
+
+.light-ray-2 {
+  top: -120px;
+  right: 25%;
+  transform: rotate(20deg);
+}
+
+/* Hero Can Wrap */
+.composite-bottle-wrap {
+  position: relative;
+  z-index: 5;
+  width: 240px;
+  animation: compositeFloat 7s ease-in-out infinite alternate;
+}
+
+.composite-bottle {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.45)) drop-shadow(0 0 40px rgba(68,127,152,0.15));
+}
+
+@keyframes compositeFloat {
+  0% { transform: translateY(10px) rotate(-1deg) scale(0.98); }
+  100% { transform: translateY(-15px) rotate(2deg) scale(1.02); }
+}
+
+/* Custom Mascot Container in Hero */
+.composite-mascot-wrap {
+  position: absolute;
+  bottom: 60px;
+  right: 5%;
+  width: 135px;
+  height: 135px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transform: scale(0.95);
+  will-change: transform;
+  transition: transform 0.4s var(--cinematic-easing-luxury), background-color 0.4s;
+}
+
+.composite-mascot-wrap:hover {
+  transform: scale(1.03) translateY(-3px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 201, 184, 0.3);
+}
+
+.hero-mascot-svg {
+  width: 95px;
+  height: 95px;
+  overflow: visible;
+}
+
+/* Floating ingredients details */
+.floating-ingredient {
+  position: absolute;
+  z-index: 8;
+  background: rgba(11, 34, 44, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  will-change: transform;
+}
+
+.ing-glow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-mint-glow);
+  box-shadow: 0 0 8px var(--color-mint-glow);
+}
+
+.ing-matcha {
+  top: 15%;
+  left: 5%;
+  animation: ingFloat1 8s ease-in-out infinite alternate;
+}
+
+.ing-coconut {
+  bottom: 25%;
+  left: 0%;
+  animation: ingFloat2 10s ease-in-out infinite alternate;
+}
+
+.ing-lavender {
+  top: 20%;
+  right: 0%;
+  animation: ingFloat3 9s ease-in-out infinite alternate;
+}
+
+@keyframes ingFloat1 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(4deg); }
+}
+
+@keyframes ingFloat2 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(18px) rotate(-6deg); }
+}
+
+@keyframes ingFloat3 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-25px) rotate(8deg); }
+}
+
+/* Particles in Hero */
+.scene-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.dust-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: dustFloat 12s linear infinite;
+  opacity: 0;
+}
+
+@keyframes dustFloat {
+  0% { transform: translateY(50px) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-150px) translateX(30px); opacity: 0; }
+}
+
+/* ── Section 2: Origin Story ── */
+.s-origin {
+  background-color: #050a0c;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.origin-still-life-card {
+  width: 100%;
+  max-width: 600px;
+  height: 680px;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.55);
+}
+
+.still-life-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  will-change: transform;
+}
+
+.still-life-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 30%, rgba(5, 10, 12, 0.85) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.still-life-border {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Image mask reveal effect */
+.reveal-img-mask {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  will-change: clip-path;
+  transition: clip-path 1.8s var(--cinematic-easing-luxury);
+}
+
+.reveal-img-mask.is-revealed {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* ── Section 3: Immersive Quote ── */
+.s-quote {
+  background-color: #070e10;
+  text-align: center;
+}
+
+.quote-blur-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 201, 184, 0.18) 0%, rgba(68, 127, 152, 0.05) 60%, transparent 100%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  filter: blur(80px);
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.cinematic-blockquote {
+  margin: 0;
+  padding: 0;
+  max-width: 1100px;
+  z-index: 2;
+}
+
+.quote-mark {
+  font-family: var(--font-editorial-serif);
+  font-size: 80px;
+  color: var(--color-luxury-gold);
+  line-height: 1;
+  display: block;
+}
+
+.cinematic-heading-quote {
+  font-family: var(--font-editorial-serif);
+  font-size: 120px;
+  line-height: 1.0;
+  font-weight: 400;
+  letter-spacing: -3px;
+  color: #ffffff;
+  margin: 20px 0;
+}
+
+/* ── Section 4: Ingredient Philosophy ── */
+.s-ingredients {
+  background-color: #050a0c;
+  padding-bottom: 180px;
+}
+
+.ingredients-header {
+  max-width: 650px;
+  margin: 0 auto 90px auto;
+}
+
+.cinematic-paragraph-sub {
+  font-family: var(--font-editorial-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(250, 249, 246, 0.6);
+  font-weight: 300;
+  margin: 18px 0 0 0;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  perspective: 1200px;
+}
+
+.ingredient-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 32px;
+  padding: 50px 40px;
+  height: 420px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.4s var(--cinematic-easing-luxury), background-color 0.4s;
+  overflow: hidden;
+}
+
+.ingredient-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.tilt-card-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.ing-card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 1;
+}
+
+.ingredient-card:hover .ing-card-glow {
+  opacity: 1;
+}
+
+.ing-card-index {
+  font-family: var(--font-editorial-serif);
+  font-size: 18px;
+  color: var(--color-luxury-gold);
+  font-weight: 400;
+  transform: translateZ(20px);
+}
+
+.ing-card-title {
+  font-family: var(--font-editorial-serif);
+  font-size: 38px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin: 40px 0 16px 0;
+  transform: translateZ(35px);
+}
+
+.ing-card-desc {
+  font-family: var(--font-editorial-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(250, 249, 246, 0.6);
+  font-weight: 300;
+  margin: 0;
+  transform: translateZ(25px);
+  flex-grow: 1;
+}
+
+.ing-card-tag {
+  font-family: var(--font-editorial-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-luxury-gold);
+  margin-top: 30px;
+  transform: translateZ(15px);
+}
+
+/* ── Section 5: Cinematic Product Scene ── */
+.s-product-scene {
+  background-color: #070e10;
+}
+
+/* Backdrop giant typography */
+.product-backdrop-text {
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  font-family: var(--font-editorial-sans);
+  font-size: 18vw;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.015);
+  line-height: 1.0;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+
+.backdrop-right {
+  top: auto;
+  bottom: 12%;
+  right: 2%;
+  left: auto;
+}
+
+.product-showcase-container {
+  position: relative;
+  z-index: 5;
+  width: 320px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-showcase-can {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.65)) drop-shadow(0 0 60px rgba(68,127,152,0.2));
+  will-change: transform;
+}
+
+.product-reflection {
+  position: absolute;
+  bottom: -40px;
+  width: 260px;
+  height: 40px;
+  background: radial-gradient(ellipse, rgba(0, 201, 184, 0.25) 0%, transparent 70%);
+  filter: blur(8px);
+  z-index: 1;
+}
+
+.product-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.15) 0%, transparent 75%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(50px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Floating product technical labels */
+.product-floating-details {
+  position: absolute;
+  width: 100%;
+  max-width: 900px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.floating-detail-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  padding-left: 20px;
+}
+
+.fd-top {
+  top: 15%;
+  left: 5%;
+}
+
+.fd-bottom {
+  bottom: 20%;
+  right: 5%;
+}
+
+.fd-label {
+  font-family: var(--font-editorial-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--color-luxury-gold);
+  text-transform: uppercase;
+}
+
+.fd-value {
+  font-family: var(--font-editorial-serif);
+  font-size: 24px;
+  color: #fff;
+  font-weight: 400;
+}
+
+/* ── Section 6: Final Manifesto ── */
+.s-manifesto {
+  background-color: #050a0c;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 0px;
+}
+
+.manifesto-content-wrap {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.manifesto-cta {
+  margin-top: 45px;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.manifesto-line-wrap {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-top: 90px;
+  position: relative;
+}
+
+.manifesto-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0%;
+  height: 100%;
+  background: var(--color-mint-glow);
+  transform: translateX(-50%);
+  will-change: width;
+}
+
+/* Footer overrides */
+.footer-philosophy {
+  width: 100%;
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  z-index: 10;
+}
+
+/* ── Custom Cursor additions ── */
+#cinematic-cursor {
+  mix-blend-mode: difference;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+#cinematic-cursor-dot {
+  background: #ffffff !important;
+}
+
+body.cursor-hovering #cinematic-cursor {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+}
+
+/* ── RESPONSIVE ADAPTATIONS (MOBILE) ── */
+@media (max-width: 1399px) {
+  .cinematic-heading-giant {
+    font-size: 110px;
+  }
+  .cinematic-heading-quote {
+    font-size: 90px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .cinematic-heading-giant {
+    font-size: 84px;
+    letter-spacing: -2px;
+  }
+  .cinematic-heading-editorial {
+    font-size: 60px;
+  }
+  .cinematic-heading-quote {
+    font-size: 72px;
+  }
+  .ingredients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .ingredient-card {
+    height: 380px;
+    padding: 40px 32px;
+  }
+  .ing-card-title {
+    font-size: 32px;
+    margin: 24px 0 12px 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .flex-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+  .s-hero__left, .s-origin__left {
+    align-items: center;
+    text-align: center;
+  }
+  .cinematic-paragraph-editorial {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-visual-composite {
+    height: 480px;
+    max-width: 100%;
+  }
+  .composite-bottle-wrap {
+    width: 170px;
+  }
+  .composite-mascot-wrap {
+    width: 100px;
+    height: 100px;
+    bottom: 30px;
+    right: 15%;
+  }
+  .hero-mascot-svg {
+    width: 70px;
+    height: 70px;
+  }
+  .floating-ingredient {
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+  .fd-top {
+    left: 10%;
+  }
+  .fd-bottom {
+    right: 10%;
+  }
+  .origin-still-life-card {
+    height: 480px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-fullscreen {
+    padding: 100px 0;
+  }
+  .cinematic-heading-giant {
+    font-size: 54px;
+    letter-spacing: -1px;
+  }
+  .cinematic-heading-editorial {
+    font-size: 44px;
+  }
+  .cinematic-heading-quote {
+    font-size: 48px;
+    letter-spacing: -1px;
+  }
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .ingredient-card {
+    height: auto;
+    padding: 36px 28px;
+  }
+  .ing-card-title {
+    margin: 16px 0 8px 0;
+  }
+  .ing-card-tag {
+    margin-top: 24px;
+  }
+  .product-showcase-container {
+    width: 220px;
+  }
+  .product-floating-details {
+    height: 280px;
+  }
+  .fd-value {
+    font-size: 18px;
+  }
+  }
+}
+
+/* ==========================================================================
+   CINEMATIC UPGRADES: OVERLAYS, GLASS NAVBAR & LIQUID CTA BUTTONS
+   ========================================================================== */
+
+/* --- Backdrop Ambient Glows --- */
+body.philosophy-page .cinematic-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+body.philosophy-page .bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+body.philosophy-page .bg-glow-1 {
+  top: -10%;
+  left: 20%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(0, 201, 184, 0.4) 0%, transparent 70%);
+  animation: floatGlow1 16s ease-in-out infinite alternate;
+}
+body.philosophy-page .bg-glow-2 {
+  bottom: 10%;
+  right: -5%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.3) 0%, transparent 70%);
+  animation: floatGlow2 20s ease-in-out infinite alternate;
+}
+body.philosophy-page .bg-glow-3 {
+  top: 40%;
+  left: -10%;
+  width: 35vw;
+  height: 35vw;
+  background: radial-gradient(circle, rgba(190, 160, 240, 0.2) 0%, transparent 70%);
+  animation: floatGlow3 24s ease-in-out infinite alternate;
+}
+body.philosophy-page .bg-glow-4 {
+  bottom: -20%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(200, 180, 160, 0.2) 0%, transparent 70%);
+  animation: floatGlow4 18s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow1 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+  100% { transform: translate(5%, 10%) scale(1.15); opacity: 0.25; }
+}
+@keyframes floatGlow2 {
+  0% { transform: translate(0, 0) scale(1.1); opacity: 0.12; }
+  100% { transform: translate(-8%, -12%) scale(0.9); opacity: 0.22; }
+}
+@keyframes floatGlow3 {
+  0% { transform: translate(0, 0) scale(0.9); opacity: 0.1; }
+  100% { transform: translate(12%, 8%) scale(1.1); opacity: 0.2; }
+}
+@keyframes floatGlow4 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.12; }
+  100% { transform: translate(-10%, 5%) scale(1.2); opacity: 0.22; }
+}
+
+/* --- Section Dividers --- */
+body.philosophy-page .cinematic-divider-wrap {
+  width: 88%;
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  height: 1px;
+  background: transparent;
+}
+body.philosophy-page .cinematic-divider {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15) 30%, rgba(255, 255, 255, 0.15) 70%, transparent);
+  margin: 0 auto;
+  will-change: width;
+}
+
+/* --- Responsive Typography --- */
+body.philosophy-page .cinematic-heading-giant {
+  font-family: var(--font-editorial-serif) !important;
+  font-size: clamp(64px, 10vw, 150px) !important;
+  line-height: 0.85 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.04em !important;
+  color: #ffffff !important;
+  margin: 0 0 32px 0 !important;
+}
+
+body.philosophy-page .italic-serif {
+  font-family: var(--font-editorial-serif) !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: var(--color-luxury-gold) !important;
+}
+
+/* --- Floating Capsule Navbar Scroll Morph --- */
+body.philosophy-page .site-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
+  padding: 15px 0 !important;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+body.philosophy-page .site-header.scrolled {
+  width: 90% !important;
+  max-width: 960px !important;
+  left: 50% !important;
+  transform: translate3d(-50%, 20px, 0) !important;
+  border-radius: 60px !important;
+  background: rgba(10, 15, 20, 0.55) !important;
+  backdrop-filter: blur(35px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(35px) saturate(120%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  padding: 2px 20px !important;
+}
+
+body.philosophy-page .site-header.nav-hidden {
+  transform: translateY(-120%) !important;
+}
+body.philosophy-page .site-header.scrolled.nav-hidden {
+  transform: translate3d(-50%, -100px, 0) !important;
+}
+
+body.philosophy-page .navbar {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 12px 0 !important;
+  transition: padding 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+body.philosophy-page .site-header.scrolled .navbar {
+  padding: 8px 0 !important;
+}
+
+/* Logo brand overrides to preserve black text color requirement */
+body.philosophy-page .nav-logo {
+  background: rgba(255, 255, 255, 0.95) !important;
+  padding: 6px 14px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+}
+body.philosophy-page .nav-logo span {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+body.philosophy-page .site-header.scrolled .nav-logo {
+  padding: 5px 12px !important;
+  transform: scale(0.95) !important;
+}
+body.philosophy-page .site-header.scrolled .nav-logo-img {
+  height: 38px !important;
+  width: 38px !important;
+}
+
+/* Nav links styling for dark theme readability */
+body.philosophy-page .nav-links a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  position: relative;
+  font-weight: 500 !important;
+  padding: 6px 0;
+  transition: color 0.3s ease !important;
+}
+body.philosophy-page .nav-links a:hover {
+  color: #ffffff !important;
+}
+body.philosophy-page .nav-links a::after {
+  content: '' !important;
+  display: block !important;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: var(--color-mint-glow);
+  box-shadow: 0 0 8px var(--color-mint-glow);
+  transform: translateX(-50%);
+  transition: width 0.3s ease !important;
+}
+body.philosophy-page .nav-links a:hover::after {
+  width: 80% !important;
+}
+
+body.philosophy-page .nav-links a.active {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #000000 !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+}
+body.philosophy-page .nav-links a.active::after {
+  display: none !important;
+}
+
+body.philosophy-page .nav-right .nav-lang {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+body.philosophy-page .nav-right .nav-icon-btn svg {
+  stroke: #ffffff !important;
+  transition: stroke 0.3s, filter 0.3s !important;
+}
+body.philosophy-page .nav-right .nav-icon-btn:hover svg {
+  stroke: var(--color-mint-glow) !important;
+  filter: drop-shadow(0 0 5px var(--color-mint-glow)) !important;
+}
+
+body.philosophy-page .nav-right .nav-shop-btn {
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+body.philosophy-page .nav-right .nav-shop-btn:hover {
+  background: var(--color-mint-glow) !important;
+  color: #000000 !important;
+  box-shadow: 0 4px 20px rgba(0, 201, 184, 0.4) !important;
+  transform: scale(1.03) !important;
+}
+
+/* --- Dark Glassmorphic Search Overlay --- */
+body.philosophy-page .search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 10, 12, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.philosophy-page .search-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+body.philosophy-page .search-inner {
+  width: 90%;
+  max-width: 700px;
+  text-align: center;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.philosophy-page .search-overlay.is-open .search-inner {
+  transform: translateY(0) scale(1);
+}
+body.philosophy-page .search-label {
+  font-family: var(--font-editorial-body);
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--color-luxury-gold);
+  display: block;
+  margin-bottom: 20px;
+}
+body.philosophy-page .search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: var(--font-editorial-serif);
+  font-size: clamp(32px, 5vw, 56px);
+  color: #ffffff;
+  text-align: center;
+  outline: none;
+  padding: 10px 0;
+}
+body.philosophy-page .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.15);
+}
+body.philosophy-page .search-underline {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  margin-top: 10px;
+}
+body.philosophy-page .search-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background: var(--color-mint-glow);
+  transition: width 0.4s ease;
+}
+body.philosophy-page .search-input:focus + .search-underline::after {
+  width: 100%;
+}
+body.philosophy-page .search-close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+body.philosophy-page .search-close:hover {
+  opacity: 1;
+  color: var(--color-mint-glow);
+}
+body.philosophy-page .search-help {
+  font-family: var(--font-editorial-body);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 24px;
+}
+
+/* --- Account Dropdown Dark Glassmorphism --- */
+body.philosophy-page .account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 15px;
+  width: 200px;
+  background: rgba(10, 15, 20, 0.75) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+  padding: 12px !important;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+body.philosophy-page .account-dropdown.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+body.philosophy-page .account-dropdown a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 13px !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+body.philosophy-page .account-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+body.philosophy-page .account-dropdown a svg {
+  stroke: currentColor !important;
+}
+body.philosophy-page .account-dropdown .dropdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 8px 0;
+}
+body.philosophy-page .account-dropdown a.logout-link {
+  color: rgba(255, 99, 71, 0.8) !important;
+}
+body.philosophy-page .account-dropdown a.logout-link:hover {
+  background: rgba(255, 99, 71, 0.1) !important;
+  color: rgb(255, 99, 71) !important;
+}
+
+/* --- Mini Cart Dark Glassmorphic Slide-Out --- */
+body.philosophy-page .mini-cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 99998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+body.philosophy-page .mini-cart-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+body.philosophy-page .mini-cart-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  height: 100vh;
+  background: rgba(10, 15, 20, 0.8) !important;
+  backdrop-filter: blur(35px) !important;
+  -webkit-backdrop-filter: blur(35px) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+  z-index: 99999;
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5) !important;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.philosophy-page .mini-cart-panel.is-open {
+  right: 0;
+}
+body.philosophy-page .mcp-header {
+  padding: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body.philosophy-page .mcp-title {
+  font-family: var(--font-editorial-serif);
+  font-size: 24px;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+}
+body.philosophy-page .mcp-close {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+body.philosophy-page .mcp-close:hover {
+  color: #ffffff;
+}
+body.philosophy-page .mcp-body {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+body.philosophy-page .mcp-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+body.philosophy-page .mcp-item:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+}
+body.philosophy-page .mcp-item-thumb {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+body.philosophy-page .mcp-item-thumb img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+}
+body.philosophy-page .mcp-item-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body.philosophy-page .mcp-item-name {
+  font-family: var(--font-editorial-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+}
+body.philosophy-page .mcp-item-meta {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+body.philosophy-page .mcp-item-qty {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 2px;
+  margin-top: 6px;
+  width: fit-content;
+}
+body.philosophy-page .mcp-item-qty-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+body.philosophy-page .mcp-item-qty-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+}
+body.philosophy-page .mcp-item-qty-val {
+  font-size: 13px;
+  color: #ffffff;
+  width: 28px;
+  text-align: center;
+  font-weight: 600;
+}
+body.philosophy-page .mcp-item-price {
+  font-family: var(--font-editorial-serif);
+  font-size: 16px;
+  color: var(--color-luxury-gold);
+  margin-top: 4px;
+}
+body.philosophy-page .mcp-footer {
+  padding: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+body.philosophy-page .mcp-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+body.philosophy-page .mcp-total-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+body.philosophy-page .mcp-total-value {
+  font-family: var(--font-editorial-serif);
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 500;
+}
+body.philosophy-page .mcp-tax-info {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 20px 0;
+}
+body.philosophy-page .mcp-checkout-btn {
+  width: 100%;
+  background: var(--color-mint-glow);
+  color: #000000;
+  border: none;
+  border-radius: 100px;
+  padding: 16px 0;
+  font-family: var(--font-editorial-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+body.philosophy-page .mcp-checkout-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 201, 184, 0.4);
+  transform: translateY(-2px);
+}
+
+/* --- Tactile Liquid Primary Buttons --- */
+body.philosophy-page .btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 45px !important;
+  border-radius: 100px !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  font-family: var(--font-editorial-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.4s var(--cinematic-easing-luxury), transform 0.2s ease !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+  z-index: 1;
+}
+
+body.philosophy-page .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--color-mint-glow);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+body.philosophy-page .btn-primary:hover::before {
+  width: 320px;
+  height: 320px;
+}
+
+body.philosophy-page .btn-primary:hover {
+  color: #000000 !important;
+  border-color: var(--color-mint-glow) !important;
+  box-shadow: 0 15px 35px rgba(0, 201, 184, 0.3) !important;
+}
+
+body.philosophy-page .btn-primary:active {
+  transform: scale(0.96) translateY(1px) !important;
+}
+
+body.philosophy-page .btn-primary span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* --- Mobile Drawer Menu Overrides Removed to Unified aarwins.css System --- */
+
+/* --- Viewport and Fullscreen layout guarantees --- */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-dark-bg);
+  overflow-x: hidden;
+}
+body.philosophy-page #smooth-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+body.philosophy-page #smooth-content {
+  width: 100%;
+}
+
+/* Adaptive mobile overrides */
+@media (max-width: 991px) {
+  body.philosophy-page .site-header.scrolled {
+    width: 94% !important;
+    padding: 2px 10px !important;
+  }
+  body.philosophy-page .mini-cart-panel {
+    width: 100% !important;
+    right: -100%;
+  }
+}

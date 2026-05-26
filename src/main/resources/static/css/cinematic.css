@@ -1,180 +1,525 @@
 /* ════════════════════════════════════════════════
-   AARWINS — Cinematic UI & Interactions
+   AARWINS — Cinematic UI & Interactions v2.0
+   Ultra-premium layered motion system
    ════════════════════════════════════════════════ */
 
+/* ─── CSS CUSTOM PROPERTIES ─── */
 :root {
-  --cinematic-glow: radial-gradient(circle, rgba(0, 201, 184, 0.08) 0%, rgba(158, 240, 26, 0.03) 70%, transparent 100%);
-  --cinematic-font-serif: 'Playfair Display', serif;
-  --cinematic-font-sans: 'Inter', sans-serif;
-  --cinematic-easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --cine-aqua:     #447F98;
+  --cine-aqua-rgb: 68, 127, 152;
+  --cine-cream:    #F5F2ED;
+  --cine-dark:     #17313B;
+  --cine-ease:     cubic-bezier(0.16, 1, 0.3, 1);
+  --cine-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ── Smooth Scroll (Lenis support) ── */
-html.lenis, html.lenis body {
-  height: auto;
-}
-.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis-stopped {
-  overflow: hidden;
-}
-.lenis-scrolling iframe {
-  pointer-events: none;
-}
+/* ─── LENIS SMOOTH SCROLL ─── */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis-smooth { scroll-behavior: auto !important; }
+.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis-stopped { overflow: hidden; }
+.lenis-scrolling iframe { pointer-events: none; }
 
-/* ── Ambient Background Glow ── */
-#cinematic-ambient-glow {
+/* ─── BODY TRANSITION STATE ─── */
+body { overflow-x: hidden; }
+body.aw-loaded .aw-loader { pointer-events: none; }
+
+/* ════════════════════════════════════════
+   1. CINEMATIC LOADING SCREEN
+════════════════════════════════════════ */
+#aw-loader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 50vw;
-  height: 50vw;
-  max-width: 600px;
-  max-height: 600px;
-  background: var(--cinematic-glow);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  filter: blur(80px);
-  opacity: 0;
-  transition: opacity 1.5s var(--cinematic-easing);
-  will-change: transform;
-}
-body.cinematic-active #cinematic-ambient-glow {
-  opacity: 1;
-}
-
-/* ── Custom 3D Cursor ── */
-#cinematic-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 32px;
-  height: 32px;
-  margin: -16px 0 0 -16px;
-  border: 1px solid rgba(0, 201, 184, 0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate3d(0, 0, 0);
-  will-change: transform, width, height, margin;
-  transition: width 0.3s var(--cinematic-easing), height 0.3s var(--cinematic-easing), margin 0.3s var(--cinematic-easing), border-color 0.3s;
-}
-#cinematic-cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 4px;
-  margin: -2px 0 0 -2px;
-  background: #00c9b8;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10001;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-body.cursor-hovering #cinematic-cursor {
-  width: 64px;
-  height: 64px;
-  margin: -32px 0 0 -32px;
-  background: rgba(0, 201, 184, 0.05);
-  border-color: rgba(0, 201, 184, 0.8);
-}
-
-/* Hide default cursor on desktop when custom cursor is active */
-@media (hover: hover) and (pointer: fine) {
-  body.cinematic-active,
-  body.cinematic-active a,
-  body.cinematic-active button,
-  body.cinematic-active input,
-  body.cinematic-active select,
-  body.cinematic-active textarea,
-  body.cinematic-active .product-card,
-  body.cinematic-active .coll-card {
-    cursor: none !important;
-  }
-}
-@media (max-width: 991px) {
-  #cinematic-cursor, #cinematic-cursor-dot {
-    display: none !important;
-  }
-}
-
-/* ── Cinematic Preloader ── */
-#cinematic-preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #faf9f6;
+  inset: 0;
   z-index: 99999;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-}
-.preloader-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-.preloader-logo {
-  font-family: var(--cinematic-font-serif);
-  font-size: 2.5rem;
-  letter-spacing: 0.2em;
-  font-weight: 300;
-  color: #1a302b;
-  opacity: 0;
-  transform: translateY(20px);
-}
-.preloader-bar-wrap {
-  width: 160px;
-  height: 2px;
-  background: rgba(26, 48, 43, 0.1);
-  overflow: hidden;
-  position: relative;
-  border-radius: 1px;
-}
-.preloader-bar {
-  width: 100%;
-  height: 100%;
-  background: #00c9b8;
-  transform: scaleX(0);
-  transform-origin: left;
+  background: #17313B; /* Luxury Dark Overlay */
+  pointer-events: all;
+  will-change: opacity, filter;
 }
 
-/* ── Page Transition Dissolve ── */
-#cinematic-transition {
+.aw-loader-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%,
+    rgba(68, 127, 152, 0.35) 0%,
+    transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.aw-loader-brand {
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.aw-loader-letter {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #F5F2ED; /* Luxury Cream */
+  display: inline-block;
+  will-change: transform, opacity, filter;
+  line-height: 1;
+}
+
+.aw-loader-letter:nth-child(1) { color: #447F98; } /* Signature Brand Blue */
+.aw-loader-letter:nth-child(2) { color: #F5F2ED; }
+.aw-loader-letter:nth-child(3) { color: #F5F2ED; }
+.aw-loader-letter:nth-child(4) { color: #F5F2ED; }
+.aw-loader-letter:nth-child(5) { color: #F5F2ED; }
+.aw-loader-letter:nth-child(6) { color: #F5F2ED; }
+.aw-loader-letter:nth-child(7) { color: #F5F2ED; }
+
+.aw-loader-bar-wrap {
+  width: min(200px, 50vw);
+  height: 2px;
+  background: rgba(245, 242, 237, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.aw-loader-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #447F98, #8ECFDE);
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+.aw-loader-tagline {
+  margin-top: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: rgba(245, 242, 237, 0.6);
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════
+   2. SCROLL PROGRESS BAR
+════════════════════════════════════════ */
+#aw-progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: #faf9f6;
+  height: 2px;
+  background: linear-gradient(90deg, #447F98, #8ECFDE, #447F98);
+  transform-origin: left center;
+  transform: scaleX(0);
   z-index: 99998;
   pointer-events: none;
-  opacity: 0;
-  filter: blur(20px);
-  transform: scale(1.02);
-  transition: filter 0.8s var(--cinematic-easing), opacity 0.8s var(--cinematic-easing), transform 0.8s var(--cinematic-easing);
-  will-change: opacity, filter, transform;
-}
-#cinematic-transition.active {
-  pointer-events: auto;
-  opacity: 1;
-  filter: blur(0px);
-  transform: scale(1);
+  will-change: transform;
 }
 
-/* ── Mascot Container (Noko) ── */
+/* ════════════════════════════════════════
+   3. CUSTOM CINEMATIC CURSOR
+════════════════════════════════════════ */
+#aw-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #447F98;
+  pointer-events: none;
+  z-index: 99997;
+  will-change: transform;
+  mix-blend-mode: multiply;
+  transition: width 0.3s var(--cine-ease),
+              height 0.3s var(--cine-ease),
+              background 0.3s;
+}
+
+#aw-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(68, 127, 152, 0.45);
+  pointer-events: none;
+  z-index: 99996;
+  will-change: transform;
+  transition: width 0.4s var(--cine-ease),
+              height 0.4s var(--cine-ease),
+              border-color 0.3s,
+              background 0.3s;
+}
+
+#aw-cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68,127,152,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 99995;
+  will-change: transform;
+  filter: blur(20px);
+}
+
+#aw-cursor-dot.is-hover {
+  width: 14px;
+  height: 14px;
+  background: #17313B;
+}
+#aw-cursor-ring.is-hover {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(68, 127, 152, 0.8);
+  background: rgba(68, 127, 152, 0.04);
+}
+
+/* ─── CUSTOM CURSOR TOOLTIP ─── */
+#aw-cursor-tooltip {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  transform-origin: left center;
+  background: rgba(23, 49, 59, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #FFFFFF;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.35s var(--cine-ease), transform 0.35s var(--cine-ease);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.14);
+  z-index: 999999;
+}
+
+#aw-cursor-tooltip.is-active {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+@media (max-width: 991px) {
+  #aw-cursor-dot,
+  #aw-cursor-ring,
+  #aw-cursor-glow,
+  #aw-cursor-tooltip { display: none !important; }
+}
+
+/* ════════════════════════════════════════
+   4. AMBIENT MOUSE LIGHT
+════════════════════════════════════════ */
+#aw-ambient-light {
+  display: block !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.05) 0%, rgba(68, 127, 152, 0.01) 50%, transparent 75%);
+  pointer-events: none;
+  z-index: 1; /* beneath typography, above background */
+  mix-blend-mode: screen;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.6s var(--cine-ease);
+}
+
+/* ════════════════════════════════════════
+   5. GRAIN TEXTURE OVERLAY
+════════════════════════════════════════ */
+#aw-grain {
+  display: block !important;
+  position: fixed;
+  inset: 0;
+  z-index: 99994;
+  pointer-events: none;
+  opacity: 0.016; /* Ethereal, expensive noise presence */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  will-change: background-position;
+}
+
+/* ════════════════════════════════════════
+   6. ATMOSPHERIC PARTICLES
+════════════════════════════════════════ */
+#aw-particles {
+  display: block !important;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.aw-particle {
+  display: block !important;
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ─── Hero Glows & Sprout Shadows ─── */
+.hero-glow-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow-radial-1 {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  will-change: transform;
+}
+
+.glow-radial-2 {
+  position: absolute;
+  bottom: -15%;
+  left: -8%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(185, 219, 225, 0.25) 0%, transparent 70%);
+  filter: blur(60px);
+  will-change: transform;
+}
+
+/* ════════════════════════════════════════
+   7. SPLIT WORD ANIMATION
+════════════════════════════════════════ */
+.aw-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.15;
+}
+
+.aw-word-inner {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* ════════════════════════════════════════
+   8. ANIMATED SECTION DIVIDERS
+════════════════════════════════════════ */
+.aw-animated-divider {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(68, 127, 152, 0.25) 30%,
+    rgba(68, 127, 152, 0.45) 50%,
+    rgba(68, 127, 152, 0.25) 70%,
+    transparent 100%);
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+  will-change: transform, opacity;
+  margin: 0;
+}
+
+/* ════════════════════════════════════════
+   9. HERO ENHANCEMENTS
+════════════════════════════════════════ */
+
+/* Heading word-split overflow mask */
+.hero-heading .aw-word {
+  margin-right: 0.2em;
+}
+
+/* Product image 3D perspective */
+.hero-centerpiece-wrap {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+.hero-centerpiece-img {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Glow orbs — deeper motion range */
+.glow-radial-1,
+.glow-radial-2 { will-change: transform; }
+
+/* ════════════════════════════════════════
+   10. SCROLL TRANSITION — SECTION ENTRY
+════════════════════════════════════════ */
+/* Initially hide animatable elements before GSAP sets them */
+.ed-copy-block,
+.ed-h2,
+.ed-body,
+.ed-cats-label,
+.ed-cats-title,
+.ed-cats-desc,
+.hp-review-card,
+.hp-reviews-header,
+.hp-contact-left,
+.hp-contact-right,
+.coll-bts-visual,
+.coll-bts-copy { will-change: transform, opacity, filter; }
+
+/* ════════════════════════════════════════
+   11. CARD 3D TILT SYSTEM
+════════════════════════════════════════ */
+.coll-card,
+.hp-review-card,
+.ed-ph {
+  transform-style: preserve-3d;
+  perspective: 900px;
+  will-change: transform, box-shadow;
+  transition: box-shadow 0.4s var(--cine-ease);
+}
+
+/* ════════════════════════════════════════
+   12. MAGNETIC BUTTON BASE
+════════════════════════════════════════ */
+.btn-primary,
+.nav-shop-btn,
+.coll-add-btn,
+.ed-pill-btn {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ════════════════════════════════════════
+   13. COLLECTION SECTION — IMAGE REVEAL
+════════════════════════════════════════ */
+.coll-bts-img,
+.coll-img-wrap {
+  will-change: clip-path, opacity;
+  clip-path: inset(0 100% 0 0);
+}
+
+/* ════════════════════════════════════════
+   14. NAVBAR CINEMATIC HIDE / REVEAL
+════════════════════════════════════════ */
+#site-header,
+.site-header {
+  will-change: transform;
+  transition: background 0.4s var(--cine-ease),
+              box-shadow 0.4s var(--cine-ease);
+}
+
+/* ════════════════════════════════════════
+   15. HERO SECTION — SCROLL PARALLAX
+════════════════════════════════════════ */
+.hero { overflow: visible; }
+
+/* ════════════════════════════════════════
+   16. BACK-TO-TOP CINEMATIC
+════════════════════════════════════════ */
+.back-top {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ════════════════════════════════════════
+   17. EDITORIAL SECTION — HOVER LIFT
+════════════════════════════════════════ */
+.ed-ph {
+  transition: transform 0.5s var(--cine-ease), box-shadow 0.5s var(--cine-ease);
+}
+.ed-ph:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 24px 48px rgba(68, 127, 152, 0.14);
+}
+
+/* ════════════════════════════════════════
+   18. FOOTER BLUR ENTRY
+════════════════════════════════════════ */
+.fb-brand,
+.fb-col,
+.fb-newsletter {
+  will-change: transform, opacity;
+}
+
+/* ════════════════════════════════════════
+   19. REDUCE MOTION SAFE GUARD
+════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #aw-loader { display: none !important; }
+  .aw-word-inner { transform: none !important; opacity: 1 !important; }
+  .coll-bts-img, .coll-img-wrap { clip-path: none !important; opacity: 1 !important; }
+}
+
+/* ════════════════════════════════════════
+   20. TABLET / MOBILE OVERRIDES
+════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .aw-loader-brand {
+    gap: 2px !important;
+    margin-bottom: 24px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+  .aw-loader-letter { 
+    font-size: clamp(1.6rem, 8vw, 2.5rem) !important; 
+    letter-spacing: 0.06em !important;
+  }
+  .aw-loader-tagline {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.25em !important;
+    margin-top: 16px !important;
+  }
+  .hero-centerpiece-wrap {
+    padding: 0 24px !important; /* Outer padding for centerpiece bottle */
+    box-sizing: border-box !important;
+  }
+  .hero-centerpiece-img {
+    width: 100% !important;
+    max-width: 290px !important; /* Elegant outer scaling boundaries */
+    margin: 0 auto !important;
+  }
+  #aw-grain { opacity: 0.018; }
+  .ed-ph:hover { transform: none !important; box-shadow: none; }
+  .coll-card, .hp-review-card, .ed-ph {
+    transform-style: flat;
+    perspective: none;
+  }
+}
+
+/* ════════════════════════════════════════
+   21. FLOATING MASCOT WIDGET (NOKO)
+════════════════════════════════════════ */
 #cinematic-mascot-container {
   position: fixed;
   bottom: 24px;
@@ -184,7 +529,7 @@ body.cursor-hovering #cinematic-cursor {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 201, 184, 0.15);
+  border: 1px solid rgba(68, 127, 152, 0.15);
   border-radius: 50%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   z-index: 9999;
@@ -192,26 +537,29 @@ body.cursor-hovering #cinematic-cursor {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s var(--cinematic-easing), box-shadow 0.3s;
+  transition: transform 0.3s var(--cine-ease), box-shadow 0.3s;
 }
+
 #cinematic-mascot-container:hover {
   transform: scale(1.08) translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0, 201, 184, 0.15);
+  box-shadow: 0 15px 35px rgba(68, 127, 152, 0.15);
 }
+
 .mascot-svg {
   width: 60px;
   height: 60px;
   overflow: visible;
 }
+
 .mascot-bubble {
   position: absolute;
   bottom: calc(100% + 12px);
   right: 0;
-  background: #1a302b;
+  background: #17313B;
   color: #fff;
   padding: 12px 18px;
   border-radius: 18px 18px 4px 18px;
-  font-family: var(--cinematic-font-sans);
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   line-height: 1.4;
   white-space: nowrap;
@@ -219,9 +567,10 @@ body.cursor-hovering #cinematic-cursor {
   pointer-events: none;
   transform: translateY(10px) scale(0.95);
   transform-origin: bottom right;
-  transition: opacity 0.3s var(--cinematic-easing), transform 0.3s var(--cinematic-easing);
+  transition: opacity 0.3s var(--cine-ease), transform 0.3s var(--cine-ease);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+
 .mascot-bubble.show {
   opacity: 1;
   pointer-events: auto;
@@ -242,37 +591,584 @@ body.cursor-hovering #cinematic-cursor {
   }
 }
 
-/* ── Typography & Image Reveal Effects ── */
-.cinematic-word-wrap {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-.cinematic-word {
-  display: inline-block;
-  transform: translateY(100%);
-  will-change: transform;
+/* ════════════════════════════════════════
+   22. SEAMLESS CLEAN LAYOUT (ANIMATED DIVIDERS)
+════════════════════════════════════════ */
+.aw-animated-divider,
+.ed-divider,
+.coll-bts-divider {
+  display: block !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(68, 127, 152, 0.15) 25%, 
+    rgba(68, 127, 152, 0.45) 50%, 
+    rgba(68, 127, 152, 0.15) 75%, 
+    transparent 100%) !important;
+  border: none !important;
+  margin: 80px auto !important;
+  opacity: 1 !important;
+  width: 90% !important;
+  max-width: 1200px !important;
+  transform-origin: left center;
+  will-change: transform, opacity;
 }
 
-.cinematic-reveal-img {
-  overflow: hidden;
+/* Maintain clean seamless sections without harsh solid borders */
+.hp-reviews-section,
+.hp-contact-section,
+.footer-black,
+.fb-bottom {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* ════════════════════════════════════════
+   23. CINEMATIC SECTION 1 — QUOTE TRANSITION
+   ════════════════════════════════════════ */
+.aw-quote-section {
   position: relative;
-}
-.cinematic-reveal-img img {
-  transform: scale(1.15);
-  transition: transform 1.2s var(--cinematic-easing);
-  will-change: transform;
-}
-.cinematic-reveal-img.revealed img {
-  transform: scale(1);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  overflow: hidden;
+  z-index: 5;
 }
 
-/* 3D Interactive Card tilt styling */
-.tilt-card {
-  transform-style: preserve-3d;
-  perspective: 1000px;
+.aw-quote-glow {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.08) 0%, rgba(185, 219, 225, 0.03) 50%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }
-.tilt-card-inner {
-  transition: transform 0.1s ease;
+
+.aw-quote-container {
+  max-width: 1300px;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.aw-quote-text {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.8rem, 6.5vw, 6.8rem);
+  font-weight: 800;
+  line-height: 0.9;
+  color: #17313B;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.04em;
+  will-change: transform, opacity, filter;
+}
+
+/* ════════════════════════════════════════
+   24. CINEMATIC SECTION 2 — INGREDIENT STORY (PINNED SCROLL)
+   ════════════════════════════════════════ */
+.aw-ingredients-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(180deg, #F8F6F2 0%, #F3EFE8 100%);
+  overflow: hidden;
+  z-index: 5;
+  padding: 0 8vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.aw-ingredients-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 1000px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.04) 0%, transparent 75%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.aw-ingredients-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8vw;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.aw-ingredients-left {
+  width: 45%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  will-change: transform, opacity, filter;
+}
+
+.aw-ingredients-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: #999999;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.aw-ingredients-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 5.2vw, 4.8rem);
+  line-height: 1.1;
+  font-weight: 500;
+  color: #17313B;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.aw-ingredients-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.95;
+  color: #555555;
+  font-weight: 300;
+}
+
+.aw-ingredients-right {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.aw-ingredients-scroll-track {
+  position: relative;
+  width: 100%;
+  height: 60vh;
   will-change: transform;
 }
+
+.aw-ingredient-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #f5f3ef;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+  will-change: transform, opacity, filter;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aw-ingredient-card:last-child {
+  margin-bottom: 0;
+}
+
+.aw-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.aw-ingredient-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(23, 49, 59, 0.55) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.aw-card-overlay {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  z-index: 2;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aw-card-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  opacity: 0.65;
+  letter-spacing: 2px;
+}
+
+.aw-card-title-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════
+   25. CINEMATIC SECTION 3 — PRODUCT FOCUS
+   ════════════════════════════════════════ */
+.aw-product-focus-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  overflow: hidden;
+  z-index: 5;
+  padding: 120px 0;
+  box-sizing: border-box;
+}
+
+.aw-showcase-bottle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 36px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+  border: 1px solid rgba(68, 127, 152, 0.08);
+}
+
+.aw-product-focus-glow {
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68, 127, 152, 0.09) 0%, rgba(185, 219, 225, 0.03) 60%, transparent 80%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+.aw-product-focus-container {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.aw-product-showcase-wrap {
+  position: relative;
+  width: 280px;
+  height: 500px;
+  margin: 0 auto;
+  perspective: 1200px;
+  will-change: transform;
+}
+
+.aw-product-showcase-img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 30px 60px rgba(23, 49, 59, 0.12));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.aw-product-showcase-reflection {
+  position: absolute;
+  bottom: -40px;
+  left: 5%;
+  width: 90%;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(23, 49, 59, 0.1) 0%, transparent 70%);
+  filter: blur(6px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.aw-product-focus-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.6rem, 6vw, 6.2rem);
+  font-weight: 800;
+  line-height: 0.95;
+  color: #17313B;
+  text-transform: uppercase;
+  margin-top: 54px;
+  letter-spacing: -0.03em;
+  will-change: transform, opacity, filter;
+}
+
+/* ════════════════════════════════════════
+   26. CINEMATIC SECTION 4 — DIVIDER TRANSITION
+   ════════════════════════════════════════ */
+.aw-scroll-divider-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.aw-scroll-divider-bg {
+  position: absolute;
+  inset: -12%; /* Safety boundaries to allow smooth zoom and scroll translations without showing edges */
+  background-image: url('/images/tropical_living_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  z-index: 0;
+}
+
+.aw-scroll-divider-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.42); /* Frosted luxury haze overlay */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.aw-scroll-divider-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.aw-scroll-divider-line {
+  width: 200px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(68, 127, 152, 0.75), transparent);
+  margin-bottom: 48px;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+.aw-scroll-divider-text {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.2rem, 2.8vw, 3rem);
+  font-weight: 600;
+  color: #17313B;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0;
+  opacity: 0;
+  filter: blur(15px);
+  will-change: opacity, filter, transform;
+}
+
+/* ════════════════════════════════════════
+   27. MOBILE EXPERIENCES & MEDIA QUERIES
+   ════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .aw-ingredients-container {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aw-quote-section {
+    height: 80vh;
+  }
+  .aw-quote-text {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+  .aw-quote-glow, .aw-ingredients-glow, .aw-product-focus-glow {
+    width: 500px;
+    height: 500px;
+  }
+  
+  .aw-ingredients-section {
+    height: 100vh;
+    padding: 40px 36px 32px 36px;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .aw-ingredients-container {
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+  }
+  .aw-ingredients-left {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .aw-ingredients-heading {
+    font-size: clamp(1.8rem, 5.5vw, 2.3rem);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .aw-ingredients-text {
+    font-size: 13.5px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0;
+  }
+  .aw-ingredients-label {
+    margin-bottom: 8px;
+  }
+  .aw-ingredients-right {
+    width: 100%;
+    height: 40vh;
+    max-width: 290px;
+    position: relative;
+    overflow: hidden; /* Neatly mask card slide transitions */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .aw-ingredients-scroll-track {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .aw-ingredient-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #f5f3ef;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    will-change: transform, opacity;
+  }
+  .aw-card-overlay {
+    bottom: 24px !important;
+    left: 24px !important;
+    gap: 4px !important;
+  }
+  .aw-card-num {
+    font-size: 11px !important;
+  }
+  .aw-card-title-text {
+    font-size: 16px !important;
+    letter-spacing: 2px !important;
+  }
+  
+  .aw-product-focus-section {
+    min-height: 80vh;
+    height: auto;
+    padding: 120px 36px;
+  }
+  .aw-product-showcase-wrap {
+    width: 180px;
+    height: 330px;
+  }
+  .aw-product-focus-title {
+    font-size: clamp(1.8rem, 7vw, 3rem);
+    margin-top: 30px;
+  }
+  
+  .aw-scroll-divider-section {
+    padding: 140px 36px;
+  }
+  .aw-scroll-divider-line {
+    width: 100px;
+    margin-bottom: 30px;
+  }
+}
+
+/* ════════════════════════════════════════
+   28. IMAGE PLACEHOLDER STYLES
+   ════════════════════════════════════════ */
+.aw-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(23, 49, 59, 0.03);
+  border: 1px dashed rgba(23, 49, 59, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s var(--cine-ease);
+}
+
+.aw-img-placeholder:hover {
+  background: rgba(68, 127, 152, 0.05);
+  border-color: rgba(68, 127, 152, 0.3);
+}
+
+.aw-img-placeholder--large {
+  border-radius: 24px;
+  background: rgba(245, 242, 237, 0.4);
+  border: 1px dashed rgba(23, 49, 59, 0.2);
+}
+
+.aw-img-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.aw-placeholder-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #17313B;
+  text-transform: uppercase;
+}
+
+.aw-placeholder-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+

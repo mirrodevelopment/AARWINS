@@ -8,63 +8,242 @@ document.addEventListener('DOMContentLoaded', function () {
   injectCinematicElements();
 
   // 2. CHECK PRELOADER STATE & INITIATE INTRO
-  handlePreloader();
+  if (!document.getElementById('home')) {
+    document.body.classList.add('cinematic-active');
+    triggerHeroIntro();
+  }
 
   // 3. INITIALIZE LENIS SMOOTH SCROLL (IF PRESENT)
-  let lenisInstance = initSmoothScroll();
+  let lenisInstance = null;
+  if (!document.getElementById('home')) {
+    lenisInstance = initSmoothScroll();
+  }
 
   // 4. PAGE TRANSITIONS (EXIT & ENTRANCE)
-  initPageTransitions();
+  if (!document.getElementById('home')) {
+    initPageTransitions();
+  }
 
   // 5. 3D CURSOR AND ATMOSPHERIC GLOW
-  initCustomCursor();
+  if (!document.getElementById('home')) {
+    initCustomCursor();
+  }
 
   // 6. NOKO MASCOT INTERACTIONS & SKELETAL MOTOR
   initNokoMascot();
 
   // 7. 3D CARD TILT
-  initCardTilt();
+  if (!document.getElementById('home')) {
+    initCardTilt();
+  }
 
   // 8. MAGNETIC CTA BUTTONS
-  initMagneticElements();
+  if (!document.getElementById('home')) {
+    initMagneticElements();
+  }
 
   // ── Navbar scroll auto-hide/show ──
   var header = document.getElementById('site-header');
   if (header) {
     var lastScrollY = window.scrollY;
-    window.addEventListener('scroll', function () {
-      var currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        header.classList.add('nav-hidden');
-      } else {
-        header.classList.remove('nav-hidden');
+    var scrollThreshold = 8; // Delta threshold to avoid flickering
+
+    function handleNavbarScroll(currentScrollY) {
+      if (document.body.classList.contains('drawer-open')) return;
+
+      // Normalize scroll position to avoid negative elastic scroll values (iOS/Mac bounce)
+      if (currentScrollY < 0) {
+        currentScrollY = 0;
       }
-      lastScrollY = currentScrollY;
+
+      // Always show header at the very top of the page
+      if (currentScrollY <= 100) {
+        header.classList.remove('nav-hidden');
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      var delta = currentScrollY - lastScrollY;
+
+      // Only toggle state if scroll delta exceeds threshold
+      if (Math.abs(delta) > scrollThreshold) {
+        if (delta > 0) {
+          // Scrolling down - hide navbar
+          header.classList.add('nav-hidden');
+        } else {
+          // Scrolling up - show navbar
+          header.classList.remove('nav-hidden');
+        }
+        lastScrollY = currentScrollY;
+      }
+    }
+
+    // 1. Standard scroll event listener (fallback)
+    window.addEventListener('scroll', function () {
+      if (!window.lenis) {
+        handleNavbarScroll(window.scrollY);
+      }
     }, { passive: true });
+
+    // 2. Lenis smooth scroll real-time binding
+    var lenisCheckInterval = setInterval(function() {
+      if (window.lenis) {
+        window.lenis.on('scroll', function(e) {
+          handleNavbarScroll(e.scroll);
+        });
+        clearInterval(lenisCheckInterval);
+      }
+    }, 100);
+    // Clear check after 3 seconds safety window
+    setTimeout(function() { clearInterval(lenisCheckInterval); }, 3000);
   }
 
   // ── Mobile drawer ──
   var hamburger = document.getElementById('nav-hamburger');
   var drawer    = document.getElementById('nav-drawer');
-  var closeBtn  = document.getElementById('drawer-close');
+  var backdrop  = document.getElementById('nav-drawer-backdrop');
 
-  if (hamburger && drawer) {
-    hamburger.addEventListener('click', function () {
-      drawer.classList.add('is-open');
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.classList.add('is-open', 'open');
+    if (hamburger) hamburger.classList.add('open');
+    if (backdrop) backdrop.classList.add('is-open', 'open');
+    document.body.classList.add('drawer-open');
+    document.body.style.overflow = 'hidden';
+    
+    // Stop Lenis if active
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+  }
+
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('is-open', 'open');
+    if (hamburger) hamburger.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('is-open', 'open');
+    document.body.classList.remove('drawer-open');
+    document.body.style.overflow = '';
+    
+    // Start Lenis if active
+    if (window.lenis) {
+      window.lenis.start();
+    }
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (drawer && (drawer.classList.contains('is-open') || drawer.classList.contains('open'))) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
     });
   }
-  if (closeBtn && drawer) {
-    closeBtn.addEventListener('click', function () {
-      drawer.classList.remove('is-open');
-    });
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeDrawer);
   }
+
+  var closeBtn = document.getElementById('drawer-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeDrawer);
+  }
+
   if (drawer) {
     drawer.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        drawer.classList.remove('is-open');
-      });
+      if (a.id === 'drawer-nav-link-cart') {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeDrawer();
+          var cartOverlay = document.getElementById('mini-cart-overlay');
+          var cartPanel = document.getElementById('mini-cart-panel');
+          if (cartOverlay && cartPanel) {
+            cartOverlay.classList.add('active', 'is-open');
+            cartPanel.classList.add('active', 'is-open');
+          }
+        });
+      } else {
+        a.addEventListener('click', closeDrawer);
+      }
     });
   }
+
+  // ── Global account dropdown listeners for all pages ──
+  var userBtn = document.getElementById('nav-user-btn');
+  var accountDropdown = document.getElementById('account-dropdown');
+
+  if (userBtn && accountDropdown) {
+    userBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      accountDropdown.classList.toggle('active');
+    });
+  }
+
+  // Close account dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (accountDropdown && accountDropdown.classList.contains('active')) {
+      if (!accountDropdown.contains(e.target) && !userBtn.contains(e.target)) {
+        accountDropdown.classList.remove('active');
+      }
+    }
+  });
+
+  // Universal Escape key event to close overlays
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var searchOverlay = document.getElementById('search-overlay');
+      if (searchOverlay) searchOverlay.classList.remove('active');
+      if (accountDropdown) accountDropdown.classList.remove('active');
+      
+      var cartOverlay = document.getElementById('mini-cart-overlay');
+      var cartPanel = document.getElementById('mini-cart-panel');
+      if (cartOverlay && cartPanel) {
+        cartOverlay.classList.remove('active', 'is-open');
+        cartPanel.classList.remove('active', 'is-open');
+      }
+      closeDrawer();
+    }
+  });
+
+  // Global cart listeners for all pages (desktop and mobile)
+  var cartBtn = document.getElementById('nav-cart-btn');
+  var cartOverlay = document.getElementById('mini-cart-overlay');
+  var cartPanel = document.getElementById('mini-cart-panel');
+  var cartClose = document.getElementById('mcp-close');
+
+  if (cartBtn && cartOverlay && cartPanel) {
+    cartBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      cartOverlay.classList.add('active', 'is-open');
+      cartPanel.classList.add('active', 'is-open');
+    });
+  }
+  if (cartClose && cartOverlay && cartPanel) {
+    cartClose.addEventListener('click', function () {
+      cartOverlay.classList.remove('active', 'is-open');
+      cartPanel.classList.remove('active', 'is-open');
+    });
+  }
+  if (cartOverlay && cartPanel) {
+    cartOverlay.addEventListener('click', function () {
+      cartOverlay.classList.remove('active', 'is-open');
+      cartPanel.classList.remove('active', 'is-open');
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeDrawer();
+      if (cartOverlay && cartPanel) {
+        cartOverlay.classList.remove('active', 'is-open');
+        cartPanel.classList.remove('active', 'is-open');
+      }
+    }
+  });
 
   // ── Back to top ──
   var backTop = document.getElementById('back-top');
@@ -100,33 +279,106 @@ document.addEventListener('DOMContentLoaded', function () {
   // ── Fetch products from Spring Boot API ──
   fetchProducts();
 
+  // ── Inline Expanding Search Bar Interactions ──
+  var searchWrapper = document.getElementById('nav-search-wrapper');
+  var searchInput = document.getElementById('nav-search-input');
+  var searchBtn = document.getElementById('nav-search-btn');
+  var siteHeader = document.getElementById('site-header');
+
+  if (searchWrapper && searchInput && searchBtn) {
+    searchBtn.addEventListener('click', function (e) {
+      if (!searchWrapper.classList.contains('active')) {
+        // Expand
+        e.preventDefault();
+        e.stopPropagation();
+        searchWrapper.classList.add('active');
+        if (siteHeader) siteHeader.classList.add('search-active');
+        setTimeout(function () {
+          searchInput.focus();
+        }, 150);
+      } else {
+        // Action on active search click
+        var query = searchInput.value.trim();
+        if (query === '') {
+          // Collapse if empty query
+          e.preventDefault();
+          searchWrapper.classList.remove('active');
+          if (siteHeader) siteHeader.classList.remove('search-active');
+        } else {
+          // Perform search
+          e.preventDefault();
+          if (typeof showToast === 'function') {
+            showToast('Searching for: ' + query);
+          }
+        }
+      }
+    });
+
+    // Handle Enter key inside input
+    searchInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        var query = searchInput.value.trim();
+        if (query !== '') {
+          e.preventDefault();
+          if (typeof showToast === 'function') {
+            showToast('Searching for: ' + query);
+          }
+        } else {
+          // Collapse if empty query
+          e.preventDefault();
+          searchWrapper.classList.remove('active');
+          if (siteHeader) siteHeader.classList.remove('search-active');
+        }
+      }
+    });
+
+    // Close on click outside
+    document.addEventListener('click', function (e) {
+      if (searchWrapper.classList.contains('active') && !searchWrapper.contains(e.target)) {
+        searchWrapper.classList.remove('active');
+        if (siteHeader) siteHeader.classList.remove('search-active');
+      }
+    });
+
+    // Close on Escape key press
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && searchWrapper.classList.contains('active')) {
+        searchWrapper.classList.remove('active');
+        if (siteHeader) siteHeader.classList.remove('search-active');
+        searchInput.blur();
+      }
+    });
+  }
+
 });
 
 /* ── Cinematic Elements Injection ── */
 function injectCinematicElements() {
+  const isHome = document.getElementById('home');
+
   // Ambient Glow Spotlight
-  if (!document.getElementById('cinematic-ambient-glow')) {
+  if (!isHome && !document.getElementById('cinematic-ambient-glow')) {
     const glow = document.createElement('div');
     glow.id = 'cinematic-ambient-glow';
     document.body.appendChild(glow);
   }
 
   // Custom 3D Cursor Ring
-  if (!document.getElementById('cinematic-cursor')) {
+  if (!isHome && !document.getElementById('cinematic-cursor')) {
     const cursor = document.createElement('div');
     cursor.id = 'cinematic-cursor';
     document.body.appendChild(cursor);
   }
 
   // Custom 3D Cursor Inner Dot
-  if (!document.getElementById('cinematic-cursor-dot')) {
+  if (!isHome && !document.getElementById('cinematic-cursor-dot')) {
     const dot = document.createElement('div');
     dot.id = 'cinematic-cursor-dot';
     document.body.appendChild(dot);
   }
 
   // Page Transition Overlay
-  if (!document.getElementById('cinematic-transition')) {
+  if (!isHome && !document.getElementById('cinematic-transition')) {
     const trans = document.createElement('div');
     trans.id = 'cinematic-transition';
     document.body.appendChild(trans);
@@ -244,6 +496,8 @@ function initSmoothScroll() {
     touchMultiplier: 1.5,
     infinite: false,
   });
+
+  window.lenis = lenis; // Expose globally for drawer scroll-lock integration
 
   function raf(time) {
     lenis.raf(time);

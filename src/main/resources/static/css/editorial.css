@@ -209,7 +209,7 @@
 }
 
 .ed-ph.ed-ph--3 {
-  background: url('../images/about_us_3.png') center/cover no-repeat !important;
+  background: url('../images/about_us_3.jpg') center/cover no-repeat !important;
 }
 
 .ed-ph.ed-ph--1 .ed-ph-inner,
@@ -496,4 +496,9 @@
   .ed-divider { padding: 0 24px; margin-top: 60px; }
   .fb-inner { grid-template-columns: 1fr; padding: 0 24px 48px; }
   .fb-bottom { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  .ed-pill-btn {
+    padding: 14px 36px !important; /* Premium spacious padding in mobile view */
+    height: auto !important; /* Breathable vertical auto height */
+    font-size: 13px !important; /* Visual typography scale balance */
+  }
 }

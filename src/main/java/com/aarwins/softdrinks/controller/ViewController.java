@@ -24,4 +24,14 @@ public class ViewController {
     public String getCollectionsPage() {
         return "forward:/collections.html";
     }
+
+    /**
+     * Map /philosophy to the dedicated cinematic philosophy page.
+     */
+    @GetMapping("/philosophy")
+    public String getPhilosophyPage() {
+        return "forward:/philosophy.html";
+    }
+
 }
+
