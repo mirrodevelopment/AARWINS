@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Aarwins Collections — Six premium tropical coconut wellness beverages, each crafted with nature's finest ingredients."/>
-  <title>Aarwins — Collections</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317313B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5'/></svg>"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/css/aarwins.css?v=2.0"/>
-  <link rel="stylesheet" href="/css/editorial.css?v=2.0"/>
-  <link rel="stylesheet" href="/css/luxury-spacing.css"/>
-  <link rel="stylesheet" href="/css/cinematic.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Aarwins Collections - Six premium tropical coconut wellness beverages, each crafted with nature's finest ingredients." />
+  <title>Aarwins - Collections</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317313B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/css/aarwins.css?v=2.0" />
+  <link rel="stylesheet" href="/css/editorial.css?v=2.0" />
+  <link rel="stylesheet" href="/css/luxury-spacing.css" />
+  <link rel="stylesheet" href="/css/cinematic.css" />
+  <link rel="stylesheet" href="/css/cart-checkout.css" />
 
   <!-- GSAP, ScrollTrigger, Lenis -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
+  <!-- Google Fonts for Orbitron, Space Grotesk, Inter, and Collection Hero Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;500&family=Barlow+Condensed:wght@300;400;600;700&family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Smooch+Sans:wght@400;500;700&family=Bangers&family=Caveat:wght@400;500;600;700&family=Luckiest+Guy&family=Dancing+Script:wght@400;700&family=Patrick+Hand&family=Handlee&family=Fredoka:wght@300;400;500;600;700&family=Syne:wght@700&display=swap"
+    rel="stylesheet">
+
   <style>
-    /* ══════════════════════════════════════════════
+    /* ══════════════════════════════════════════════════════════════
        COLLECTIONS PAGE — Luxury Editorial Styles
-    ══════════════════════════════════════════════ */
+       ══════════════════════════════════════════════════════════════ */
 
     :root {
       --col-white: #FFFFFF;
@@ -31,12 +44,24 @@
       --col-border: #D8D8D4;
       --col-accent: #17313B;
       --col-label: #888880;
-      --font-editorial: 'Playfair Display', Georgia, serif;
+      --font-editorial: 'Space Grotesk', sans-serif;
       --font-body: 'DM Sans', sans-serif;
       --font-display: 'Syne', sans-serif;
+
+      /* PetZen Color Palette Variables */
+      --petzen-cream: #E8CCAD;
+      --petzen-orange: #EC802B;
+      --petzen-mango: #EDC55B;
+      --petzen-aqua: #66BCB4;
+      --petzen-offwhite: #F8F6F2;
+      --petzen-ivory: #F2EEE7;
+      --petzen-cocoa: #4A3A2A;
+      --petzen-charcoal: #1F1F1F;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       background: #FFFFFF;
@@ -46,7 +71,10 @@
       opacity: 0;
       transition: opacity 0.7s ease;
     }
-    body.loaded { opacity: 1; }
+
+    body.loaded {
+      opacity: 1;
+    }
 
     /* ── Page hero banner ── */
     .cp-hero {
@@ -59,10 +87,12 @@
       overflow: hidden;
       border-radius: 0 0 40px 40px;
     }
+
     .cp-hero .cp-container {
       position: relative;
       z-index: 2;
     }
+
     .cp-hero-label {
       font-family: var(--font-body);
       font-size: 11px;
@@ -73,6 +103,7 @@
       margin-bottom: 28px;
       display: block;
     }
+
     .cp-hero-heading {
       font-family: var(--font-editorial);
       font-size: clamp(44px, 6vw, 80px);
@@ -83,6 +114,7 @@
       letter-spacing: -1px;
       line-height: 1.05;
     }
+
     .cp-hero-sub {
       font-family: var(--font-body);
       font-size: 15px;
@@ -103,8 +135,9 @@
     /* ── Shared section spacing ── */
     .cp-section {
       padding: 160px 0;
-      border-bottom: 1px solid var(--col-border);
+      border-bottom: none;
     }
+
     .cp-section:last-of-type {
       border-bottom: none;
     }
@@ -116,10 +149,12 @@
       gap: 120px;
       align-items: center;
     }
+
     .cp-editorial-grid.reversed {
       direction: rtl;
     }
-    .cp-editorial-grid.reversed > * {
+
+    .cp-editorial-grid.reversed>* {
       direction: ltr;
     }
 
@@ -129,6 +164,7 @@
       flex-direction: column;
       align-items: flex-start;
     }
+
     .cp-label {
       font-family: var(--font-body);
       font-size: 10px;
@@ -139,6 +175,7 @@
       margin-bottom: 28px;
       display: block;
     }
+
     .cp-heading {
       font-family: var(--font-editorial);
       font-size: clamp(40px, 4.5vw, 68px);
@@ -149,6 +186,7 @@
       letter-spacing: -0.5px;
       margin: 0 0 32px 0;
     }
+
     .cp-body {
       font-family: var(--font-body);
       font-size: 15px;
@@ -158,30 +196,51 @@
       margin: 0 0 44px 0;
       font-weight: 300;
     }
+
     .cp-btn {
       display: inline-flex;
       align-items: center;
-      height: 46px;
-      padding: 0 36px;
-      border-radius: 50px;
-      border: 1px solid rgba(167, 134, 111, 0.16);
-      background: rgba(255, 255, 255, 0.55);
-      color: var(--col-ink);
+      justify-content: center;
+      height: 48px;
+      padding: 0 42px;
+      border-radius: 999px;
+      border: none;
       font-family: var(--font-body);
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
+
+    /* Glossy highlight effect on top half */
+    .cp-btn::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 4px;
+      height: 42%;
+      border-radius: 999px;
+      background: linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0.1));
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
     .cp-btn:hover {
-      background: #ffffff;
-      border-color: rgba(167, 134, 111, 0.4);
-      box-shadow: 0 10px 25px rgba(167, 134, 111, 0.08);
-      color: var(--col-ink);
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.03);
+      filter: brightness(1.05);
+    }
+
+    .cp-btn:active {
+      transform: translateY(-1px) scale(1.01);
+      filter: brightness(0.95);
     }
 
     /* ── Product placeholder visual ── */
@@ -189,31 +248,39 @@
       position: relative;
       width: 100%;
     }
+
     .cp-ph {
       width: 100%;
-      background: linear-gradient(180deg, #F8F5F0 0%, #EEE7DE 100%);
-      border: 1px solid rgba(167, 134, 111, 0.10);
+      background: var(--petzen-ivory);
+      border: 1px solid rgba(74, 58, 42, 0.05);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.6),
-        0 10px 30px rgba(0, 0, 0, 0.03),
-        0 30px 80px rgba(0, 0, 0, 0.05);
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .cp-ph--tall { height: 580px; border-radius: 38px; }
-    .cp-ph--medium { height: 440px; border-radius: 38px; }
-    .cp-ph--square { height: 320px; border-radius: 38px; }
+
+    .cp-ph--tall {
+      height: 580px;
+    }
+
+    .cp-ph--medium {
+      height: 440px;
+    }
+
+    .cp-ph--square {
+      height: 320px;
+    }
 
     /* Subtle background texture for placeholders */
     .cp-ph::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.8) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -247,10 +314,11 @@
       align-items: start;
       height: 580px;
     }
+
     .cp-collage-main {
       height: 100%;
-      background: #F5F5F2;
-      border: 1px solid #E8E8E4;
+      background: var(--petzen-offwhite);
+      border: 1px solid var(--petzen-ivory);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -258,22 +326,25 @@
       overflow: hidden;
       position: relative;
     }
+
     .cp-collage-main::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.8) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
     }
+
     .cp-collage-stack {
       display: flex;
       flex-direction: column;
       gap: 16px;
       height: 100%;
     }
+
     .cp-collage-small {
       flex: 1;
-      background: #F5F5F2;
-      border: 1px solid #E8E8E4;
+      background: var(--petzen-offwhite);
+      border: 1px solid var(--petzen-ivory);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -281,24 +352,27 @@
       overflow: hidden;
       position: relative;
     }
+
     .cp-collage-small::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.9) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 70% 30%, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
     }
 
     /* ── Centered editorial section ── */
     .cp-centered {
       text-align: center;
       padding: 140px 0;
-      border-top: 1px solid var(--col-border);
-      border-bottom: 1px solid var(--col-border);
+      border-top: none;
+      border-bottom: none;
     }
+
     .cp-centered .cp-label {
       display: block;
       text-align: center;
     }
+
     .cp-centered-heading {
       font-family: var(--font-editorial);
       font-size: clamp(36px, 5vw, 62px);
@@ -309,6 +383,7 @@
       max-width: 760px;
       line-height: 1.1;
     }
+
     .cp-centered-body {
       font-family: var(--font-body);
       font-size: 15px;
@@ -318,6 +393,7 @@
       line-height: 2;
       font-weight: 300;
     }
+
     .cp-luxury-divider {
       width: 80px;
       height: 1px;
@@ -330,7 +406,12 @@
       text-align: center;
       padding: 160px 0;
     }
-    .cp-final .cp-label { display: block; text-align: center; }
+
+    .cp-final .cp-label {
+      display: block;
+      text-align: center;
+    }
+
     .cp-final-heading {
       font-family: var(--font-editorial);
       font-size: clamp(40px, 5.5vw, 72px);
@@ -341,6 +422,7 @@
       max-width: 700px;
       line-height: 1.05;
     }
+
     .cp-final-body {
       font-family: var(--font-body);
       font-size: 15px;
@@ -350,12 +432,13 @@
       line-height: 2;
       font-weight: 300;
     }
+
     .cp-final-visual {
       max-width: 560px;
       margin: 0 auto;
       height: 520px;
-      background: #F5F5F2;
-      border: 1px solid #E8E8E4;
+      background: var(--petzen-offwhite);
+      border: 1px solid var(--petzen-ivory);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -363,11 +446,12 @@
       position: relative;
       overflow: hidden;
     }
+
     .cp-final-visual::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.9) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
     }
 
     /* ── Reveal animation ── */
@@ -375,692 +459,3974 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .cp-reveal.visible { opacity: 1; transform: translateY(0); }
-    .cp-reveal-delay { transition-delay: 0.2s; }
-    .cp-reveal-delay-2 { transition-delay: 0.4s; }
 
-    /* ── Hover lift on visuals ── */
+    .cp-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cp-reveal-delay {
+      transition-delay: 0.2s;
+    }
+
+    .cp-reveal-delay-2 {
+      transition-delay: 0.4s;
+    }
+
+    /* â”€â”€ Hover lift on visuals â”€â”€ */
     .cp-visual-hover {
       transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
+
     .cp-visual-hover:hover {
       transform: translateY(-8px);
     }
+
     .cp-visual-hover:hover .cp-ph {
-      box-shadow: 
+      box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.7),
         0 20px 45px rgba(167, 134, 111, 0.05),
         0 45px 90px rgba(0, 0, 0, 0.07);
     }
 
-    /* ═══════ RESPONSIVE ═══════ */
+    /* â•â•â•â•â•â•â• RESPONSIVE â•â•â•â•â•â•â• */
     @media (max-width: 900px) {
+
       .cp-editorial-grid,
       .cp-editorial-grid.reversed {
         grid-template-columns: 1fr;
         gap: 60px;
         direction: ltr;
       }
-      .cp-editorial-grid.reversed > * { direction: ltr; }
-      .cp-section { padding: 100px 0; }
+
+      .cp-editorial-grid.reversed>* {
+        direction: ltr;
+      }
+
+      .cp-section {
+        padding: 100px 0;
+      }
+
       .cp-collage {
         grid-template-columns: 1fr;
         height: auto;
         gap: 16px;
       }
-      .cp-collage-main { height: 340px; }
-      .cp-collage-stack { flex-direction: row; height: 160px; }
-      .cp-collage-small { height: 100%; }
-      .cp-hero { padding: 140px 0 70px 0; }
-      .cp-centered { padding: 100px 0; }
-      .cp-final { padding: 100px 0; }
-      .cp-final-visual { height: 380px; max-width: 100%; }
-      .cp-body, .cp-centered-body, .cp-final-body { max-width: 100%; }
+
+      .cp-collage-main {
+        height: 340px;
+      }
+
+      .cp-collage-stack {
+        flex-direction: row;
+        height: 160px;
+      }
+
+      .cp-collage-small {
+        height: 100%;
+      }
+
+      .cp-hero {
+        padding: 140px 0 70px 0;
+      }
+
+      .cp-centered {
+        padding: 100px 0;
+      }
+
+      .cp-final {
+        padding: 100px 0;
+      }
+
+      .cp-final-visual {
+        height: 380px;
+        max-width: 100%;
+      }
+
+      .cp-body,
+      .cp-centered-body,
+      .cp-final-body {
+        max-width: 100%;
+      }
     }
 
     @media (max-width: 640px) {
-      .cp-section { padding: 72px 0; }
-      .cp-editorial-grid { gap: 40px; }
-      .cp-ph--tall { height: 360px; }
-      .cp-ph--medium { height: 300px; }
-      .cp-collage-main { height: 280px; }
-      .cp-collage-stack { flex-direction: column; height: auto; gap: 12px; }
-      .cp-collage-small { height: 140px; }
-      .cp-hero { padding: 120px 24px 60px; }
-      .cp-centered { padding: 72px 0; }
-      .cp-final { padding: 72px 0; }
-      .cp-final-visual { height: 320px; }
-      .cp-container { width: 90%; }
+      .cp-section {
+        padding: 72px 0;
+      }
+
+      .cp-editorial-grid {
+        gap: 40px;
+      }
+
+      .cp-ph--tall {
+        height: 360px;
+      }
+
+      .cp-ph--medium {
+        height: 280px;
+      }
+    }
+
+    .collections-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      background: #080808;
+      font-family: 'Barlow Condensed', sans-serif;
+      color: #fff;
+      user-select: none;
+    }
+
+    .collections-hero .slider-viewport {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .collections-hero .slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+    }
+
+    .collections-hero .slide {
+      position: relative;
+      min-width: 100%;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* ── BACKGROUND ── */
+    .collections-hero .slide-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .collections-hero .slide-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .collections-hero .slide-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
+        radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
+        radial-gradient(ellipse at center, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+    }
+
+    .collections-hero .fruit-mascot {
+      position: absolute;
+      top: 110px;
+      left: 50px;
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      z-index: 20;
+    }
+
+    /* ── SPLASH (behind bottle, above fruits) ── */
+    .collections-hero .splash-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .collections-hero .splash-layer img {
+      width: 550px;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      animation: splashReveal 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      transform-origin: center center;
+    }
+
+    /* JUICY SPLASH REVEAL */
+    @keyframes splashReveal {
+      0% {
+        opacity: 0;
+        filter: blur(18px);
+        transform: translateY(40px) scale(0.85);
+      }
+
+      35% {
+        opacity: .7;
+        filter: blur(8px);
+        transform: translateY(10px) scale(0.95);
+      }
+
+      70% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(-5px) scale(1.03);
+      }
+
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes splashFloat {
+      0% {
+        transform: translateY(0px) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(1deg);
+      }
+
+      100% {
+        transform: translateY(0px) rotate(-1deg);
+      }
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .collections-hero .splash-layer img {
+        max-width: 500px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .collections-hero .splash-layer img {
+        max-width: 350px;
+      }
+    }
+
+    .collections-hero .ghost-text {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 20px;
+      pointer-events: none;
+    }
+
+    .collections-hero .ghost-text span {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(50px, 2vw, 100px);
+      letter-spacing: 0.08em;
+      color: rgba(237, 234, 234, 0.39);
+      white-space: nowrap;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    /* ── BOTTLE ── */
+    .collections-hero .bottle-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .collections-hero .bottle-img {
+      height: 500px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.85));
+      mix-blend-mode: normal;
+      animation: floatBottle 5s ease-in-out infinite;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .collections-hero .bottle-img {
+        height: 350px;
+      }
+    }
+
+    @keyframes floatBottle {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(-3deg);
+      }
+
+      50% {
+        transform: translateY(-22px) rotate(3deg);
+      }
+    }
+
+    /* ── LEFT CONTENT ── */
+    .collections-hero .left-content {
+      position: absolute;
+      left: 90px;
+      bottom: 140px;
+      width: 280px;
+      background: none;
+      border: none;
+      padding: 0;
+      z-index: 20;
+    }
+
+    .collections-hero .flavor-tagline {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 48px;
+      line-height: 1.4;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #111;
+      margin: 0;
+    }
+
+    .collections-hero .btn-order {
+      position: absolute;
+      top: 240px;
+      right: 150px;
+      display: inline-block;
+      padding: 16px 42px;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      overflow: hidden;
+      background: linear-gradient(to bottom,
+          #ff5a00 0%,
+          #ff8c00 35%,
+          #ff9d00 65%,
+          #ff6a00 100%);
+      box-shadow:
+        0 8px 20px rgba(255, 120, 0, .4),
+        inset 0 2px 0 rgba(255, 255, 255, .4),
+        inset 0 -8px 15px rgba(255, 140, 0, .35);
+      z-index: 70;
+      transition: all .3s ease;
+    }
+
+    /* ── RIGHT CONTENT ── */
+    .collections-hero .right-content {
+      position: absolute;
+      right: 40px;
+      bottom: 140px;
+      width: 320px;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      z-index: 20;
+    }
+
+    .collections-hero .right-desc {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+      color: #000;
+      text-transform: none;
+      font-weight: 500;
+      transition: all 0.4s ease;
+    }
+
+    /* ═══════════════════════════════
+       TRANSITION ANIMATIONS
+    ═══════════════════════════════ */
+
+    /* When a slide is ENTERING — bottle comes in from right, large, then centers & shrinks */
+    .collections-hero .slide.is-entering .bottle-wrap {
+      animation: bottleEnter 0.75s cubic-bezier(0.77, 0, 0.18, 1) both;
+    }
+
+    .collections-hero .slide.is-entering .splash-layer img {
+      animation: splashBehindBottle 1.2s cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    @keyframes splashBehindBottle {
+      0% {
+        opacity: 0;
+        filter: blur(15px);
+        transform: scale(0.2);
+      }
+
+      40% {
+        opacity: .8;
+        filter: blur(8px);
+        transform: scale(0.7);
+      }
+
+      75% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1.12);
+      }
+
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+      }
+    }
+
+    /* Ghost text on enter */
+    .collections-hero .slide.is-entering .ghost-text span {
+      animation: ghostEnter 0.8s ease both;
+    }
+
+    .collections-hero .slide.is-entering .bottle-img {
+      animation:
+        bottleEnter 3s cubic-bezier(.22, 1, .36, 1),
+        floatBottle 5s ease-in-out 1s infinite;
+    }
+
+    /* Content (left/right) on enter */
+    .collections-hero .slide.is-entering .left-content {
+      animation: popInLeft 1s cubic-bezier(.175, .885, .32, 1.275) both;
+    }
+
+    .collections-hero .slide.is-entering .right-content {
+      animation: popInRight 1s cubic-bezier(.175, .885, .32, 1.275) both;
+    }
+
+    @keyframes popInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-40px) scale(0.5);
+      }
+
+      70% {
+        opacity: 1;
+        transform: translateX(10px) scale(1.12);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes popInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(40px) scale(0.5);
+      }
+
+      70% {
+        opacity: 1;
+        transform: translateX(-10px) scale(1.12);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    /* EXITING slide — bottle flies left+rotates */
+    .collections-hero .slide.is-exiting .bottle-wrap {
+      animation: bottleExit 0.75s cubic-bezier(0.77, 0, 0.18, 1) both;
+    }
+
+    @keyframes bottleExit {
+      0% {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotate(0deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateX(-250px) scale(.7) rotate(-25deg);
+      }
+    }
+
+    .collections-hero .slide.is-exiting .left-content,
+    .collections-hero .slide.is-exiting .right-content {
+      animation: contentExit 0.4s ease both;
+    }
+
+    @keyframes contentExit {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(calc(-50% - 10px));
+      }
+    }
+
+    /* ── FIXED UI ── */
+    .collections-hero .flavor-list {
+      position: absolute;
+      left: 50%;
+      bottom: 25px;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      z-index: 200;
+    }
+
+    .collections-hero .flavor-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      opacity: 0.8;
+      color: #000;
+    }
+
+    /* HOVER COLORS */
+    .collections-hero .flavor-item.watermelon:hover {
+      color: #ff002f;
+    }
+
+    .collections-hero .flavor-item.blueberry:hover {
+      color: #6A5ACD;
+    }
+
+    .collections-hero .flavor-item.avocado:hover {
+      color: #8BC34A;
+    }
+
+    .collections-hero .flavor-item.orange:hover {
+      color: #FF8C00;
+    }
+
+    .collections-hero .flavor-item.lychee:hover {
+      color: #fc009b;
+    }
+
+    .collections-hero .flavor-item.mango:hover {
+      color: #FFC300;
+    }
+
+    /* ACTIVE COLORS */
+    .collections-hero .flavor-item.watermelon.active {
+      color: #c20729;
+    }
+
+    .collections-hero .flavor-item.blueberry.active {
+      color: #31238c;
+    }
+
+    .collections-hero .flavor-item.avocado.active {
+      color: #436d13;
+    }
+
+    .collections-hero .flavor-item.orange.active {
+      color: #c76f03;
+    }
+
+    .collections-hero .flavor-item.lychee.active {
+      color: #fe008c;
+    }
+
+    .collections-hero .flavor-item.mango.active {
+      color: #c19505;
+    }
+
+    /* COMMON ACTIVE STYLE */
+    .collections-hero .flavor-item.active {
+      font-weight: 700;
+      opacity: 1;
+      padding-left: 8px;
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    /* HOVER EFFECT */
+    .collections-hero .flavor-item:hover {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    .collections-hero .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
+      background: rgb(247, 248, 183);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(28, 1, 1, 0.766);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s;
+      border-radius: 50%;
+    }
+
+    .collections-hero .nav-arrow:hover {
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .collections-hero .nav-arrow.prev {
+      left: 14px;
+    }
+
+    .collections-hero .nav-arrow.next {
+      right: 14px;
+    }
+
+    /* Progress bar */
+    .collections-hero .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 200;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.15);
+      width: 100%;
+    }
+
+    .collections-hero .progress-fill {
+      height: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      transition: width 0.3s ease;
+      width: 25%;
+    }
+
+    font-size: 18px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s;
+    border-radius: 50%;
+    }
+
+    .collections-hero .nav-arrow:hover {
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .collections-hero .nav-arrow.prev {
+      left: 14px;
+    }
+
+    .collections-hero .nav-arrow.next {
+      right: 14px;
+    }
+
+    /* Progress bar */
+    .collections-hero .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 200;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      width: 100%;
+    }
+
+    .collections-hero .progress-fill {
+      height: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      transition: width 0.3s ease;
+      width: 16.66%;
+    }
+
+    /* Mobile Responsive Optimizations for Collections Hero */
+    @media (max-width: 768px) {
+      .collections-hero {
+        height: 100vh;
+      }
+
+      .collections-hero .left-content {
+        left: 20px;
+        top: 110px;
+        bottom: auto;
+        width: 180px;
+        max-width: 200px;
+      }
+
+      .collections-hero .flavor-tagline {
+        font-size: 26px;
+        line-height: 1.2;
+      }
+
+      .collections-hero .fruit-mascot {
+        top: 110px;
+        left: auto;
+        right: 20px;
+        width: 140px;
+        height: 140px;
+      }
+
+      .collections-hero .bottle-img {
+        height: 280px;
+      }
+
+      .collections-hero .splash-layer img {
+        max-width: 300px;
+      }
+
+      .collections-hero .right-content {
+        left: 20px;
+        right: 20px;
+        top: auto;
+        bottom: 140px;
+        width: auto;
+        max-width: none;
+        text-align: center;
+      }
+
+      .collections-hero .right-desc {
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .collections-hero .btn-order {
+        position: absolute;
+        top: auto;
+        right: auto;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 36px;
+        font-size: 10px;
+        z-index: 70;
+      }
+
+      .collections-hero .flavor-list {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0 16px;
+      }
+
+      .collections-hero .flavor-item {
+        font-size: 11px;
+        padding: 2px 4px;
+      }
+
+      .collections-hero .nav-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+      }
+
+      .collections-hero .nav-arrow.prev {
+        left: 10px;
+      }
+
+      .collections-hero .nav-arrow.next {
+        right: 10px;
+      }
+    }
+
+    /* ─── REVIEWS & CONTACT BASE STYLES ─── */
+    .hp-reviews-section {
+      padding: 160px 0;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .hp-reviews-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .hp-reviews-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 90px auto;
+    }
+
+    .hp-reviews-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .hp-reviews-heading {
+      font-size: 64px;
+      line-height: 1.1;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hp-reviews-subtitle {
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .hp-reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+    }
+
+    .hp-review-card {
+      border-radius: 28px;
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hp-review-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+
+    .hp-review-star-svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .hp-review-quote {
+      font-size: 22px;
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 36px;
+      flex-grow: 1;
+    }
+
+    .hp-review-author-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid #ECECEC;
+      padding-top: 24px;
+    }
+
+    .hp-review-author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hp-review-author-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .hp-review-author-loc {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    /* ─── CONTACT SECTION ─── */
+    .hp-contact-section {
+      padding: 180px 0;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .hp-contact-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .hp-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 80px;
+      align-items: start;
+    }
+
+    .hp-contact-left {
+      max-width: 460px;
+    }
+
+    .hp-contact-title {
+      font-size: 72px;
+      line-height: 1.05;
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    .hp-contact-desc {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hp-contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hp-contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hp-contact-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hp-contact-item-value {
+      font-size: 18px;
+      font-weight: 400;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .hp-contact-right {
+      background: transparent;
+    }
+
+    .hp-contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hp-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hp-form-input,
+    .hp-form-textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(23, 49, 59, 0.18);
+      border-radius: 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hp-form-input {
+      height: 54px;
+      padding: 0;
+    }
+
+    .hp-form-textarea {
+      height: 140px;
+      padding: 16px 0;
+      resize: none;
+    }
+
+    .hp-form-input:focus,
+    .hp-form-textarea:focus {
+      outline: none;
+    }
+
+    .hp-form-submit {
+      align-self: flex-start;
+      height: 58px;
+      padding: 0 34px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .hp-reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hp-contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .hp-reviews-section,
+      .hp-contact-section {
+        padding: 100px 0;
+      }
+
+      .hp-reviews-heading,
+      .hp-contact-title {
+        font-size: 40px;
+      }
+    }
+
+    /* ─── SECTION 1: Watermelon ─── */
+    #watermelon {
+      background-color: #F9DDD9;
+    }
+
+    #watermelon .cp-label {
+      color: var(--petzen-charcoal);
+      opacity: 0.6;
+    }
+
+    #watermelon .cp-heading {
+      color: var(--petzen-charcoal);
+    }
+
+    #watermelon .cp-body {
+      color: var(--petzen-charcoal);
+      opacity: 0.8;
+    }
+
+    #watermelon .cp-btn {
+      background: linear-gradient(to bottom, #EC802B 0%, #D05F00 100%);
+      color: #F8F6F2;
+      box-shadow:
+        0 6px 15px rgba(236, 128, 43, 0.3),
+        inset 0 -4px 8px rgba(180, 70, 0, 0.2);
+    }
+
+    #watermelon .cp-btn:hover {
+      box-shadow:
+        0 10px 22px rgba(236, 128, 43, 0.45),
+        inset 0 -4px 8px rgba(180, 70, 0, 0.2);
+      color: #F8F6F2;
+    }
+
+    #watermelon .cp-ph {
+      background: linear-gradient(180deg, var(--petzen-offwhite) 0%, var(--petzen-cream) 100%);
+      border-color: rgba(74, 58, 42, 0.1);
+    }
+
+    /* ─── SECTION 2: Orange ─── */
+    #orange {
+      background-color: var(--petzen-offwhite);
+    }
+
+    #orange .cp-label {
+      color: var(--petzen-cocoa);
+      opacity: 0.6;
+    }
+
+    #orange .cp-heading {
+      color: var(--petzen-cocoa);
+    }
+
+    #orange .cp-body {
+      color: var(--petzen-cocoa);
+      opacity: 0.8;
+    }
+
+    #orange .cp-btn {
+      background: linear-gradient(to bottom, #EC802B 0%, #D05F00 100%);
+      color: #F8F6F2;
+      box-shadow:
+        0 6px 15px rgba(236, 128, 43, 0.3),
+        inset 0 -4px 8px rgba(180, 70, 0, 0.2);
+    }
+
+    #orange .cp-btn:hover {
+      box-shadow:
+        0 10px 22px rgba(236, 128, 43, 0.45),
+        inset 0 -4px 8px rgba(180, 70, 0, 0.2);
+      color: #F8F6F2;
+    }
+
+    #orange .cp-ph {
+      background: linear-gradient(180deg, var(--petzen-ivory) 0%, var(--petzen-offwhite) 100%);
+      border-color: rgba(74, 58, 42, 0.1);
+    }
+
+    /* ─── SECTION 3: Blueberry ─── */
+    #blueberry {
+      background-color: var(--petzen-aqua);
+    }
+
+    #blueberry .cp-label {
+      color: var(--petzen-charcoal);
+      opacity: 0.6;
+    }
+
+    #blueberry .cp-heading {
+      color: var(--petzen-charcoal);
+    }
+
+    #blueberry .cp-body {
+      color: var(--petzen-charcoal);
+      opacity: 0.8;
+    }
+
+    #blueberry .cp-btn {
+      background: linear-gradient(to bottom, #EDC55B 0%, #C59B2E 100%);
+      color: #1F1F1F;
+      box-shadow:
+        0 6px 15px rgba(237, 197, 91, 0.3),
+        inset 0 -4px 8px rgba(170, 120, 0, 0.2);
+    }
+
+    #blueberry .cp-btn:hover {
+      box-shadow:
+        0 10px 22px rgba(237, 197, 91, 0.45),
+        inset 0 -4px 8px rgba(170, 120, 0, 0.2);
+      color: #1F1F1F;
+    }
+
+    #blueberry .cp-ph {
+      background: var(--petzen-offwhite);
+      border-color: rgba(74, 58, 42, 0.1);
+    }
+
+    /* ─── SECTION 4: Lychee ─── */
+    #lychee {
+      background-color: var(--petzen-ivory);
+    }
+
+    #lychee .cp-label {
+      color: var(--petzen-cocoa);
+      opacity: 0.6;
+    }
+
+    #lychee .cp-heading {
+      color: var(--petzen-cocoa);
+    }
+
+    #lychee .cp-body {
+      color: var(--petzen-cocoa);
+      opacity: 0.8;
+    }
+
+    #lychee .cp-btn {
+      background: linear-gradient(to bottom, #F8F6F2 0%, #E8CCAD 100%);
+      color: #4A3A2A;
+      box-shadow:
+        0 6px 15px rgba(74, 58, 42, 0.08),
+        inset 0 -4px 8px rgba(167, 134, 111, 0.15);
+    }
+
+    #lychee .cp-btn:hover {
+      box-shadow:
+        0 10px 22px rgba(74, 58, 42, 0.15),
+        inset 0 -4px 8px rgba(167, 134, 111, 0.15);
+      color: #4A3A2A;
+    }
+
+    #lychee .cp-ph {
+      background: var(--petzen-offwhite);
+      border-color: rgba(74, 58, 42, 0.1);
+    }
+
+    /* ─── SECTION 5: Centered Wellness Editorial ─── */
+    .cp-centered {
+      background-color: var(--petzen-cream);
+    }
+
+    .cp-centered .cp-label {
+      color: var(--petzen-charcoal);
+      opacity: 0.6;
+    }
+
+    .cp-centered-heading {
+      color: var(--petzen-charcoal);
+    }
+
+    .cp-centered-body {
+      color: var(--petzen-charcoal);
+      opacity: 0.8;
+    }
+
+    .cp-luxury-divider {
+      background-color: var(--petzen-orange);
+    }
+
+    .cp-centered .cp-btn {
+      background: linear-gradient(to bottom, #F8F6F2 0%, #E8CCAD 100%);
+      color: #4A3A2A;
+      box-shadow:
+        0 6px 15px rgba(74, 58, 42, 0.08),
+        inset 0 -4px 8px rgba(167, 134, 111, 0.15);
+    }
+
+    .cp-centered .cp-btn:hover {
+      box-shadow:
+        0 10px 22px rgba(74, 58, 42, 0.15),
+        inset 0 -4px 8px rgba(167, 134, 111, 0.15);
+      color: #4A3A2A;
+    }
+
+    /* ─── SECTION 6: Avocado ─── */
+    #avocado {
+      background-color: var(--petzen-offwhite);
+    }
+
+    #avocado .cp-label {
+      color: var(--petzen-cocoa);
+      opacity: 0.6;
+    }
+
+    #avocado .cp-heading {
+      color: var(--petzen-cocoa);
+    }
+
+    #avocado .cp-body {
+      color: var(--petzen-cocoa);
+      opacity: 0.8;
+    }
+
+    #avocado .cp-btn {
+      background: linear-gradient(to bottom, #66BCB4 0%, #3B8E86 100%);
+      color: #1F1F1F;
+      box-shadow:
+        0 6px 15px rgba(102, 188, 180, 0.3),
+        inset 0 -4px 8px rgba(40, 110, 100, 0.2);
+    }
+
+    #avocado .cp-btn:hover {
+      box-shadow:
+        0 10px 22px rgba(102, 188, 180, 0.45),
+        inset 0 -4px 8px rgba(40, 110, 100, 0.2);
+      color: #1F1F1F;
+    }
+
+    #avocado .cp-ph {
+      background: var(--petzen-aqua);
+      border-color: rgba(74, 58, 42, 0.1);
+    }
+
+    #avocado .cp-ph-label {
+      color: var(--petzen-charcoal);
+    }
+
+    /* ─── SECTION 7: Mango ─── */
+    #mango {
+      background-color: var(--petzen-mango);
+    }
+
+    #mango .cp-label {
+      color: var(--petzen-charcoal);
+      opacity: 0.6;
+    }
+
+    #mango .cp-heading {
+      color: var(--petzen-charcoal);
+    }
+
+    #mango .cp-body {
+      color: var(--petzen-charcoal);
+      opacity: 0.8;
+    }
+
+    #mango .cp-btn {
+      background: linear-gradient(to bottom, #F8F6F2 0%, #E8CCAD 100%);
+      color: #4A3A2A;
+      box-shadow:
+        0 6px 15px rgba(74, 58, 42, 0.08),
+        inset 0 -4px 8px rgba(167, 134, 111, 0.15);
+    }
+
+    #mango .cp-btn:hover {
+      box-shadow:
+        0 10px 22px rgba(74, 58, 42, 0.15),
+        inset 0 -4px 8px rgba(167, 134, 111, 0.15);
+      color: #4A3A2A;
+    }
+
+    #mango .cp-ph {
+      background: linear-gradient(180deg, var(--petzen-offwhite) 0%, var(--petzen-mango) 100%);
+      border-color: rgba(74, 58, 42, 0.1);
+    }
+
+    /* ─── SECTION 8: Testimonials ─── */
+    #testimonials {
+      background-color: var(--petzen-aqua);
+      padding: 160px 0;
+      border-top: none;
+      border-bottom: none;
+    }
+
+    #testimonials .hp-reviews-label {
+      color: var(--petzen-charcoal);
+      opacity: 0.6;
+    }
+
+    #testimonials .hp-reviews-heading {
+      color: var(--petzen-charcoal);
+      font-family: var(--font-editorial);
+    }
+
+    #testimonials .hp-reviews-subtitle {
+      color: var(--petzen-charcoal);
+      opacity: 0.8;
+    }
+
+    #testimonials .hp-review-card {
+      background-color: var(--petzen-offwhite);
+      border: 1px solid rgba(74, 58, 42, 0.08);
+      border-radius: 32px;
+      box-shadow: 0 10px 30px rgba(74, 58, 42, 0.04);
+      transition: transform 400ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 400ms ease;
+    }
+
+    #testimonials .hp-review-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(74, 58, 42, 0.08);
+    }
+
+    #testimonials .hp-review-stars {
+      color: var(--petzen-orange);
+    }
+
+    #testimonials .hp-review-quote {
+      color: var(--petzen-charcoal);
+      font-family: var(--font-body);
+      font-size: 18px;
+    }
+
+    #testimonials .hp-review-author-wrap {
+      border-top-color: rgba(74, 58, 42, 0.08);
+    }
+
+    #testimonials .hp-review-author-name {
+      color: var(--petzen-charcoal);
+    }
+
+    #testimonials .hp-review-author-loc {
+      color: var(--petzen-charcoal);
+      opacity: 0.6;
+    }
+
+    /* ─── SECTION 9: CTA Section ─── */
+    #cta-section {
+      background-color: var(--petzen-orange);
+      padding: 160px 0;
+      border-top: none;
+      border-bottom: none;
+    }
+
+    #cta-section .hp-contact-title {
+      color: var(--petzen-offwhite);
+      font-family: var(--font-editorial);
+    }
+
+    #cta-section .hp-contact-desc {
+      color: var(--petzen-offwhite);
+      opacity: 0.9;
+    }
+
+    #cta-section .hp-contact-item-label {
+      color: var(--petzen-offwhite);
+      opacity: 0.6;
+    }
+
+    #cta-section .hp-contact-item-value {
+      color: var(--petzen-offwhite);
+    }
+
+    #cta-section .hp-contact-item-value:hover {
+      color: var(--petzen-mango);
+    }
+
+    #cta-section .hp-contact-right {
+      background: transparent;
+    }
+
+    #cta-section .hp-form-input,
+    #cta-section .hp-form-textarea {
+      border-bottom-color: rgba(248, 246, 242, 0.4);
+      color: var(--petzen-offwhite);
+    }
+
+    #cta-section .hp-form-input::placeholder,
+    #cta-section .hp-form-textarea::placeholder {
+      color: rgba(248, 246, 242, 0.6);
+    }
+
+    #cta-section .hp-form-input:focus,
+    #cta-section .hp-form-textarea:focus {
+      border-bottom-color: var(--petzen-offwhite);
+      box-shadow: none;
+    }
+
+    #cta-section .hp-form-submit {
+      background: var(--petzen-charcoal);
+      color: var(--petzen-offwhite);
+      border: 1px solid var(--petzen-charcoal);
+      box-shadow: none;
+      text-shadow: none;
+      font-family: var(--font-body);
+      font-weight: 600;
+      letter-spacing: 2px;
+      transition: all 400ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    #cta-section .hp-form-submit:hover {
+      background: var(--petzen-aqua);
+      color: var(--petzen-charcoal);
+      border-color: var(--petzen-aqua);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(102, 188, 180, 0.3);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       MASCOTS SECTION — Premium Responsive Cards
+       ══════════════════════════════════════════════════════════════ */
+    .mascot-section {
+      padding: 120px 0;
+      background: #FAF8F5;
+      position: relative;
+    }
+
+    .mascot-container {
+      width: 90%;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .mascot-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .mascot-pretitle {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--petzen-orange);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .mascot-title {
+      font-family: var(--font-editorial);
+      font-size: clamp(32px, 4.5vw, 54px);
+      font-weight: 700;
+      margin: 0 0 18px 0;
+      color: var(--col-ink);
+      letter-spacing: -0.5px;
+    }
+
+    .mascot-subtitle {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--col-muted);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .mascot-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+    }
+
+    .mascot-card {
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: 0 8px 32px rgba(167, 134, 111, 0.04);
+      padding: 40px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.33, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mascot-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 60px rgba(74, 58, 42, 0.08);
+      border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .mascot-img-wrapper {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .mascot-blob {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      z-index: 1;
+      opacity: 0.85;
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.33, 1);
+      border-radius: 50%;
+      background-image: none;
+    }
+
+    .mascot-card:hover .mascot-blob {
+      transform: scale(1.12);
+      opacity: 1;
+    }
+
+    .theme-lychee .mascot-blob {
+      background: radial-gradient(circle at 40% 45%, #ffd6e0 0%, #fbaab8 70%, transparent 100%);
+    }
+    .theme-mango .mascot-blob {
+      background: radial-gradient(circle at 42% 45%, #fff0c2 0%, #f9d76b 70%, transparent 100%);
+    }
+    .theme-blueberry .mascot-blob {
+      background: radial-gradient(circle at 42% 45%, #dce4ff 0%, #a9baee 70%, transparent 100%);
+    }
+    .theme-avocado .mascot-blob {
+      background: radial-gradient(circle at 42% 45%, #dff2d8 0%, #a8d89c 70%, transparent 100%);
+    }
+    .theme-orange .mascot-blob {
+      background: radial-gradient(circle at 42% 45%, #ffe5c2 0%, #f8bb72 70%, transparent 100%);
+    }
+    .theme-watermelon .mascot-blob {
+      background: radial-gradient(circle at 42% 45%, #ffd6d6 0%, #f5928a 70%, transparent 100%);
+    }
+
+    .mascot-img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      z-index: 2;
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.33, 1);
+    }
+
+    .mascot-card:hover .mascot-img {
+      transform: scale(1.12) translateY(-4px);
+    }
+
+    .mascot-name {
+      font-family: 'Fredoka', 'Syne', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+    }
+
+    .mascot-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #666;
+      line-height: 1.55;
+      margin: 0 0 28px 0;
+      flex-grow: 1;
+      font-weight: 300;
+    }
+
+    .mascot-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.05);
+      margin: 0 0 20px 0;
+    }
+
+    .mascot-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: transform 0.3s ease;
+    }
+
+    .mascot-card:hover .mascot-footer {
+      transform: scale(1.03);
+    }
+
+    .mascot-footer svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Flavor-specific Theme Colors */
+    .theme-lychee {
+      --m-color: #E03050;
+      --m-bg: #ff8da1;
+    }
+
+    .theme-mango {
+      --m-color: #EC9A29;
+      --m-bg: #FFD700;
+    }
+
+    .theme-blueberry {
+      --m-color: #3B4CCA;
+      --m-bg: #8AD1CB;
+    }
+
+    .theme-avocado {
+      --m-color: #3F6E41;
+      --m-bg: #9BC89D;
+    }
+
+    .theme-orange {
+      --m-color: #EC802B;
+      --m-bg: #FFA45B;
+    }
+
+    .theme-watermelon {
+      --m-color: #D82B35;
+      --m-bg: #ff8080;
+    }
+
+    .mascot-card .mascot-blob {
+      /* CSS circle blobs — no PNG needed */
+    }
+
+    .mascot-card .mascot-name {
+      color: var(--m-color);
+    }
+
+    .mascot-card .mascot-footer {
+      color: var(--m-color);
+    }
+
+    /* Responsive Grid layout */
+    @media (max-width: 1280px) {
+      .mascot-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .mascot-section {
+        padding: 90px 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mascot-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .mascot-section {
+        padding: 70px 0;
+      }
+
+      .mascot-header {
+        margin-bottom: 45px;
+      }
+
+      .mascot-card {
+        padding: 24px 16px 20px;
+        border-radius: 20px;
+      }
+
+      .mascot-img-wrapper {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 16px;
+      }
+
+      .mascot-blob {
+        width: 95px;
+        height: 95px;
+      }
+
+      .mascot-img {
+        width: 75px;
+        height: 75px;
+      }
+
+      .mascot-name {
+        font-size: 17px;
+        margin: 0 0 6px 0;
+      }
+
+      .mascot-desc {
+        font-size: 12.5px;
+        margin: 0 0 16px 0;
+      }
+
+      .mascot-divider {
+        margin: 0 0 12px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mascot-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .mascot-card {
+        padding: 32px 24px 24px;
+      }
+
+      .mascot-img-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+
+      .mascot-blob {
+        width: 115px;
+        height: 115px;
+      }
+
+      .mascot-img {
+        width: 90px;
+        height: 90px;
+      }
+
+      .mascot-name {
+        font-size: 19px;
+      }
+
+      .mascot-desc {
+        font-size: 13.5px;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       COCONUT INFO SECTION — Premium Info Panel
+       ══════════════════════════════════════════════════════════════ */
+    .coconut-section {
+      position: relative;
+      background: linear-gradient(to right, #FDF8EF 5%, rgba(253, 248, 239, 0) 58%), url('/images/collection-pg-sec.png') right center / 85% no-repeat, #FDF8EF;
+      padding: 120px 80px;
+      min-height: 800px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .coconut-container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .coconut-content-row {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      margin-bottom: 60px;
+    }
+
+    .coconut-left {
+      width: 62%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      z-index: 2;
+    }
+
+    .coconut-right {
+      width: 38%;
+      /* Empty block to let the background illustration shine */
+    }
+
+    .coconut-pretitle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #D76927;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .coconut-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #2E2219;
+      margin: 0;
+    }
+
+    .coconut-wavy-divider {
+      margin: 20px 0 24px 0;
+    }
+
+    .coconut-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: #5C4A3C;
+      line-height: 1.65;
+      max-width: 650px;
+      margin: 0 0 40px 0;
+      font-weight: 300;
+    }
+
+    .coconut-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .coconut-grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 150px;
+    }
+
+    .coconut-circle {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: #FFF0E0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .coconut-grid-item:hover .coconut-circle {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(215, 105, 39, 0.08);
+      background: #FFEAD2;
+    }
+
+    .coconut-grid-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #2E2219;
+      line-height: 1.4;
+      text-transform: uppercase;
+      max-width: 130px;
+    }
+
+    /* Bottom Panel */
+    .coconut-panel {
+      background: rgba(255, 253, 250, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(132, 195, 135, 0.4);
+      border-radius: 28px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      box-shadow: 0 15px 40px rgba(46, 34, 25, 0.04);
+      box-sizing: border-box;
+    }
+
+    .coconut-panel-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1.6;
+      padding-right: 32px;
+    }
+
+    .coconut-panel-desc {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #2E2219;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .coconut-panel-desc .highlight-green {
+      color: #3F6E41;
+      font-weight: 700;
+    }
+
+    .coconut-panel-divider {
+      width: 1px;
+      height: 56px;
+      background: rgba(132, 195, 135, 0.3);
+      flex-shrink: 0;
+    }
+
+    .coconut-panel-right {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 2.4;
+      padding-left: 32px;
+      gap: 16px;
+    }
+
+    .coconut-panel-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .coconut-panel-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3F6E41;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .coconut-panel-item:hover .coconut-panel-icon {
+      transform: scale(1.15) translateY(-2px);
+    }
+
+    .coconut-panel-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #2E2219;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    /* Responsive Spacing & Layout */
+    @media (max-width: 1024px) {
+      .coconut-section {
+        padding: 80px 40px;
+        min-height: auto;
+        background: linear-gradient(to bottom, #FDF8EF 45%, rgba(253, 248, 239, 0) 75%), url('/images/collection-pg-sec.png') center bottom / cover no-repeat, #FDF8EF;
+      }
+
+      .coconut-content-row {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .coconut-left,
+      .coconut-right {
+        width: 100%;
+      }
+
+      .coconut-panel {
+        flex-direction: column;
+        gap: 24px;
+        padding: 28px 24px;
+      }
+
+      .coconut-panel-left {
+        width: 100%;
+        padding-right: 0;
+        border-bottom: 1px solid rgba(132, 195, 135, 0.2);
+        padding-bottom: 20px;
+      }
+
+      .coconut-panel-divider {
+        display: none;
+      }
+
+      .coconut-panel-right {
+        width: 100%;
+        padding-left: 0;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .coconut-section {
+        padding: 60px 20px;
+      }
+
+      .coconut-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .coconut-panel-right {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 12px;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       NEW: FLAVOUR BENEFITS & RITUAL INTELLIGENCE SECTION
+       ══════════════════════════════════════════════════════════════ */
+    .ritual-intelligence-section {
+      background-color: #F7F3EE;
+      padding: 120px 0;
+      color: #17313B;
+      font-family: var(--font-body);
+      position: relative;
+      overflow: hidden;
+      border-radius: 40px;
+      margin: 40px 0;
+    }
+
+    .ritual-container {
+      width: 88%;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .ritual-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .ritual-pretitle {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--col-label);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .ritual-title {
+      font-family: var(--font-editorial);
+      font-size: clamp(36px, 4vw, 54px);
+      font-weight: 400;
+      color: #17313B;
+      line-height: 1.1;
+      margin: 0 0 20px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .ritual-subtitle {
+      font-size: 16px;
+      color: var(--col-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* Timeline Styles */
+    .ritual-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      border-bottom: 1px solid rgba(23, 49, 59, 0.1);
+      padding-bottom: 40px;
+      position: relative;
+    }
+
+    .timeline-period {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .period-header {
+      font-family: var(--font-editorial);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #17313B;
+      text-transform: uppercase;
+      opacity: 0.8;
+      border-bottom: 2px solid rgba(23, 49, 59, 0.05);
+      padding-bottom: 8px;
+    }
+
+    .period-flavours {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Flavour Interactive Node */
+    .timeline-node {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(23, 49, 59, 0.06);
+      padding: 10px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.33, 1);
+      position: relative;
+    }
+
+    .timeline-node:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(23, 49, 59, 0.04);
+    }
+
+    .timeline-node.active {
+      background: #FFFFFF;
+      border-color: var(--active-theme-color, #17313B);
+      box-shadow: 0 10px 25px rgba(23, 49, 59, 0.08);
+    }
+
+    .node-color-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--node-color);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-node.active .node-color-indicator {
+      transform: scale(1.4);
+    }
+
+    .node-images {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 44px;
+      height: 44px;
+    }
+
+    .node-mascot {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      z-index: 2;
+      transition: transform 0.4s;
+    }
+
+    .node-bottle {
+      width: 24px;
+      height: 36px;
+      object-fit: contain;
+      margin-left: -10px;
+      z-index: 1;
+      transition: transform 0.4s;
+    }
+
+    .timeline-node:hover .node-mascot {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .node-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .node-name {
+      font-family: var(--font-editorial);
+      font-size: 14px;
+      font-weight: 700;
+      color: #17313B;
+    }
+
+    .node-tag {
+      font-size: 10px;
+      color: var(--col-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Benefits Panel Styles */
+    .benefit-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(23, 49, 59, 0.05);
+      border-radius: 32px;
+      padding: 50px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(23, 49, 59, 0.03);
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.6s ease;
+    }
+
+    /* Dynamic Glow inside the panel */
+    .panel-glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--panel-glow-color, rgba(237, 197, 91, 0.2)) 0%, transparent 70%);
+      top: -100px;
+      left: -100px;
+      z-index: 0;
+      pointer-events: none;
+      transition: background 0.6s ease;
+      filter: blur(30px);
+    }
+
+    /* Panel Left Side (Visuals) */
+    .panel-visuals {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 400px;
+      z-index: 1;
+    }
+
+    .visual-bottle-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .panel-large-bottle {
+      height: 380px;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 30px rgba(23, 49, 59, 0.15));
+      z-index: 2;
+    }
+
+    .panel-large-mascot {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      bottom: 20px;
+      right: 20px;
+      z-index: 3;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
+    }
+
+    /* Floating Ingredient Tags */
+    .ingredient-tag {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(23, 49, 59, 0.08);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #17313B;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(23, 49, 59, 0.04);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .tag-1 { top: 15%; left: 10%; }
+    .tag-2 { bottom: 25%; left: 5%; }
+    .tag-3 { top: 25%; right: 10%; }
+
+    /* Panel Right Side (Text details) */
+    .panel-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 1;
+      color: #17313B;
+    }
+
+    .panel-flavour-name {
+      font-family: var(--font-editorial);
+      font-size: clamp(32px, 3.5vw, 44px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .panel-purpose {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--active-theme-color, #17313B);
+      margin-bottom: 24px;
+    }
+
+    /* Custom Highlighted Timeline bar */
+    .panel-timeline-highlight {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 30px;
+      background: rgba(23, 49, 59, 0.03);
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid rgba(23, 49, 59, 0.05);
+      width: fit-content;
+    }
+
+    .time-slot {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--col-muted);
+      transition: all 0.3s;
+    }
+
+    .time-slot.active {
+      background: #FFFFFF;
+      color: #17313B;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Info Grids */
+    .panel-info-section {
+      margin-bottom: 24px;
+    }
+
+    .info-title {
+      font-family: var(--font-editorial);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--col-label);
+    }
+
+    .ideal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ideal-tag {
+      background: rgba(23, 49, 59, 0.04);
+      border: 1px solid rgba(23, 49, 59, 0.04);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .benefits-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 400;
+    }
+
+    .benefit-check {
+      color: #66BCB4;
+      font-weight: 800;
+    }
+
+    .ritual-recommendation {
+      font-style: italic;
+      line-height: 1.6;
+      font-size: 14.5px;
+      color: var(--col-muted);
+      border-left: 3px solid var(--active-theme-color, #17313B);
+      padding-left: 16px;
+      margin: 0 0 35px 0;
+    }
+
+    /* Purchase Panel Action Area */
+    .panel-purchase-area {
+      border-top: 1px solid rgba(23, 49, 59, 0.08);
+      padding-top: 30px;
+    }
+
+    .purchase-title {
+      font-family: var(--font-editorial);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--col-label);
+      margin-bottom: 16px;
+    }
+
+    .purchase-buttons {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .btn-panel-cart {
+      flex: 1.2;
+      background: #17313B;
+      color: #FFFFFF;
+      border: none;
+      padding: 16px 28px;
+      border-radius: 16px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(23, 49, 59, 0.15);
+    }
+
+    .btn-panel-cart:hover {
+      background: #0D2027;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(23, 49, 59, 0.25);
+    }
+
+    .btn-panel-sub {
+      flex: 1.5;
+      background: transparent;
+      color: #17313B;
+      border: 1.5px solid #17313B;
+      padding: 16px 28px;
+      border-radius: 16px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-panel-sub:hover {
+      background: rgba(23, 49, 59, 0.03);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+      .ritual-timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding-bottom: 30px;
+      }
+      .benefit-panel {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 30px;
+      }
+      .panel-large-bottle {
+        height: 300px;
+      }
+      .panel-large-mascot {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ritual-intelligence-section {
+        padding: 60px 0;
+        margin: 20px 0;
+      }
+      .ritual-container {
+        gap: 30px;
+      }
+      .ritual-timeline {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding-bottom: 24px;
+      }
+      .timeline-node {
+        padding: 10px 14px;
+        width: 85%;
+        max-width: 340px;
+        margin: 0 auto;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .node-color-indicator {
+        display: none;
+      }
+      .node-images {
+        width: auto;
+        height: auto;
+        justify-content: center;
+      }
+      .node-info {
+        align-items: center;
+      }
+      .period-flavours {
+        align-items: center;
+      }
+      .benefit-panel {
+        padding: 24px 16px; /* Narrower padding for mobile viewport */
+        gap: 30px;
+      }
+      .panel-visuals {
+        min-height: 280px;
+      }
+      .panel-large-bottle {
+        height: 260px;
+      }
+      .panel-large-mascot {
+        width: 70px;
+        height: 70px;
+        bottom: 10px;
+        right: 10px;
+      }
+      .ingredient-tag {
+        padding: 5px 10px;
+        font-size: 9px;
+      }
+      .tag-1 { top: 10%; left: 2%; }
+      .tag-2 { bottom: 20%; left: 0%; }
+      .tag-3 { top: 20%; right: 2%; }
+
+      .panel-flavour-name {
+        font-size: 24px !important;
+      }
+      .panel-purpose {
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
+      .panel-timeline-highlight {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        padding: 4px;
+        box-sizing: border-box;
+      }
+      .time-slot {
+        text-align: center;
+        padding: 6px 4px;
+        font-size: 10px;
+      }
+      .ideal-tag {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+      .benefit-item {
+        font-size: 12px;
+      }
+      .ritual-recommendation {
+        font-size: 13px;
+        margin-bottom: 24px;
+      }
+      .purchase-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .benefits-list {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- ════════ NAVBAR ════════ -->
-<header class="site-header" id="site-header">
-  <nav class="navbar" aria-label="Main navigation">
-    <a class="nav-logo" href="/">
-      <img src="/images/logo.png" alt="Aarwins Logo" class="nav-logo-img" style="height: 58px; width: 58px; object-fit: contain; border-radius: 50%;"/>
-      <span>AARWINS</span>
-    </a>
-    <div class="nav-links">
-      <a href="/collections">Collections</a>
-      <a href="/#editorial">Philosophy</a>
-      <a href="/#reviews">Reviews</a>
-    </div>
-
-    <div class="nav-right">
-      <span class="nav-lang">UA | EN</span>
-      <div class="nav-search-wrapper" id="nav-search-wrapper">
-        <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Search..." autocomplete="off"/>
-        <span class="nav-search-divider"></span>
-        <button class="nav-search-btn" id="nav-search-btn" aria-label="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
+  <!-- â•â•â•â•â•â•â•â• NAVBAR â•â•â•â•â•â•â•â• -->
+  <header class="site-header" id="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="nav-logo" href="/">
+        <img src="/images/logo.png" alt="Aarwins Logo" class="nav-logo-img"
+          style="height: 58px; width: 58px; object-fit: contain; border-radius: 50%;" />
+        <span>AARWINS</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/collections" class="active">Collections</a>
+        <a href="/#editorial">Philosophy</a>
       </div>
-      <div class="nav-user-container" style="position: relative; display: inline-block;">
-        <button class="nav-icon-btn" id="nav-user-btn" aria-label="Account">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </button>
-        <div class="account-dropdown" id="account-dropdown">
-          <a href="#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
-          <a href="#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>Orders</a>
-          <a href="#wishlist"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>Wishlist</a>
-          <div class="dropdown-divider"></div>
-          <a href="#logout" class="logout-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Logout</a>
+
+      <div class="nav-right">
+        <span class="nav-lang">UA | EN</span>
+        <div class="nav-search-wrapper" id="nav-search-wrapper">
+          <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Search..."
+            autocomplete="off" />
+          <span class="nav-search-divider"></span>
+          <button class="nav-search-btn" id="nav-search-btn" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
         </div>
+        <div class="nav-user-container" style="position: relative; display: inline-block;">
+          <button class="nav-icon-btn" id="nav-user-btn" aria-label="Account">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </button>
+          <div class="account-dropdown" id="account-dropdown">
+            <a href="#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>Profile</a>
+            <a href="#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>Orders</a>
+            <a href="#wishlist"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+              </svg>Wishlist</a>
+            <div class="dropdown-divider"></div>
+            <a href="#logout" class="logout-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>Logout</a>
+          </div>
+        </div>
+        <button class="nav-icon-btn" id="nav-wishlist-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+            </path>
+          </svg>
+        </button>
+        <button class="nav-icon-btn" id="nav-cart-btn" aria-label="Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span id="cart-badge" class="cart-badge">0</span>
+        </button>
       </div>
-      <button class="nav-icon-btn" id="nav-wishlist-btn" aria-label="Wishlist">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
       </button>
-      <button class="nav-icon-btn" id="nav-cart-btn" aria-label="Cart">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-      </button>
-      <a href="/#contact-section" class="nav-shop-btn">Contact us</a>
-    </div>
-
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-</header>
-
-<!-- Mobile Drawer Backdrop Overlay -->
-<div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
-
-<!-- Mobile drawer -->
-<div class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
-  <!-- Gradient Orbs & Lighting -->
-  <div class="drawer-glow-container" aria-hidden="true">
-    <div class="drawer-glow-orb orb-blue"></div>
-    <div class="drawer-glow-orb orb-pink"></div>
-    <div class="drawer-glow-orb orb-lavender"></div>
-    <div class="drawer-glow-orb orb-teal"></div>
-  </div>
-  
-  <!-- Grain Overlay inside menu panel -->
-  <div class="drawer-grain" aria-hidden="true"></div>
-  
-  <div class="drawer-content">
-    <!-- Top Area -->
-    <div class="drawer-header">
-      <div class="drawer-brand">
-        <span class="drawer-logo-text">AARWINS</span>
-        <span class="drawer-editorial-label">Tropical Wellness</span>
-      </div>
-      <button class="drawer-close" id="drawer-close" aria-label="Close menu">✕</button>
-    </div>
-    
-    <!-- Center Navigation Links -->
-    <nav class="drawer-nav" aria-label="Mobile Navigation">
-      <a href="/#home" class="drawer-nav-item" style="--stagger-index: 1;">
-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        <span>Home</span>
-      </a>
-      <a href="/collections" class="drawer-nav-item" style="--stagger-index: 2;">
-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        <span>Collections</span>
-      </a>
-      <a href="/#reviews" class="drawer-nav-item" style="--stagger-index: 3;">
-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-        <span>Reviews</span>
-      </a>
-      <a href="/#contact-section" class="drawer-nav-item" style="--stagger-index: 4;">
-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span>Contact</span>
-      </a>
-      
-      <div class="drawer-nav-divider" style="--stagger-index: 5;"></div>
-      
-      <a href="/#profile" class="drawer-nav-item" style="--stagger-index: 6;">
-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span>Account</span>
-      </a>
-      <a href="#" id="drawer-nav-link-cart" class="drawer-nav-item" style="--stagger-index: 7;">
-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-        <span>Cart</span>
-      </a>
-      <a href="/#wishlist" class="drawer-nav-item" style="--stagger-index: 8;">
-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        <span>Wishlist</span>
-      </a>
     </nav>
-  </div>
-</div>
+  </header>
 
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
 
-<!-- ════════ PAGE HERO ════════ -->
-<section class="cp-hero">
-  <!-- Premium Glacier Atmosphere Glow -->
-  <div class="hero-glow-bg">
-    <div class="glow-radial-1"></div>
-    <div class="glow-radial-2"></div>
-  </div>
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
+    <!-- Gradient Orbs & Lighting -->
+    <div class="drawer-glow-container" aria-hidden="true">
+      <div class="drawer-glow-orb orb-blue"></div>
+      <div class="drawer-glow-orb orb-pink"></div>
+      <div class="drawer-glow-orb orb-lavender"></div>
+      <div class="drawer-glow-orb orb-teal"></div>
+    </div>
 
-  <div class="cp-container">
-    <span class="cp-hero-label">Aarwins — The Complete Range</span>
-    <h1 class="cp-hero-heading">The Full Collection</h1>
-    <p class="cp-hero-sub">Six exceptional tropical blends, each crafted to nourish the body and elevate the everyday ritual.</p>
-  </div>
-</section>
+    <!-- Grain Overlay inside menu panel -->
+    <div class="drawer-grain" aria-hidden="true"></div>
 
-
-<!-- ════════ SECTION 1 — Chocolate Coconut | TEXT LEFT / IMAGE RIGHT ════════ -->
-<section class="cp-section" id="chocolate-coconut">
-  <div class="cp-container">
-    <div class="cp-editorial-grid">
-
-      <!-- LEFT: Copy -->
-      <div class="cp-copy cp-reveal">
-        <span class="cp-label">Collection No. 01</span>
-        <h2 class="cp-heading">Chocolate Coconut<br>Wellness</h2>
-        <p class="cp-body">A rich, indulgent fusion where the earthiness of raw cacao meets the silky sweetness of young coconut. Crafted for moments of calm restoration — a daily ritual reimagined as a luxury experience.</p>
-        <a href="/product/1" class="cp-btn">Discover</a>
+    <div class="drawer-content">
+      <!-- Top Area -->
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <span class="drawer-logo-text">AARWINS</span>
+          <span class="drawer-editorial-label">Tropical Wellness</span>
+        </div>
+        <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="drawer-close-svg">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
 
-      <!-- RIGHT: Visual -->
-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
-        <div class="cp-ph cp-ph--tall">
-          <div class="cp-bottle-wrap">
-            <svg viewBox="0 0 180 380" width="160" aria-label="Chocolate Coconut Bottle">
-              <defs>
-                <linearGradient id="chocoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#C8B4A0"/>
-                  <stop offset="30%" stop-color="#EDE0D4"/>
-                  <stop offset="60%" stop-color="#C4A88E"/>
-                  <stop offset="100%" stop-color="#A8927E"/>
-                </linearGradient>
-                <linearGradient id="capChoco" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#4A2C1A"/>
-                  <stop offset="50%" stop-color="#7A4A2E"/>
-                  <stop offset="100%" stop-color="#3A1C0E"/>
-                </linearGradient>
-                <filter id="softShadow">
-                  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(90,50,20,0.15)"/>
-                </filter>
-              </defs>
-              <g filter="url(#softShadow)">
-                <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(90,50,20,0.08)"/>
-                <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capChoco)"/>
-                <rect x="74" y="50" width="32" height="7" rx="1" fill="#5A3220"/>
-                <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#chocoGrad)" opacity="0.9"/>
-                <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#chocoGrad)"/>
-                <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.3"/>
-                <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#D8C4B0" stroke-width="0.8"/>
-                <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#4A2C1A" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
-                <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" font-weight="400" fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Chocolate</text>
-                <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" font-weight="400" fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Coconut</text>
-                <line x1="72" y1="240" x2="108" y2="240" stroke="#D0B8A0" stroke-width="0.6"/>
-                <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8A7060" text-anchor="middle" letter-spacing="0.8">EST. 2025 • 330ML</text>
-              </g>
+      <!-- Center Navigation Links -->
+      <nav class="drawer-nav" aria-label="Mobile Navigation">
+        <a href="/#home" class="drawer-nav-item" style="--stagger-index: 1;">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="/collections" class="drawer-nav-item" style="--stagger-index: 2;">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Collections</span>
+        </a>
+        <div class="drawer-nav-divider" style="--stagger-index: 3;"></div>
+
+        <a href="/#profile" class="drawer-nav-item" style="--stagger-index: 4;">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Account</span>
+        </a>
+        <a href="#" id="drawer-nav-link-cart" class="drawer-nav-item" style="--stagger-index: 5;">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>Cart</span>
+        </a>
+
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- ═════════ COLLECTIONS HERO FLAVORS CAROUSEL ═════════ -->
+  <section id="collections-hero" class="collections-hero">
+
+    <div class="flavor-list" id="flavor-list">
+      <div class="flavor-item watermelon active" data-idx="0">Watermelon</div>
+      <div class="flavor-item blueberry" data-idx="1">Blueberry</div>
+      <div class="flavor-item avocado" data-idx="2">Avocado</div>
+      <div class="flavor-item orange" data-idx="3">Orange</div>
+      <div class="flavor-item lychee" data-idx="4">Lychee</div>
+      <div class="flavor-item mango" data-idx="5">Mango</div>
+    </div>
+    <button class="nav-arrow prev" id="prev">&#8592;</button>
+    <button class="nav-arrow next" id="next">&#8594;</button>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <!-- ═══ SLIDER ═══ -->
+    <div class="slider-viewport">
+      <div class="slider-track" id="slider-track">
+
+        <!-- SLIDE 0: WATERMELON -->
+        <div class="slide" data-idx="0">
+          <div class="slide-bg">
+            <img src="/images/watermelon bg.png" alt="">
+            <div class="slide-bg-overlay"></div>
+          </div>
+          <div class="splash-layer">
+            <img src="/images/watermelonsplash.png" alt="Watermelon Splash">
+          </div>
+          <div class="bottle-wrap">
+            <img class="bottle-img" src="/images/tin-watermelon.png" alt="Watermelon Juice">
+          </div>
+          <div class="left-content">
+            <div class="flavor-tagline">
+              CHUBBY <br> COOL & CRISP<br> WATERMELON
+            </div>
+          </div>
+          <div class="right-content">
+            <div class="right-desc">
+              Freshly harvested watermelons,<br>
+              Bursting with juicy sweetness.<br>
+              Cool and refreshingly pure <br>
+              The ultimate summer indulgence.
+            </div>
+          </div>
+          <button class="btn-order" style="background:#b00030;" onclick="window.location.href='/product/1'">
+            ORDER NOW
+          </button>
+          <img src="/images/watermelonmascot.png" alt="Watermelon Mascot" class="fruit-mascot">
+        </div>
+
+        <!-- SLIDE 1: BLUEBERRY -->
+        <div class="slide" data-idx="1">
+          <div class="slide-bg">
+            <img src="/images/blueberrybg.png" alt="">
+            <div class="slide-bg-overlay"></div>
+          </div>
+          <div class="splash-layer">
+            <img src="/images/blueberrysplash.png" alt="Blueberry Splash">
+          </div>
+          <div class="bottle-wrap">
+            <img class="bottle-img" src="/images/tin-blueberry.png" alt="Blueberry Juice">
+          </div>
+          <div class="left-content">
+            <div class="flavor-tagline">
+              PRINCE BLUEBERRY<br>PURE <br>BLISS
+            </div>
+          </div>
+          <div class="right-content">
+            <div class="right-desc">
+              Handpicked Juicy Blueberries<br>
+              Bursting with sweet berry goodness.<br>
+              Rich, vibrant, refreshing —<br>
+              A fruity delight in every sip.
+            </div>
+          </div>
+          <button class="btn-order" style="background:#3b4cca;" onclick="window.location.href='/product/3'">
+            ORDER NOW
+          </button>
+          <img src="/images/blueberrymascot.png" alt="Blueberry Mascot" class="fruit-mascot">
+        </div>
+
+        <!-- SLIDE 2: AVOCADO -->
+        <div class="slide" data-idx="2">
+          <div class="slide-bg">
+            <img src="/images/Avacadobg.png" alt="">
+            <div class="slide-bg-overlay"></div>
+          </div>
+          <div class="splash-layer">
+            <img src="/images/avocadosplash.png" alt="Avocado Splash">
+          </div>
+          <div class="bottle-wrap">
+            <img class="bottle-img" src="/images/tin-avocado.png" alt="Avocado Juice">
+          </div>
+          <div class="left-content">
+            <div class="flavor-tagline">
+              PURE AVOCADO<br>PURE GOODNESS
+            </div>
+          </div>
+          <div class="right-content">
+            <div class="right-desc">
+              Creamy Fresh Avocados<br>
+              Naturally smooth and nourishing.<br>
+              Rich, velvety, satisfying —<br>
+              A wholesome treat in every sip.
+            </div>
+          </div>
+          <button class="btn-order" style="background:#6b8e23;" onclick="window.location.href='/product/5'">
+            ORDER NOW
+          </button>
+          <img src="/images/Avacado-character.png" alt="Avocado Mascot" class="fruit-mascot">
+        </div>
+
+        <!-- SLIDE 3: ORANGE -->
+        <div class="slide" data-idx="3">
+          <div class="slide-bg">
+            <img src="/images/orangebg.png" alt="">
+            <div class="slide-bg-overlay"></div>
+          </div>
+          <div class="splash-layer">
+            <img src="/images/orangesplash.png" alt="Orange Splash">
+          </div>
+          <div class="bottle-wrap">
+            <img class="bottle-img" src="/images/tin-orange.png" alt="Orange Juice">
+          </div>
+          <div class="left-content">
+            <div class="flavor-tagline">
+              GROVE FRESH<br>EVERY MORNING
+            </div>
+          </div>
+          <div class="right-content">
+            <div class="right-desc">
+              Bursting with the brightness<br>
+              of sun-ripened oranges.<br>
+              Crisp, zesty, and refreshingly pure <br>
+              A citrus celebration in every sip.
+            </div>
+          </div>
+          <button class="btn-order" style="background:#d04000;" onclick="window.location.href='/product/2'">
+            ORDER NOW
+          </button>
+          <img src="/images/orangemascot .png" alt="Orange Mascot" class="fruit-mascot">
+        </div>
+
+        <!-- SLIDE 4: LYCHEE -->
+        <div class="slide" data-idx="4">
+          <div class="slide-bg">
+            <img src="/images/lycheebg.png" alt="">
+          </div>
+          <div class="splash-layer">
+            <img src="/images/lycheesplash.png" alt="Lychee Splash">
+          </div>
+          <div class="bottle-wrap">
+            <img class="bottle-img" src="/images/tin-lychee.png" alt="Lychee Juice">
+          </div>
+          <div class="left-content">
+            <div class="flavor-tagline">
+              LUCKY LYCHEE<br>PURE <br>JOY
+            </div>
+          </div>
+          <div class="right-content">
+            <div class="right-desc">
+              Exotic Sweet Lychees<br>
+              Picked for their delicate flavor.<br>
+              Floral, juicy, refreshing —<br>
+              A taste of paradise in every sip.
+            </div>
+          </div>
+          <button class="btn-order" style="background:#ff8da1;" onclick="window.location.href='/product/4'">
+            ORDER NOW
+          </button>
+          <img src="/images/lycheemascot.png" alt="Lychee Mascot" class="fruit-mascot">
+        </div>
+
+        <!-- SLIDE 5: MANGO -->
+        <div class="slide" data-idx="5">
+          <div class="slide-bg">
+            <img src="/images/mango bg.png" alt="">
+            <div class="slide-bg-overlay"></div>
+          </div>
+          <div class="splash-layer">
+            <img src="/images/mangosplash.png" alt="Mango Splash">
+          </div>
+          <div class="bottle-wrap">
+            <img class="bottle-img" src="/images/tin-mago.png" alt="Mango Juice">
+          </div>
+          <div class="left-content">
+            <div class="flavor-tagline">
+              PURE MANGO<br>PURE HAPPINESS
+            </div>
+          </div>
+          <div class="right-content">
+            <div class="right-desc">
+              Sun-Kissed Mangoes<br>
+              Harvested at perfect ripeness.<br>
+              Luscious, golden, irresistible —<br>
+              A tropical escape in every sip.
+            </div>
+          </div>
+          <button class="btn-order" style="background:#c07000;" onclick="window.location.href='/product/6'">
+            ORDER NOW
+          </button>
+          <img src="/images/mangomascot.png" alt="Mango Mascot" class="fruit-mascot">
+        </div>
+
+  </section>
+
+  <!-- ═════════ FLAVOUR BENEFITS & RITUAL INTELLIGENCE SECTION ═════════ -->
+  <section class="ritual-intelligence-section" id="ritual-guide">
+    <div class="ritual-container">
+      
+      <!-- Top Header -->
+      <div class="ritual-header">
+        <span class="ritual-pretitle">RITUAL INTELLIGENCE</span>
+        <h2 class="ritual-title">FIND YOUR PERFECT WELLNESS MOMENT.</h2>
+        <p class="ritual-subtitle">
+          Every Aarwins flavour is crafted with a purpose. Whether you are starting your morning, powering through work, recovering after activity, or winding down in the evening, there is a tropical ritual designed for your moment.
+        </p>
+      </div>
+
+      <!-- Horizontal Wellness Timeline -->
+      <div class="ritual-timeline">
+        <!-- MORNING -->
+        <div class="timeline-period">
+          <div class="period-header">MORNING</div>
+          <div class="period-flavours">
+            <div class="timeline-node" data-flavor="mango" style="--node-color: #EDC55B;">
+              <div class="node-color-indicator"></div>
+              <div class="node-images">
+                <img class="node-mascot" src="/images/mangomascot.png" alt="Mango Mascot">
+                <img class="node-bottle" src="/images/tin-mago.png" alt="Mango Bottle">
+              </div>
+              <div class="node-info">
+                <span class="node-name">Mango</span>
+                <span class="node-tag">Energy & Vitality</span>
+              </div>
+            </div>
+            <div class="timeline-node" data-flavor="orange" style="--node-color: #EC802B;">
+              <div class="node-color-indicator"></div>
+              <div class="node-images">
+                <img class="node-mascot" src="/images/orangemascot .png" alt="Orange Mascot">
+                <img class="node-bottle" src="/images/tin-orange.png" alt="Orange Bottle">
+              </div>
+              <div class="node-info">
+                <span class="node-name">Orange</span>
+                <span class="node-tag">Immunity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MIDDAY -->
+        <div class="timeline-period">
+          <div class="period-header">MIDDAY</div>
+          <div class="period-flavours">
+            <div class="timeline-node active" data-flavor="watermelon" style="--node-color: #D82B35;">
+              <div class="node-color-indicator"></div>
+              <div class="node-images">
+                <img class="node-mascot" src="/images/watermelonmascot.png" alt="Watermelon Mascot">
+                <img class="node-bottle" src="/images/tin-watermelon.png" alt="Watermelon Bottle">
+              </div>
+              <div class="node-info">
+                <span class="node-name">Watermelon</span>
+                <span class="node-tag">Hydration Recovery</span>
+              </div>
+            </div>
+            <div class="timeline-node" data-flavor="lychee" style="--node-color: #E03050;">
+              <div class="node-color-indicator"></div>
+              <div class="node-images">
+                <img class="node-mascot" src="/images/lycheemascot.png" alt="Lychee Mascot">
+                <img class="node-bottle" src="/images/tin-lychee.png" alt="Lychee Bottle">
+              </div>
+              <div class="node-info">
+                <span class="node-name">Lychee</span>
+                <span class="node-tag">Beauty & Glow</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOCUS HOURS -->
+        <div class="timeline-period">
+          <div class="period-header">FOCUS HOURS</div>
+          <div class="period-flavours">
+            <div class="timeline-node" data-flavor="blueberry" style="--node-color: #3B4CCA;">
+              <div class="node-color-indicator"></div>
+              <div class="node-images">
+                <img class="node-mascot" src="/images/blueberrymascot.png" alt="Blueberry Mascot">
+                <img class="node-bottle" src="/images/tin-blueberry.png" alt="Blueberry Bottle">
+              </div>
+              <div class="node-info">
+                <span class="node-name">Blueberry</span>
+                <span class="node-tag">Focus</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENING -->
+        <div class="timeline-period">
+          <div class="period-header">EVENING</div>
+          <div class="period-flavours">
+            <div class="timeline-node" data-flavor="avocado" style="--node-color: #3F6E41;">
+              <div class="node-color-indicator"></div>
+              <div class="node-images">
+                <img class="node-mascot" src="/images/Avacado-character.png" alt="Avocado Mascot">
+                <img class="node-bottle" src="/images/tin-avocado.png" alt="Avocado Bottle">
+              </div>
+              <div class="node-info">
+                <span class="node-name">Avocado</span>
+                <span class="node-tag">Balance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expanded Benefit Panel -->
+      <div class="benefit-panel" id="benefit-panel">
+        <div class="panel-glow" id="panel-glow"></div>
+        
+        <!-- Left Side: Visuals -->
+        <div class="panel-visuals">
+          <div class="visual-bottle-container">
+            <img class="panel-large-bottle" id="panel-bottle-img" src="/images/tin-watermelon.png" alt="Watermelon Bottle">
+            <img class="panel-large-mascot" id="panel-mascot-img" src="/images/watermelonmascot.png" alt="Watermelon Mascot">
+            <div class="ingredient-tag tag-1" id="tag-text-1">Tender Coconut</div>
+            <div class="ingredient-tag tag-2" id="tag-text-2">Pure Watermelon</div>
+            <div class="ingredient-tag tag-3" id="tag-text-3">Electrolytes</div>
+          </div>
+        </div>
+
+        <!-- Right Side: Details -->
+        <div class="panel-details">
+          <h3 class="panel-flavour-name" id="panel-flavor-name">Watermelon Coconut</h3>
+          <span class="panel-purpose" id="panel-flavor-purpose">Hydration Recovery</span>
+
+          <!-- Highlights Bar -->
+          <div class="panel-timeline-highlight">
+            <span class="time-slot" id="slot-morning">Morning</span>
+            <span class="time-slot" id="slot-midday">Afternoon</span>
+            <span class="time-slot" id="slot-focus">Work Hours</span>
+            <span class="time-slot" id="slot-evening">Evening</span>
+          </div>
+
+          <!-- Ideal For -->
+          <div class="panel-info-section">
+            <h4 class="info-title">Ideal For</h4>
+            <div class="ideal-tags" id="panel-ideal-tags">
+              <span class="ideal-tag">Post-Workout</span>
+              <span class="ideal-tag">Hot Summer Days</span>
+              <span class="ideal-tag">Rehydration</span>
+            </div>
+          </div>
+
+          <!-- Wellness Benefits -->
+          <div class="panel-info-section">
+            <h4 class="info-title">Wellness Benefits</h4>
+            <ul class="benefits-list" id="panel-benefits-list">
+              <li class="benefit-item"><span class="benefit-check">✓</span> Deep hydration</li>
+              <li class="benefit-item"><span class="benefit-check">✓</span> Cooling refreshment</li>
+              <li class="benefit-item"><span class="benefit-check">✓</span> Summer recovery</li>
+            </ul>
+          </div>
+
+          <!-- Ritual recommendation -->
+          <div class="panel-info-section">
+            <h4 class="info-title">Daily Ritual Recommendation</h4>
+            <p class="ritual-recommendation" id="panel-ritual-recommendation">
+              Best after workouts or hot days.
+            </p>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="panel-purchase-area">
+            <h4 class="purchase-title">This Flavour Fits Your Routine?</h4>
+            <div class="purchase-buttons">
+              <button class="btn-panel-cart" id="btn-panel-cart-action">ADD TO CART</button>
+              <button class="btn-panel-sub" id="btn-panel-sub-action">SUBSCRIBE &amp; SAVE 15%</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═════════ MASCOTS SECTION ═════════ -->
+  <section class="mascot-section" id="mascot-crew">
+    <div class="mascot-container">
+      <div class="mascot-header">
+        <span class="mascot-pretitle">THE CREW</span>
+        <h2 class="mascot-title">Meet Our Tropical Mascots</h2>
+        <p class="mascot-subtitle">Each flavor has its own unique personality and vibe. Find the one that matches yours!
+        </p>
+      </div>
+
+      <div class="mascot-grid">
+        <!-- CARD 1: LYCHEE -->
+        <div class="mascot-card theme-lychee" data-idx="4">
+          <div class="mascot-img-wrapper">
+            <div class="mascot-blob"></div>
+            <img class="mascot-img" src="/images/lycheemascot.png" alt="Lychee Mascot">
+          </div>
+          <h3 class="mascot-name">Lychee</h3>
+          <p class="mascot-desc">The bubbly one. Always full of energy and excitement!</p>
+          <div class="mascot-divider"></div>
+          <div class="mascot-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
-            <!-- Decorative tropical elements -->
-            <svg viewBox="0 0 300 80" width="260" style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);opacity:0.25;" aria-hidden="true">
-              <ellipse cx="150" cy="40" rx="140" ry="28" fill="#8B6040" opacity="0.15"/>
+            FULL OF ZEST
+          </div>
+        </div>
+
+        <!-- CARD 2: MANGO -->
+        <div class="mascot-card theme-mango" data-idx="5">
+          <div class="mascot-img-wrapper">
+            <div class="mascot-blob"></div>
+            <img class="mascot-img" src="/images/mangomascot.png" alt="Mango Mascot">
+          </div>
+          <h3 class="mascot-name">Mango</h3>
+          <p class="mascot-desc">The sunshine leader. Warm, confident and loves to take charge!</p>
+          <div class="mascot-divider"></div>
+          <div class="mascot-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"></path>
+              <path d="M3 20h18"></path>
+            </svg>
+            BORN TO LEAD
+          </div>
+        </div>
+
+        <!-- CARD 3: BLUEBERRY -->
+        <div class="mascot-card theme-blueberry" data-idx="1">
+          <div class="mascot-img-wrapper">
+            <div class="mascot-blob"></div>
+            <img class="mascot-img" src="/images/blueberrymascot.png" alt="Blueberry Mascot">
+          </div>
+          <h3 class="mascot-name">Blueberry</h3>
+          <p class="mascot-desc">The cool one. Calm, collected and always in style.</p>
+          <div class="mascot-divider"></div>
+          <div class="mascot-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M18 10a4 4 0 0 0-4 4"></path>
+              <path d="M6 10a4 4 0 0 1 4 4"></path>
+              <circle cx="6" cy="14" r="4"></circle>
+              <circle cx="18" cy="14" r="4"></circle>
+              <path d="M10 12h4"></path>
+            </svg>
+            STAY COOL
+          </div>
+        </div>
+
+        <!-- CARD 4: AVOCADO -->
+        <div class="mascot-card theme-avocado" data-idx="2">
+          <div class="mascot-img-wrapper">
+            <div class="mascot-blob"></div>
+            <img class="mascot-img" src="/images/Avacado-character.png" alt="Avocado Mascot">
+          </div>
+          <h3 class="mascot-name">Avocado</h3>
+          <p class="mascot-desc">The chill thinker. Smart, thoughtful and loves his quiet time.</p>
+          <div class="mascot-divider"></div>
+          <div class="mascot-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.2a7 7 0 0 1-9 8.8z"></path>
+              <path d="M19 2L9.8 11.2"></path>
+            </svg>
+            THINK. CHILL. WIN
+          </div>
+        </div>
+
+        <!-- CARD 5: ORANGE -->
+        <div class="mascot-card theme-orange" data-idx="3">
+          <div class="mascot-img-wrapper">
+            <div class="mascot-blob"></div>
+            <img class="mascot-img" src="/images/orangemascot .png" alt="Orange Mascot">
+          </div>
+          <h3 class="mascot-name">Orange</h3>
+          <p class="mascot-desc">The adventurous one. Bold, curious and up for anything!</p>
+          <div class="mascot-divider"></div>
+          <div class="mascot-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+            ALWAYS EXPLORE
+          </div>
+        </div>
+
+        <!-- CARD 6: WATERMELON -->
+        <div class="mascot-card theme-watermelon" data-idx="0">
+          <div class="mascot-img-wrapper">
+            <div class="mascot-blob"></div>
+            <img class="mascot-img" src="/images/watermelonmascot.png" alt="Watermelon Mascot">
+          </div>
+          <h3 class="mascot-name">Watermelon</h3>
+          <p class="mascot-desc">The fun maker. Playful, goofy and the life of every party!</p>
+          <div class="mascot-divider"></div>
+          <div class="mascot-footer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+              <line x1="9" y1="9" x2="9.01" y2="9"></line>
+              <line x1="15" y1="9" x2="15.01" y2="9"></line>
+            </svg>
+            FUN ALL THE WAY
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ COCONUT INFO SECTION ═════════ -->
+  <section class="coconut-section" id="why-coconut">
+    <div class="coconut-container">
+      <div class="coconut-content-row">
+        <!-- LEFT: Text & Features Grid -->
+        <div class="coconut-left">
+          <span class="coconut-pretitle">WHY COCONUT?</span>
+          <h2 class="coconut-title">Nature's Hydration.<br>Pure & Powerful.</h2>
+          <div class="coconut-wavy-divider">
+            <svg width="40" height="8" viewBox="0 0 40 8" fill="none">
+              <path d="M0 4 C 5 0, 5 8, 10 4 C 15 0, 15 8, 20 4 C 25 0, 25 8, 30 4 C 35 0, 35 8, 40 4" stroke="#D76927"
+                stroke-width="2.5" stroke-linecap="round" />
             </svg>
           </div>
-          <!-- Studio pedestal -->
-          <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #E8E0D8, #D8D0C8);border-radius:4px 4px 0 0;"></div>
+          <p class="coconut-desc">We use tender coconuts for their naturally hydrating goodness and clean, refreshing
+            taste.</p>
+
+          <div class="coconut-grid">
+            <!-- Grid Item 1: Naturally Hydrating -->
+            <div class="coconut-grid-item">
+              <div class="coconut-circle">
+                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+                  <path d="M12 3v0c-4.5 5-7 8.5-7 11.5a7 7 0 0 0 14 0c0-3-2.5-6.5-7-11.5z" fill="#9CDCFE"
+                    stroke="#2E2219" stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="coconut-grid-label">NATURALLY<br>HYDRATING</span>
+            </div>
+
+            <!-- Grid Item 2: Packed with Electrolytes -->
+            <div class="coconut-grid-item">
+              <div class="coconut-circle">
+                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" fill="#FFE082" stroke="#2E2219" stroke-width="1.5"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="coconut-grid-label">PACKED WITH<br>ELECTROLYTES</span>
+            </div>
+
+            <!-- Grid Item 3: 100% Natural Ingredients -->
+            <div class="coconut-grid-item">
+              <div class="coconut-circle">
+                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+                  <path d="M2 22c6-6 10-12 18-18" stroke="#2E2219" stroke-width="1.5" stroke-linecap="round" />
+                  <path d="M20 4c-3.5 0-7.5 3-8.5 7.5 3.5.5 7.5-2.5 8.5-7.5z" fill="#81C784" stroke="#2E2219"
+                    stroke-width="1.5" stroke-linejoin="round" />
+                  <path d="M13.5 10.5c-2.5.5-5 3-5.5 6 2.5 0 5-2 5.5-6z" fill="#A5D6A7" stroke="#2E2219"
+                    stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="coconut-grid-label">100% NATURAL<br>INGREDIENTS</span>
+            </div>
+
+            <!-- Grid Item 4: Easy on the Stomach -->
+            <div class="coconut-grid-item" style="margin-top: 12px;">
+              <div class="coconut-circle">
+                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+                  <path
+                    d="M8 3c0 0 1.5 2 1.5 4.5S8 12.5 6.5 14C5 15.5 5 18 7 20s5.5 1.5 8-.5 3-4.5 3-7c0-2-1.5-4-1.5-5.5S17 3 17 3"
+                    fill="#A5D6A7" stroke="#2E2219" stroke-width="1.5" stroke-linejoin="round" />
+                  <path d="M9.5 7.5c2 1 3.5 3 3.5 5.5" stroke="#2E2219" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </div>
+              <span class="coconut-grid-label">EASY ON<br>THE STOMACH</span>
+            </div>
+
+            <!-- Grid Item 5: Supports Immunity -->
+            <div class="coconut-grid-item" style="margin-top: 12px;">
+              <div class="coconut-circle">
+                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#A5D6A7" stroke="#2E2219"
+                    stroke-width="1.5" stroke-linejoin="round" />
+                  <path d="M12 8v8M8 12h8" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <span class="coconut-grid-label">SUPPORTS<br>IMMUNITY</span>
+            </div>
+
+            <!-- Grid Item 6: Refreshing & Light -->
+            <div class="coconut-grid-item" style="margin-top: 12px;">
+              <div class="coconut-circle">
+                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    fill="#FF8A80" stroke="#2E2219" stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="coconut-grid-label">REFRESHING &amp;<br>LIGHT</span>
+            </div>
+          </div>
         </div>
+
+        <!-- RIGHT: Empty container to preserve layout and let the background coconut splash be visible -->
+        <div class="coconut-right"></div>
       </div>
 
-    </div>
-  </div>
-</section>
+      <!-- BOTTOM PANEL: Horizontal highlights bar -->
+      <div class="coconut-panel">
+        <div class="coconut-panel-left">
+          <svg viewBox="0 0 60 60" width="56" height="56" style="flex-shrink:0;">
+            <!-- Coconut base green -->
+            <path d="M12 32c0 9 8 16 18 16s18-7 18-16c0-6-4-11-10-13-2-.7-5-1-8-1s-6 .3-8 1c-6 2-10 7-10 13z"
+              fill="#7CB342" stroke="#2E2219" stroke-width="1.5" stroke-linejoin="round" />
+            <!-- Top sliced area (white/cream) -->
+            <ellipse cx="30" cy="20" rx="12" ry="5" fill="#FFFFFF" stroke="#2E2219" stroke-width="1.5" />
+            <!-- Small hole or center in sliced area -->
+            <ellipse cx="30" cy="20" rx="4" ry="1.5" fill="#E0F2F1" />
+            <!-- Straw -->
+            <path d="M30 20l5-12" stroke="#2E2219" stroke-width="2" stroke-linecap="round" />
+            <path d="M30 20l5-12" stroke="#81C784" stroke-width="1" stroke-linecap="round" />
+          </svg>
+          <p class="coconut-panel-desc">Tender coconut water is nature's way of keeping you <span
+              class="highlight-green">refreshed, replenished and revitalised.</span></p>
+        </div>
 
+        <div class="coconut-panel-divider"></div>
 
-<!-- ════════ SECTION 2 — Coconut Coffee | IMAGE LEFT / TEXT RIGHT ════════ -->
-<section class="cp-section" id="coconut-coffee">
-  <div class="cp-container">
-    <div class="cp-editorial-grid reversed">
+        <div class="coconut-panel-right">
+          <!-- Low in Calories -->
+          <div class="coconut-panel-item">
+            <div class="coconut-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3F6E41" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" style="width: 24px; height: 24px;">
+                <path d="M12 21a6 6 0 0 0 6-6c0-3.6-6-11-6-11S6 11.4 6 15a6 6 0 0 0 6 6z"></path>
+              </svg>
+            </div>
+            <span class="coconut-panel-label">Low in<br>Calories</span>
+          </div>
 
-      <!-- LEFT: Copy -->
-      <div class="cp-copy cp-reveal">
-        <span class="cp-label">Collection No. 02</span>
-        <h2 class="cp-heading">Coconut Coffee<br>Energy</h2>
-        <p class="cp-body">Cold-extracted arabica meets the cooling clarity of pure young coconut water. A sophisticated pairing that delivers a sustained, clean energy — without the jitter. For the mindful go-getter.</p>
-        <a href="/product/2" class="cp-btn">Discover</a>
-      </div>
+          <!-- No Artificial Anything -->
+          <div class="coconut-panel-item">
+            <div class="coconut-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3F6E41" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" style="width: 24px; height: 24px;">
+                <path d="M9 3h6M10 3v6l-4 8a1.5 1.5 0 0 0 1.3 2.2h9.4a1.5 1.5 0 0 0 1.3-2.2l-4-8V3"
+                  stroke-linecap="round" />
+                <line x1="8" y1="14" x2="16" y2="14" />
+              </svg>
+            </div>
+            <span class="coconut-panel-label">No Artificial<br>Anything</span>
+          </div>
 
-      <!-- RIGHT: Visual -->
-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
-        <div class="cp-ph cp-ph--tall">
-          <div class="cp-bottle-wrap">
-            <!-- Hand holding bottle style composition -->
-            <svg viewBox="0 0 280 460" width="240" aria-label="Coconut Coffee Bottle in Hand">
-              <defs>
-                <linearGradient id="coffeeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#C8A07A"/>
-                  <stop offset="35%" stop-color="#E8D0B0"/>
-                  <stop offset="65%" stop-color="#BEA06A"/>
-                  <stop offset="100%" stop-color="#A08050"/>
-                </linearGradient>
-                <linearGradient id="capCoffee" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#2A1800"/>
-                  <stop offset="50%" stop-color="#5A3800"/>
-                  <stop offset="100%" stop-color="#1E1000"/>
-                </linearGradient>
-                <linearGradient id="handGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#F0D8C0"/>
-                  <stop offset="100%" stop-color="#D8B898"/>
-                </linearGradient>
-                <filter id="handShadow">
-                  <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="rgba(60,30,0,0.12)"/>
-                </filter>
-              </defs>
-              <!-- Hand holding shape -->
-              <g filter="url(#handShadow)">
-                <path d="M 100 320 Q 95 380 105 440 Q 120 460 140 455 Q 180 455 185 440 Q 200 420 195 360 Q 190 300 180 260 L 100 260 Z" fill="url(#handGrad)" opacity="0.85"/>
-                <path d="M 105 440 Q 115 460 140 458 Q 160 458 170 445" fill="none" stroke="#C8A880" stroke-width="1.5" opacity="0.6"/>
-                <!-- Bottle -->
-                <rect x="110" y="42" width="60" height="36" rx="3" fill="url(#capCoffee)"/>
-                <rect x="108" y="74" width="64" height="8" rx="2" fill="#3A2200"/>
-                <rect x="114" y="82" width="52" height="32" rx="2" fill="url(#coffeeGrad)" opacity="0.9"/>
-                <path d="M 114 114 Q 78 136 78 170 L 78 310 Q 78 330 140 330 Q 202 330 202 310 L 202 170 Q 202 136 166 114 Z" fill="url(#coffeeGrad)"/>
-                <path d="M 84 174 L 84 308 Q 84 322 104 324 L 104 160 Z" fill="#FFF" opacity="0.28"/>
-                <rect x="95" y="200" width="90" height="90" rx="2" fill="rgba(255,255,255,0.9)" stroke="#D8B888" stroke-width="0.8"/>
-                <text x="140" y="224" font-family="'Syne', sans-serif" font-size="7.5" font-weight="700" fill="#2A1800" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
-                <text x="140" y="248" font-family="'Playfair Display', serif" font-size="9" fill="#1E1000" text-anchor="middle" letter-spacing="0.3" font-style="italic">Coconut Coffee</text>
-                <line x1="110" y1="258" x2="170" y2="258" stroke="#C8A060" stroke-width="0.6"/>
-                <text x="140" y="274" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8A6840" text-anchor="middle" letter-spacing="0.8">330ML • EST. 2025</text>
-              </g>
-            </svg>
+          <!-- Plant Based -->
+          <div class="coconut-panel-item">
+            <div class="coconut-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3F6E41" stroke-width="1.5" stroke-linejoin="round"
+                style="width: 24px; height: 24px;">
+                <path
+                  d="M12 20v-8M12 12c2.5-3 5-3 5-3s0 3-2.5 5c-2.5 2-2.5 2-2.5 2M12 14c-2.5-2.5-5-2.5-5-2.5s0 2.5 2.5 4.5c2.5 2 2.5 2 2.5 2"
+                  stroke-linecap="round" />
+              </svg>
+            </div>
+            <span class="coconut-panel-label">Plant<br>Based</span>
+          </div>
+
+          <!-- Sustainable Choice -->
+          <div class="coconut-panel-item">
+            <div class="coconut-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3F6E41" stroke-width="1.5" stroke-linejoin="round"
+                style="width: 24px; height: 24px;">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path
+                  d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"
+                  stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <span class="coconut-panel-label">Sustainable<br>Choice</span>
           </div>
         </div>
       </div>
-
-
     </div>
+  </section>
+
+  <!-- ════════ MINI CART OVERLAY & PANEL ════════ -->
+  <div class="mini-cart-overlay" id="mini-cart-overlay"></div>
+  <div class="mini-cart-panel" id="mini-cart-panel">
+    <div class="mcp-header">
+      <h3 class="mcp-title">Shopping Bag</h3>
+      <button class="mcp-close" id="mcp-close" aria-label="Close cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mcp-close-svg">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="mcp-body"></div>
+    <div class="mcp-footer"></div>
   </div>
-</section>
 
-
-<!-- ════════ SECTION 3 — CENTERED WELLNESS EDITORIAL ════════ -->
-<div class="cp-centered cp-reveal">
-  <div class="cp-container">
-    <span class="cp-label">Wellness</span>
-    <h2 class="cp-centered-heading">Crafted for Modern<br>Tropical Living</h2>
-    <p class="cp-centered-body">Every Aarwins formula begins with one intention — to make your daily hydration feel like the most intentional act of the day. Pure ingredients, minimal processing, maximum presence.</p>
-    <div class="cp-luxury-divider"></div>
-    <a href="/#contact" class="cp-btn">Explore the philosophy</a>
-  </div>
-</div>
-
-
-<!-- ════════ SECTION 4 — Matcha Coconut | TEXT LEFT / COLLAGE RIGHT ════════ -->
-<section class="cp-section" id="matcha-coconut">
-  <div class="cp-container">
-    <div class="cp-editorial-grid">
-
-      <!-- LEFT: Copy -->
-      <div class="cp-copy cp-reveal">
-        <span class="cp-label">Collection No. 03</span>
-        <h2 class="cp-heading">Matcha Coconut<br>Balance</h2>
-        <p class="cp-body">Ceremonial-grade matcha, dissolved in living coconut water and lightly sweetened with organic coconut sugar. A ritual of calm focus — the Japanese art of presence, distilled into a bottle.</p>
-        <a href="/product/3" class="cp-btn">Discover</a>
-      </div>
-
-      <!-- RIGHT: Visual -->
-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
-        <div class="cp-ph cp-ph--tall">
-          <div class="cp-bottle-wrap">
-            <svg viewBox="0 0 180 380" width="160" aria-label="Matcha Coconut Bottle">
-              <defs>
-                <linearGradient id="matchaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#A8C880"/>
-                  <stop offset="35%" stop-color="#D4E8B8"/>
-                  <stop offset="65%" stop-color="#98B870"/>
-                  <stop offset="100%" stop-color="#88A860"/>
-                </linearGradient>
-                <linearGradient id="capMatcha" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#1A3010"/>
-                  <stop offset="50%" stop-color="#3A5828"/>
-                  <stop offset="100%" stop-color="#102008"/>
-                </linearGradient>
-                <filter id="matchaShadow">
-                  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(40,80,20,0.15)"/>
-                </filter>
-              </defs>
-              <g filter="url(#matchaShadow)">
-                <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(40,80,20,0.06)"/>
-                <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capMatcha)"/>
-                <rect x="74" y="50" width="32" height="7" rx="1" fill="#2A4818"/>
-                <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#matchaGrad)" opacity="0.9"/>
-                <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#matchaGrad)"/>
-                <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.32"/>
-                <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#B8D898" stroke-width="0.8"/>
-                <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#1A3010" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
-                <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#102008" text-anchor="middle" font-style="italic">Matcha</text>
-                <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#102008" text-anchor="middle" font-style="italic">Coconut</text>
-                <line x1="72" y1="240" x2="108" y2="240" stroke="#B8D890" stroke-width="0.6"/>
-                <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#6A9050" text-anchor="middle" letter-spacing="0.8">330ML • EST. 2025</text>
-              </g>
-            </svg>
-          </div>
-          <!-- Studio pedestal -->
-          <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #E2E6DF, #D2D6CF);border-radius:4px 4px 0 0;"></div>
+  <!-- ═════════ FOOTER ═════════ -->
+  <footer class="footer-black" id="contact">
+    <div class="fb-inner">
+      <div class="fb-brand">
+        <div class="fb-brand-name"
+          style="font-weight: 800; font-size: 24px; letter-spacing: 1.5px; color: #fff; margin-bottom: 14px; font-family: 'Syne', sans-serif;">
+          AARWINS</div>
+        <p class="fb-tagline">Pure tropical refreshment,<br>crafted with love.</p>
+        <div class="fb-socials">
+          <a href="#" aria-label="Instagram" class="fb-social">IG</a>
+          <a href="#" aria-label="Facebook" class="fb-social">FB</a>
+          <a href="#" aria-label="Twitter" class="fb-social">TW</a>
+        </div>
+        <div class="fb-contact-list">
+          <div>Contact Us</div>
+          <div>Track Order</div>
+          <div>Sign In</div>
+          <div>Store Locator</div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════ SECTION 5 — Lavender Coconut | IMAGE LEFT / TEXT RIGHT ════════ -->
-<section class="cp-section" id="lavender-coconut">
-  <div class="cp-container">
-    <div class="cp-editorial-grid reversed">
-
-      <!-- RIGHT: Copy -->
-      <div class="cp-copy cp-reveal">
-        <span class="cp-label">Collection No. 04</span>
-        <h2 class="cp-heading">Lavender Coconut<br>Calm</h2>
-        <p class="cp-body">Where botanical serenity meets tropical purity. Culinary lavender water fused with young coconut — a formula designed to soothe the nervous system as much as it nourishes the body. Evening ritual, perfected.</p>
-        <a href="/product/4" class="cp-btn">Discover</a>
+      <div class="fb-col">
+        <div class="fb-col-title">Company</div>
+        <a href="#">About Us</a>
+        <a href="#">Join Us</a>
       </div>
+      <div class="fb-col">
+        <div class="fb-col-title">Customer Care</div>
+        <a href="#">FAQ</a>
+        <a href="#">Disposal Instructions</a>
+        <a href="#">Return Policy</a>
+        <a href="#">Promotion Terms &amp; Conditions</a>
 
-      <!-- LEFT: Visual (reversed = appears left visually) -->
-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
-        <div class="cp-ph cp-ph--tall">
-          <div class="cp-bottle-wrap">
-            <svg viewBox="0 0 180 380" width="150" aria-label="Lavender Coconut Bottle">
-              <defs>
-                <linearGradient id="lavGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#C0A8D8"/>
-                  <stop offset="35%" stop-color="#E0D0F0"/>
-                  <stop offset="65%" stop-color="#B098C8"/>
-                  <stop offset="100%" stop-color="#9880B8"/>
-                </linearGradient>
-                <linearGradient id="capLav" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#2A1A40"/>
-                  <stop offset="50%" stop-color="#5A3A78"/>
-                  <stop offset="100%" stop-color="#1A0A28"/>
-                </linearGradient>
-                <filter id="lavShadow">
-                  <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="rgba(80,40,120,0.12)"/>
-                </filter>
-              </defs>
-              <g filter="url(#lavShadow)">
-                <ellipse cx="90" cy="366" rx="50" ry="7" fill="rgba(80,40,120,0.07)"/>
-                <rect x="76" y="24" width="28" height="30" rx="3" fill="url(#capLav)"/>
-                <rect x="74" y="50" width="32" height="6" rx="1" fill="#3A2050"/>
-                <rect x="78" y="56" width="24" height="26" rx="1" fill="url(#lavGrad)" opacity="0.9"/>
-                <path d="M 78 82 Q 46 102 46 136 L 46 320 Q 46 340 90 340 Q 134 340 134 320 L 134 136 Q 134 102 102 82 Z" fill="url(#lavGrad)"/>
-                <path d="M 51 140 L 51 318 Q 51 332 70 334 L 70 128 Z" fill="#FFF" opacity="0.3"/>
-                <rect x="60" y="164" width="60" height="108" rx="2" fill="rgba(255,255,255,0.88)" stroke="#C8B0E0" stroke-width="0.8"/>
-                <text x="90" y="190" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#2A1A40" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
-                <text x="90" y="212" font-family="'Playfair Display', serif" font-size="8.5" fill="#1A0A28" text-anchor="middle" font-style="italic">Lavender</text>
-                <text x="90" y="228" font-family="'Playfair Display', serif" font-size="8.5" fill="#1A0A28" text-anchor="middle" font-style="italic">Coconut</text>
-                <line x1="68" y1="238" x2="112" y2="238" stroke="#C0A8D8" stroke-width="0.6"/>
-                <text x="90" y="254" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8070A0" text-anchor="middle" letter-spacing="0.8">330ML • EST. 2025</text>
-              </g>
-            </svg>
-            <!-- Lavender sprigs decorative -->
-            <svg viewBox="0 0 280 60" width="220" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);opacity:0.2;" aria-hidden="true">
-              <path d="M 60 50 L 80 10 L 100 50" stroke="#9070C8" stroke-width="2" fill="none"/>
-              <path d="M 180 50 L 200 10 L 220 50" stroke="#9070C8" stroke-width="2" fill="none"/>
-              <circle cx="80" cy="8" r="5" fill="#C0A0D8" opacity="0.8"/>
-              <circle cx="200" cy="8" r="5" fill="#C0A0D8" opacity="0.8"/>
-            </svg>
-          </div>
-        </div>
       </div>
 
     </div>
-  </div>
-</section>
-
-
-<!-- ════════ SECTION 6 — Coconut Protein+ | TEXT LEFT / IMAGE RIGHT ════════ -->
-<section class="cp-section" id="coconut-protein">
-  <div class="cp-container">
-    <div class="cp-editorial-grid">
-
-      <!-- LEFT: Copy -->
-      <div class="cp-copy cp-reveal">
-        <span class="cp-label">Collection No. 05</span>
-        <h2 class="cp-heading">Coconut<br>Protein+</h2>
-        <p class="cp-body">Eleven grams of plant-sourced protein, suspended in the purest coconut water, elevated with vanilla bean and a trace of Himalayan salt. Performance nutrition, packaged in the language of luxury.</p>
-        <a href="/product/5" class="cp-btn">Discover</a>
-      </div>
-
-      <!-- RIGHT: Visual -->
-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
-        <div class="cp-ph cp-ph--tall">
-          <div class="cp-bottle-wrap">
-            <svg viewBox="0 0 180 380" width="155" aria-label="Coconut Protein+ Bottle">
-              <defs>
-                <linearGradient id="protGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#B0B8C0"/>
-                  <stop offset="35%" stop-color="#D8E0E4"/>
-                  <stop offset="65%" stop-color="#A0A8B0"/>
-                  <stop offset="100%" stop-color="#909898"/>
-                </linearGradient>
-                <linearGradient id="capProt" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#1A2028"/>
-                  <stop offset="50%" stop-color="#384050"/>
-                  <stop offset="100%" stop-color="#0E1418"/>
-                </linearGradient>
-              </defs>
-              <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capProt)"/>
-              <rect x="74" y="50" width="32" height="7" rx="1" fill="#242C38"/>
-              <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#protGrad)" opacity="0.9"/>
-              <path d="M 78 85 Q 46 105 46 138 L 46 322 Q 46 342 90 342 Q 134 342 134 322 L 134 138 Q 134 105 102 85 Z" fill="url(#protGrad)"/>
-              <path d="M 51 142 L 51 320 Q 51 334 68 336 L 68 130 Z" fill="#FFF" opacity="0.28"/>
-              <rect x="58" y="162" width="64" height="116" rx="2" fill="rgba(255,255,255,0.88)" stroke="#C0C8D0" stroke-width="0.8"/>
-              <text x="90" y="188" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#1A2028" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
-              <text x="90" y="212" font-family="'Playfair Display', serif" font-size="9" fill="#0E1418" text-anchor="middle" font-style="italic">Coconut</text>
-              <text x="90" y="229" font-family="'Syne', sans-serif" font-size="8" fill="#1A2028" text-anchor="middle" font-weight="700" letter-spacing="0.5">PROTEIN+</text>
-              <line x1="66" y1="240" x2="114" y2="240" stroke="#C0C8D0" stroke-width="0.6"/>
-              <text x="90" y="257" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#708090" text-anchor="middle" letter-spacing="0.8">11G PROTEIN • 330ML</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════ SECTION 7 — Coconut Churro | IMAGE LEFT / TEXT RIGHT ════════ -->
-<section class="cp-section" id="coconut-churro">
-  <div class="cp-container">
-    <div class="cp-editorial-grid reversed">
-
-      <!-- LEFT: Copy -->
-      <div class="cp-copy cp-reveal">
-        <span class="cp-label">Collection No. 06</span>
-        <h2 class="cp-heading">Coconut Churro<br>Finale</h2>
-        <p class="cp-body">Sun-baked cinnamon and vanilla, softened by the lightness of young coconut. A celebration of tropical dessert culture — indulgent, joyful, and surprisingly clean.</p>
-        <a href="/product/6" class="cp-btn">Discover</a>
-      </div>
-
-      <!-- RIGHT: Visual (reversed = appears left visually) -->
-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
-        <div class="cp-ph cp-ph--tall">
-          <div class="cp-bottle-wrap">
-            <svg viewBox="0 0 180 380" width="160" aria-label="Coconut Churro Bottle">
-              <defs>
-                <linearGradient id="churroGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#D8A860"/>
-                  <stop offset="35%" stop-color="#F0D0A0"/>
-                  <stop offset="65%" stop-color="#C89050"/>
-                  <stop offset="100%" stop-color="#B07840"/>
-                </linearGradient>
-                <linearGradient id="capChurro" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#5A2800"/>
-                  <stop offset="50%" stop-color="#8A4820"/>
-                  <stop offset="100%" stop-color="#3A1800"/>
-                </linearGradient>
-                <filter id="churroShadow">
-                  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(100,50,0,0.12)"/>
-                </filter>
-              </defs>
-              <g filter="url(#churroShadow)">
-                <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(100,50,0,0.07)"/>
-                <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capChurro)"/>
-                <rect x="74" y="50" width="32" height="7" rx="1" fill="#6A3810"/>
-                <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#churroGrad)" opacity="0.9"/>
-                <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#churroGrad)"/>
-                <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.28"/>
-                <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#E0C090" stroke-width="0.8"/>
-                <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#5A2800" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
-                <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#3A1800" text-anchor="middle" font-style="italic">Coconut</text>
-                <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#3A1800" text-anchor="middle" font-style="italic">Churro</text>
-                <line x1="72" y1="240" x2="108" y2="240" stroke="#D8A860" stroke-width="0.6"/>
-                <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#A07840" text-anchor="middle" letter-spacing="0.8">EST. 2025 • 330ML</text>
-              </g>
-            </svg>
-          </div>
-          <!-- Studio pedestal -->
-          <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #F4ECE4, #E4DCD4);border-radius:4px 4px 0 0;"></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════ FOOTER ════════ -->
-<footer class="footer-black" id="contact">
-  <div class="fb-inner">
-    <div class="fb-brand">
-      <div class="fb-logo">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M8 14 Q14 6 20 14 Q14 22 8 14Z" fill="white" opacity="0.8"/></svg>
-        AARWINS
-      </div>
-      <p class="fb-tagline">Pure tropical refreshment,<br>crafted with love.</p>
-      <div class="fb-socials">
-        <a href="#" aria-label="Instagram" class="fb-social">IG</a>
-        <a href="#" aria-label="Facebook" class="fb-social">FB</a>
-        <a href="#" aria-label="Twitter" class="fb-social">TW</a>
-      </div>
-      <div class="fb-contact-list">
-        <div>Contact Us</div>
-        <div>Track Order</div>
-        <div>Sign In</div>
-        <div>Store Locator</div>
+    <div class="fb-bottom">
+      <span>&copy; 2025 <strong>Aarwins</strong>. All rights reserved.</span>
+      <div class="fb-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
       </div>
     </div>
-    <div class="fb-col">
-      <div class="fb-col-title">Company</div>
-      <a href="#">About Us</a>
-      <a href="#">Join Us</a>
-    </div>
-    <div class="fb-col">
-      <div class="fb-col-title">Customer Care</div>
-      <a href="#">FAQ</a>
-      <a href="#">Disposal Instructions</a>
-      <a href="#">Return Policy</a>
-      <a href="#">Promotion Terms &amp; Conditions</a>
-      <div class="fb-col-title" style="margin-top:24px;">Gift Cards</div>
-      <a href="#">Purchase</a>
-      <a href="#">Check Balance</a>
-    </div>
-    <div class="fb-newsletter">
-      <div class="fb-col-title">Let's stay<br>in touch.</div>
-      <form class="fb-form" id="footer-form">
-        <input type="email" placeholder="E-mail address" class="fb-input" required/>
-        <div class="fb-form-line"></div>
-      </form>
-      <p class="fb-disclaimer">By clicking on the "Subscribe" button, you agree to the terms.</p>
-    </div>
-  </div>
-  <div class="fb-bottom">
-    <span>&copy; 2025 Aarwins. All rights reserved.</span>
-    <div class="fb-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- ════════ MINI CART OVERLAY & PANEL ════════ -->
-<div class="mini-cart-overlay" id="mini-cart-overlay"></div>
-<div class="mini-cart-panel" id="mini-cart-panel">
-  <div class="mcp-header">
-    <h3 class="mcp-title">Shopping Bag</h3>
-    <button class="mcp-close" id="mcp-close" aria-label="Close cart">✕</button>
-  </div>
-  
-  <div class="mcp-body">
-    <div class="mcp-item">
-      <div class="mcp-item-thumb">
-        <img src="/images/about_us_1.png" alt="Product bottle" style="height: 60px; width: auto; object-fit: contain;"/>
-      </div>
-      <div class="mcp-item-details">
-        <span class="mcp-item-name">Matcha Coconut Wellness</span>
-        <span class="mcp-item-meta">330ml</span>
-        <div class="mcp-item-qty">
-          <button class="mcp-item-qty-btn decrease" onclick="updateMcpQty(this, -1)">−</button>
-          <span class="mcp-item-qty-val">1</span>
-          <button class="mcp-item-qty-btn increase" onclick="updateMcpQty(this, 1)">+</button>
-        </div>
-        <span class="mcp-item-price">$4.99</span>
-      </div>
-    </div>
-  </div>
+  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+  <script>
+    (function () {
+      const TOTAL = 6;
+      let current = 0;
+      let transitioning = false;
+      let autoTimer = null;
 
-  <div class="mcp-footer">
-    <div class="mcp-total-row">
-      <span class="mcp-total-label">Subtotal</span>
-      <span class="mcp-total-value">$4.99</span>
-    </div>
-    <p class="mcp-tax-info">Shipping and taxes calculated at checkout.</p>
-    <button class="mcp-checkout-btn" onclick="showToast('Proceeding to checkout...');">PROCEED TO CHECKOUT</button>
-  </div>
-</div>
+      const track = document.getElementById('slider-track');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const flavorItems = Array.from(document.querySelectorAll('.flavor-item'));
+      const progressFill = document.getElementById('progress-fill');
 
-<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+      function updateProgress(idx) {
+        if (progressFill) {
+          progressFill.style.width = ((idx + 1) / TOTAL * 100) + '%';
+        }
+      }
 
-<script src="/js/aarwins.js"></script>
-<script>
-  /* Page fade in */
-  document.addEventListener('DOMContentLoaded', function() {
-    document.body.classList.add('loaded');
-  });
+      // Instant position
+      function snapTo(idx) {
+        if (track) {
+          track.style.transition = 'none';
+          track.style.transform = `translateX(-${idx * 100}%)`;
+        }
+      }
 
-  /* Scroll reveal */
-  (function() {
-    var els = document.querySelectorAll('.cp-reveal');
-    if (!els.length) return;
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
+      function goTo(idx) {
+        if (transitioning || idx === current) return;
+        transitioning = true;
+
+        const prev = current;
+        current = idx;
+
+        // Add exit class to current, enter class to next
+        slides[prev].classList.add('is-exiting');
+        slides[idx].classList.add('is-entering');
+
+        // Slide the track
+        if (track) {
+          track.style.transition = 'transform 0.82s cubic-bezier(0.77, 0, 0.18, 1)';
+          track.style.transform = `translateX(-${idx * 100}%)`;
+        }
+
+        // Update flavor list
+        flavorItems.forEach((el, i) => el.classList.toggle('active', i === idx));
+        updateProgress(idx);
+
+        // Cleanup after transition
+        setTimeout(() => {
+          slides[prev].classList.remove('is-exiting');
+          slides[idx].classList.remove('is-entering');
+          transitioning = false;
+        }, 1800);
+      }
+
+      // Init
+      if (slides[0]) {
+        slides[0].classList.add('is-entering');
+        setTimeout(() => {
+          slides[0].classList.remove('is-entering');
+        }, 1000);
+      }
+      snapTo(0);
+      updateProgress(0);
+
+      const nextBtn = document.getElementById('next');
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          clearTimeout(autoTimer);
+          goTo((current + 1) % TOTAL);
+          scheduleAuto();
+        });
+      }
+
+      const prevBtn = document.getElementById('prev');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          clearTimeout(autoTimer);
+          goTo((current - 1 + TOTAL) % TOTAL);
+          scheduleAuto();
+        });
+      }
+
+      flavorItems.forEach(el => {
+        el.addEventListener('click', () => {
+          clearTimeout(autoTimer);
+          goTo(parseInt(el.dataset.idx));
+          scheduleAuto();
+        });
+      });
+
+      document.querySelectorAll('.mascot-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const idx = parseInt(card.dataset.idx);
+          clearTimeout(autoTimer);
+          goTo(idx);
+          scheduleAuto();
+
+          const heroSec = document.getElementById('collections-hero');
+          if (heroSec) {
+            heroSec.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') { clearTimeout(autoTimer); goTo((current + 1) % TOTAL); scheduleAuto(); }
+        if (e.key === 'ArrowLeft') { clearTimeout(autoTimer); goTo((current - 1 + TOTAL) % TOTAL); scheduleAuto(); }
+      });
+
+      // Touch/swipe
+      let touchStartX = 0;
+      document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+      document.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) {
+          clearTimeout(autoTimer);
+          goTo(dx < 0 ? (current + 1) % TOTAL : (current - 1 + TOTAL) % TOTAL);
+          scheduleAuto();
         }
       });
-    }, { threshold: 0.12 });
-    els.forEach(function(el) { io.observe(el); });
-  })();
 
-  /* Mobile drawer inline event listeners removed to use unified aarwins.js logic */
-</script>
+      function scheduleAuto() {
+        autoTimer = setTimeout(() => {
+          goTo((current + 1) % TOTAL);
+          scheduleAuto();
+        }, 5500);
+      }
+      scheduleAuto();
+
+      /* ---- SCROLL REVEAL ---- */
+      (function () {
+        const io = new IntersectionObserver(entries => entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+        }), { threshold: 0.12 });
+        document.querySelectorAll('.cp-reveal').forEach(el => io.observe(el));
+      }());
+
+      /* ---- PAGE FADE IN ---- */
+      /* ══════════════════════════════════════════════════════════════
+         RITUAL INTELLIGENCE INTERACTIVE ENGINE & GSAP ANIMATIONS
+         ══════════════════════════════════════════════════════════════ */
+      const RITUAL_DATA = {
+        mango: {
+          id: 6,
+          name: "Mango Coconut",
+          purpose: "Energy & Vitality",
+          timeSlots: ["morning"],
+          ideal: ["Pre-workout", "Breakfast", "Morning Energy Boost"],
+          benefits: ["Morning refreshment", "Natural fruit energy", "Hydration support", "Tropical mood boost"],
+          ritual: "Perfect before work or during breakfast.",
+          bottle: "/images/tin-mago.png",
+          mascot: "/images/mangomascot.png",
+          color: "#EDC55B",
+          glow: "rgba(237, 197, 91, 0.25)",
+          ingredients: ["Tender Coconut", "Pure Mango Juice", "Natural Energy"]
+        },
+        orange: {
+          id: 2,
+          name: "Orange Coconut",
+          purpose: "Immunity & Daily Defence",
+          timeSlots: ["morning", "midday"],
+          ideal: ["Busy Workdays", "Travel", "Active Recovery"],
+          benefits: ["Vitamin-rich refreshment", "Electrolyte replenishment", "Active lifestyle support"],
+          ritual: "Ideal for busy workdays and travel.",
+          bottle: "/images/tin-orange.png",
+          mascot: "/images/orangemascot .png",
+          color: "#EC802B",
+          glow: "rgba(236, 128, 43, 0.25)",
+          ingredients: ["Tender Coconut", "Zesty Orange", "Vitamin C"]
+        },
+        watermelon: {
+          id: 1,
+          name: "Watermelon Coconut",
+          purpose: "Hydration Recovery",
+          timeSlots: ["midday"],
+          ideal: ["Post-Workout", "Hot Summer Days", "Rehydration"],
+          benefits: ["Deep hydration", "Cooling refreshment", "Summer recovery"],
+          ritual: "Best after workouts or hot days.",
+          bottle: "/images/tin-watermelon.png",
+          mascot: "/images/watermelonmascot.png",
+          color: "#E8CCAD",
+          glow: "rgba(232, 204, 173, 0.35)",
+          ingredients: ["Tender Coconut", "Pure Watermelon", "Electrolytes"]
+        },
+        lychee: {
+          id: 4,
+          name: "Lychee Coconut",
+          purpose: "Beauty & Glow",
+          timeSlots: ["midday", "evening"],
+          ideal: ["Self-Care Routines", "Mid-day Treat", "Relaxing Refreshment"],
+          benefits: ["Antioxidant support", "Refreshing hydration", "Light tropical sweetness"],
+          ritual: "A perfect self-care companion.",
+          bottle: "/images/tin-lychee.png",
+          mascot: "/images/lycheemascot.png",
+          color: "#FFC5C5",
+          glow: "rgba(255, 197, 197, 0.35)",
+          ingredients: ["Tender Coconut", "Sweet Lychee", "Antioxidants"]
+        },
+        blueberry: {
+          id: 3,
+          name: "Blueberry Coconut",
+          purpose: "Focus & Productivity",
+          timeSlots: ["focus"],
+          ideal: ["Creative Work", "Long Meetings", "Study Sessions", "Focused Productivity"],
+          benefits: ["Antioxidant-rich", "Focus-oriented refreshment", "Daily hydration"],
+          ritual: "Enjoy during creative sessions.",
+          bottle: "/images/tin-blueberry.png",
+          mascot: "/images/blueberrymascot.png",
+          color: "#2E4380",
+          glow: "rgba(46, 67, 128, 0.25)",
+          ingredients: ["Tender Coconut", "Juicy Blueberry", "Antioxidant-rich"]
+        },
+        avocado: {
+          id: 5,
+          name: "Avocado Coconut",
+          purpose: "Balance & Nourishment",
+          timeSlots: ["evening"],
+          ideal: ["Evening Wind-down", "Dessert Alternative", "Nutrient Recovery"],
+          benefits: ["Smooth satisfaction", "Nutrient-rich refreshment", "Wellness recovery"],
+          ritual: "Ideal for evening wind-down moments.",
+          bottle: "/images/tin-avocado.png",
+          mascot: "/images/Avacado-character.png",
+          color: "#66BCB4",
+          glow: "rgba(102, 188, 180, 0.25)",
+          ingredients: ["Tender Coconut", "Creamy Avocado", "Healthy Fats"]
+        }
+      };
+
+      let activeFlavor = "watermelon";
+      const nodes = document.querySelectorAll(".timeline-node");
+      const panel = document.getElementById("benefit-panel");
+
+      function updatePanel(flavorKey) {
+        const data = RITUAL_DATA[flavorKey];
+        if (!data) return;
+
+        // Set theme colors on panel element
+        panel.style.setProperty("--active-theme-color", data.color);
+        panel.style.setProperty("--panel-glow-color", data.glow);
+
+        // Update Text Elements
+        document.getElementById("panel-flavor-name").textContent = data.name;
+        document.getElementById("panel-flavor-purpose").textContent = data.purpose;
+        document.getElementById("panel-ritual-recommendation").textContent = data.ritual;
+
+        // Update Images
+        document.getElementById("panel-bottle-img").src = data.bottle;
+        document.getElementById("panel-bottle-img").alt = data.name;
+        document.getElementById("panel-mascot-img").src = data.mascot;
+        document.getElementById("panel-mascot-img").alt = data.name + " Mascot";
+
+        // Update Time slots
+        const slots = ["morning", "midday", "focus", "evening"];
+        slots.forEach(slot => {
+          const slotEl = document.getElementById("slot-" + slot);
+          if (slotEl) {
+            slotEl.classList.toggle("active", data.timeSlots.includes(slot));
+          }
+        });
+
+        // Update Ideal Tags
+        const tagsContainer = document.getElementById("panel-ideal-tags");
+        tagsContainer.innerHTML = "";
+        data.ideal.forEach(text => {
+          const span = document.createElement("span");
+          span.className = "ideal-tag";
+          span.textContent = text;
+          tagsContainer.appendChild(span);
+        });
+
+        // Update Benefits List
+        const benefitsContainer = document.getElementById("panel-benefits-list");
+        benefitsContainer.innerHTML = "";
+        data.benefits.forEach(text => {
+          const li = document.createElement("li");
+          li.className = "benefit-item";
+          li.innerHTML = `<span class="benefit-check">✓</span> ${text}`;
+          benefitsContainer.appendChild(li);
+        });
+
+        // Update Ingredients / Floating Tags
+        if (data.ingredients[0]) document.getElementById("tag-text-1").textContent = data.ingredients[0];
+        if (data.ingredients[1]) document.getElementById("tag-text-2").textContent = data.ingredients[1];
+        if (data.ingredients[2]) document.getElementById("tag-text-3").textContent = data.ingredients[2];
+
+        // Update Add to Cart and Subscribe buttons
+        const cartBtn = document.getElementById("btn-panel-cart-action");
+        const subBtn = document.getElementById("btn-panel-sub-action");
+
+        // Hook up the buttons to standard handlers
+        cartBtn.onclick = () => {
+          if (typeof addToCart === "function") {
+            addToCart(data.id, 1);
+          } else {
+            console.error("addToCart function not found!");
+          }
+        };
+
+        subBtn.onclick = () => {
+          if (typeof addToCart === "function") {
+            addToCart(data.id, 1);
+            if (typeof showToast === "function") {
+              showToast(data.name + " Subscription added!");
+            }
+          } else {
+            console.error("addToCart function not found!");
+          }
+        };
+      }
+
+      function selectFlavor(flavorKey) {
+        if (flavorKey === activeFlavor) return;
+        activeFlavor = flavorKey;
+
+        // Update timeline active states
+        nodes.forEach(node => {
+          const isCurrent = node.dataset.flavor === flavorKey;
+          node.classList.toggle("active", isCurrent);
+          if (isCurrent) {
+            node.style.setProperty("--active-theme-color", RITUAL_DATA[flavorKey].color);
+          }
+        });
+
+        // GSAP animate panel transition
+        const tl = gsap.timeline();
+        tl.to(["#panel-bottle-img", "#panel-mascot-img", ".ingredient-tag", ".panel-details > *"], {
+          opacity: 0,
+          y: 15,
+          duration: 0.2,
+          stagger: 0.02,
+          onComplete: () => {
+            updatePanel(flavorKey);
+          }
+        });
+
+        tl.to(["#panel-bottle-img", "#panel-mascot-img", ".ingredient-tag", ".panel-details > *"], {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          stagger: 0.04,
+          ease: "power2.out"
+        });
+      }
+
+      // Initial Event Listeners
+      nodes.forEach(node => {
+        node.addEventListener("click", () => {
+          selectFlavor(node.dataset.flavor);
+        });
+      });
+
+      // Set initial values
+      updatePanel("watermelon");
+      if (panel) {
+        panel.style.setProperty("--active-theme-color", RITUAL_DATA.watermelon.color);
+        panel.style.setProperty("--panel-glow-color", RITUAL_DATA.watermelon.glow);
+      }
+
+      // Continuous floating levitation animations
+      gsap.to(".ingredient-tag", {
+        y: "+=12",
+        duration: 2.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        stagger: 0.3
+      });
+
+      // Subtle breathing animation for panel mascot
+      gsap.to("#panel-mascot-img", {
+        y: "+=6",
+        rotation: "+=2",
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
+      });
+
+      // Scroll entrance animations with ScrollTrigger
+      if (typeof ScrollTrigger !== "undefined") {
+        gsap.from("#ritual-guide .ritual-header > *", {
+          scrollTrigger: {
+            trigger: "#ritual-guide",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          },
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out"
+        });
+
+        gsap.from(".ritual-timeline .timeline-period", {
+          scrollTrigger: {
+            trigger: ".ritual-timeline",
+            start: "top 85%",
+            toggleActions: "play none none none"
+          },
+          opacity: 0,
+          y: 20,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power2.out"
+        });
+
+        gsap.from("#benefit-panel", {
+          scrollTrigger: {
+            trigger: "#benefit-panel",
+            start: "top 85%",
+            toggleActions: "play none none none"
+          },
+          opacity: 0,
+          y: 40,
+          duration: 1.0,
+          ease: "power3.out"
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          document.body.classList.add('loaded');
+        });
+      } else {
+        document.body.classList.add('loaded');
+      }
+    })();
+  </script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/aarwins.js"></script>
 </body>
+
 </html>

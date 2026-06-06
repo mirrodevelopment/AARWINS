@@ -6,6 +6,7 @@
 /* ════════ EDITORIAL PAGE WRAPPER ════════ */
 .ed-page {
   background: #FFFFFF;
+  padding-top: 100px; /* Symmetrical top padding when About Us banner is moved */
   padding-bottom: 0;
 }
 
@@ -76,7 +77,7 @@
   gap: 72px;
   align-items: center;
   padding-top: 20px;
-  padding-bottom: 0;
+  padding-bottom: 100px;
 }
 
 
@@ -85,6 +86,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 320px;
+  width: 100%;
 }
 
 .ed-h2 {
@@ -210,6 +213,12 @@
 
 .ed-ph.ed-ph--3 {
   background: url('../images/about_us_3.jpg') center/cover no-repeat !important;
+}
+
+.ed-ph.ed-ph--about-us-2 {
+  background: url('../images/Iland-desktop.jpeg') center/cover no-repeat !important;
+  max-width: 950px !important;
+  height: 480px !important;
 }
 
 .ed-ph.ed-ph--1 .ed-ph-inner,
@@ -492,7 +501,7 @@
   .ed-s2, .ed-s3 { grid-template-columns: 1fr; gap: 40px; padding-bottom: 60px; }
   .ed-h2 { font-size: 38px; }
   .ed-h2--sm { font-size: 34px; }
-  .ed-ph--hero { height: 280px; }
+  .ed-ph--hero { height: 700px; }
   .ed-divider { padding: 0 24px; margin-top: 60px; }
   .fb-inner { grid-template-columns: 1fr; padding: 0 24px 48px; }
   .fb-bottom { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
@@ -500,5 +509,98 @@
     padding: 14px 36px !important; /* Premium spacious padding in mobile view */
     height: auto !important; /* Breathable vertical auto height */
     font-size: 13px !important; /* Visual typography scale balance */
+  }
+  .ed-ph.ed-ph--about-us-2 {
+    background: url('../images/Iland-mob.png') center top/cover no-repeat !important;
+    height: 700px !important;
+  }
+}
+
+/* ════════ EDITORIAL VIDEO HERO BANNER ════════ */
+.ed-cats-video-container {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Premium widescreen banner height */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background-color: #17313B; /* Brand fallback color */
+}
+
+.ed-cats-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.ed-cats-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35); /* Elegant soft white overlay */
+  backdrop-filter: blur(2px); /* Soft glassmorphic blur to smooth the background video */
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.ed-cats-video-container .ed-cats {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px !important;
+  margin: 0 !important;
+  z-index: 2;
+  background: none !important;
+  gap: 16px !important;
+}
+
+.ed-cats-video-container .ed-cats-label {
+  color: #17313B !important; /* Premium brand dark navy color */
+  text-shadow: none !important;
+  font-weight: 700;
+}
+
+.ed-cats-video-container .ed-cats-title {
+  color: #111111 !important; /* Luxury deep charcoal/black */
+  font-size: 54px; /* Premium larger title on banner */
+  letter-spacing: 3px;
+  text-shadow: none !important;
+}
+
+.ed-cats-video-container .ed-cats-desc {
+  color: #111111 !important; /* Luxury deep charcoal/black for full legibility */
+  max-width: 650px;
+  text-shadow: none !important;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .ed-cats-video-container {
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    height: auto;
+    aspect-ratio: 21 / 9;
+  }
+  .ed-cats-video-container .ed-cats {
+    padding: 0 20px !important;
+    gap: 8px !important;
+  }
+  .ed-cats-video-container .ed-cats-title {
+    font-size: 26px !important;
+  }
+  .ed-cats-video-container .ed-cats-desc {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+    max-width: 95%;
+    margin-top: 10% !important;
   }
 }

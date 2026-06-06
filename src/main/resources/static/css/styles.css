@@ -89,6 +89,10 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   gap: 10px;
+  font-family: "Futura Display", "Futura-Display", "Futura", "Jost", "League Spartan", var(--font-display), sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
 }
 
 

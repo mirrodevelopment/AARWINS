@@ -26,11 +26,11 @@ public class ViewController {
     }
 
     /**
-     * Map /philosophy to the dedicated cinematic philosophy page.
+     * Map /checkout and /checkout/payment to the dedicated premium checkout page.
      */
-    @GetMapping("/philosophy")
-    public String getPhilosophyPage() {
-        return "forward:/philosophy.html";
+    @GetMapping({"/checkout", "/checkout/payment"})
+    public String getCheckoutPage() {
+        return "forward:/checkout.html";
     }
 
 }

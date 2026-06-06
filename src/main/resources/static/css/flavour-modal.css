@@ -1,0 +1,684 @@
+/* ════════════════════════════════════════
+   AARWINS PREMIUM FLAVOUR DETAIL MODAL STYLE
+   ════════════════════════════════════════ */
+
+:root {
+  --modal-bg: #FCFAF5;
+  --modal-text: #17313B;
+  --modal-text-muted: rgba(23, 49, 59, 0.78);
+  --modal-transition: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+body.modal-open {
+  overflow: hidden !important;
+}
+
+#app-wrapper {
+  transition: transform 0.7s var(--modal-transition), filter 0.7s var(--modal-transition);
+  transform-origin: center center;
+}
+
+/* Modal Overlay backdrop */
+.flavour-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 49, 59, 0.35);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s var(--modal-transition);
+}
+
+.flavour-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal Window Container */
+.flavour-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent; /* Transparent wrapper to act as layout viewport */
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: none; /* Controlled by JS setting flex */
+  align-items: center;
+  justify-content: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Split Page Inner Container — Floating Modal Card */
+.flavour-modal-container {
+  display: flex;
+  width: 90%;
+  max-width: 1100px; /* Constrained width like ref image */
+  height: 80vh;
+  max-height: 680px; /* Constrained height on desktop */
+  background: var(--modal-bg); /* Set dynamically to flavor color in JS */
+  margin: auto;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  padding: 60px 48px;
+  border-radius: 40px; /* Rounded corners like ref image */
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+  overflow: visible; /* Allows bottle to overlap borders! */
+  transition: background-color 0.8s ease;
+}
+
+/* LEFT COLUMN - Bottle centerpiece (45%) */
+.flavour-modal-left {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Ambient Radial Glow behind the Bottle */
+.flavour-modal-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.28;
+  z-index: 1;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transition: background 0.8s ease;
+}
+
+.flavour-modal-bottle-wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bottle floats and extends outside the left and top boundaries of the card container */
+.flavour-modal-bottle-img {
+  height: 115%;
+  max-height: 80vh;
+  width: auto;
+  position: absolute;
+  left: -12%; /* Overlaps card boundaries to the left */
+  top: -10%; /* Overlaps card boundaries to the top */
+  z-index: 2;
+  object-fit: contain;
+  filter: drop-shadow(-20px 25px 40px rgba(0, 0, 0, 0.25));
+  animation: modalFloatBottle 5.5s ease-in-out infinite;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* Subtle float and rotate animation */
+@keyframes modalFloatBottle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* RIGHT COLUMN - Editorial flavor stories (55%) */
+.flavour-modal-right {
+  width: 55%;
+  padding-left: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 16px; /* Avoid scrollbar overlaying text */
+}
+
+/* Custom scrollbar for right side editorial column */
+.flavour-modal-right::-webkit-scrollbar {
+  width: 8px;
+}
+.flavour-modal-right::-webkit-scrollbar-track {
+  background: transparent;
+}
+.flavour-modal-right::-webkit-scrollbar-thumb {
+  background: rgba(23, 49, 59, 0.12);
+  border-radius: 10px;
+}
+.flavour-modal-right::-webkit-scrollbar-thumb:hover {
+  background: rgba(23, 49, 59, 0.25);
+}
+
+.flavour-modal-content-inner {
+  width: 100%;
+  max-width: 580px;
+  margin-top: auto;
+  margin-bottom: auto;
+  will-change: transform, opacity;
+}
+
+/* Micro Typography Labels */
+.flavour-modal-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(23, 49, 59, 0.65);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* Giant Luxury Editorial Title */
+.flavour-modal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--modal-text);
+  margin: 0 0 24px 0;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  padding-right: 0; /* Close button is fixed, no padding needed */
+}
+
+/* Narrative Story Paragraph */
+.flavour-modal-flavor-name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 800;
+  color: var(--modal-text);
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  padding-right: 0; /* Close button is fixed, no padding needed */
+}
+
+.flavour-modal-story {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--modal-text-muted);
+  margin: 0 0 36px 0;
+  font-weight: 400;
+  max-width: 600px;
+}
+
+/* Section Header Titles */
+.flavour-modal-section-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--modal-text);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(23, 49, 59, 0.06);
+  padding-bottom: 8px;
+}
+
+/* 3 Column Premium Benefit Blocks */
+.flavour-modal-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.benefit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.35); /* Transparent glass block on colored bg */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px 16px;
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(23, 49, 59, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.benefit-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--modal-text);
+  margin-bottom: 12px;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.benefit-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--modal-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Rounded Ingredient Badges */
+.flavour-modal-ingredients-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.ingredient-pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 24px;
+  background: #FFFFFF !important; /* Force high contrast white pill on flavor bg */
+  color: #111111;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+.ingredient-pill:hover {
+  transform: scale(1.05);
+}
+
+/* 4 Column Nutrition Highlights */
+.flavour-modal-nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 42px;
+}
+
+.nutrition-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.nutrition-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--modal-text);
+  margin-bottom: 2px;
+}
+
+.nutrition-lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(23, 49, 59, 0.65);
+  text-transform: uppercase;
+}
+
+/* CTA Add to Cart Button */
+.flavour-modal-cta-wrap {
+  margin-bottom: 42px;
+}
+
+.flavour-modal-cta {
+  display: inline-block;
+  height: 52px !important;
+  line-height: 50px !important;
+  padding: 0 42px !important;
+  font-size: 13px !important;
+  border-radius: 26px !important;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background-color: #17313B !important; /* Fallback solid color */
+  background-image: none !important; /* Force remove default orange gradient */
+  color: #FFFFFF !important; /* Crisp white text */
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, filter 0.3s ease !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  text-shadow: none !important;
+}
+.flavour-modal-cta:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+  filter: brightness(1.18) !important; /* Brighten dynamic button color on hover */
+}
+
+/* "Explore Next Flavour" Navigation Panel */
+.flavour-modal-nav {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flavour-modal-nav-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.flavour-modal-nav-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(23, 49, 59, 0.65);
+}
+
+.flavour-modal-nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-nav-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(23, 49, 59, 0.15);
+  padding: 9px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--modal-text);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: var(--modal-text);
+  transform: translateY(-1px);
+}
+.modal-nav-btn:active {
+  transform: translateY(0);
+}
+
+/* Close Button (Top Right corner) */
+.flavour-modal-close {
+  position: fixed;
+  top: 40px;
+  right: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  z-index: 10001; /* Set above the modal z-index */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.close-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  transition: all 0.3s ease;
+}
+
+.flavour-modal-close:hover .close-icon-wrap {
+  background-color: var(--modal-text);
+  color: #FFFFFF;
+  transform: rotate(90deg);
+}
+
+.flavour-modal-close:hover .close-text {
+  opacity: 0.8;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE LAYOUTS & STACKING
+   ════════════════════════════════════════ */
+
+@media (max-width: 1120px) {
+  .flavour-modal-right {
+    padding-left: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .flavour-modal-container {
+    flex-direction: column;
+    padding: 30px 20px 24px 20px !important;
+    width: 70vw !important;
+    max-width: 480px !important;
+    height: 70vh !important;
+    min-height: auto !important;
+    max-height: 70vh !important;
+    justify-content: flex-start;
+    border-radius: 24px !important;
+    margin: auto !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22) !important;
+    overflow: hidden !important;
+  }
+  
+  .flavour-modal-left {
+    width: 100%;
+    min-height: auto;
+    height: 140px !important; /* Shrunk height on mobile to save vertical space */
+    margin-bottom: 12px !important;
+  }
+  
+  .flavour-modal-glow {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  
+  .flavour-modal-bottle-img {
+    position: relative;
+    left: 0;
+    top: 0 !important;
+    height: 100% !important;
+    max-height: 140px !important; /* Shrunk bottle size */
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .flavour-modal-right {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 8px !important; /* Leave space for scrollbar inside card */
+    justify-content: flex-start !important;
+    flex: 1 !important;
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+  
+  .flavour-modal-content-inner {
+    max-width: 100%;
+    margin-top: 0 !important; /* Align to top of right side inside mobile modal */
+    margin-bottom: 0 !important;
+  }
+
+  .flavour-modal-title {
+    font-size: 18px !important; /* Shrunk title size to prevent overlap */
+    margin-bottom: 10px !important;
+    padding-right: 50px !important; /* Reserve room for close button */
+  }
+
+  .flavour-modal-flavor-name {
+    font-size: 15px !important; /* Shrunk flavor name */
+    margin-bottom: 12px !important;
+    padding-right: 50px !important; /* Reserve room for close button */
+  }
+
+  .flavour-modal-story {
+    font-size: 12px !important; /* Shrunk story text to be compact */
+    line-height: 1.5 !important;
+    margin-bottom: 24px !important;
+  }
+
+  .flavour-modal-section-title {
+    margin-bottom: 10px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .flavour-modal-benefits-grid {
+    margin-bottom: 24px !important;
+  }
+  
+  .flavour-modal-benefits-grid .benefit-item {
+    padding: 12px 10px !important;
+    border-radius: 12px !important;
+  }
+  
+  .flavour-modal-benefits-grid .benefit-text {
+    font-size: 11px !important;
+  }
+  
+  .flavour-modal-benefits-grid .benefit-bullet {
+    margin-bottom: 6px !important;
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  .flavour-modal-ingredients-wrap {
+    margin-bottom: 24px !important;
+  }
+  
+  .flavour-modal-ingredients-wrap .ingredient-pill {
+    font-size: 11px !important;
+    padding: 5px 12px !important;
+  }
+
+  .flavour-modal-nutrition-grid {
+    margin-bottom: 28px !important;
+  }
+  
+  .flavour-modal-nutrition-grid .nutrition-val {
+    font-size: 20px !important;
+  }
+  
+  .flavour-modal-nutrition-grid .nutrition-lbl {
+    font-size: 8px !important;
+  }
+
+  .flavour-modal-cta-wrap {
+    margin-bottom: 28px !important;
+  }
+  
+  .flavour-modal-cta {
+    height: 44px !important;
+    line-height: 42px !important;
+    padding: 0 32px !important;
+    font-size: 12px !important;
+  }
+  
+  .flavour-modal-close {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    padding: 6px !important;
+    color: var(--modal-text) !important;
+  }
+  
+  .flavour-modal-close .close-text {
+    display: none !important; /* Hide close text on mobile to avoid overlapping */
+  }
+}
+
+@media (max-width: 580px) {
+  .flavour-modal-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .flavour-modal-nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  
+  .flavour-modal-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .flavour-modal-nav-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .modal-nav-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .flavour-modal-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* Dynamic Desktop Elaboration Margin Offsets & Half-Height Styles */
+@media (min-width: 1025px) {
+  /* Set compact sizing for all aligned desktop panels */
+  .flavour-modal.expand-left-to-right .flavour-modal-container,
+  .flavour-modal.expand-right-to-left .flavour-modal-container,
+  .flavour-modal.expand-center-to-right .flavour-modal-container {
+    height: 76vh !important;
+    max-height: 76vh !important;
+    width: 80vw !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    padding: 40px 60px !important;
+  }
+
+
+  /* Left to Right: Flush Left, Rounded Right */
+  .flavour-modal.expand-left-to-right .flavour-modal-container {
+    margin: auto auto auto 0 !important;
+    border-radius: 0 40px 40px 0 !important;
+    box-shadow: 25px 0 60px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Right to Left: Flush Right, Rounded Left */
+  .flavour-modal.expand-right-to-left .flavour-modal-container {
+    margin: auto 0 auto auto !important;
+    border-radius: 40px 0 0 40px !important;
+    box-shadow: -25px 0 60px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Center to Right: Flush Right, starts further left, Rounded Left */
+  .flavour-modal.expand-center-to-right .flavour-modal-container {
+    width: 85vw !important;
+    margin: auto 0 auto auto !important;
+    border-radius: 40px 0 0 40px !important;
+    box-shadow: -25px 0 60px rgba(0, 0, 0, 0.15) !important;
+  }
+}

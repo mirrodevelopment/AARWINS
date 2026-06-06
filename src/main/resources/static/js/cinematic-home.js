@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * AARWINS — Cinematic Homepage Animation Engine v2.0
  * Ultra-premium interactions: Lenis + GSAP + ScrollTrigger + SplitType Fallback
  * Inspired by plus33.in, Awwwards, luxury editorial motion
@@ -10,8 +10,8 @@
   /* ═══════════════════════════════════════════════
      0. UTILITIES
   ═══════════════════════════════════════════════ */
-  const qs  = (sel, ctx = document) => ctx.querySelector(sel);
-  const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+  const qs  = (sel, ctx = document) => ctx ? ctx.querySelector(sel) : null;
+  const qsa = (sel, ctx = document) => ctx ? [...ctx.querySelectorAll(sel)] : [];
   const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
   const lerp  = (a, b, t) => a + (b - a) * t;
   const isMobile = () => window.innerWidth < 768;
@@ -161,7 +161,7 @@
     });
 
     // Determine hover targets
-    const hoverEls = 'a, button, .coll-card, .ed-ph, .hp-review-card, .hero-centerpiece-img, .btn-primary, .nav-shop-btn, .coll-add-btn, .pd-btn, .hp-form-submit';
+    const hoverEls = 'a, button, .coll-card, .ed-ph, .hero-centerpiece-img, .btn-primary, .nav-shop-btn, .coll-add-btn, .pd-btn, .hp-form-submit';
 
     document.addEventListener('mouseover', e => {
       const target = e.target.closest(hoverEls);
@@ -277,13 +277,23 @@
     const hero    = qs('.hero');
     const heading = qs('.hero-heading');
     const subtitle = qs('.hero-subtitle');
-    const shopBtn = qsa('.hero-shop-desktop, .hero-shop-mobile');
+    const shopBtn = qsa('#home .btn-primary, .hero-shop-desktop, .hero-shop-mobile');
     const img     = qs('.hero-centerpiece-img');
     const glow1   = qs('.glow-radial-1');
     const glow2   = qs('.glow-radial-2');
     const reflection = qs('.hero-centerpiece-reflection');
 
-    if (!hero) return;
+    const pinWrapper = qs('.hero-pin-wrapper');
+    const mainPath = qs('#cloth-main-path');
+    const crease1  = qs('#cloth-crease-1');
+    const crease2  = qs('#cloth-crease-2');
+    const crease3  = qs('#cloth-crease-3');
+    const crease4  = qs('#cloth-crease-4');
+    const crease5  = qs('#cloth-crease-5');
+    const crease6  = qs('#cloth-crease-6');
+    const pullingHand = qs('#pulling-hand');
+    const wrinkles = qs('.cloth-wrinkles-img', pullingHand);
+    if (!hero || !pinWrapper) return;
 
     // ── Skip intro delays if the preloader has already been shown in this session ──
     const alreadySeen = sessionStorage.getItem('aw-loader-seen');
@@ -391,7 +401,7 @@
       }
 
       // Cursor parallax on hero
-      if (!isMobile()) {
+      if (!isMobile() && img) {
         hero.addEventListener('mousemove', e => {
           const rect = hero.getBoundingClientRect();
           const nx = (e.clientX - rect.left) / rect.width - 0.5;
@@ -437,16 +447,160 @@
       });
     }
 
-    // ── Hero parallax on scroll
-    ScrollTrigger.create({
-      trigger: hero,
+    // ── Hero pin transition (Curtain / Cloth Pulling Effect)
+    let heroTrigger;
+    heroTrigger = ScrollTrigger.create({
+      trigger: pinWrapper,
       start: 'top top',
       end: 'bottom top',
-      scrub: 1.5,
+      pin: true,
+      pinSpacing: false, // This enables the next section to slide over it like a curtain/cloth
+      scrub: 1.0,
+      snap: {
+        snapTo: (value) => {
+          if (value < 0.5) {
+            // Closer to the top (homepage): snap to next section (1) if scrolled down at least 10% (0.1), otherwise snap back to top (0)
+            return value >= 0.1 ? 1 : 0;
+          } else {
+            // Closer to the bottom (showcase): snap to homepage (0) if scrolled up at least 10% (progress <= 0.9), otherwise snap to showcase (1)
+            return value <= 0.9 ? 0 : 1;
+          }
+        },
+        duration: { min: 0.5, max: 0.9 },
+        delay: 0.05,
+        ease: 'power2.inOut'
+      },
+      invalidateOnRefresh: true,
       onUpdate: self => {
         const p = self.progress;
-        if (img) gsap.set(img, { y: p * -70 });
-        if (heading) gsap.set(heading, { y: p * 45, opacity: 1 - p * 0.85 });
+        // Fade out and scale down the hero contents slightly as it gets covered
+        const inner = qs('.hero-inner', hero);
+        if (inner) {
+          gsap.set(inner, {
+            opacity: 1 - p * 1.5, // fully faded by 66% progress
+            scale: 1 - p * 0.08,  // luxury depth scale
+            y: p * -60           // slide upwards
+          });
+        }
+
+        // Morph the SVG cloth curves divider based on scroll progress!
+        if (mainPath) {
+          const Y_ends = 160 - p * 160;
+          const Y1 = 160 - p * 140; // 160 -> 20
+          const Y2 = 160;
+          const Y3 = 160;
+          const Y4 = 160;
+          const Y5 = 160 - p * 140; // 160 -> 20
+          const newD = `M 0,${Y_ends} C 480,${Y1} 600,${Y2} 720,${Y3} C 840,${Y4} 960,${Y5} 1440,${Y_ends} L 1440,160 L 0,160 Z`;
+          mainPath.setAttribute('d', newD);
+        }
+
+        // Morph and fade fabric crease lines fanning from center bottom peak
+        const Y3 = 160;
+        if (crease1) {
+          const Y_mid = 160 - p * 60;   // 160 -> 100
+          const Y_end = 160 - p * 130;  // 160 -> 30
+          crease1.setAttribute('d', `M 720,${Y3} Q 580,${Y_mid} 400,${Y_end}`);
+          crease1.style.opacity = p * 0.4;
+        }
+        if (crease2) {
+          const Y_mid = 160 - p * 50;   // 160 -> 110
+          const Y_end = 160 - p * 140;  // 160 -> 20
+          crease2.setAttribute('d', `M 720,${Y3} Q 640,${Y_mid} 520,${Y_end}`);
+          crease2.style.opacity = p * 0.5;
+        }
+        if (crease5) {
+          const Y_mid = 160 - p * 45;
+          const Y_end = 160 - p * 145;
+          crease5.setAttribute('d', `M 720,${Y3} Q 680,${Y_mid} 600,${Y_end}`);
+          crease5.style.opacity = p * 0.6;
+        }
+        if (crease6) {
+          const Y_mid = 160 - p * 45;
+          const Y_end = 160 - p * 145;
+          crease6.setAttribute('d', `M 720,${Y3} Q 760,${Y_mid} 840,${Y_end}`);
+          crease6.style.opacity = p * 0.6;
+        }
+        if (crease4) {
+          const Y_mid = 160 - p * 50;   // 160 -> 110
+          const Y_end = 160 - p * 140;  // 160 -> 20
+          crease4.setAttribute('d', `M 720,${Y3} Q 800,${Y_mid} 920,${Y_end}`);
+          crease4.style.opacity = p * 0.5;
+        }
+        if (crease3) {
+          const Y_mid = 160 - p * 60;   // 160 -> 100
+          const Y_end = 160 - p * 130;  // 160 -> 30
+          crease3.setAttribute('d', `M 720,${Y3} Q 860,${Y_mid} 1040,${Y_end}`);
+          crease3.style.opacity = p * 0.4;
+        }
+
+        // Pulling hand animation (appears, grabs, pulls/stretches, then releases & fades out)
+        if (pullingHand) {
+          if (self.direction === -1) {
+            gsap.set(pullingHand, { opacity: 0 });
+            if (wrinkles) gsap.set(wrinkles, { opacity: 0, scale: 0.5 });
+          } else {
+            if (p < 0.02) {
+              gsap.set(pullingHand, { opacity: 0, y: -100, scale: 1 });
+              if (wrinkles) gsap.set(wrinkles, { opacity: 0, scale: 0.5 });
+            } else if (p < 0.2) {
+              // Fade in and reach down to grab
+              const subP = (p - 0.02) / 0.18; // 0 to 1
+              gsap.set(pullingHand, {
+                opacity: subP,
+                y: -100 + subP * 100,
+                scaleY: 1,
+                scaleX: 1
+              });
+              if (wrinkles) gsap.set(wrinkles, { opacity: 0, scale: 0.5 });
+            } else if (p < 0.85) {
+              // Pulling under load (stretch)
+              const pullP = (p - 0.2) / 0.65; // 0 to 1
+              gsap.set(pullingHand, {
+                opacity: 1,
+                y: 0,
+                scaleY: 1 + pullP * 0.15,
+                scaleX: 1 - pullP * 0.05
+              });
+              // Wrinkles grow then shrink smoothly to avoid snap near completion
+              if (wrinkles) {
+                if (p < 0.55) {
+                  const growP = (p - 0.2) / 0.35; // 0 to 1
+                  gsap.set(wrinkles, {
+                    opacity: growP * 0.8,
+                    scale: 0.4 + growP * 0.5,
+                    scaleY: 0.4 + growP * 0.6,
+                    y: growP * 15
+                  });
+                } else {
+                  const shrinkP = (p - 0.55) / 0.30; // 0 to 1
+                  gsap.set(wrinkles, {
+                    opacity: 0.8 * (1 - shrinkP),
+                    scale: 0.9 - shrinkP * 0.5,
+                    scaleY: 1.0 - shrinkP * 0.6,
+                    y: 15 - shrinkP * 15
+                  });
+                }
+              }
+            } else {
+              // Keep the hand fully visible and resting on the peak when the scroll finishes
+              gsap.set(pullingHand, {
+                opacity: 1,
+                y: 0,
+                scaleY: 1,
+                scaleX: 1
+              });
+              if (wrinkles) {
+                gsap.set(wrinkles, {
+                  opacity: 0,
+                  scale: 0.3,
+                  scaleY: 0.3,
+                  y: 0
+                });
+              }
+            }
+          }
+        }
       }
     });
   }
@@ -680,7 +834,7 @@
      9. LUXURY CARD HOVER (3D tilt + mobile touch)
   ═══════════════════════════════════════════════ */
   function initCardHover() {
-    const cards = qsa('.coll-card, .hp-review-card, .ed-ph, .aw-ingredient-card');
+    const cards = qsa('.coll-card, .ed-ph, .aw-ingredient-card');
 
     if (!isMobile()) {
       // Desktop 3D Tilt and Cursor Shadow casting
@@ -907,7 +1061,7 @@
      15. SECTION HORIZONTAL LINE REVEALS (draw-in)
   ═══════════════════════════════════════════════ */
   function initDividers() {
-    qsa('.ed-divider, .hp-reviews-section, .footer-black').forEach(el => {
+    qsa('.hp-reviews-section, .footer-black').forEach(el => {
       const line = document.createElement('div');
       line.className = 'aw-animated-divider';
       el.parentNode.insertBefore(line, el);
@@ -916,6 +1070,14 @@
         scaleX: 1, opacity: 1,
         duration: 1.5, ease: 'cubic-bezier(0.22, 1, 0.36, 1)',
         scrollTrigger: { trigger: line, start: 'top 92%' }
+      });
+    });
+
+    qsa('.ed-divider').forEach(el => {
+      gsap.fromTo(el, { scaleX: 0 }, {
+        scaleX: 1,
+        duration: 1.5, ease: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        scrollTrigger: { trigger: el, start: 'top 92%' }
       });
     });
   }
@@ -1019,12 +1181,20 @@
     const glow = qs('.aw-quote-glow');
     if (!sec || !text) return;
 
-    // Split words by space for cinematic blur-fade stagger reveal
-    const words = text.textContent.trim().split(/\s+/);
-    text.innerHTML = words.map(w => `<span class="aw-quote-word" style="display: inline-block; will-change: transform, opacity, filter;">${w}</span>`).join(' ');
+    // Split lines by <br> or newline first, then split each line by space to preserve line breaks
+    const lines = text.innerHTML.split(/<br\s*\/?>/i);
+    text.innerHTML = lines.map(line => {
+      const words = line.trim().split(/\s+/);
+      return words.map(w => `<span class="aw-quote-word" style="display: inline-block; will-change: transform, opacity, filter;">${w}</span>`).join(' ');
+    }).join('<br>');
     
     const qWords = qsa('.aw-quote-word', text);
     gsap.set(qWords, { opacity: 0, y: 40, filter: 'blur(20px)', scale: 1.1 });
+
+    const videoWraps = qsa('.aw-quote-video-wrap', sec);
+    if (videoWraps.length) {
+      gsap.set(videoWraps, { opacity: 0, y: 35, scale: 0.95 });
+    }
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -1035,6 +1205,17 @@
       }
     });
 
+    if (videoWraps.length) {
+      tl.to(videoWraps, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        stagger: 0.15
+      }, 0);
+    }
+
     tl.to(qWords, {
       opacity: 1,
       y: 0,
@@ -1043,7 +1224,7 @@
       duration: 1.4,
       stagger: 0.12,
       ease: 'power3.out'
-    });
+    }, videoWraps.length ? 0.3 : 0);
 
     // Slow scale zoom on quote during scroll
     gsap.to(text, {
@@ -1372,9 +1553,346 @@
     }, '-=0.45'); // overlap slightly for fluid entrance
   }
 
+  function initShowcaseEntrance() {
+    const sec = qs('.flavour-showcase-section');
+    if (!sec) return;
+    const radial = qs('.showcase-glow-radial', sec);
+    const viewport = qs('.showcase-carousel-viewport', sec);
+    const header = qs('.showcase-header', sec);
+    const labels = qsa('.showcase-label, .showcase-title, .showcase-subtitle', header);
+    const arrows = qsa('.showcase-side-arrow', sec);
+
+    // Create entry transition timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sec,
+        start: 'top 85%', // Trigger as soon as the showcase enters the screen
+        toggleActions: 'play none none reverse'
+      }
+    });
+
+    // 1. Fade in and scale the warm background glow
+    if (radial) {
+      tl.fromTo(radial, {
+        opacity: 0,
+        scale: 0.78
+      }, {
+        opacity: 1,
+        scale: 1.15,
+        duration: 1.6,
+        ease: 'power2.out'
+      }, 0);
+    }
+
+    // 2. Stagger reveal the header texts (label, title, subtitle)
+    if (labels.length) {
+      tl.fromTo(labels, {
+        y: 30,
+        opacity: 0,
+        filter: 'blur(10px)'
+      }, {
+        y: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 1.1,
+        stagger: 0.12,
+        ease: 'power3.out'
+      }, 0.15);
+    }
+
+    // 3. Smooth slide up and fade in for the viewport container
+    if (viewport) {
+      tl.fromTo(viewport, {
+        y: 65,
+        opacity: 0,
+        filter: 'blur(12px)'
+      }, {
+        y: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 1.4,
+        ease: 'power3.out'
+      }, 0.3);
+    }
+
+    // 4. Slide in the side navigation arrows from the sides
+    if (arrows.length) {
+      const prevBtn = arrows[0];
+      const nextBtn = arrows[1];
+
+      if (prevBtn) {
+        tl.fromTo(prevBtn, {
+          x: -25,
+          opacity: 0
+        }, {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        }, 0.75);
+      }
+
+      if (nextBtn) {
+        tl.fromTo(nextBtn, {
+          x: 25,
+          opacity: 0
+        }, {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        }, 0.75);
+      }
+    }
+
+    // 5. Subtle scroll-linked vertical shifting of the glow orb for deep parallax feeling
+    if (radial) {
+      gsap.to(radial, {
+        y: -120,
+        scrollTrigger: {
+          trigger: sec,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      });
+    }
+  }
+
   /* ═══════════════════════════════════════════════
      INIT
   ═══════════════════════════════════════════════ */
+  /* ═══════════════════════════════════════════════
+     WELLNESS SUBSCRIPTION RITUAL SECTION LOGIC
+  ═══════════════════════════════════════════════ */
+  function initSubscription() {
+    const subSec = document.getElementById('wellness-subscription');
+    if (!subSec) return;
+
+    // State variables
+    let currentPlanId = 'monthly';
+    let currentPlanBottles = 30;
+    let currentPlanPrice = 2990;
+    let currentPlanBasePrice = 3300;
+    let currentFrequency = '15 Days';
+    let currentFlavors = new Set(['Mango']);
+    let latestFlavor = 'Mango';
+    let previousSavings = 310;
+
+    // DOM selectors
+    const planCards = qsa('.sub-plan-card', subSec);
+    const flavorItems = qsa('.flavor-select-item', subSec);
+    const freqRadios = qsa('input[name="freq-radio"]', subSec);
+    const ctaBtn = document.getElementById('sub-primary-cta');
+
+    // 1. Plan Cards Selection
+    planCards.forEach(card => {
+      card.addEventListener('click', () => {
+        planCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+
+        currentPlanId = card.dataset.planId;
+        currentPlanBottles = parseInt(card.dataset.bottles);
+        currentPlanPrice = parseInt(card.dataset.price);
+        currentPlanBasePrice = parseInt(card.dataset.basePrice);
+
+        updateTotalsAndSavings();
+      });
+    });
+
+    // 2. Flavor Items Selection (Mix & Match)
+    flavorItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const flavor = item.dataset.flavor;
+        const color = item.dataset.color;
+        const img = item.dataset.img;
+
+        if (currentFlavors.has(flavor)) {
+          // Keep at least one flavor selected
+          if (currentFlavors.size > 1) {
+            currentFlavors.delete(flavor);
+            item.classList.remove('selected');
+          }
+        } else {
+          currentFlavors.add(flavor);
+          item.classList.add('selected');
+          latestFlavor = flavor;
+          updateFloatingBottle(img, flavor, color);
+        }
+
+        updateTotalsAndSavings();
+      });
+    });
+
+    // 3. Frequency Options
+    freqRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          currentFrequency = radio.value;
+          updateTotalsAndSavings();
+        }
+      });
+    });
+
+    // 4. Update Floating Bottle
+    function updateFloatingBottle(imgSrc, flavorName, glowColor) {
+      const img = document.getElementById('sub-floating-bottle-img');
+      const lbl = document.getElementById('sub-bottle-flavor-name');
+      const glow = document.getElementById('sub-glass-glow');
+
+      if (img && imgSrc) {
+        if (window.gsap) {
+          gsap.timeline()
+            .to(img, { scale: 0.8, opacity: 0.5, duration: 0.15, onComplete: () => {
+              img.src = imgSrc;
+              if (lbl) lbl.textContent = flavorName;
+              if (glow) glow.style.background = `radial-gradient(circle, ${glowColor} 0%, transparent 70%)`;
+            }})
+            .to(img, { scale: 1, opacity: 1, duration: 0.25, ease: 'back.out(1.2)' });
+        } else {
+          img.src = imgSrc;
+          if (lbl) lbl.textContent = flavorName;
+          if (glow) glow.style.background = `radial-gradient(circle, ${glowColor} 0%, transparent 70%)`;
+        }
+      }
+    }
+
+    // 5. Update dynamic summary totals & run savings count-up animation
+    function updateTotalsAndSavings() {
+      const bottlesEl = document.getElementById('summary-meta-bottles');
+      const freqEl = document.getElementById('summary-meta-freq');
+      const flavorsEl = document.getElementById('summary-flavors-list');
+      const priceEl = document.getElementById('summary-final-price');
+      const savingsEl = document.getElementById('summary-savings-val');
+      const savingsCont = document.getElementById('summary-savings-container');
+
+      if (bottlesEl) bottlesEl.textContent = `${currentPlanBottles} Bottles`;
+      if (freqEl) freqEl.textContent = currentFrequency === 'Month' ? 'Every Month' : `Every ${currentFrequency}`;
+      if (flavorsEl) flavorsEl.textContent = `Flavours: ${Array.from(currentFlavors).join(', ')}`;
+      if (priceEl) priceEl.textContent = `₹${currentPlanPrice.toLocaleString('en-IN')}`;
+
+      const targetSavings = currentPlanBasePrice - currentPlanPrice;
+
+      if (targetSavings > 0) {
+        if (savingsCont) savingsCont.style.display = 'flex';
+
+        if (window.gsap) {
+          const counterObj = { val: previousSavings };
+          gsap.to(counterObj, {
+            val: targetSavings,
+            duration: 0.6,
+            ease: 'power2.out',
+            onUpdate: () => {
+              if (savingsEl) savingsEl.textContent = `₹${Math.round(counterObj.val).toLocaleString('en-IN')}`;
+            },
+            onComplete: () => {
+              previousSavings = targetSavings;
+            }
+          });
+        } else {
+          if (savingsEl) savingsEl.textContent = `₹${targetSavings.toLocaleString('en-IN')}`;
+          previousSavings = targetSavings;
+        }
+      } else {
+        if (savingsCont) savingsCont.style.display = 'none';
+        previousSavings = 0;
+      }
+    }
+
+    // 6. Checkout Integration on click CTA
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', () => {
+        const flavorsList = Array.from(currentFlavors).join(', ');
+        
+        // Build premium subscription cart item
+        const subItem = {
+          id: 'sub-' + Date.now(),
+          name: `Aarwins Subscription: ${currentPlanId === 'monthly' ? 'Monthly Ritual' : currentPlanId === 'wellness' ? 'Wellness Pack' : 'Family Ritual'}`,
+          variant: `${currentPlanBottles} Bottles • ${flavorsList} • Frequency: ${currentFrequency}`,
+          price: Math.round(currentPlanPrice),
+          quantity: 1,
+          imageUrl: latestFlavor === 'Mango' ? '/images/tin-mago.png' :
+                    latestFlavor === 'Orange' ? '/images/tin-orange.png' :
+                    latestFlavor === 'Watermelon' ? '/images/tin-watermelon.png' :
+                    latestFlavor === 'Lychee' ? '/images/tin-lychee.png' :
+                    latestFlavor === 'Blueberry' ? '/images/tin-blueberry.png' :
+                    '/images/tin-avocado.png'
+        };
+
+        // Add to cart in localStorage
+        localStorage.setItem('aarwins_cart', JSON.stringify([subItem]));
+        
+        // Dispatch event & navigate to checkout
+        window.dispatchEvent(new Event('cartUpdated'));
+        window.location.href = '/checkout';
+      });
+    }
+
+    // 7. Scroll trigger animations (reduced motion compatible)
+    if (window.gsap && window.ScrollTrigger) {
+      // Fade in left and right columns
+      gsap.fromTo(qsa('.anim-sub-reveal', subSec),
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: subSec,
+            start: 'top 75%'
+          }
+        }
+      );
+
+      // Levitation for floating bottle image
+      const bottle = document.getElementById('sub-floating-bottle-img');
+      if (bottle) {
+        gsap.to(bottle, {
+          y: -12,
+          duration: 2.2,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut'
+        });
+
+        // Rotate bottle subtly on scroll
+        gsap.to(bottle, {
+          rotate: 12,
+          scrollTrigger: {
+            trigger: subSec,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2
+          }
+        });
+      }
+
+      // Social Proof count-up entrance
+      const proofSec = document.querySelector('.sub-social-proof');
+      if (proofSec) {
+        const bottlesObj = { val: 0 };
+        const bottlesValEl = document.getElementById('proof-val-bottles');
+        
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: proofSec,
+            start: 'top 90%',
+            once: true
+          }
+        }).to(bottlesObj, {
+          val: 10000,
+          duration: 1.8,
+          ease: 'power2.out',
+          onUpdate: () => {
+            if (bottlesValEl) bottlesValEl.textContent = `${Math.round(bottlesObj.val).toLocaleString('en-IN')}+`;
+          }
+        });
+      }
+    }
+  }
+
   function init() {
     // Wait for DOM + GSAP
     if (typeof gsap === 'undefined') return;
@@ -1407,11 +1925,13 @@
       
       // Initialize the four new cinematic sections
       initSection1Quote();
+      initShowcaseEntrance(); // Seamless transition from hero to showcase
       initSection2Ingredients();
       initSection3ProductFocus();
       initSection4Divider();
     }
 
+    initSubscription();
     initBackTop();
 
     // Refresh ScrollTrigger after fonts load

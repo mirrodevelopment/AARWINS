@@ -40,13 +40,23 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
 body {
   font-family: var(--font-body);
   background: var(--white);
   color: var(--dark);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
   -webkit-font-smoothing: antialiased;
+}
+#app-wrapper {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  position: relative !important;
 }
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
@@ -64,6 +74,7 @@ button { font-family: inherit; cursor: pointer; }
 .btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   height: 54px;
   padding: 0 32px;
@@ -189,11 +200,12 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-display);
+  font-family: "Futura Display", "Futura-Display", "Futura", "Jost", "League Spartan", var(--font-display), sans-serif !important;
   font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-weight: 900 !important;
+  letter-spacing: 0.5px !important;
   color: #000000 !important;
+  text-transform: uppercase !important;
 }
 
 .nav-links {
@@ -224,6 +236,13 @@ button { font-family: inherit; cursor: pointer; }
 
 .nav-links a:hover { color: #fff; }
 .nav-links a:hover::after { width: 100%; }
+.nav-links a.active {
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+.nav-links a.active::after {
+  width: 100% !important;
+}
 
 .nav-shop-btn {
   display: inline-flex;
@@ -552,95 +571,44 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: 0 0 10px #3DF2D7 !important;
 }
 
-/* 3. Reviews - Soft Gold */
-.drawer-nav-item:nth-child(3) .menu-icon {
-  stroke: #FFE066 !important;
-}
-.drawer-nav-item:nth-child(3):hover .menu-icon {
-  stroke: #FFE066 !important;
-  transform: scale(1.15) !important;
-  filter: drop-shadow(0 0 8px rgba(255, 224, 102, 0.85)) !important;
-}
-.drawer-nav-item:nth-child(3):hover {
-  text-shadow: 0 0 20px rgba(255, 224, 102, 0.6) !important;
-}
-.drawer-nav-item:nth-child(3)::after {
-  background: #FFE066 !important;
-  box-shadow: 0 0 10px #FFE066 !important;
-}
-
-/* 4. Contact - Soft Coral */
+/* 3. Account - Soft Lavender */
 .drawer-nav-item:nth-child(4) .menu-icon {
-  stroke: #FFA885 !important;
-}
-.drawer-nav-item:nth-child(4):hover .menu-icon {
-  stroke: #FFA885 !important;
-  transform: scale(1.15) !important;
-  filter: drop-shadow(0 0 8px rgba(255, 168, 133, 0.85)) !important;
-}
-.drawer-nav-item:nth-child(4):hover {
-  text-shadow: 0 0 20px rgba(255, 168, 133, 0.6) !important;
-}
-.drawer-nav-item:nth-child(4)::after {
-  background: #FFA885 !important;
-  box-shadow: 0 0 10px #FFA885 !important;
-}
-
-/* 5. Account - Soft Lavender */
-.drawer-nav-item:nth-child(6) .menu-icon {
   stroke: #C7B9FF !important;
 }
-.drawer-nav-item:nth-child(6):hover .menu-icon {
+.drawer-nav-item:nth-child(4):hover .menu-icon {
   stroke: #C7B9FF !important;
   transform: scale(1.15) !important;
   filter: drop-shadow(0 0 8px rgba(199, 185, 255, 0.85)) !important;
 }
-.drawer-nav-item:nth-child(6):hover {
+.drawer-nav-item:nth-child(4):hover {
   text-shadow: 0 0 20px rgba(199, 185, 255, 0.6) !important;
 }
-.drawer-nav-item:nth-child(6)::after {
+.drawer-nav-item:nth-child(4)::after {
   background: #C7B9FF !important;
   box-shadow: 0 0 10px #C7B9FF !important;
 }
 
-/* 6. Cart - Lime Green */
-.drawer-nav-item:nth-child(7) .menu-icon {
+/* 4. Cart - Lime Green */
+.drawer-nav-item:nth-child(5) .menu-icon {
   stroke: #9EF01A !important;
 }
-.drawer-nav-item:nth-child(7):hover .menu-icon {
+.drawer-nav-item:nth-child(5):hover .menu-icon {
   stroke: #9EF01A !important;
   transform: scale(1.15) !important;
   filter: drop-shadow(0 0 8px rgba(158, 240, 26, 0.85)) !important;
 }
-.drawer-nav-item:nth-child(7):hover {
+.drawer-nav-item:nth-child(5):hover {
   text-shadow: 0 0 20px rgba(158, 240, 26, 0.6) !important;
 }
-.drawer-nav-item:nth-child(7)::after {
+.drawer-nav-item:nth-child(5)::after {
   background: #9EF01A !important;
   box-shadow: 0 0 10px #9EF01A !important;
-}
-
-/* 7. Wishlist - Soft Pink */
-.drawer-nav-item:nth-child(8) .menu-icon {
-  stroke: #FF8FAB !important;
-}
-.drawer-nav-item:nth-child(8):hover .menu-icon {
-  stroke: #FF8FAB !important;
-  transform: scale(1.15) !important;
-  filter: drop-shadow(0 0 8px rgba(255, 143, 171, 0.85)) !important;
-}
-.drawer-nav-item:nth-child(8):hover {
-  text-shadow: 0 0 20px rgba(255, 143, 171, 0.6) !important;
-}
-.drawer-nav-item:nth-child(8)::after {
-  background: #FF8FAB !important;
-  box-shadow: 0 0 10px #FF8FAB !important;
 }
 
 .drawer-nav-divider {
   height: 1px;
   background: rgba(255, 255, 255, 0.08); /* subtle divider line with low opacity */
-  margin: 18px 0;
+  margin: 4px 0;
   opacity: 0;
   transform: scaleX(0);
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1696,7 +1664,7 @@ body.drawer-open .navbar > *:not(#nav-hamburger) {
   color: #fff;
   padding: 14px 28px;
   border-radius: var(--radius-pill);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   box-shadow: var(--shadow-lg);
   z-index: 9999;
@@ -1824,14 +1792,18 @@ body.drawer-open .navbar > *:not(#nav-hamburger) {
 .mcp-close {
   background: none;
   border: none;
-  font-size: 20px;
   cursor: pointer;
   color: #17313B;
   opacity: 0.6;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
 }
 .mcp-close:hover {
   opacity: 1;
+  transform: rotate(90deg);
 }
 .mcp-body {
   flex-grow: 1;

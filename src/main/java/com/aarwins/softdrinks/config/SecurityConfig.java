@@ -33,7 +33,7 @@ public class SecurityConfig {
                 // Public HTML pages and dynamic routes
                 .requestMatchers("/product/**", "/product-details.html").permitAll()
                 .requestMatchers("/collections", "/collections.html").permitAll()
-                .requestMatchers("/philosophy", "/philosophy.html").permitAll()
+                .requestMatchers("/checkout", "/checkout/**", "/checkout.html").permitAll()
 
                 // Static frontend resources
                 .requestMatchers(

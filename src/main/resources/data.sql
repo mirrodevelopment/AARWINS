@@ -5,26 +5,26 @@
 -- Clear existing products to ensure the new premium 6 flavours are active
 DELETE FROM products;
 
--- 1. Chocolate Coconut
+-- 1. Watermelon Coconut
 INSERT INTO products (id, name, description, image_url, price, category, ingredients, created_at)
-VALUES (1, 'Chocolate Coconut Wellness', 'A rich, indulgent fusion where the earthiness of raw cacao meets the silky sweetness of young coconut. Crafted for moments of calm restoration — a daily ritual reimagined as a luxury experience.', 'https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop', 3.99, 'Wellness', 'Young Coconut Water, Raw Cacao Extract, Coconut Nectar, Sea Salt', NOW());
+VALUES (1, 'Watermelon Coconut Elixir', 'Light, refreshing and crafted for warm-weather hydration. Freshly harvested watermelons, bursting with juicy sweetness. Cool, hydrating, and refreshingly pure — the ultimate summer indulgence.', '/images/collectionpage_hero/melonbottle.png', 199.00, 'Wellness', 'Young Coconut Water, Watermelon Juice, L-Citrulline, Sea Salt', NOW());
 
--- 2. Coconut Coffee
+-- 2. Orange Coconut
 INSERT INTO products (id, name, description, image_url, price, category, ingredients, created_at)
-VALUES (2, 'Coconut Coffee Energy', 'Cold-extracted arabica meets the cooling clarity of pure young coconut water. A sophisticated pairing that delivers a sustained, clean energy — without the jitter. For the mindful go-getter.', 'https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop', 4.49, 'Energy', 'Coconut Water, Cold Brew Coffee Extract, Natural Caffeine, L-Theanine', NOW());
+VALUES (2, 'Orange Coconut Elixir', 'A refreshing citrus-forward blend designed for daily vitality. Bursting with the brightness of sun-ripened oranges. Crisp, zesty, and refreshingly pure — a citrus celebration in every sip.', '/images/collectionpage_hero/orangebottle.png', 229.00, 'Energy', 'Young Coconut Water, Cold-Pressed Orange Juice, Camu Camu Extract, Vitamin C', NOW());
 
--- 3. Matcha Coconut
+-- 3. Blueberry Coconut
 INSERT INTO products (id, name, description, image_url, price, category, ingredients, created_at)
-VALUES (3, 'Matcha Coconut Balance', 'Ceremonial-grade matcha, dissolved in living coconut water and lightly sweetened with organic coconut sugar. A ritual of calm focus — the Japanese art of presence, distilled into a bottle.', 'https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop', 4.99, 'Balance', 'Coconut Water, Ceremonial Matcha, Organic Coconut Sugar, Chlorophyll', NOW());
+VALUES (3, 'Blueberry Coconut Elixir', 'A modern wellness blend combining berry antioxidants with coconut purity. Handpicked juicy blueberries bursting with sweet berry goodness. Rich, vibrant, refreshing — a fruity delight in every sip.', '/images/collectionpage_hero/blueberrybottle.png', 249.00, 'Balance', 'Young Coconut Water, Wild Blueberry Juice, L-Theanine, Elderberry', NOW());
 
--- 4. Lavender Coconut
+-- 4. Lychee Coconut
 INSERT INTO products (id, name, description, image_url, price, category, ingredients, created_at)
-VALUES (4, 'Lavender Coconut Calm', 'Where botanical serenity meets tropical purity. Culinary lavender water fused with young coconut — a formula designed to soothe the nervous system as much as it nourishes the body. Evening ritual, perfected.', 'https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop', 4.49, 'Calm', 'Coconut Water, Culinary Lavender Extract, Chamomile Flower, Magnesium', NOW());
+VALUES (4, 'Lychee Coconut Elixir', 'Elegant floral sweetness balanced with pure coconut hydration. Exotic sweet lychees picked for their delicate flavor. Floral, juicy, refreshing — a taste of paradise in every sip.', '/images/collectionpage_hero/lycheebottle.png', 229.00, 'Calm', 'Young Coconut Water, Organic Lychee Extract, White Tea Infusion, Zinc', NOW());
 
--- 5. Coconut Protein+
+-- 5. Avocado Coconut
 INSERT INTO products (id, name, description, image_url, price, category, ingredients, created_at)
-VALUES (5, 'Coconut Protein+', 'Eleven grams of plant-sourced protein, suspended in the purest coconut water, elevated with vanilla bean and a trace of Himalayan salt. Performance nutrition, packaged in the language of luxury.', 'https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop', 4.99, 'Protein', 'Coconut Water, Plant-based Pea Protein, Organic Vanilla Bean, Himalayan Pink Salt', NOW());
+VALUES (5, 'Avocado Coconut Elixir', 'A creamy functional blend supporting wellness and sustained energy. Creamy fresh avocados, naturally smooth and nourishing. Rich, velvety, satisfying — a wholesome treat in every sip.', '/images/collectionpage_hero/Avacadobottle.png', 249.00, 'Protein', 'Young Coconut Water, Avocado Oil Extract, MCTs, Plant Protein', NOW());
 
--- 6. Coconut Churro
+-- 6. Mango Coconut
 INSERT INTO products (id, name, description, image_url, price, category, ingredients, created_at)
-VALUES (6, 'Coconut Churro Dessert', 'Sun-baked cinnamon and vanilla, softened by the lightness of young coconut. A celebration of tropical dessert culture — indulgent, joyful, and surprisingly clean.', 'https://images.unsplash.com/photo-1625940952324-7091206f1574?q=80&w=600&auto=format&fit=crop', 5.49, 'Dessert', 'Coconut Water, Cinnamon Bark Extract, Vanilla Bean, Organic Cane Sugar', NOW());
+VALUES (6, 'Mango Coconut Elixir', 'Bright tropical sweetness crafted from young coconut water and ripe mango notes. Sun-kissed mangoes harvested at perfect ripeness. Luscious, smooth, and naturally sweet — sunshine in every bottle.', '/images/collectionpage_hero/mangobottle.png', 299.00, 'Dessert', 'Young Coconut Water, Natural Mango Purée, Vitamin C, Electrolytes', NOW());

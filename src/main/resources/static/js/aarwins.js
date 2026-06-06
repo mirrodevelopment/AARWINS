@@ -2,7 +2,7 @@
    AARWINS — Site JavaScript & Cinematic Engine
    ════════════════════════════════════════════════ */
 
-document.addEventListener('DOMContentLoaded', function () {
+function initSite() {
 
   // 1. DYNAMICALLY INJECT OVERLAYS & ELEMENTS
   injectCinematicElements();
@@ -350,7 +350,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSite);
+} else {
+  initSite();
+}
 
 /* ── Cinematic Elements Injection ── */
 function injectCinematicElements() {

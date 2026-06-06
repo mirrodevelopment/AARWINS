@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aarwins Checkout - Complete your luxury botanical coconut refreshment order.">
+  <title>Aarwins — Checkout</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317313B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5'/></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="/css/aarwins.css?v=2.0"/>
+  <link rel="stylesheet" href="/css/editorial.css?v=2.0"/>
+  <link rel="stylesheet" href="/css/luxury-spacing.css"/>
+  <link rel="stylesheet" href="/css/cart-checkout.css"/>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="checkout-body">
+
+  <div id="checkout-main-content">
+    <!-- ════════ CHECKOUT HEADER ════════ -->
+    <header class="checkout-header">
+      <div class="checkout-header-inner">
+        <a href="/" class="checkout-logo-link">
+          <img src="/images/logo.png" alt="Aarwins Logo" style="height: 44px; width: 44px; border-radius: 50%; object-fit: contain;">
+          <span>AARWINS</span>
+        </a>
+        <a href="/collections" class="checkout-back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Collections
+        </a>
+      </div>
+    </header>
+
+    <!-- ════════ STICKY PROGRESS CONNECTOR INDICATOR ════════ -->
+    <div class="chk-progress-tracker">
+      <div class="chk-progress-step completed" id="step-indicator-cart">
+        <span class="chk-progress-step-num">1</span> Cart
+      </div>
+      <div class="chk-progress-connector active" id="step-connector-1"></div>
+      <div class="chk-progress-step active" id="step-indicator-details">
+        <span class="chk-progress-step-num">2</span> Customer Details
+      </div>
+      <div class="chk-progress-connector" id="step-connector-2"></div>
+      <div class="chk-progress-step" id="step-indicator-payment">
+        <span class="chk-progress-step-num">3</span> Delivery & Payment
+      </div>
+      <div class="chk-progress-connector" id="step-connector-3"></div>
+      <div class="chk-progress-step" id="step-indicator-confirmed">
+        <span class="chk-progress-step-num">4</span> Order Confirmed
+      </div>
+    </div>
+
+    <!-- ════════ STEP 1: CUSTOMER & DELIVERY ADDRESS PANEL ════════ -->
+    <div class="chk-step-panel chk-step-panel-1 active" id="checkout-step-1">
+      <main class="checkout-grid">
+        <!-- Left Side: Forms -->
+        <div class="checkout-left">
+          
+          <!-- Customer Information Card -->
+          <section class="checkout-section-card">
+            <h2 class="checkout-section-title">Customer Information</h2>
+            <form id="contact-info-form">
+              <div class="form-grid">
+                <div class="form-group-val" id="fg-name">
+                  <label for="cust-name">Full Name</label>
+                  <input type="text" id="cust-name" class="chk-input" placeholder="e.g. Rohan Sharma" required autocomplete="name">
+                  <span class="chk-error-text">Please enter your name.</span>
+                </div>
+                <div class="form-group-val" id="fg-phone">
+                  <label for="cust-phone">Mobile Number</label>
+                  <input type="tel" id="cust-phone" class="chk-input" placeholder="e.g. 9876543210" required autocomplete="tel" pattern="[6-9][0-9]{9}">
+                  <span class="chk-error-text">Enter a valid 10-digit mobile number.</span>
+                </div>
+              </div>
+              <div class="form-grid" style="margin-top: 20px;">
+                <div class="form-group-val" id="fg-email" style="grid-column: 1 / -1;">
+                  <label for="cust-email">Email Address</label>
+                  <input type="email" id="cust-email" class="chk-input" placeholder="e.g. rohan@gmail.com" required autocomplete="email">
+                  <span class="chk-error-text">Please enter a valid email address.</span>
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <!-- Delivery Address CRUD Card -->
+          <section class="checkout-section-card">
+            <h2 class="checkout-section-title">Delivery Address</h2>
+            
+            <!-- Address Cards Grid -->
+            <div class="address-cards-list" id="address-cards-list"></div>
+            
+            <button type="button" class="address-new-trigger-btn" id="address-new-trigger-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Add New Address
+            </button>
+
+            <!-- Delivery Estimate info badge -->
+            <div class="delivery-estimate-lbl">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Delivery to Coimbatore: Expected Delivery in 2–4 Business Days</span>
+            </div>
+
+            <!-- Address CRUD Form Drawer/Popup (Hidden initially) -->
+            <div id="address-form-container" style="display: none; margin-top: 35px; border-top: 1px solid var(--color-border-light); padding-top: 35px;">
+              <h3 class="checkout-section-title" id="address-form-title" style="font-size: 18px; margin-bottom: 20px;">Add New Address</h3>
+              <form id="address-crud-form">
+                <input type="hidden" id="address-id">
+                <div class="form-grid">
+                  <div class="form-group-val" id="fga-name">
+                    <label for="addr-name">Full Name</label>
+                    <input type="text" id="addr-name" class="chk-input" required placeholder="e.g. Rohan Sharma">
+                    <span class="chk-error-text">Please enter the name.</span>
+                  </div>
+                  <div class="form-group-val" id="fga-phone">
+                    <label for="addr-phone">Phone Number</label>
+                    <input type="tel" id="addr-phone" class="chk-input" required placeholder="e.g. 9876543210" pattern="[6-9][0-9]{9}">
+                    <span class="chk-error-text">Please enter a 10-digit phone number.</span>
+                  </div>
+                </div>
+                <div class="form-grid" style="margin-top: 15px;">
+                  <div class="form-group-val" id="fga-house">
+                    <label for="addr-house">Address Line 1</label>
+                    <input type="text" id="addr-house" class="chk-input" required placeholder="Flat / House No., Building name">
+                    <span class="chk-error-text">Address line 1 is required.</span>
+                  </div>
+                  <div class="form-group-val" id="fga-street">
+                    <label for="addr-street">Address Line 2</label>
+                    <input type="text" id="addr-street" class="chk-input" required placeholder="Street name, Sector, Area">
+                    <span class="chk-error-text">Address line 2 is required.</span>
+                  </div>
+                </div>
+                <div class="form-grid" style="margin-top: 15px;">
+                  <div class="form-group-val" id="fga-area">
+                    <label for="addr-area">Landmark</label>
+                    <input type="text" id="addr-area" class="chk-input" placeholder="e.g. Near Metro Station">
+                  </div>
+                  <div class="form-group-val" id="fga-city">
+                    <label for="addr-city">City</label>
+                    <input type="text" id="addr-city" class="chk-input" required placeholder="e.g. Coimbatore">
+                    <span class="chk-error-text">Please enter the city.</span>
+                  </div>
+                </div>
+                <div class="form-grid" style="margin-top: 15px;">
+                  <div class="form-group-val" id="fga-state">
+                    <label for="addr-state">State</label>
+                    <input type="text" id="addr-state" class="chk-input" required placeholder="e.g. Tamil Nadu">
+                    <span class="chk-error-text">Please enter the state.</span>
+                  </div>
+                  <div class="form-group-val" id="fga-pincode">
+                    <label for="addr-pincode">Pincode</label>
+                    <input type="text" id="addr-pincode" class="chk-input" required placeholder="e.g. 641001" pattern="[0-9]{6}">
+                    <span class="chk-error-text">Enter a valid 6-digit pincode.</span>
+                  </div>
+                </div>
+                <div style="margin-top: 15px; display: flex; align-items: center; gap: 8px;">
+                  <input type="checkbox" id="addr-default" style="cursor: pointer;">
+                  <label for="addr-default" style="font-size: 13px; cursor: pointer; color: var(--color-neutral-gray);">Set as Default Address</label>
+                </div>
+                <div style="margin-top: 25px; display: flex; gap: 10px;">
+                  <button type="submit" class="upi-verify-btn" style="height: 40px; background: var(--color-luxury-green);">Save Address</button>
+                  <button type="button" class="upi-verify-btn" id="address-form-cancel" style="height: 40px; background: transparent; border: 1px solid rgba(23,49,59,0.2); color: var(--color-tropical-dark);">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Side: Summary Sticky -->
+        <div class="checkout-right">
+          <section class="checkout-summary-card">
+            <h2 class="checkout-section-title" style="border-bottom: 1px solid var(--color-border-light); padding-bottom: 15px; margin-bottom: 25px;">Order Summary</h2>
+            
+            <div class="summary-items-list" id="summary-items-list-1"></div>
+
+            <div class="mcp-summary-rows">
+              <div class="mcp-total-row">
+                <span class="mcp-total-label">Subtotal</span>
+                <span class="mcp-total-value" id="summary-subtotal-1">₹0.00</span>
+              </div>
+              <div class="mcp-total-row">
+                <span class="mcp-total-label">GST (18%)</span>
+                <span class="mcp-total-value" id="summary-gst-1">₹0.00</span>
+              </div>
+              <div class="mcp-total-row">
+                <span class="mcp-total-label">Shipping</span>
+                <span class="mcp-total-value" id="summary-shipping-1">₹50.00</span>
+              </div>
+              <hr class="mcp-summary-divider">
+              <div class="mcp-total-row grand-total">
+                <span class="mcp-total-label">Total</span>
+                <span class="mcp-total-value grand" id="summary-grand-total-1">₹0.00</span>
+              </div>
+            </div>
+
+            <button class="checkout-place-order-btn" id="step1-continue-btn" style="margin-top: 20px;">CONTINUE TO DELIVERY</button>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- ════════ STEP 2: DELIVERY METHOD & PAYMENT PANEL ════════ -->
+    <div class="chk-step-panel chk-step-panel-2" id="checkout-step-2">
+      <main class="checkout-grid">
+        <!-- Left Side: Methods and Modes -->
+        <div class="checkout-left">
+          
+          <!-- Delivery Methods selection -->
+          <section class="checkout-section-card">
+            <h2 class="checkout-section-title">Delivery Method</h2>
+            <div class="delivery-options-grid">
+              
+              <div class="delivery-option-card selected" data-shipping-id="standard" data-price="0">
+                <div class="delivery-option-details">
+                  <div class="delivery-tier-title">Standard Delivery</div>
+                  <div class="delivery-tier-eta">3-5 Days</div>
+                </div>
+                <div class="delivery-tier-price">FREE</div>
+              </div>
+              
+              <div class="delivery-option-card" data-shipping-id="express" data-price="99">
+                <div class="delivery-option-details">
+                  <div class="delivery-tier-title">Express Delivery</div>
+                  <div class="delivery-tier-eta">1-2 Days</div>
+                </div>
+                <div class="delivery-tier-price">₹99</div>
+              </div>
+
+              <div class="delivery-option-card" data-shipping-id="priority" data-price="199">
+                <div class="delivery-option-details">
+                  <div class="delivery-tier-title">Priority Delivery</div>
+                  <div class="delivery-tier-eta">Same Day (if available)</div>
+                </div>
+                <div class="delivery-tier-price">₹199</div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Payment modes selection -->
+          <section class="checkout-section-card">
+            <h2 class="checkout-section-title">Payment Mode</h2>
+            <div class="payment-methods-stack">
+              
+              <!-- UPI Payment -->
+              <div class="payment-selector selected" data-method="upi">
+                <input type="radio" name="payment-method" id="pay-upi" checked style="cursor: pointer;">
+                <span class="delivery-tier-title">UPI Payment (GPay, PhonePe, Paytm, BHIM)</span>
+              </div>
+              <div class="payment-details-panel active" id="upi-details-panel">
+                <div class="upi-form-wrapper">
+                  <div class="upi-input-row">
+                    <div class="form-group-val" style="flex-grow: 1;" id="fg-upi-id">
+                      <input type="text" id="upi-id-input" class="chk-input" placeholder="Enter UPI ID (e.g. name@okaxis)">
+                      <span class="chk-error-text" id="upi-error-msg">Please enter a valid UPI ID (containing @).</span>
+                    </div>
+                    <button type="button" class="upi-verify-btn" id="upi-verify-btn">Verify</button>
+                  </div>
+                  
+                  <!-- QR Code dynamic simulation -->
+                  <div class="upi-qr-box">
+                    <div class="upi-qr-code-canvas" id="upi-qr-canvas">
+                      <svg width="110" height="110" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="5" y="5" width="25" height="25" rx="2"></rect>
+                        <rect x="10" y="10" width="15" height="15" fill="currentColor"></rect>
+                        <rect x="70" y="5" width="25" height="25" rx="2"></rect>
+                        <rect x="75" y="10" width="15" height="15" fill="currentColor"></rect>
+                        <rect x="5" y="70" width="25" height="25" rx="2"></rect>
+                        <rect x="10" y="75" width="15" height="15" fill="currentColor"></rect>
+                        <path d="M 40 10 L 55 10 L 55 25 M 40 40 L 40 55 M 50 50 L 60 50 L 60 65 L 50 65 Z M 75 45 L 85 45 L 85 60 M 75 75 L 85 75 M 45 80 L 45 90 L 60 90" stroke-linecap="round"></path>
+                      </svg>
+                    </div>
+                    <span class="upi-qr-text">Scan to pay instantly</span>
+                    <div class="upi-app-badges">
+                      <span class="upi-badge-pill">GPay</span>
+                      <span class="upi-badge-pill">PhonePe</span>
+                      <span class="upi-badge-pill">Paytm</span>
+                      <span class="upi-badge-pill">BHIM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cash on Delivery -->
+              <div class="payment-selector" data-method="cod">
+                <input type="radio" name="payment-method" id="pay-cod" style="cursor: pointer;">
+                <span class="delivery-tier-title">Cash on Delivery (COD)</span>
+              </div>
+              <div class="payment-details-panel" id="cod-details-panel">
+                <p style="font-size: 13px; color: var(--color-neutral-gray); line-height: 1.5; margin: 0;">
+                  Pay in cash or digital code on receipt. Note: a convenience fee of <strong>₹30</strong> applies for COD processing.
+                </p>
+              </div>
+
+              <!-- Card Payment (Coming Soon) -->
+              <div class="payment-selector disabled" data-method="card" style="opacity: 0.5; cursor: not-allowed;">
+                <input type="radio" name="payment-method" id="pay-card" disabled style="cursor: not-allowed;">
+                <span class="delivery-tier-title" style="color: var(--color-neutral-gray);">Card Payment (Credit/Debit) — Coming Soon</span>
+              </div>
+
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Side: Sticky calculations with COD, coupon, discount -->
+        <div class="checkout-right">
+          <section class="checkout-summary-card">
+            <h2 class="checkout-section-title" style="border-bottom: 1px solid var(--color-border-light); padding-bottom: 15px; margin-bottom: 25px;">Order Summary</h2>
+            
+            <div class="summary-items-list" id="summary-items-list-2"></div>
+
+            <!-- Coupon discount module -->
+            <div class="chk-promo-container">
+              <div id="checkout-promo-active-wrap" style="display: none; justify-content: space-between; align-items: center; background: rgba(61, 107, 88, 0.08); border: 1px solid rgba(61, 107, 88, 0.15); border-radius: 20px; padding: 8px 16px; font-size: 12px; color: var(--color-luxury-green);">
+                <span>✓ Coupon <strong id="checkout-active-code-lbl"></strong> Applied</span>
+                <button type="button" class="promo-remove-btn" id="checkout-promo-remove-btn">Remove</button>
+              </div>
+              <div id="checkout-promo-input-wrap">
+                <div class="cart-promo-box">
+                  <input type="text" id="checkout-promo-input" placeholder="Apply Coupon" class="cart-promo-input">
+                  <button type="button" id="checkout-promo-apply-btn" class="cart-promo-btn">Apply</button>
+                </div>
+                <div id="checkout-promo-message" class="cart-promo-msg"></div>
+              </div>
+            </div>
+
+            <!-- Calculations -->
+            <div class="mcp-summary-rows">
+              <div class="mcp-total-row">
+                <span class="mcp-total-label">Subtotal</span>
+                <span class="mcp-total-value" id="summary-subtotal-2">₹0.00</span>
+              </div>
+              <div class="mcp-total-row discount" id="summary-discount-row" style="display: none;">
+                <span class="mcp-total-label" id="summary-discount-label">Discount</span>
+                <span class="mcp-total-value" id="summary-discount-val">-₹0.00</span>
+              </div>
+              <div class="mcp-total-row">
+                <span class="mcp-total-label">GST (18%)</span>
+                <span class="mcp-total-value" id="summary-gst-2">₹0.00</span>
+              </div>
+              <div class="mcp-total-row">
+                <span class="mcp-total-label">Shipping</span>
+                <span class="mcp-total-value" id="summary-shipping-2">₹0.00</span>
+              </div>
+              <div class="mcp-total-row" id="summary-cod-row" style="display: none;">
+                <span class="mcp-total-label">COD Fee</span>
+                <span class="mcp-total-value">+₹30.00</span>
+              </div>
+              <hr class="mcp-summary-divider">
+              <div class="mcp-total-row grand-total">
+                <span class="mcp-total-label">Grand Total</span>
+                <span class="mcp-total-value grand" id="summary-grand-total-2">₹0.00</span>
+              </div>
+            </div>
+
+            <button class="checkout-place-order-btn" id="checkout-cta-btn" style="margin-top: 20px; background: var(--color-luxury-green);">PLACE ORDER</button>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ════════ STEP 3: ORDER CONFIRMED SCREEN (SUCCESS ANIMATION) ════════ -->
+  <div id="success-screen-container" style="display: none;"></div>
+
+  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+  <script src="/js/checkout.js"></script>
+</body>
+</html>
