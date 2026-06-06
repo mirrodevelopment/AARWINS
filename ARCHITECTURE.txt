@@ -1,0 +1,851 @@
+================================================================================
+  AARWINS — PROJECT ARCHITECTURE DOCUMENT
+  Aarwins Tropical Soft Drinks — Premium E-Commerce Web Application
+  Generated: 2026-06-06
+================================================================================
+
+TABLE OF CONTENTS
+─────────────────
+  1.  Project Overview
+  2.  Technology Stack
+  3.  Full File & Folder Structure
+  4.  Backend Architecture (Spring Boot)
+  5.  REST API Endpoints
+  6.  Database Schema
+  7.  Frontend Architecture
+  8.  Page-by-Page Breakdown
+  9.  JavaScript Modules & Workflow
+ 10.  CSS Architecture
+ 11.  Image & Media Assets
+ 12.  Configuration & Build
+ 13.  Data Flow / Request Lifecycle
+ 14.  Deployment Details
+ 15.  Frontend Reference Files
+
+
+================================================================================
+  1. PROJECT OVERVIEW
+================================================================================
+
+Aarwins is a premium tropical soft drinks brand e-commerce web application.
+It sells 6 flavours of coconut-based elixir drinks in tin packaging.
+
+  - Brand: Aarwins Soft Drinks (aarwins.softdrinks)
+  - Server: Spring Boot 4.1.0-SNAPSHOT (Java 21)
+  - Database: H2 (file-based, persistent) — MySQL-ready
+  - Frontend: Pure HTML + Vanilla CSS + Vanilla JavaScript (no framework)
+  - Deployment: Google Cloud VM (asia-south1-c), External IP: 8.231.79.255
+  - Port: 8080
+  - Git: https://github.com/mirrodevelopment/AARWINS.git
+  - Branch: main
+
+
+================================================================================
+  2. TECHNOLOGY STACK
+================================================================================
+
+  BACKEND
+  ───────
+  Language          : Java 21
+  Framework         : Spring Boot 4.1.0-SNAPSHOT
+  Web Layer         : Spring Web MVC
+  Security          : Spring Security (stateless, CSRF disabled)
+  ORM               : Spring Data JPA + Hibernate (H2 dialect)
+  Database          : H2 (file-based: ./data/aarwins_db)
+  Templating        : Thymeleaf (with Spring Security extras)
+  Validation        : Jakarta Bean Validation
+  Build Tool        : Apache Maven (Maven Wrapper included)
+  Lombok            : For boilerplate reduction (@Data, @Builder, etc.)
+  Dev Tools         : Spring Boot DevTools (hot reload)
+
+  FRONTEND
+  ────────
+  HTML              : Vanilla HTML5 (semantic markup)
+  CSS               : Vanilla CSS (7 stylesheets, modular)
+  JavaScript        : Vanilla ES6+ JavaScript (no framework)
+  Animations        : GSAP 3.12.5 + ScrollTrigger
+  Smooth Scroll     : Lenis 1.1.13
+  Fonts             : Google Fonts (Syne, DM Sans, Barlow Condensed, Outfit)
+  Cart Storage      : Browser localStorage
+  Checkout Storage  : Browser localStorage + sessionStorage (coupon)
+
+  INFRASTRUCTURE
+  ──────────────
+  Cloud             : Google Cloud Platform (GCP)
+  VM Name           : arrwins
+  Zone              : asia-south1-c
+  Internal IP       : 10.160.0.2
+  External IP       : 8.231.79.255
+  OS                : Linux (GCP Compute Engine)
+
+
+================================================================================
+  3. FULL FILE & FOLDER STRUCTURE
+================================================================================
+
+aarwins/
+│
+├── pom.xml                          Maven project descriptor (dependencies)
+├── mvnw                             Maven Wrapper (Unix)
+├── mvnw.cmd                         Maven Wrapper (Windows)
+├── HELP.md                          Spring Boot help docs
+├── README.md                        Project README
+├── ARCHITECTURE.txt                 [THIS FILE] Full architecture document
+│
+├── .gitignore                       Git ignore rules
+├── .gitattributes                   Git line ending config
+│
+│── apply_css.py                     Dev utility: apply CSS patches
+├── refine.py                        Dev utility: refine HTML/CSS
+├── restyle.py                       Dev utility: restyle elements
+├── strict_css.py                    Dev utility: strict CSS enforcement
+├── update_css.py                    Dev utility: update CSS values
+├── update_html.py                   Dev utility: update HTML elements
+├── remove_hero_lines.ps1            Dev utility: PowerShell hero edit
+├── replace_hero_script.ps1          Dev utility: PowerShell hero replace
+│
+├── data/                            H2 persistent database storage
+│   └── aarwins_db.mv.db             H2 database file (auto-created)
+│
+├── frontend/                        Frontend reference files (not served)
+│   ├── Aarwins/
+│   │   ├── Hero-Sec-Slider.html     Hero section slider prototype (1075 lines)
+│   │   └── Images/                  Reference images for frontend dev
+│   └── collectionpage_hero/         Collections page hero reference assets
+│
+├── scratch/                         Temp/scratch work files (not deployed)
+│
+└── src/
+    ├── test/                        Unit & integration tests
+    └── main/
+        ├── java/com/aarwins/softdrinks/
+        │   │
+        │   ├── AarwinsApplication.java           Spring Boot entry point
+        │   │
+        │   ├── config/
+        │   │   ├── SecurityConfig.java           Spring Security config
+        │   │   ├── CorsConfig.java               CORS configuration
+        │   │   └── GlobalExceptionHandler.java   Global @ControllerAdvice
+        │   │
+        │   ├── controller/
+        │   │   ├── ViewController.java           Page route forwarding
+        │   │   ├── ProductController.java        REST API: /api/products
+        │   │   ├── ContactController.java        REST API: /api/contact
+        │   │   └── NewsletterController.java     REST API: /api/newsletter
+        │   │
+        │   ├── service/
+        │   │   ├── ProductService.java           Product business logic
+        │   │   ├── ContactService.java           Contact form logic
+        │   │   └── NewsletterService.java        Newsletter subscription logic
+        │   │
+        │   ├── repository/
+        │   │   ├── ProductRepository.java        JPA repo: products table
+        │   │   ├── ContactMessageRepository.java JPA repo: contact_messages
+        │   │   └── NewsletterRepository.java     JPA repo: newsletter table
+        │   │
+        │   ├── entity/
+        │   │   ├── Product.java                  JPA entity: products
+        │   │   ├── ContactMessage.java           JPA entity: contact_messages
+        │   │   ├── Newsletter.java               JPA entity: newsletter
+        │   │   └── User.java                     JPA entity: users (future)
+        │   │
+        │   └── dto/
+        │       ├── ApiResponseDTO.java           Standard API response wrapper
+        │       ├── ProductDTO.java               Product data transfer object
+        │       ├── ContactMessageDTO.java        Contact form DTO
+        │       └── NewsletterDTO.java            Newsletter subscription DTO
+        │
+        └── resources/
+            ├── application.properties            App configuration
+            ├── schema.sql                        DB schema (CREATE TABLE IF NOT EXISTS)
+            ├── data.sql                          Seed data (6 products pre-loaded)
+            │
+            ├── templates/                        Thymeleaf templates (if any)
+            │
+            └── static/                          Served at root "/" by Spring
+                ├── index.html                   Home page (~128 KB)
+                ├── collections.html             Collections/Shop page (~133 KB)
+                ├── product-details.html         Product detail page (~41 KB)
+                ├── checkout.html                Checkout page (~21 KB)
+                │
+                ├── css/
+                │   ├── aarwins.css              Core brand styles (~52 KB)
+                │   ├── styles.css               Global utility styles (~45 KB)
+                │   ├── luxury-spacing.css       Luxury layout & spacing (~53 KB)
+                │   ├── cinematic.css            Cinematic animations/sections (~48 KB)
+                │   ├── editorial.css            Editorial layout styles (~14 KB)
+                │   ├── cart-checkout.css        Cart drawer & checkout styles (~24 KB)
+                │   └── flavour-modal.css        Flavour selection modal (~16 KB)
+                │
+                ├── js/
+                │   ├── aarwins.js               Global nav, mobile menu, shared UI (~34 KB)
+                │   ├── cinematic-home.js        Home page cinematic sections, slider (~65 KB)
+                │   ├── cart.js                  Cart CRUD, localStorage, drawer render (~12 KB)
+                │   ├── checkout.js              Checkout form, order summary, payment (~34 KB)
+                │   └── main.js                  Additional UI helpers (~17 KB)
+                │
+                └── images/                      All static image & video assets
+                    │
+                    ├── TIN IMAGES (Product Packaging — used site-wide)
+                    │   ├── tin-watermelon.png     Watermelon tin (plain)
+                    │   ├── tin-orange.png         Orange tin (plain)
+                    │   ├── tin-blueberry.png      Blueberry tin (plain)
+                    │   ├── tin-lychee.png         Lychee tin (plain)
+                    │   ├── tin-avocado.png        Avocado tin (plain)
+                    │   └── tin-mago.png           Mango tin (plain)
+                    │
+                    ├── TIN SPLASH IMAGES (Product Detail Page Hero)
+                    │   ├── tin-splash-watermelon.png
+                    │   ├── tin-splash-orange.png
+                    │   ├── tin-splash-blueberry.png
+                    │   ├── tin-splash-lychee.png
+                    │   ├── tin-splash-avocado.png
+                    │   └── tin-splash-mango.png
+                    │
+                    ├── MASCOT IMAGES (Mascots section on collections page)
+                    │   ├── watermelonmascot.png
+                    │   ├── orangemascot .png
+                    │   ├── blueberrymascot.png
+                    │   ├── lycheemascot.png
+                    │   ├── mangomascot.png
+                    │   └── Avacado-character.png  (Avocado mascot, also in slider)
+                    │
+                    ├── HERO & BANNER
+                    │   ├── Hero_sec.jpeg          Hero section background (desktop)
+                    │   ├── hero_sec_mob.png       Hero section background (mobile)
+                    │   ├── Iland-desktop.jpeg     Island lifestyle image (desktop)
+                    │   ├── Iland-mob.png          Island lifestyle image (mobile)
+                    │   └── collection-pg-sec.png  Collections page section image
+                    │
+                    ├── STORY CARD IMAGES (Index page story section)
+                    │   ├── Story  1.png / Story 1-mob.png
+                    │   ├── Story 2.png / Story 2-mob.png
+                    │   ├── Story 3.png / Story 3-mob.png
+                    │   ├── Story 4.png / Story 4-mob.png
+                    │   ├── Story 5.png / Story 5-mob.png
+                    │   ├── Story 6.png / Story 6-mob.png
+                    │   ├── Story Card 1 .png
+                    │   ├── stort card 2.png
+                    │   ├── stort card 3.png
+                    │   ├── stort card 4.png
+                    │   ├── stort card 5.png
+                    │   └── stort card 6.png
+                    │
+                    ├── TEXTURE & DIVIDERS
+                    │   ├── cloth-texture.png
+                    │   ├── cloth-wrinkles.png
+                    │   ├── cloth-wrinkles-divider.png
+                    │   └── white-satin-texture.png
+                    │
+                    ├── VIDEOS
+                    │   ├── 4th-sec.mp4            4th section background video
+                    │   ├── about-us-desktop.mp4   About us video (desktop)
+                    │   ├── about-us-video.mp4     About us video (full)
+                    │   ├── final-aboutus.mp4      Final about us video
+                    │   ├── final-vid.mp4          Final video (~66 MB)
+                    │   ├── bottom-left.mp4
+                    │   ├── left.mp4
+                    │   ├── right.mp4
+                    │   └── top-right..mp4
+                    │
+                    ├── INGREDIENT IMAGES
+                    │   ├── ing_cocoa.png
+                    │   ├── ing_coconut.png
+                    │   ├── ing_coffee.png
+                    │   ├── ing_ginger.png
+                    │   ├── ing_lavender.png
+                    │   └── ing_matcha.png
+                    │
+                    ├── COLLECTIONPAGE HERO (Subdirectory)
+                    │   └── collectionpage_hero/
+                    │       ├── Avacado.jpeg, Avacadobg.png, Avacadobottle.png
+                    │       ├── avocado_mascot.png, avocadofr.png, avocadosplash.png
+                    │       ├── blueberry.jpeg, blueberry_mascot.png, blueberrybg.jpeg
+                    │       ├── blueberrybottle.png, blueberryfr.png, blueberrysplash.png
+                    │       ├── lychee.jpeg, lychee_mascot.png, lycheebg.png
+                    │       ├── lycheebottle.png, lycheefr.png, lycheesplash.png
+                    │       ├── mango.jpeg, mango.png, mango bg.png, mango_mascot.png
+                    │       ├── mangobottle.png, mangofr.png, mangosplash.png
+                    │       ├── melonbottle.png, water2.jpeg, watermelon.jpeg
+                    │       ├── watermelon.png, watermelon bg.png, watermelon_mascot.png
+                    │       ├── watermelonfr.png, watermelonsplash.png
+                    │       ├── orange.png, orangebg.png, orangebottle.png
+                    │       ├── orangefr.png, orangemascot.png, orangesplash.png
+                    │       └── (lychee/blueberry/mango/orange bg images)
+                    │
+                    └── HERO SUBDIRECTORY
+                        └── hero/
+                            ├── nebula_bg.jpg, nebula_can.png
+                            ├── plasma_bg.jpg, plasma_can.png
+                            ├── quantum_bg.jpg, quantum_can.png
+                            ├── titan_bg.jpg, titan_can.png
+                            ├── mango_can.png, orange_can.png
+                            ├── pineapple_can.png, watermelon_can.png
+                            ├── blackberry.png, blueberry.png, chili.png
+                            ├── grapefruit_slice.png, lime_slice.png
+                            ├── mint.png, orange_slice.png
+                            └── water_splash.png
+
+
+================================================================================
+  4. BACKEND ARCHITECTURE (Spring Boot)
+================================================================================
+
+  ENTRY POINT
+  ───────────
+  AarwinsApplication.java
+    - @SpringBootApplication
+    - Starts embedded Tomcat on port 8080
+    - Package: com.aarwins.softdrinks
+
+  LAYER ARCHITECTURE (Standard MVC + Repository)
+  ───────────────────────────────────────────────
+
+  Request → Controller → Service → Repository → Database
+                   ↕           ↕
+                  DTO        Entity
+
+  CONFIG LAYER
+  ────────────
+  SecurityConfig.java
+    - Spring Security: CSRF disabled (stateless REST API)
+    - Session: STATELESS (no HTTP sessions)
+    - All public routes permitted:
+        /api/products/**, /api/contact/**, /api/newsletter/**
+        /product/**, /product-details.html
+        /collections, /collections.html
+        /checkout, /checkout/**, /checkout.html
+        /, /index.html, /css/**, /js/**, /images/**
+    - All other routes: require authentication (future admin)
+
+  CorsConfig.java
+    - Cross-Origin Resource Sharing configuration
+    - Allows frontend to call REST APIs from browser
+
+  GlobalExceptionHandler.java
+    - @ControllerAdvice
+    - Catches unhandled exceptions and returns structured ApiResponseDTO errors
+
+
+================================================================================
+  5. REST API ENDPOINTS
+================================================================================
+
+  BASE URL: http://8.231.79.255:8080
+  Local:    http://localhost:8080
+
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │ METHOD │ ENDPOINT                │ DESCRIPTION                       │
+  ├──────────────────────────────────────────────────────────────────────┤
+  │ GET    │ /api/products           │ Get all products (newest first)   │
+  │ GET    │ /api/products/{id}      │ Get single product by ID          │
+  │ POST   │ /api/contact            │ Submit contact form message       │
+  │ POST   │ /api/newsletter         │ Subscribe email to newsletter     │
+  ├──────────────────────────────────────────────────────────────────────┤
+  │ PAGE ROUTES (forwarded by ViewController)                            │
+  │ GET    │ /                       │ Serves index.html (Home)          │
+  │ GET    │ /index.html             │ Home page                         │
+  │ GET    │ /product/{id}           │ Forwards → product-details.html   │
+  │ GET    │ /collections            │ Forwards → collections.html       │
+  │ GET    │ /checkout               │ Forwards → checkout.html          │
+  │ GET    │ /checkout/payment       │ Forwards → checkout.html          │
+  ├──────────────────────────────────────────────────────────────────────┤
+  │ UTILITY                                                              │
+  │ GET    │ /h2-console             │ H2 database web console (dev)     │
+  └──────────────────────────────────────────────────────────────────────┘
+
+  API RESPONSE FORMAT (ApiResponseDTO)
+  ─────────────────────────────────────
+  All REST endpoints return:
+  {
+    "success": true | false,
+    "message": "Human readable message",
+    "data": { ... } | null
+  }
+
+  PRODUCT ENDPOINTS — EXAMPLES
+  ─────────────────────────────
+  GET /api/products
+  Response: { "success": true, "message": "Products retrieved successfully",
+              "data": [ { product objects } ] }
+
+  GET /api/products/1
+  Response: { "success": true, "message": "Product found",
+              "data": { "id": 1, "name": "Watermelon Coconut Elixir", ... } }
+
+  GET /api/products/999 (not found)
+  Response: 404 { "success": false, "message": "Product not found with id: 999" }
+
+  CONTACT ENDPOINT
+  ────────────────
+  POST /api/contact
+  Body: { "name": "string", "email": "string", "message": "string" }
+  Response 201: { "success": true, "message": "Thank you! Your message has been received." }
+
+  NEWSLETTER ENDPOINT
+  ───────────────────
+  POST /api/newsletter
+  Body: { "email": "string" }
+  Response 201: new subscriber  → "You're in! Welcome to the Aarwins tropical circle."
+  Response 200: already exists  → "You're already subscribed..."
+
+
+================================================================================
+  6. DATABASE SCHEMA
+================================================================================
+
+  DATABASE: H2 (file-based)
+  Location: ./data/aarwins_db.mv.db
+  Console:  http://localhost:8080/h2-console
+    JDBC URL:  jdbc:h2:file:./data/aarwins_db
+    Username:  sa
+    Password:  (empty)
+
+  TABLE: products
+  ───────────────
+  Column       Type              Constraints
+  ──────────   ────────────────  ─────────────────
+  id           BIGINT            PK, AUTO_INCREMENT
+  name         VARCHAR(150)      NOT NULL
+  description  TEXT
+  image_url    VARCHAR(500)
+  price        DECIMAL(10,2)     NOT NULL
+  category     VARCHAR(100)
+  ingredients  TEXT              (comma-separated list)
+  created_at   TIMESTAMP         Auto-set on insert
+
+  TABLE: contact_messages
+  ───────────────────────
+  Column       Type              Constraints
+  ──────────   ────────────────  ─────────────────
+  id           BIGINT            PK, AUTO_INCREMENT
+  name         VARCHAR(150)      NOT NULL
+  email        VARCHAR(200)      NOT NULL
+  message      TEXT              NOT NULL
+  created_at   TIMESTAMP         Auto-set on insert
+
+  TABLE: newsletter
+  ─────────────────
+  Column       Type              Constraints
+  ──────────   ────────────────  ─────────────────
+  id           BIGINT            PK, AUTO_INCREMENT
+  email        VARCHAR(200)      UNIQUE, NOT NULL
+  created_at   TIMESTAMP         Auto-set on insert
+
+  PRE-SEEDED PRODUCTS (data.sql — 6 products)
+  ────────────────────────────────────────────
+  ID  Name                        Price  Category   Image
+  1   Watermelon Coconut Elixir   199    Wellness   tin-watermelon.png
+  2   Orange Coconut Elixir       229    Energy     tin-orange.png
+  3   Blueberry Coconut Elixir    249    Balance    tin-blueberry.png
+  4   Lychee Coconut Elixir       229    Calm       tin-lychee.png
+  5   Avocado Coconut Elixir      249    Protein    tin-avocado.png
+  6   Mango Coconut Elixir        299    Dessert    tin-mago.png
+
+
+================================================================================
+  7. FRONTEND ARCHITECTURE
+================================================================================
+
+  SERVING STRATEGY
+  ────────────────
+  Spring Boot serves all files in src/main/resources/static/ at the root URL.
+  No separate frontend server — everything runs from port 8080.
+
+  CART SYSTEM (localStorage)
+  ──────────────────────────
+  Key: 'aarwins_cart'
+  Format: JSON array of cart items
+  Item structure:
+    {
+      id:       Number (product ID, 1-6) or String ('sub-' + timestamp for subscriptions),
+      name:     String,
+      price:    Number,
+      imageUrl: String (/images/tin-*.png),
+      variant:  String ("330ml"),
+      quantity: Number
+    }
+
+  Image Migration (auto-runs on cart.js load):
+    - Syncs imageUrl for all existing cart items to latest catalog images
+    - Handles: old bottle PNGs, splash images → plain tin PNGs
+    - Ensures cart always shows correct images even after updates
+
+  COUPON SYSTEM (sessionStorage)
+  ──────────────────────────────
+  Key: 'aarwins_coupon'
+  Stores active promo code + discount value for checkout session
+
+  PRODUCT ID MAPPING (Frontend Catalog)
+  ──────────────────────────────────────
+  cartCatalogFallback in cart.js (offline fallback):
+    1 → Watermelon Coconut Elixir  ₹199  /images/tin-watermelon.png
+    2 → Orange Coconut Elixir      ₹229  /images/tin-orange.png
+    3 → Blueberry Coconut Elixir   ₹249  /images/tin-blueberry.png
+    4 → Lychee Coconut Elixir      ₹229  /images/tin-lychee.png
+    5 → Avocado Coconut Elixir     ₹249  /images/tin-avocado.png
+    6 → Mango Coconut Elixir       ₹299  /images/tin-mago.png
+
+
+================================================================================
+  8. PAGE-BY-PAGE BREAKDOWN
+================================================================================
+
+  HOME PAGE — index.html (~128 KB)
+  ─────────────────────────────────
+  URL: / or /index.html
+  Sections (top to bottom):
+    1. Promo Banner         — Fixed top orange strip
+    2. Navigation           — Fixed header with cart icon
+    3. Hero Section         — Full-screen video/image, cinematic slider (6 flavours)
+    4. Island Section       — Lifestyle imagery (desktop + mobile responsive)
+    5. 4th Section          — Background video with overlay text
+    6. About Section        — Brand story with cloth-wrinkles divider
+    7. Story Cards Section  — 6 story cards (desktop + mobile variants)
+    8. Ingredient Section   — 6 ingredient feature cards
+    9. Subscription Section — Floating tin image, subscribe form
+   10. Footer               — Links, newsletter signup, social icons
+   11. Cart Drawer          — Side slide-in cart panel (#mini-cart-panel)
+   12. Toast Notifications  — Bottom-right toast messages
+  JS: cinematic-home.js, aarwins.js, cart.js
+  CSS: aarwins.css, luxury-spacing.css, cinematic.css, cart-checkout.css
+
+  COLLECTIONS PAGE — collections.html (~133 KB)
+  ───────────────────────────────────────────────
+  URL: /collections
+  Sections (top to bottom):
+    1. Promo Banner         — Fixed top
+    2. Navigation           — Fixed header
+    3. Collections Hero     — Fullscreen background video/image with overlay
+    4. Cinematic Slider     — 6 flavour slides with BUY NOW buttons
+    5. Flavour Benefits     — Timeline/ritual section (6 flavour nodes)
+    6. Editorial Sections   — 3 editorial feature sections (with images)
+    7. Mascots Section      — 6 mascot cards with CSS pastel circle blobs
+    8. Final CTA Section    — Call to action panel
+    9. Footer
+   10. Cart Drawer          — #mini-cart-panel
+   11. Flavour Modal        — Popup modal for flavour detail
+  JS: aarwins.js, cart.js (cinematic-home.js not used here)
+  CSS: aarwins.css, styles.css, luxury-spacing.css, cinematic.css,
+       editorial.css, cart-checkout.css, flavour-modal.css
+
+  PRODUCT DETAILS PAGE — product-details.html (~41 KB)
+  ──────────────────────────────────────────────────────
+  URL: /product/{id}  (e.g., /product/1 for Watermelon)
+  Sections:
+    1. Promo Banner
+    2. Navigation
+    3. Breadcrumb           — Category > Product Name
+    4. Product Gallery      — Main hero image (tin-splash-{flavor}.png)
+                              4 thumbnails: [tin plain] [SVG-angled] [flatlay] [botanical]
+    5. Product Info         — Name, price, Add to Cart / Buy Now buttons
+    6. Accordion            — Description, Ingredients, Shipping tabs
+    7. You May Also Like    — 3 recommendation cards (tin-splash images)
+    8. Footer
+    9. Cart Drawer
+  Data Loading:
+    - Fetches /api/products/{id} from Spring Boot
+    - Falls back to catalogFallback (client-side mock data) if API offline
+    - productImages map: ID → { splash: tin-splash-*.png, tin: tin-*.png }
+  JS: Inline <script> + cart.js + aarwins.js
+  CSS: aarwins.css, editorial.css, luxury-spacing.css, cinematic.css, cart-checkout.css
+
+  CHECKOUT PAGE — checkout.html (~21 KB)
+  ────────────────────────────────────────
+  URL: /checkout or /checkout/payment
+  Sections:
+    1. Header with back button
+    2. Order Summary        — Cart items list (tin plain images), subtotal, GST (18%), shipping
+    3. Delivery Form        — Name, email, phone, address fields
+    4. Payment Section      — Card / UPI / COD options
+    5. Place Order Button
+    6. Toast Notifications
+  Data: Reads cart from localStorage
+  JS: checkout.js, cart.js
+  CSS: cart-checkout.css, aarwins.css
+
+
+================================================================================
+  9. JAVASCRIPT MODULES & WORKFLOW
+================================================================================
+
+  cart.js — Cart Management
+  ──────────────────────────
+  Functions:
+    migrateCartImages()   — Auto-runs on load, syncs old image URLs to new tin images
+    addToCart(id, qty)    — Add product to localStorage cart, open drawer, show toast
+    removeFromCart(id)    — Remove item (supports both Number and String IDs)
+    updateQuantity(id,qty)— Update item quantity (supports Number and String IDs)
+    saveCart()            — Persist cart to localStorage, fire 'cartUpdated' event
+    getCartItems()        — Return current cart array
+    renderCartDrawer()    — Render HTML into #mini-cart-panel .mcp-body
+    openCartDrawer()      — Show cart drawer overlay
+    closeCartDrawer()     — Hide cart drawer
+    applyPromoCode(code)  — Validate promo code, return discount info
+    showToast(msg)        — Show bottom notification toast
+
+  Cart Item HTML (rendered in drawer):
+    - Clicking product image/name → navigates to /product/{id}
+    - Minus/Plus buttons → updateQuantity()
+    - Delete button → removeFromCart()
+    - Subscription items use string IDs: 'sub-' + Date.now()
+
+  aarwins.js — Global UI
+  ───────────────────────
+  Handles: mobile navigation drawer, header scroll behavior, 
+           scroll reveal animations, cart icon badge count,
+           smooth scroll anchors, global event listeners
+
+  cinematic-home.js — Home Page
+  ──────────────────────────────
+  Handles: GSAP cinematic hero slider (6 flavours), 
+           auto-play with interval, manual navigation,
+           parallax effects, scroll-triggered animations,
+           4th section video, ingredient section,
+           subscription section with floating tin image
+
+  checkout.js — Checkout Flow
+  ────────────────────────────
+  Handles: Reading cart from localStorage,
+           rendering order summary with tin images,
+           form validation, GST calculation (18%),
+           payment method selection (Card/UPI/COD),
+           order placement, clearing cart on success
+
+  main.js — Additional UI
+  ────────────────────────
+  Additional UI helpers and page-specific functionality
+
+
+================================================================================
+  10. CSS ARCHITECTURE
+================================================================================
+
+  aarwins.css (~52 KB)
+    - Core brand variables (colors, fonts, spacing tokens)
+    - Navigation, header, footer, promo banner
+    - Button styles, link styles
+    - Responsive breakpoints (base)
+
+  styles.css (~45 KB)
+    - Global utility classes
+    - Section layouts, grid systems
+    - Mascot section styles (.mascot-*, .theme-*)
+    - Mascot blob: CSS radial-gradient circles (no PNG)
+      Lychee: #ffd6e0→#fbaab8, Mango: #fff0c2→#f9d76b,
+      Blueberry: #dce4ff→#a9baee, Avocado: #dff2d8→#a8d89c,
+      Orange: #ffe5c2→#f8bb72, Watermelon: #ffd6d6→#f5928a
+
+  luxury-spacing.css (~53 KB)
+    - Premium spacing system
+    - Luxury editorial layouts
+    - Timeline/ritual section (.timeline-node)
+    - Mobile: timeline nodes centered, narrower width
+
+  cinematic.css (~48 KB)
+    - GSAP-powered animation classes
+    - Cinematic hero slider
+    - Full-screen section styles
+    - Parallax layers, cinematic overlays
+
+  editorial.css (~14 KB)
+    - Editorial 2-column grid layouts
+    - Image + text juxtaposition sections
+    - Product gallery styles (.pd-gallery-*)
+    - Recommendation card styles (.pd-rec-*)
+
+  cart-checkout.css (~24 KB)
+    - Mini cart drawer (.mini-cart-panel, .mcp-*)
+    - Cart item styles (.mcp-item-*)
+    - Checkout page layout
+    - Order summary section
+    - Payment method cards
+
+  flavour-modal.css (~16 KB)
+    - Flavour selection modal overlay
+    - Modal card grid
+    - Flavour detail content styles
+
+
+================================================================================
+  11. IMAGE & MEDIA ASSETS — USAGE MAP
+================================================================================
+
+  ACTIVELY USED IN PAGES
+  ───────────────────────
+  Page / Section              Image Used
+  ─────────────────────────   ───────────────────────────────────────────
+  Cart Drawer                 tin-{flavor}.png (plain tins)
+  Checkout Order Summary      tin-{flavor}.png (plain tins)
+  Product Detail Hero         tin-splash-{flavor}.png (with splash)
+  Product Detail Thumbnail    tin-{flavor}.png (plain tins)
+  Product Recommendations     tin-splash-{flavor}.png (with splash)
+  Collections Slider          tin-{flavor}.png (plain tins)
+  Home Subscription Section   tin-{flavor}.png (floating image, changes per slide)
+  Mascots Section             {flavor}mascot.png + Avacado-character.png
+  Home Hero (desktop)         Hero_sec.jpeg
+  Home Hero (mobile)          hero_sec_mob.png
+  Island Section (desktop)    Iland-desktop.jpeg
+  Island Section (mobile)     Iland-mob.png
+  4th Section                 4th-sec.mp4 (video background)
+  Story Cards                 Story 1-6.png / Story 1-6-mob.png / Story Card 1 .png
+  Story Cards (alt)           stort card 2-6.png
+  Textures                    cloth-wrinkles.png, cloth-wrinkles-divider.png
+  Collections Hero Section    collection-pg-sec.png
+  Ingredients                 ing_*.png (6 ingredient images)
+
+
+================================================================================
+  12. CONFIGURATION & BUILD
+================================================================================
+
+  application.properties (key settings)
+  ──────────────────────────────────────
+  server.port=8080
+  spring.datasource.url=jdbc:h2:file:./data/aarwins_db;DB_CLOSE_ON_EXIT=FALSE
+  spring.datasource.username=sa
+  spring.datasource.password=(empty)
+  spring.h2.console.enabled=true
+  spring.h2.console.path=/h2-console
+  spring.jpa.hibernate.ddl-auto=update
+  spring.jpa.show-sql=true
+  spring.sql.init.mode=always
+  spring.jpa.defer-datasource-initialization=true
+  spring.jackson.default-property-inclusion=non_null
+  logging.level.com.aarwins=INFO
+
+  Maven Dependencies (pom.xml)
+  ─────────────────────────────
+  spring-boot-starter-data-jpa      JPA + Hibernate ORM
+  spring-boot-starter-security      Spring Security
+  spring-boot-starter-thymeleaf     Thymeleaf templating
+  thymeleaf-extras-springsecurity6  Thymeleaf + Security integration
+  spring-boot-starter-validation    Jakarta Bean Validation
+  spring-boot-starter-webmvc        Spring Web MVC
+  spring-boot-devtools              Hot reload in development
+  h2                                H2 embedded database
+  lombok                            Boilerplate reduction
+  (MySQL connector: commented out, ready when MySQL available)
+
+  BUILD COMMANDS
+  ──────────────
+  Development:  ./mvnw spring-boot:run
+  Package:      ./mvnw clean package
+  Run JAR:      java -jar target/aarwins-0.0.1-SNAPSHOT.jar
+  Windows dev:  mvnw.cmd spring-boot:run
+
+
+================================================================================
+  13. DATA FLOW / REQUEST LIFECYCLE
+================================================================================
+
+  FRONTEND PAGE REQUEST
+  ─────────────────────
+  Browser → GET /collections
+    → Spring ViewController.getCollectionsPage()
+    → forward:/collections.html
+    → Spring serves static file from /resources/static/collections.html
+    → Browser renders HTML + loads CSS + loads JS
+    → JS calls /api/products to load product data (with localStorage fallback)
+
+  ADD TO CART FLOW
+  ─────────────────
+  User clicks "Add to Cart" button
+    → JavaScript addToCart(productId, quantity)
+    → Reads product from cartCatalogFallback (client-side) or API
+    → Pushes item to cart[] array with tin image URL
+    → saveCart() → localStorage.setItem('aarwins_cart', JSON)
+    → renderCartDrawer() → Builds HTML for #mini-cart-panel
+    → openCartDrawer() → Shows slide-in panel
+    → showToast("Product added to cart!")
+
+  CHECKOUT FLOW
+  ─────────────
+  User clicks "PROCEED TO CHECKOUT"
+    → Navigates to /checkout
+    → checkout.js reads cart from localStorage
+    → Renders order summary (tin images, prices, GST 18%)
+    → User fills delivery form + selects payment method
+    → Clicks "Place Order"
+    → Cart cleared from localStorage
+    → Success toast/redirect
+
+  CONTACT FORM FLOW
+  ──────────────────
+  User submits contact form
+    → JavaScript POST /api/contact with { name, email, message }
+    → ContactController → ContactService.saveMessage()
+    → ContactMessage entity saved to H2 database
+    → Returns 201 with success message
+
+  NEWSLETTER FLOW
+  ────────────────
+  User submits email for newsletter
+    → JavaScript POST /api/newsletter with { email }
+    → NewsletterController → NewsletterService.subscribe()
+    → Checks if email already exists in DB
+    → Saves new Newsletter entity (or returns existing)
+    → Returns 201 (new) or 200 (already subscribed)
+
+  PRODUCT DETAIL PAGE FLOW
+  ─────────────────────────
+  Browser → GET /product/1
+    → ViewController.getProductDetailsPage("1")
+    → forward:/product-details.html
+    → Page loads, inline JS reads URL path: /product/1
+    → Fetch /api/products/1
+    → On success: populate name, price, description, ingredients from API
+    → On failure (API offline): use catalogFallback[1]
+    → productImages[1] → load tin-splash-watermelon.png for hero
+    → renderThumbnails() → thumb 0 = tin-watermelon.png, thumbs 1-3 = SVG
+    → renderRecommendations() → 3 other products with tin-splash images
+
+
+================================================================================
+  14. DEPLOYMENT DETAILS
+================================================================================
+
+  GOOGLE CLOUD VM
+  ───────────────
+  Instance Name  : arrwins
+  Project        : mirrodevelopment
+  Zone           : asia-south1-c (Mumbai, India)
+  Machine Type   : (GCP standard)
+  Internal IP    : 10.160.0.2
+  External IP    : 8.231.79.255 (static/ephemeral)
+
+  ACCESS
+  ──────
+  SSH via GCloud CLI:  gcloud compute ssh arrwins --zone=asia-south1-c
+  SSH via key:         ssh -i ~/.ssh/google_compute_engine girit@8.231.79.255
+  Web Application:     http://8.231.79.255:8080
+  H2 Console:          http://8.231.79.255:8080/h2-console
+
+  GIT REPOSITORY
+  ──────────────
+  Remote: https://github.com/mirrodevelopment/AARWINS.git
+  Branch: main
+
+
+================================================================================
+  15. FRONTEND REFERENCE FILES (Not Served — Dev Reference Only)
+================================================================================
+
+  frontend/Aarwins/Hero-Sec-Slider.html (25 KB, 1075 lines)
+  ──────────────────────────────────────────────────────────
+  Purpose: Standalone HTML prototype for the hero section slider
+  Features:
+    - Full-screen cinematic slider with 6 flavour slides
+    - Each slide: background image, mascot, flavour name, product details
+    - Auto-play with configurable interval
+    - Keyboard navigation (ArrowLeft / ArrowRight)
+    - Touch/swipe support (>50px threshold)
+    - Flavour item click navigation
+    - GSAP animations
+  Note: This is a design reference prototype — the actual slider is
+        implemented inside index.html via cinematic-home.js
+
+
+================================================================================
+  END OF ARCHITECTURE DOCUMENT
+================================================================================

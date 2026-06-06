@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshPress — Cold Pressed Juices</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Smooch+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #080808;
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #fff;
+  user-select: none;
+}
+
+/* ═══════════════════════════════
+   SLIDER CORE
+═══════════════════════════════ */
+.slider-viewport {
+  position: fixed; inset: 0;
+  overflow: hidden;
+}
+.slider-track {
+  display: flex;
+  width: 100%; height: 100%;
+  will-change: transform;
+}
+.slide {
+  position: relative;
+  min-width: 100%; width: 100%; height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ── BACKGROUND ── */
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: opacity 0.6s ease;
+}
+
+.slide-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255,255,255,0.8) 0%,
+      transparent 40%
+    ),
+
+    radial-gradient(
+      circle at top right,
+      rgba(255,255,255,0.8) 0%,
+      transparent 40%
+    ),
+
+    radial-gradient(
+      circle at bottom left,
+      rgba(255,255,255,0.6) 0%,
+      transparent 40%
+    ),
+
+    radial-gradient(
+      circle at bottom right,
+      rgba(255,255,255,0.6) 0%,
+      transparent 40%
+    ),
+
+    radial-gradient(
+      ellipse at center,
+      rgba(255,255,255,0.25) 0%,
+      rgba(255,255,255,0.05) 100%
+    );
+}
+.fruits-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fruits-layer img {
+  height: 500px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: scale(0);
+  animation: splashReveal 1.5s ease-out forwards;
+}
+
+.fruit-mascot{
+    position: absolute;
+    top: 40px;
+    right: 80px;
+    width: 220px;
+    height: auto;
+    z-index: 10;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .fruits-layer img {
+    height: 350px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .fruits-layer img {
+    height: 220px;
+  }
+}
+/* ── SPLASH (behind bottle, above fruits) ── */
+.splash-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.splash-layer img {
+  width: auto;
+  max-width: 600px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+
+  opacity: 0;
+  transform: scale(0);
+
+  animation: splashReveal 1.5s ease-out forwards;
+}
+
+@keyframes splashReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-15deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.15) rotate(5deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes splashPulse {
+  0%,100% {
+    opacity: 0.45;
+    transform: scale(1) rotate(-2deg);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(1.06) rotate(2deg);
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .splash-layer img {
+    max-width: 500px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .splash-layer img {
+    max-width: 350px;
+  }
+}
+.ghost-text {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+  pointer-events: none;
+}
+
+.ghost-text span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(90px, 8vw, 180px);
+  letter-spacing: 0.08em;
+  color: rgba(162, 152, 152, 0.15);
+  white-space: nowrap;
+  line-height: 1;
+  text-transform: uppercase;
+}
+/* ── BOTTLE ── */
+.bottle-wrap {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  will-change: transform;
+}.bottle-img {
+  height: 500px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 80px rgba(0,0,0,0.85));
+  mix-blend-mode: normal;
+  animation: floatBottle 5s ease-in-out infinite;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .bottle-img {
+    height: 350px;
+  }
+}
+@keyframes floatBottle {
+  0%,100%{
+    transform: translateY(0px) rotate(-3deg);
+  }
+
+  50%{
+    transform: translateY(-22px) rotate(3deg);
+  }
+}
+/* ── LEFT CONTENT ── */
+.left-content {
+  position: absolute;
+  left: 48px; top: 50%; transform: translateY(-50%);
+  z-index: 20; max-width: 230px;
+}
+.flavor-tagline {
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #080808;
+  opacity: 0.95;
+  margin-bottom: 14px;
+  line-height: 1.7;
+}
+.arrows {
+  font-size: 12px; letter-spacing: 5px;
+  color: rgba(255,255,255,0.35); margin-bottom: 26px;
+}
+/* Button */
+.btn-order {
+  display: inline-block;
+  padding: 16px 42px;
+
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    to bottom,
+    #ff5a00 0%,
+    #ff8c00 35%,
+    #ff9d00 65%,
+    #ff6a00 100%
+  );
+
+  box-shadow:
+    0 8px 20px rgba(255, 120, 0, 0.4),
+    inset 0 2px 0 rgba(255,255,255,0.4),
+    inset 0 -8px 15px rgba(255,140,0,0.35);
+
+  transition: all 0.3s ease;
+}
+
+/* Top glossy shine */
+.btn-order::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 6px;
+  height: 45%;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.85),
+    rgba(255,255,255,0.15)
+  );
+}
+
+.btn-order:hover {
+  transform: translateY(-3px) scale(1.03);
+  filter: brightness(1.08);
+}
+/* ── RIGHT CONTENT ── */
+.right-content {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  max-width: 250px;
+  text-align: right;
+  pointer-events: none;
+}
+
+.right-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  color: #000;
+  text-transform: none;
+  font-weight: 500;
+  transition: all 0.4s ease;
+}
+/* ═══════════════════════════════
+   TRANSITION ANIMATIONS
+═══════════════════════════════ */
+
+/* When a slide is ENTERING — bottle comes in from right, large, then centers & shrinks */
+.slide.is-entering .bottle-wrap {
+  animation: bottleEnter 0.75s cubic-bezier(0.77, 0, 0.18, 1) both;
+}
+@keyframes bottleEnter {
+  0%   { transform: translateX(35%) scale(1.35) rotate(8deg); opacity: 0.4; }
+  100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Fruits parallax on enter */
+.slide.is-entering .fruits-layer {
+  animation: fruitsEnter 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes fruitsEnter {
+  0%   { transform: translateX(20%) scale(1.08); opacity: 0; }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* Splash on enter */
+.slide.is-entering .splash-layer img {
+  animation: splashEnter 0.9s ease both;
+}
+@keyframes splashEnter {
+  0%   { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+  60%  { opacity: 0.65; transform: scale(1.08) rotate(3deg); }
+  100% { opacity: 0.55; transform: scale(1) rotate(-2deg); }
+}
+
+/* Ghost text on enter */
+.slide.is-entering .ghost-text span {
+  animation: ghostEnter 0.8s ease both;
+}
+@keyframes ghostEnter {
+  0%   { opacity: 0; letter-spacing: 0.15em; }
+  100% { opacity: 1; letter-spacing: 0.06em; }
+}
+.slide.is-entering .bottle-img{
+  animation:
+    bottleEnter 1s cubic-bezier(.22,1,.36,1),
+    floatBottle 5s ease-in-out 1s infinite;
+}
+
+@keyframes bottleEnter{
+
+  0%{
+    opacity:0;
+    transform:
+      translateX(250px)
+      translateY(50px)
+      scale(.5)
+      rotate(25deg);
+  }
+
+  60%{
+    opacity:1;
+    transform:
+      translateX(-20px)
+      translateY(-10px)
+      scale(1.08)
+      rotate(-8deg);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translateX(0)
+      translateY(0)
+      scale(1)
+      rotate(0deg);
+  }
+}
+/* Content (left/right) on enter */
+.slide.is-entering .left-content {
+  animation: leftIn 0.6s ease 0.15s both;
+}
+.slide.is-entering .right-content {
+  animation: rightIn 0.6s ease 0.15s both;
+}
+@keyframes leftIn {
+  from { opacity: 0; transform: translateY(calc(-50% + 20px)); }
+  to   { opacity: 1; transform: translateY(-50%); }
+}
+@keyframes rightIn {
+  from { opacity: 0; transform: translateY(calc(-50% + 20px)); }
+  to   { opacity: 1; transform: translateY(-50%); }
+}
+
+/* EXITING slide — bottle flies left+rotates */
+.slide.is-exiting .bottle-wrap {
+  animation: bottleExit 0.75s cubic-bezier(0.77, 0, 0.18, 1) both;
+}
+@keyframes bottleExit {
+
+  0%{
+    opacity:1;
+    transform:
+      translateX(0)
+      scale(1)
+      rotate(0deg);
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translateX(-250px)
+      scale(.7)
+      rotate(-25deg);
+  }
+}
+.slide.is-exiting .fruits-layer {
+  animation: fruitsExit 0.7s ease both;
+}
+@keyframes fruitsExit {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(-18%); opacity: 0; }
+}
+.slide.is-exiting .left-content,
+.slide.is-exiting .right-content {
+  animation: contentExit 0.4s ease both;
+}
+@keyframes contentExit {
+  from { opacity: 1; }
+  to   { opacity: 0; transform: translateY(calc(-50% - 10px)); }
+}
+
+/* ═══════════════════════════════
+   FIXED UI
+═══════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 26px 48px; pointer-events: none;
+}
+nav * { pointer-events: all; }
+/* .logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; letter-spacing: 4px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+}
+.logo em { color: rgba(255,255,255,0.28); font-style: normal; } */
+.nav-tagline {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 3px; opacity: 0.4;
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+.nav-links { display: flex; gap: 5px; }
+.nav-links a {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: 2px; color: rgba(255,255,255,0.6);
+  text-decoration: none; padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  transition: all 0.25s;
+}
+.nav-links a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+.flavor-list {
+  position: fixed;
+  left: 48px;
+  bottom: 68px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.flavor-item {
+  font-family: 'Smooch Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  opacity: 0.8;
+  color: #000;
+}
+
+/* HOVER COLORS */
+.flavor-item.watermelon:hover {
+  color: #FF5C7A;
+}
+
+.flavor-item.blueberry:hover {
+  color: #6A5ACD;
+}
+
+.flavor-item.avocado:hover {
+  color: #8BC34A;
+}
+
+.flavor-item.orange:hover {
+  color: #FF8C00;
+}
+
+.flavor-item.lychee:hover {
+  color: #FFB6C1;
+}
+
+.flavor-item.mango:hover {
+  color: #FFC300;
+}
+
+/* ACTIVE COLORS */
+.flavor-item.watermelon.active {
+  color: #FF5C7A;
+}
+
+.flavor-item.blueberry.active {
+  color: #6A5ACD;
+}
+
+.flavor-item.avocado.active {
+  color: #8BC34A;
+}
+
+.flavor-item.orange.active {
+  color: #FF8C00;
+}
+
+.flavor-item.lychee.active {
+  color: #FFB6C1;
+}
+
+.flavor-item.mango.active {
+  color: #FFC300;
+}
+
+/* COMMON ACTIVE STYLE */
+.flavor-item.active {
+  font-weight: 700;
+  opacity: 1;
+  padding-left: 8px;
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* HOVER EFFECT */
+.flavor-item:hover {
+  transform: translateX(4px);
+  opacity: 1;
+}
+.nav-arrow {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  z-index: 200;
+  background: rgb(247, 248, 183);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(28, 1, 1, 0.766);
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; cursor: pointer;
+  backdrop-filter: blur(8px); transition: all 0.25s;
+}
+.nav-arrow:hover { background: rgba(255,255,255,0.13); color: #fff; border-color: rgba(255,255,255,0.35); }
+.nav-arrow.prev { left: 14px; }
+.nav-arrow.next { right: 14px; }
+
+.social {
+  position: fixed; right: 48px; bottom: 24px; z-index: 200;
+  display: flex; gap: 6px;
+}
+.social a {
+  font-family: 'Space Mono', monospace; font-size: 8px;
+  letter-spacing: 2px; color: rgba(255,255,255,0.32);
+  text-decoration: none; padding: 5px 9px;
+  border: 1px solid rgba(255,255,255,0.1); transition: all 0.25s;
+}
+.social a:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+/* Progress bar */
+.progress-bar {
+  position: fixed; bottom: 0; left: 0; z-index: 200;
+  height: 2px; background: rgba(255,255,255,0.15);
+  width: 100%;
+}
+.progress-fill {
+  height: 100%; background: rgba(255,255,255,0.6);
+  transition: width 0.3s ease;
+  width: 25%;
+}
+</style>
+</head>
+<body>
+
+<!-- Fixed UI
+<nav>
+  <div class="logo">AARWINS</div>
+  <!-- <div class="nav-tagline">COLD PRESSED · ZERO ADDITIVES</div> -->
+  <div class="nav-links">
+    <!-- <a href="#">ABOUT</a>
+    <a href="#">FLAVORS</a>
+    <a href="#">CONTACT</a> -->
+  </div>
+</nav> -->
+
+<div class="flavor-list" id="flavor-list">
+  <div class="flavor-item watermelon active" data-idx="0">Watermelon</div>
+  <div class="flavor-item blueberry" data-idx="1">Blueberry</div>
+  <div class="flavor-item avocado" data-idx="2">Avocado</div>
+  <div class="flavor-item orange" data-idx="3">Orange</div>
+  <div class="flavor-item lychee" data-idx="4">Lychee</div>
+  <div class="flavor-item mango" data-idx="5">Mango</div>
+</div>
+<button class="nav-arrow prev" id="prev">&#8592;</button>
+<button class="nav-arrow next" id="next">&#8594;</button>
+
+<!-- <div class="social">
+  <a href="#">FB</a><a href="#">IG</a><a href="#">YT</a>
+</div> -->
+
+<div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+<!-- ═══ SLIDER ═══ -->
+<div class="slider-viewport">
+  <div class="slider-track" id="slider-track">
+
+<!-- SLIDE 0: WATERMELON -->
+<div class="slide" data-idx="0">
+
+  <div class="slide-bg">
+    <img src="images/watermelon bg.png" alt="">
+    <div class="slide-bg-overlay"></div>
+  </div>
+
+  <div class="fruits-layer">
+    <img src="images/watermelonfr.png" alt="Watermelon Fruits">
+  </div>
+
+  <div class="splash-layer">
+    <img src="images/watermelonsplash.png" alt="Watermelon Splash">
+  </div>
+
+  <div class="ghost-text">
+    <span>WATERMELON</span>
+  </div>
+
+  <div class="bottle-wrap">
+    <img class="bottle-img" src="images/melonbottle.png" alt="Watermelon Juice">
+  </div>
+<div class="left-content">
+    <div class="flavor-tagline">
+      COOL, CRISP<br>&amp; REFRESHING
+    </div>
+
+    <div class="arrows">
+      &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+    </div>
+
+    <button class="btn-order" style="background:#b00030;">
+      ORDER NOW
+    </button>
+  </div>
+
+ <div class="right-content">
+  <div class="right-desc">
+    Freshly harvested watermelons,<br>
+    Bursting with juicy sweetness.<br>
+    Cool, hydrating, and refreshingly pure <br>
+    The ultimate summer indulgence.
+  </div>
+</div>
+
+</div>
+
+<!-- SLIDE 1: BLUEBERRY -->
+<div class="slide" data-idx="1">
+
+  <div class="slide-bg">
+    <img src="images/blueberrybg.jpeg" alt="">
+    <div class="slide-bg-overlay"></div>
+  </div>
+
+
+
+  <div class="ghost-text">
+    <span>BLUEBERRY</span>
+  </div>
+
+  <div class="bottle-wrap">
+    <img class="bottle-img" src="images/blueberrybottle.png" alt="Blueberry Juice">
+  </div>
+  <div class="left-content">
+  <div class="flavor-tagline">
+    PURE BLUEBERRY<br>PURE BLISS
+  </div>
+
+  <div class="arrows">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</div>
+
+  <button class="btn-order" style="background:#3b4cca;">
+    ORDER NOW
+  </button>
+</div>
+
+<div class="right-content">
+  <div class="right-desc">
+    Handpicked Juicy Blueberries<br>
+    Bursting with sweet berry goodness.<br>
+    Rich, vibrant, refreshing —<br>
+    A fruity delight in every sip.
+  </div>
+</div>
+
+</div>
+
+<!-- SLIDE 2: AVOCADO -->
+<div class="slide" data-idx="2">
+
+  <div class="slide-bg">
+    <img src="images/Avacadobg.png" alt="">
+    <div class="slide-bg-overlay"></div>
+  </div>
+
+
+
+  <div class="ghost-text">
+    <span>AVOCADO</span>
+  </div>
+
+  <div class="bottle-wrap">
+    <img class="bottle-img" src="images/Avacadobottle.png" alt="Avocado Juice">
+  </div>
+  <div class="left-content">
+  <div class="flavor-tagline">
+    PURE AVOCADO<br>PURE GOODNESS
+  </div>
+
+  <div class="arrows">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</div>
+
+  <button class="btn-order" style="background:#6b8e23;">
+    ORDER NOW
+  </button>
+</div>
+
+<div class="right-content">
+  <div class="right-desc">
+    Creamy Fresh Avocados<br>
+    Naturally smooth and nourishing.<br>
+    Rich, velvety, satisfying —<br>
+    A wholesome treat in every sip.
+  </div>
+</div>
+
+</div>
+
+<!-- SLIDE 3: ORANGE -->
+<div class="slide" data-idx="3">
+
+  <div class="slide-bg">
+    <img src="images/orangebg.png" alt="">
+    <div class="slide-bg-overlay"></div>
+  </div>
+
+  <div class="fruits-layer">
+    <img src="images/orangefr.png" alt="Orange Fruits">
+  </div>
+
+  <div class="splash-layer">
+    <img src="images/orangesplash.png" alt="Orange Splash">
+  </div>
+
+  <div class="ghost-text">
+    <span>ORANGE</span>
+  </div>
+
+  <div class="bottle-wrap">
+    <img class="bottle-img" src="images/orangebottle.png" alt="Orange Juice">
+  </div>
+<div class="left-content">
+    <div class="flavor-tagline">
+      GROVE FRESH<br>
+      EVERY MORNING
+    </div>
+
+    <div class="arrows">
+      &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+    </div>
+
+    <button class="btn-order" style="background:#d04000;">
+      ORDER NOW
+    </button>
+  </div>
+
+ <div class="right-content">
+  <div class="right-desc">
+    Bursting with the brightness<br>
+    of sun-ripened oranges.<br>
+    Crisp, zesty, and refreshingly pure <br>
+    A citrus celebration in every sip.
+  </div>
+</div>
+<!-- ADD MASCOT HERE -->
+  <img src="images/orangemascot .png"
+       alt="Orange Mascot"
+       class="fruit-mascot">
+
+</div>
+
+<!-- SLIDE 4: LYCHEE -->
+<div class="slide" data-idx="4">
+
+  <div class="slide-bg">
+    <img src="images/lycheebg.png" alt="">
+    <div class="slide-bg-overlay"></div>
+  </div>
+
+
+
+  <div class="ghost-text">
+    <span>LYCHEE</span>
+  </div>
+
+  <div class="bottle-wrap">
+    <img class="bottle-img" src="images/lycheebottle.png" alt="Lychee Juice">
+  </div>
+  <div class="left-content">
+  <div class="flavor-tagline">
+    PURE LYCHEE<br>PURE JOY
+  </div>
+
+  <div class="arrows">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</div>
+
+  <button class="btn-order" style="background:#ff8da1;">
+    ORDER NOW
+  </button>
+</div>
+
+<div class="right-content">
+  <div class="right-desc">
+    Exotic Sweet Lychees<br>
+    Picked for their delicate flavor.<br>
+    Floral, juicy, refreshing —<br>
+    A taste of paradise in every sip.
+  </div>
+</div>
+
+</div>
+
+<!-- SLIDE 5: MANGO -->
+<div class="slide" data-idx="5">
+
+  <div class="slide-bg">
+    <img src="images/mango bg.png" alt="">
+    <div class="slide-bg-overlay"></div>
+  </div>
+
+  <div class="fruits-layer">
+    <img src="images/mangofr.png" alt="Mango Fruits">
+  </div>
+
+  <div class="splash-layer">
+    <img src="images/mangosplash.png" alt="Mango Splash">
+  </div>
+
+  <div class="ghost-text">
+    <span>MANGO</span>
+  </div>
+
+  <div class="bottle-wrap">
+    <img class="bottle-img" src="images/mangobottle.png" alt="Mango Juice">
+  </div>
+
+  <div class="left-content">
+    <div class="flavor-tagline">
+      PURE MANGO<br>PURE HAPPINESS
+    </div>
+
+    <div class="arrows">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</div>
+
+    <button class="btn-order" style="background:#c07000;">
+      ORDER NOW
+    </button>
+  </div>
+
+  <div class="right-content">
+    <div class="right-desc">
+      Sun-Kissed Mangoes<br>
+      Harvested at perfect ripeness.<br>
+      Luscious, golden, irresistible —<br>
+      A tropical escape in every sip.
+    </div>
+  </div>
+
+</div> 
+
+
+<script>
+const TOTAL = 6;
+let current = 0;
+let transitioning = false;
+let autoTimer = null;
+
+const track = document.getElementById('slider-track');
+const slides = Array.from(document.querySelectorAll('.slide'));
+const flavorItems = Array.from(document.querySelectorAll('.flavor-item'));
+const progressFill = document.getElementById('progress-fill');
+
+function updateProgress(idx) {
+  progressFill.style.width = ((idx + 1) / TOTAL * 100) + '%';
+}
+
+// Instant position
+function snapTo(idx) {
+  track.style.transition = 'none';
+  track.style.transform = `translateX(-${idx * 100}%)`;
+}
+
+function goTo(idx) {
+  if (transitioning || idx === current) return;
+  transitioning = true;
+
+  const prev = current;
+  current = idx;
+
+  // Add exit class to current, enter class to next
+  slides[prev].classList.add('is-exiting');
+  slides[idx].classList.add('is-entering');
+
+  // Slide the track
+  track.style.transition = 'transform 0.82s cubic-bezier(0.77, 0, 0.18, 1)';
+  track.style.transform = `translateX(-${idx * 100}%)`;
+
+  // Update flavor list
+  flavorItems.forEach((el, i) => el.classList.toggle('active', i === idx));
+  updateProgress(idx);
+
+  // Cleanup after transition
+  setTimeout(() => {
+    slides[prev].classList.remove('is-exiting');
+    slides[idx].classList.remove('is-entering');
+    transitioning = false;
+  }, 900);
+}
+
+// Init
+snapTo(0);
+updateProgress(0);
+
+document.getElementById('next').addEventListener('click', () => {
+  clearTimeout(autoTimer);
+  goTo((current + 1) % TOTAL);
+  scheduleAuto();
+});
+document.getElementById('prev').addEventListener('click', () => {
+  clearTimeout(autoTimer);
+  goTo((current - 1 + TOTAL) % TOTAL);
+  scheduleAuto();
+});
+
+flavorItems.forEach(el => {
+  el.addEventListener('click', () => {
+    clearTimeout(autoTimer);
+    goTo(parseInt(el.dataset.idx));
+    scheduleAuto();
+  });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') { clearTimeout(autoTimer); goTo((current + 1) % TOTAL); scheduleAuto(); }
+  if (e.key === 'ArrowLeft')  { clearTimeout(autoTimer); goTo((current - 1 + TOTAL) % TOTAL); scheduleAuto(); }
+});
+
+// Touch/swipe
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+    clearTimeout(autoTimer);
+    goTo(dx < 0 ? (current + 1) % TOTAL : (current - 1 + TOTAL) % TOTAL);
+    scheduleAuto();
+  }
+});
+
+function scheduleAuto() {
+  autoTimer = setTimeout(() => {
+    goTo((current + 1) % TOTAL);
+    scheduleAuto();
+  }, 5500);
+}
+scheduleAuto();
+
+</script>
+</body>
+</html>

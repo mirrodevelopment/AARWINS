@@ -1,0 +1,2912 @@
+﻿diff --git a/src/main/resources/static/collections.html b/src/main/resources/static/collections.html
+index 75df9bc..6dfa94d 100644
+--- a/src/main/resources/static/collections.html
++++ b/src/main/resources/static/collections.html
+@@ -1,28 +1,41 @@
+ <!DOCTYPE html>
+ <html lang="en">
++
+ <head>
+-  <meta charset="UTF-8"/>
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+-  <meta name="description" content="Aarwins Collections ΓÇö Six premium tropical coconut wellness beverages, each crafted with nature's finest ingredients."/>
+-  <title>Aarwins ΓÇö Collections</title>
+-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317313B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5'/></svg>"/>
+-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"/>
+-  <link rel="stylesheet" href="/css/aarwins.css?v=2.0"/>
+-  <link rel="stylesheet" href="/css/editorial.css?v=2.0"/>
+-  <link rel="stylesheet" href="/css/luxury-spacing.css"/>
+-  <link rel="stylesheet" href="/css/cinematic.css"/>
+-
+-  <!-- GSAP, ScrollTrigger, Lenis -->
++  <meta charset="UTF-8" />
++  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++  <meta name="description"
++    content="Aarwins Collections ├óΓé¼ΓÇ¥ Six premium tropical coconut wellness beverages, each crafted with nature's finest ingredients." />
++  <title>Aarwins ├óΓé¼ΓÇ¥ Collections</title>
++  <link rel="icon" type="image/svg+xml"
++    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317313B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5'/></svg>" />
++  <link rel="preconnect" href="https://fonts.googleapis.com" />
++  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
++  <link
++    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
++    rel="stylesheet" />
++  <link rel="stylesheet" href="/css/aarwins.css?v=2.0" />
++  <link rel="stylesheet" href="/css/editorial.css?v=2.0" />
++  <link rel="stylesheet" href="/css/luxury-spacing.css" />
++  <link rel="stylesheet" href="/css/cinematic.css" />
++
++  <!-- GSAP, ScrollTrigger, Lenis, Three.js -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
++  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
++
++  <!-- Google Fonts for Orbitron, Space Grotesk & Inter -->
++  <link rel="preconnect" href="https://fonts.googleapis.com">
++  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++  <link
++    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;500&display=swap"
++    rel="stylesheet">
+ 
+   <style>
+-    /* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+-       COLLECTIONS PAGE ΓÇö Luxury Editorial Styles
+-    ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
++    /* ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É
++       COLLECTIONS PAGE ├óΓé¼ΓÇ¥ Luxury Editorial Styles
++    ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É */
+ 
+     :root {
+       --col-white: #FFFFFF;
+@@ -36,7 +49,9 @@
+       --font-display: 'Syne', sans-serif;
+     }
+ 
+-    * { box-sizing: border-box; }
++    * {
++      box-sizing: border-box;
++    }
+ 
+     body {
+       background: #FFFFFF;
+@@ -46,9 +61,12 @@
+       opacity: 0;
+       transition: opacity 0.7s ease;
+     }
+-    body.loaded { opacity: 1; }
+ 
+-    /* ΓöÇΓöÇ Page hero banner ΓöÇΓöÇ */
++    body.loaded {
++      opacity: 1;
++    }
++
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Page hero banner ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-hero {
+       width: 100%;
+       background: var(--grad-hero-bg);
+@@ -59,10 +77,12 @@
+       overflow: hidden;
+       border-radius: 0 0 40px 40px;
+     }
++
+     .cp-hero .cp-container {
+       position: relative;
+       z-index: 2;
+     }
++
+     .cp-hero-label {
+       font-family: var(--font-body);
+       font-size: 11px;
+@@ -73,6 +93,7 @@
+       margin-bottom: 28px;
+       display: block;
+     }
++
+     .cp-hero-heading {
+       font-family: var(--font-editorial);
+       font-size: clamp(44px, 6vw, 80px);
+@@ -83,6 +104,7 @@
+       letter-spacing: -1px;
+       line-height: 1.05;
+     }
++
+     .cp-hero-sub {
+       font-family: var(--font-body);
+       font-size: 15px;
+@@ -93,42 +115,46 @@
+       font-weight: 300;
+     }
+ 
+-    /* ΓöÇΓöÇ Main container ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Main container ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-container {
+       width: 88%;
+       max-width: 1600px;
+       margin: 0 auto;
+     }
+ 
+-    /* ΓöÇΓöÇ Shared section spacing ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Shared section spacing ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-section {
+       padding: 160px 0;
+       border-bottom: 1px solid var(--col-border);
+     }
++
+     .cp-section:last-of-type {
+       border-bottom: none;
+     }
+ 
+-    /* ΓöÇΓöÇ Alternating editorial grid ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Alternating editorial grid ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-editorial-grid {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 120px;
+       align-items: center;
+     }
++
+     .cp-editorial-grid.reversed {
+       direction: rtl;
+     }
+-    .cp-editorial-grid.reversed > * {
++
++    .cp-editorial-grid.reversed>* {
+       direction: ltr;
+     }
+ 
+-    /* ΓöÇΓöÇ Copy block ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Copy block ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-copy {
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+     }
++
+     .cp-label {
+       font-family: var(--font-body);
+       font-size: 10px;
+@@ -139,6 +165,7 @@
+       margin-bottom: 28px;
+       display: block;
+     }
++
+     .cp-heading {
+       font-family: var(--font-editorial);
+       font-size: clamp(40px, 4.5vw, 68px);
+@@ -149,6 +176,7 @@
+       letter-spacing: -0.5px;
+       margin: 0 0 32px 0;
+     }
++
+     .cp-body {
+       font-family: var(--font-body);
+       font-size: 15px;
+@@ -158,6 +186,7 @@
+       margin: 0 0 44px 0;
+       font-weight: 300;
+     }
++
+     .cp-btn {
+       display: inline-flex;
+       align-items: center;
+@@ -176,6 +205,7 @@
+       cursor: pointer;
+       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+     }
++
+     .cp-btn:hover {
+       background: #ffffff;
+       border-color: rgba(167, 134, 111, 0.4);
+@@ -184,11 +214,12 @@
+       transform: translateY(-2px);
+     }
+ 
+-    /* ΓöÇΓöÇ Product placeholder visual ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Product placeholder visual ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-visual {
+       position: relative;
+       width: 100%;
+     }
++
+     .cp-ph {
+       width: 100%;
+       background: linear-gradient(180deg, #F8F5F0 0%, #EEE7DE 100%);
+@@ -198,22 +229,34 @@
+       justify-content: center;
+       position: relative;
+       overflow: hidden;
+-      box-shadow: 
++      box-shadow:
+         inset 0 1px 0 rgba(255, 255, 255, 0.6),
+         0 10px 30px rgba(0, 0, 0, 0.03),
+         0 30px 80px rgba(0, 0, 0, 0.05);
+       transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+     }
+-    .cp-ph--tall { height: 580px; border-radius: 38px; }
+-    .cp-ph--medium { height: 440px; border-radius: 38px; }
+-    .cp-ph--square { height: 320px; border-radius: 38px; }
++
++    .cp-ph--tall {
++      height: 580px;
++      border-radius: 38px;
++    }
++
++    .cp-ph--medium {
++      height: 440px;
++      border-radius: 38px;
++    }
++
++    .cp-ph--square {
++      height: 320px;
++      border-radius: 38px;
++    }
+ 
+     /* Subtle background texture for placeholders */
+     .cp-ph::before {
+       content: '';
+       position: absolute;
+       inset: 0;
+-      background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.8) 0%, transparent 60%);
++      background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
+       pointer-events: none;
+     }
+ 
+@@ -239,7 +282,7 @@
+       padding: 40px;
+     }
+ 
+-    /* ΓöÇΓöÇ Collage layout (section 4) ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Collage layout (section 4) ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-collage {
+       display: grid;
+       grid-template-columns: 1.1fr 0.9fr;
+@@ -247,6 +290,7 @@
+       align-items: start;
+       height: 580px;
+     }
++
+     .cp-collage-main {
+       height: 100%;
+       background: #F5F5F2;
+@@ -258,18 +302,21 @@
+       overflow: hidden;
+       position: relative;
+     }
++
+     .cp-collage-main::before {
+       content: '';
+       position: absolute;
+       inset: 0;
+-      background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.8) 0%, transparent 60%);
++      background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
+     }
++
+     .cp-collage-stack {
+       display: flex;
+       flex-direction: column;
+       gap: 16px;
+       height: 100%;
+     }
++
+     .cp-collage-small {
+       flex: 1;
+       background: #F5F5F2;
+@@ -281,24 +328,27 @@
+       overflow: hidden;
+       position: relative;
+     }
++
+     .cp-collage-small::before {
+       content: '';
+       position: absolute;
+       inset: 0;
+-      background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.9) 0%, transparent 70%);
++      background: radial-gradient(ellipse at 70% 30%, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+     }
+ 
+-    /* ΓöÇΓöÇ Centered editorial section ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Centered editorial section ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-centered {
+       text-align: center;
+       padding: 140px 0;
+       border-top: 1px solid var(--col-border);
+       border-bottom: 1px solid var(--col-border);
+     }
++
+     .cp-centered .cp-label {
+       display: block;
+       text-align: center;
+     }
++
+     .cp-centered-heading {
+       font-family: var(--font-editorial);
+       font-size: clamp(36px, 5vw, 62px);
+@@ -309,6 +359,7 @@
+       max-width: 760px;
+       line-height: 1.1;
+     }
++
+     .cp-centered-body {
+       font-family: var(--font-body);
+       font-size: 15px;
+@@ -318,6 +369,7 @@
+       line-height: 2;
+       font-weight: 300;
+     }
++
+     .cp-luxury-divider {
+       width: 80px;
+       height: 1px;
+@@ -325,12 +377,17 @@
+       margin: 0 auto 48px auto;
+     }
+ 
+-    /* ΓöÇΓöÇ Section 6 ΓÇö final centered with large visual ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Section 6 ├óΓé¼ΓÇ¥ final centered with large visual ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-final {
+       text-align: center;
+       padding: 160px 0;
+     }
+-    .cp-final .cp-label { display: block; text-align: center; }
++
++    .cp-final .cp-label {
++      display: block;
++      text-align: center;
++    }
++
+     .cp-final-heading {
+       font-family: var(--font-editorial);
+       font-size: clamp(40px, 5.5vw, 72px);
+@@ -341,6 +398,7 @@
+       max-width: 700px;
+       line-height: 1.05;
+     }
++
+     .cp-final-body {
+       font-family: var(--font-body);
+       font-size: 15px;
+@@ -350,6 +408,7 @@
+       line-height: 2;
+       font-weight: 300;
+     }
++
+     .cp-final-visual {
+       max-width: 560px;
+       margin: 0 auto;
+@@ -363,704 +422,1953 @@
+       position: relative;
+       overflow: hidden;
+     }
++
+     .cp-final-visual::before {
+       content: '';
+       position: absolute;
+       inset: 0;
+-      background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.9) 0%, transparent 70%);
++      background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+     }
+ 
+-    /* ΓöÇΓöÇ Reveal animation ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Reveal animation ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-reveal {
+       opacity: 0;
+       transform: translateY(40px);
+       transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+-                  transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
++        transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
++    }
++
++    .cp-reveal.visible {
++      opacity: 1;
++      transform: translateY(0);
++    }
++
++    .cp-reveal-delay {
++      transition-delay: 0.2s;
++    }
++
++    .cp-reveal-delay-2 {
++      transition-delay: 0.4s;
+     }
+-    .cp-reveal.visible { opacity: 1; transform: translateY(0); }
+-    .cp-reveal-delay { transition-delay: 0.2s; }
+-    .cp-reveal-delay-2 { transition-delay: 0.4s; }
+ 
+-    /* ΓöÇΓöÇ Hover lift on visuals ΓöÇΓöÇ */
++    /* ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ Hover lift on visuals ├óΓÇ¥Γé¼├óΓÇ¥Γé¼ */
+     .cp-visual-hover {
+       transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+     }
++
+     .cp-visual-hover:hover {
+       transform: translateY(-8px);
+     }
++
+     .cp-visual-hover:hover .cp-ph {
+-      box-shadow: 
++      box-shadow:
+         inset 0 1px 0 rgba(255, 255, 255, 0.7),
+         0 20px 45px rgba(167, 134, 111, 0.05),
+         0 45px 90px rgba(0, 0, 0, 0.07);
+     }
+ 
+-    /* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ RESPONSIVE ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
++    /* ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É RESPONSIVE ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É */
+     @media (max-width: 900px) {
++
+       .cp-editorial-grid,
+       .cp-editorial-grid.reversed {
+         grid-template-columns: 1fr;
+         gap: 60px;
+         direction: ltr;
+       }
+-      .cp-editorial-grid.reversed > * { direction: ltr; }
+-      .cp-section { padding: 100px 0; }
++
++      .cp-editorial-grid.reversed>* {
++        direction: ltr;
++      }
++
++      .cp-section {
++        padding: 100px 0;
++      }
++
+       .cp-collage {
+         grid-template-columns: 1fr;
+         height: auto;
+         gap: 16px;
+       }
+-      .cp-collage-main { height: 340px; }
+-      .cp-collage-stack { flex-direction: row; height: 160px; }
+-      .cp-collage-small { height: 100%; }
+-      .cp-hero { padding: 140px 0 70px 0; }
+-      .cp-centered { padding: 100px 0; }
+-      .cp-final { padding: 100px 0; }
+-      .cp-final-visual { height: 380px; max-width: 100%; }
+-      .cp-body, .cp-centered-body, .cp-final-body { max-width: 100%; }
++
++      .cp-collage-main {
++        height: 340px;
++      }
++
++      .cp-collage-stack {
++        flex-direction: row;
++        height: 160px;
++      }
++
++      .cp-collage-small {
++        height: 100%;
++      }
++
++      .cp-hero {
++        padding: 140px 0 70px 0;
++      }
++
++      .cp-centered {
++        padding: 100px 0;
++      }
++
++      .cp-final {
++        padding: 100px 0;
++      }
++
++      .cp-final-visual {
++        height: 380px;
++        max-width: 100%;
++      }
++
++      .cp-body,
++      .cp-centered-body,
++      .cp-final-body {
++        max-width: 100%;
++      }
+     }
+ 
+     @media (max-width: 640px) {
+-      .cp-section { padding: 72px 0; }
+-      .cp-editorial-grid { gap: 40px; }
+-      .cp-ph--tall { height: 360px; }
+-      .cp-ph--medium { height: 300px; }
+-      .cp-collage-main { height: 280px; }
+-      .cp-collage-stack { flex-direction: column; height: auto; gap: 12px; }
+-      .cp-collage-small { height: 140px; }
+-      .cp-hero { padding: 120px 24px 60px; }
+-      .cp-centered { padding: 72px 0; }
+-      .cp-final { padding: 72px 0; }
+-      .cp-final-visual { height: 320px; }
+-      .cp-container { width: 90%; }
++      .cp-section {
++        padding: 72px 0;
++      }
++
++      .cp-editorial-grid {
++        gap: 40px;
++      }
++
++      .cp-ph--tall {
++        height: 360px;
++      }
++
++      .cp-ph--medium {
++        height: 300px;
++      }
++
++      .cp-collage-main {
++        height: 280px;
++      }
++
++      .cp-collage-stack {
++        flex-direction: column;
++        height: auto;
++        gap: 12px;
++      }
++
++      .cp-collage-small {
++        height: 140px;
++      }
++
++      .cp-hero {
++        padding: 120px 24px 60px;
++      }
++
++      .cp-centered {
++        padding: 72px 0;
++      }
++
++      .cp-final {
++        padding: 72px 0;
++      }
++
++      .cp-final-visual {
++        height: 320px;
++      }
++
++      .cp-container {
++        width: 90%;
++      }
++    }
++
++    /* ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É
++       ZERO-POINT THREE.JS WEBGL SHOWCASE ├óΓé¼ΓÇ¥ Styles
++       ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É */
++    .zp-hero {
++      font-family: 'Space Grotesk', sans-serif;
++      position: relative !important;
++      height: 100vh !important;
++      height: 100svh !important;
++      /* Mobile safe viewport height */
++      width: 100% !important;
++      overflow: hidden !important;
++      background-color: #ffffff !important;
++      color: #111111 !important;
++      display: block !important;
++      z-index: 1 !important;
++    }
++
++    .zp-hero #canvas-container {
++      position: absolute;
++      top: 0;
++      left: 0;
++      width: 100%;
++      height: 100%;
++      z-index: 1;
++      pointer-events: none;
++    }
++
++    .zp-hero canvas {
++      width: 100%;
++      height: 100%;
++      display: block;
++    }
++
++    .zp-hero-ui {
++      position: absolute;
++      inset: 0;
++      z-index: 10;
++      display: flex;
++      flex-direction: column;
++      justify-content: space-between;
++      padding: 48px;
++      box-sizing: border-box;
++      pointer-events: none;
++    }
++
++    .zp-hero-ui>* {
++      pointer-events: auto;
++    }
++
++    .zp-hero .font-heading {
++      font-family: 'Orbitron', sans-serif;
++    }
++
++    .zp-hero #slider-engine {
++      width: 100%;
++      max-width: 1200px;
++      margin: auto;
++      height: 60%;
++      position: relative;
++      overflow: hidden;
++      pointer-events: none;
++    }
++
++    .zp-hero .slide-track {
++      display: flex;
++      width: 400%;
++      height: 100%;
++      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
++      pointer-events: none;
++    }
++
++    .zp-hero .slide-pane {
++      width: 25%;
++      height: 100%;
++      flex-shrink: 0;
++      display: grid;
++      grid-template-columns: repeat(12, minmax(0, 1fr));
++      gap: 32px;
++      align-items: center;
++      box-sizing: border-box;
++      pointer-events: none;
++    }
++
++    .zp-hero .lg-col-3 {
++      grid-column: span 3 / span 3;
++    }
++
++    .zp-hero .lg-col-6 {
++      grid-column: span 6 / span 6;
++      display: flex;
++      flex-direction: column;
++      align-items: center;
++      justify-content: center;
++    }
++
++    /* Flex layouts and utility helpers */
++    .zp-hero .flex-row {
++      display: flex;
++      flex-direction: row;
++    }
++
++    .zp-hero .flex-col {
++      display: flex;
++      flex-direction: column;
++    }
++
++    .zp-hero .items-center {
++      align-items: center;
++    }
++
++    .zp-hero .items-end {
++      align-items: flex-end;
++    }
++
++    .zp-hero .justify-between {
++      justify-content: space-between;
++    }
++
++    .zp-hero .justify-center {
++      justify-content: center;
++    }
++
++    .zp-hero .text-center {
++      text-align: center;
++    }
++
++    .zp-hero .text-right {
++      text-align: right;
++    }
++
++    .zp-hero .gap-8 {
++      gap: 32px;
++    }
++
++    .zp-hero .gap-6 {
++      gap: 24px;
++    }
++
++    .zp-hero .gap-2 {
++      gap: 8px;
++    }
++
++    .zp-hero .space-y-6>*+* {
++      margin-top: 24px;
++    }
++
++    .zp-hero .space-y-4>*+* {
++      margin-top: 16px;
++    }
++
++    .zp-hero .space-y-3>*+* {
++      margin-top: 12px;
++    }
++
++    .zp-hero .mt-2 {
++      margin-top: 8px;
++    }
++
++    .zp-hero .mt-0\.5 {
++      margin-top: 2px;
++    }
++
++    .zp-hero .pt-6 {
++      padding-top: 24px;
++    }
++
++    .zp-hero .w-full {
++      width: 100%;
++    }
++
++    .zp-hero .max-w-7xl {
++      max-width: 1280px;
++    }
++
++    .zp-hero .mx-auto {
++      margin-left: auto;
++      margin-right: auto;
++    }
++
++    .zp-hero .my-auto {
++      margin-top: auto;
++      margin-bottom: auto;
++    }
++
++    /* Typography values */
++    .zp-hero .title {
++      font-size: clamp(2rem, 4.2vw, 3.6rem);
++      font-weight: 900;
++      line-height: 1;
++      letter-spacing: -0.02em;
++    }
++
++    .zp-hero .desc {
++      font-size: 11px;
++      line-height: 1.8;
++      color: #a3a3a3;
++      font-weight: 300;
++      letter-spacing: 0.05em;
++    }
++
++    .zp-hero .tagline {
++      font-size: 10px;
++      letter-spacing: 0.25em;
++      color: #a3a3a3;
++    }
++
++    /* Floating Can styling */
++    .zp-hero .hero-can {
++      max-height: 52vh !important;
++      width: auto !important;
++      max-width: 240px !important;
++      object-fit: contain !important;
++      filter: drop-shadow(0 20px 40px var(--glow-accent));
++      will-change: transform;
++    }
++
++    /* CTA button styling */
++    .zp-hero .cta {
++      background-color: #ffffff;
++      color: #000000;
++      font-family: 'Orbitron', sans-serif;
++      font-weight: 700;
++      font-size: 11px;
++      letter-spacing: 0.2em;
++      text-transform: uppercase;
++      padding: 16px 32px;
++      border: 1px solid transparent;
++      transition: all 0.3s ease;
++      cursor: pointer;
++      display: inline-block;
++      text-decoration: none;
++      text-align: center;
++      outline: none;
++    }
++
++    .zp-hero .cta:hover {
++      background-color: transparent;
++      color: #ffffff;
++      border-color: var(--accent-border) !important;
++      box-shadow: 0 0 20px var(--accent-glow);
++    }
++
++    #hero-cta-btn {
++      background-color: var(--btn-accent, #0ea5e9) !important;
++      border-color: var(--btn-accent, #0ea5e9) !important;
++      color: #ffffff !important;
++      font-family: var(--font-body) !important;
++      transition: background-color 600ms ease, border-color 600ms ease, color 600ms ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
++    }
++    #hero-cta-btn:hover {
++      background-color: #ffffff !important;
++      border-color: var(--btn-accent, #0ea5e9) !important;
++      color: var(--btn-accent, #0ea5e9) !important;
++      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
++      transform: translateY(-2px) !important;
++    }
++
++    .zp-hero .text-purple-500 {
++      color: #a855f7;
++    }
++
++    .zp-hero .text-green-500 {
++      color: #22c55e;
++    }
++
++    .zp-hero .text-sky-500 {
++      color: #0ea5e9;
++    }
++
++    .zp-hero .text-orange-500 {
++      color: #f97316;
++    }
++
++    .zp-hero .text-neutral-600 {
++      color: #525252;
++    }
++
++    .zp-hero .gap-1 {
++      gap: 4px;
++    }
++
++    .zp-hero .gap-2 {
++      gap: 8px;
++    }
++
++    /* Navigation deck buttons styling */
++    .zp-hero .nav-item {
++      background: none;
++      border: none;
++      text-align: left;
++      font-family: 'Orbitron', sans-serif;
++      font-size: 11px;
++      letter-spacing: 0.2em;
++      color: #737373;
++      transition: all 0.3s ease;
++      cursor: pointer;
++      padding: 6px 0;
++      outline: none;
++      border-left: 2px solid transparent;
++    }
++
++    .zp-hero .nav-item:hover {
++      color: #ffffff;
++    }
++
++    .zp-hero .border-purple-500 {
++      border-left-color: #a855f7 !important;
++    }
++
++    .zp-hero .border-green-500 {
++      border-left-color: #22c55e !important;
++    }
++
++    .zp-hero .border-sky-500 {
++      border-left-color: #0ea5e9 !important;
++    }
++
++    .zp-hero .border-orange-500 {
++      border-left-color: #f97316 !important;
++    }
++
++    /* Ambient Fog at the bottom */
++    .zp-hero .ambient-fog {
++      position: absolute;
++      bottom: 0;
++      left: 0;
++      height: 180px;
++      width: 100%;
++      background: linear-gradient(to top, #ffffff, transparent);
++      z-index: 20;
++      pointer-events: none;
++    }
++
++    /* Responsive rules */
++    @media (max-width: 1024px) {
++      .zp-hero .slide-content {
++        grid-template-columns: 1fr !important;
++        gap: 32px;
++      }
++
++      .zp-hero .lg-col-3,
++      .zp-hero .lg-col-6 {
++        grid-column: span 12 / span 12 !important;
++        text-align: center !important;
++        align-items: center !important;
++      }
++
++      .zp-hero .lg-text-right {
++        text-align: center !important;
++      }
++
++      .zp-hero-ui {
++        padding: 32px 24px;
++      }
++
++      .zp-hero .hero-can {
++        max-height: 38vh !important;
++        max-width: 200px !important;
++      }
++
++      .zp-hero footer {
++        flex-direction: column !important;
++        align-items: center !important;
++        gap: 16px !important;
++      }
++
++      .zp-hero footer .text-right {
++        text-align: center !important;
++      }
++
++      .zp-hero .nav-btn {
++        text-align: center !important;
++      }
++    }
++
++    @media (max-width: 640px) {
++      .zp-hero-ui {
++        padding: 24px 16px;
++      }
++
++      .zp-hero .hero-can {
++        max-height: 32vh !important;
++        max-width: 160px !important;
++      }
++
++      .zp-hero .title {
++        font-size: 1.8rem;
++      }
++
++      .zp-hero .desc {
++        max-width: 100% !important;
++      }
++    }
++
++    /* Prevent hero backgrounds from bleeding through subsequent sections */
++    html,
++    body {
++      background-color: #ffffff !important;
++    }
++
++    .cp-section,
++    .cp-centered,
++    .cp-final {
++      background-color: #ffffff !important;
++      position: relative;
++      z-index: 10;
++    }
++
++    .footer-black {
++      background-color: #111111 !important;
++      position: relative;
++      z-index: 10;
++    }
++
++    /* Navigation Arrows */
++    .zp-hero .slide-arrow {
++      position: absolute;
++      top: 50%;
++      transform: translateY(-50%);
++      background: rgba(255, 255, 255, 0.03);
++      border: 1px solid rgba(255, 255, 255, 0.08);
++      width: 48px;
++      height: 48px;
++      border-radius: 50%;
++      color: #ffffff;
++      display: flex;
++      align-items: center;
++      justify-content: center;
++      cursor: pointer;
++      z-index: 40;
++      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
++      outline: none;
++      pointer-events: auto;
++    }
++
++    .zp-hero .slide-arrow:hover {
++      background: rgba(255, 255, 255, 0.1);
++      border-color: rgba(255, 255, 255, 0.2);
++      transform: translateY(-50%) scale(1.08);
++      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
++    }
++
++    .zp-hero .slide-arrow svg {
++      width: 20px;
++      height: 20px;
++      transition: transform 0.3s ease;
++    }
++
++    .zp-hero .prev-arrow {
++      left: 32px;
++    }
++
++    .zp-hero .next-arrow {
++      right: 32px;
++    }
++
++    .zp-hero .prev-arrow:hover svg {
++      transform: translateX(-2px);
++    }
++
++    .zp-hero .next-arrow:hover svg {
++      transform: translateX(2px);
++    }
++
++    @media (max-width: 768px) {
++      .zp-hero .slide-arrow {
++        width: 38px;
++        height: 38px;
++      }
++
++      .zp-hero .prev-arrow {
++        left: 16px;
++      }
++
++      .zp-hero .next-arrow {
++        right: 16px;
++      }
++    }
++
++    /* Zero-point hero layouts and responsive design */
++
++    /* ΓöÇΓöÇΓöÇ Product image layer: native <img> for transparent PNG rendering ΓöÇΓöÇΓöÇ */
++    #hero-product-img-layer {
++      position: absolute !important;
++      inset: 0 !important;
++      width: 100% !important;
++      height: 100% !important;
++      z-index: 5 !important;
++      pointer-events: none !important;
++      display: flex !important;
++      align-items: center !important;
++      justify-content: center !important;
++    }
++
++    .hero-product-img {
++      position: absolute !important;
++      top: 50% !important;
++      left: 50% !important;
++      transform: translate(-50%, -54%) !important;
++      height: 74% !important;
++      max-height: 540px !important;
++      width: auto !important;
++      object-fit: contain !important;
++      opacity: 0 !important;
++      transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) !important;
++      pointer-events: none !important;
++      user-select: none !important;
++      -webkit-user-drag: none !important;
++      filter: drop-shadow(0 32px 64px rgba(0,0,0,0.13)) !important;
++    }
++
++    .hero-product-img--active {
++      opacity: 1 !important;
++    }
++
++    .zph-overlay {
++      position: absolute !important;
++      inset: 0 !important;
++      width: 100% !important;
++      height: 100% !important;
++      z-index: 10 !important;
++      pointer-events: none !important;
++      display: flex !important;
++      flex-direction: column !important;
++      justify-content: space-between !important;
++      padding: 48px !important;
++      box-sizing: border-box !important;
++    }
++
++    .zph-middle {
++      width: 100% !important;
++      max-width: 1280px !important;
++      margin: 0 auto !important;
++      display: flex !important;
++      justify-content: space-between !important;
++      align-items: center !important;
++      box-sizing: border-box !important;
++    }
++
++    .zph-left {
++      width: 260px !important;
++      display: flex !important;
++      flex-direction: column !important;
++      gap: 24px !important;
++      pointer-events: auto !important;
++    }
++
++    .zph-spacer {
++      width: 320px !important;
++      height: 10px !important;
++    }
++
++    .zph-right {
++      width: 340px !important;
++      text-align: right !important;
++      display: flex !important;
++      flex-direction: column !important;
++      gap: 16px !important;
++      pointer-events: auto !important;
++    }
++
++    .zph-bottom {
++      width: 100% !important;
++      max-width: 1280px !important;
++      margin: 0 auto !important;
++      padding-top: 24px !important;
++      border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
++      display: flex !important;
++      justify-content: space-between !important;
++      align-items: flex-end !important;
++      box-sizing: border-box !important;
++    }
++
++    .zph-nav {
++      display: flex !important;
++      flex-direction: row !important;
++      gap: 36px !important;
++      font-size: 11px !important;
++      letter-spacing: 0.2em !important;
++      color: #52525b !important;
++      pointer-events: auto !important;
++    }
++
++    .zph-ingredients {
++      background-color: rgba(0, 0, 0, 0.5) !important;
++      backdrop-filter: blur(24px) !important;
++      -webkit-backdrop-filter: blur(24px) !important;
++      padding: 8px 24px !important;
++      border-radius: 9999px !important;
++      border: 1px solid rgba(255, 255, 255, 0.05) !important;
++      pointer-events: auto !important;
++    }
++
++    .zph-ingredients p {
++      color: #e4e4e7 !important;
++    }
++
++    #zero-point-hero {
++      position: relative !important;
++      width: 100% !important;
++      height: 100vh !important;
++      min-height: 650px !important;
++      overflow: hidden !important;
++      background-color: #ffffff !important;
++      box-sizing: border-box !important;
++    }
++
++    #sl-title {
++      font-size: 44px !important;
++      margin: 0 !important;
++    }
++
++    #sl-desc {
++      margin: 0 !important;
++    }
++
++    /* Responsive adjustments for showcase hero */
++    @media (max-width: 1024px) {
++      .zph-middle {
++        padding: 0 24px !important;
++      }
++
++      .zph-bottom {
++        padding: 24px 24px 0 24px !important;
++      }
++    }
++
++    @media (max-width: 768px) {
++      #zero-point-hero {
++        height: 100vh !important;
++        height: 100svh !important;
++        min-height: 600px !important;
++        overflow: hidden !important;
++        padding-bottom: 0 !important;
++      }
++
++      .hero-product-img {
++        height: 96% !important;
++        max-height: 700px !important;
++        top: 42% !important;
++        transform: translate(-50%, -50%) !important;
++      }
++
++      .zph-overlay {
++        position: absolute !important;
++        inset: 0 !important;
++        width: 100% !important;
++        height: 100% !important;
++        padding: 32px 24px !important;
++        box-sizing: border-box !important;
++        display: flex !important;
++        flex-direction: column !important;
++        justify-content: space-between !important;
++      }
++
++      .zph-middle {
++        flex-direction: column !important;
++        justify-content: flex-start !important;
++        align-items: center !important;
++        padding: 0 !important;
++        margin-top: 65px !important;
++        width: 100% !important;
++      }
++
++      #sl-title {
++        position: absolute !important;
++        top: 95px !important;
++        left: 0 !important;
++        right: 0 !important;
++        margin: 0 auto !important;
++        width: 90% !important;
++        text-align: center !important;
++        font-size: 26px !important;
++        z-index: 10 !important;
++      }
++
++      #sl-desc {
++        position: absolute !important;
++        bottom: 210px !important;
++        left: 0 !important;
++        right: 0 !important;
++        margin: 0 auto !important;
++        width: 84% !important;
++        text-align: center !important;
++        z-index: 10 !important;
++        font-size: 11px !important;
++        line-height: 1.6 !important;
++        color: #52525b !important;
++      }
++
++      #hero-cta-btn {
++        position: absolute !important;
++        bottom: 145px !important;
++        left: 50% !important;
++        transform: translateX(-50%) !important;
++        width: auto !important;
++        min-width: 220px !important;
++        text-align: center !important;
++        justify-content: center !important;
++        z-index: 10 !important;
++      }
++
++      .zph-spacer {
++        display: block !important;
++        height: 10px !important;
++        width: 10px !important;
++      }
++
++      .zph-right {
++        position: static !important;
++        width: auto !important;
++        height: auto !important;
++      }
++
++      .zph-left {
++        position: static !important;
++        width: auto !important;
++        height: auto !important;
++      }
++
++      .zph-left > div:first-child {
++        display: none !important;
++      }
++
++      .zph-bottom {
++        flex-direction: column !important;
++        align-items: center !important;
++        gap: 16px !important;
++        padding: 0 !important;
++        margin-bottom: 20px !important;
++      }
++
++      .zph-nav {
++        flex-wrap: wrap !important;
++        justify-content: center !important;
++        gap: 12px !important;
++      }
++
++      .zph-nav button {
++        font-size: 10px !important;
++      }
++
++      #hero-ingredients-pill {
++        display: none !important;
++      }
+     }
+   </style>
+ </head>
++
+ <body>
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ NAVBAR ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<header class="site-header" id="site-header">
+-  <nav class="navbar" aria-label="Main navigation">
+-    <a class="nav-logo" href="/">
+-      <img src="/images/logo.png" alt="Aarwins Logo" class="nav-logo-img" style="height: 58px; width: 58px; object-fit: contain; border-radius: 50%;"/>
+-      <span>AARWINS</span>
+-    </a>
+-    <div class="nav-links">
+-      <a href="/collections">Collections</a>
+-      <a href="/#editorial">Philosophy</a>
+-      <a href="/#reviews">Reviews</a>
+-    </div>
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É NAVBAR ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <header class="site-header" id="site-header">
++    <nav class="navbar" aria-label="Main navigation">
++      <a class="nav-logo" href="/">
++        <img src="/images/logo.png" alt="Aarwins Logo" class="nav-logo-img"
++          style="height: 58px; width: 58px; object-fit: contain; border-radius: 50%;" />
++        <span>AARWINS</span>
++      </a>
++      <div class="nav-links">
++        <a href="/collections">Collections</a>
++        <a href="/#editorial">Philosophy</a>
++        <a href="/#reviews">Reviews</a>
++      </div>
+ 
+-    <div class="nav-right">
+-      <span class="nav-lang">UA | EN</span>
+-      <div class="nav-search-wrapper" id="nav-search-wrapper">
+-        <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Search..." autocomplete="off"/>
+-        <span class="nav-search-divider"></span>
+-        <button class="nav-search-btn" id="nav-search-btn" aria-label="Search">
+-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
++      <div class="nav-right">
++        <span class="nav-lang">UA | EN</span>
++        <div class="nav-search-wrapper" id="nav-search-wrapper">
++          <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Search..."
++            autocomplete="off" />
++          <span class="nav-search-divider"></span>
++          <button class="nav-search-btn" id="nav-search-btn" aria-label="Search">
++            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
++              stroke-linecap="round" stroke-linejoin="round">
++              <circle cx="11" cy="11" r="8"></circle>
++              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
++            </svg>
++          </button>
++        </div>
++        <div class="nav-user-container" style="position: relative; display: inline-block;">
++          <button class="nav-icon-btn" id="nav-user-btn" aria-label="Account">
++            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
++              stroke-linecap="round" stroke-linejoin="round">
++              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
++              <circle cx="12" cy="7" r="4"></circle>
++            </svg>
++          </button>
++          <div class="account-dropdown" id="account-dropdown">
++            <a href="#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
++                stroke-width="2">
++                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
++                <circle cx="12" cy="7" r="4"></circle>
++              </svg>Profile</a>
++            <a href="#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
++                stroke-width="2">
++                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
++                <line x1="2" y1="10" x2="22" y2="10"></line>
++              </svg>Orders</a>
++            <a href="#wishlist"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
++                stroke-width="2">
++                <path
++                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
++                </path>
++              </svg>Wishlist</a>
++            <div class="dropdown-divider"></div>
++            <a href="#logout" class="logout-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
++                stroke="currentColor" stroke-width="2">
++                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
++                <polyline points="16 17 21 12 16 7"></polyline>
++                <line x1="21" y1="12" x2="9" y2="12"></line>
++              </svg>Logout</a>
++          </div>
++        </div>
++        <button class="nav-icon-btn" id="nav-wishlist-btn" aria-label="Wishlist">
++          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
++            stroke-linecap="round" stroke-linejoin="round">
++            <path
++              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
++            </path>
++          </svg>
+         </button>
+-      </div>
+-      <div class="nav-user-container" style="position: relative; display: inline-block;">
+-        <button class="nav-icon-btn" id="nav-user-btn" aria-label="Account">
+-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
++        <button class="nav-icon-btn" id="nav-cart-btn" aria-label="Cart">
++          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2"
++            stroke-linecap="round" stroke-linejoin="round">
++            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
++            <line x1="3" y1="6" x2="21" y2="6"></line>
++            <path d="M16 10a4 4 0 0 1-8 0"></path>
++          </svg>
+         </button>
+-        <div class="account-dropdown" id="account-dropdown">
+-          <a href="#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+-          <a href="#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>Orders</a>
+-          <a href="#wishlist"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>Wishlist</a>
+-          <div class="dropdown-divider"></div>
+-          <a href="#logout" class="logout-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Logout</a>
+-        </div>
++        <a href="/#contact-section" class="nav-shop-btn">Contact us</a>
+       </div>
+-      <button class="nav-icon-btn" id="nav-wishlist-btn" aria-label="Wishlist">
+-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+-      </button>
+-      <button class="nav-icon-btn" id="nav-cart-btn" aria-label="Cart">
+-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
++
++      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
++        <span></span><span></span><span></span>
+       </button>
+-      <a href="/#contact-section" class="nav-shop-btn">Contact us</a>
++    </nav>
++  </header>
++
++  <!-- Mobile Drawer Backdrop Overlay -->
++  <div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
++
++  <!-- Mobile drawer -->
++  <div class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
++    <!-- Gradient Orbs & Lighting -->
++    <div class="drawer-glow-container" aria-hidden="true">
++      <div class="drawer-glow-orb orb-blue"></div>
++      <div class="drawer-glow-orb orb-pink"></div>
++      <div class="drawer-glow-orb orb-lavender"></div>
++      <div class="drawer-glow-orb orb-teal"></div>
+     </div>
+ 
+-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+-      <span></span><span></span><span></span>
+-    </button>
+-  </nav>
+-</header>
+-
+-<!-- Mobile Drawer Backdrop Overlay -->
+-<div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
+-
+-<!-- Mobile drawer -->
+-<div class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
+-  <!-- Gradient Orbs & Lighting -->
+-  <div class="drawer-glow-container" aria-hidden="true">
+-    <div class="drawer-glow-orb orb-blue"></div>
+-    <div class="drawer-glow-orb orb-pink"></div>
+-    <div class="drawer-glow-orb orb-lavender"></div>
+-    <div class="drawer-glow-orb orb-teal"></div>
+-  </div>
+-  
+-  <!-- Grain Overlay inside menu panel -->
+-  <div class="drawer-grain" aria-hidden="true"></div>
+-  
+-  <div class="drawer-content">
+-    <!-- Top Area -->
+-    <div class="drawer-header">
+-      <div class="drawer-brand">
+-        <span class="drawer-logo-text">AARWINS</span>
+-        <span class="drawer-editorial-label">Tropical Wellness</span>
++    <!-- Grain Overlay inside menu panel -->
++    <div class="drawer-grain" aria-hidden="true"></div>
++
++    <div class="drawer-content">
++      <!-- Top Area -->
++      <div class="drawer-header">
++        <div class="drawer-brand">
++          <span class="drawer-logo-text">AARWINS</span>
++          <span class="drawer-editorial-label">Tropical Wellness</span>
++        </div>
++        <button class="drawer-close" id="drawer-close" aria-label="Close menu">├ó┼ôΓÇó</button>
+       </div>
+-      <button class="drawer-close" id="drawer-close" aria-label="Close menu">Γ£ò</button>
++
++      <!-- Center Navigation Links -->
++      <nav class="drawer-nav" aria-label="Mobile Navigation">
++        <a href="/#home" class="drawer-nav-item" style="--stagger-index: 1;">
++          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
++            stroke-linecap="round" stroke-linejoin="round">
++            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
++            <polyline points="9 22 9 12 15 12 15 22"></polyline>
++          </svg>
++          <span>Home</span>
++        </a>
++        <a href="/collections" class="drawer-nav-item" style="--stagger-index: 2;">
++          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
++            stroke-linecap="round" stroke-linejoin="round">
++            <rect x="3" y="3" width="7" height="7"></rect>
++            <rect x="14" y="3" width="7" height="7"></rect>
++            <rect x="14" y="14" width="7" height="7"></rect>
++            <rect x="3" y="14" width="7" height="7"></rect>
++          </svg>
++          <span>Collections</span>
++        </a>
++        <a href="/#reviews" class="drawer-nav-item" style="--stagger-index: 3;">
++          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
++            stroke-linecap="round" stroke-linejoin="round">
++            <polygon
++              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
++            </polygon>
++          </svg>
++          <span>Reviews</span>
++        </a>
++        <a href="/#contact-section" class="drawer-nav-item" style="--stagger-index: 4;">
++          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
++            stroke-linecap="round" stroke-linejoin="round">
++            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
++            <polyline points="22,6 12,13 2,6"></polyline>
++          </svg>
++          <span>Contact</span>
++        </a>
++
++        <div class="drawer-nav-divider" style="--stagger-index: 5;"></div>
++
++        <a href="/#profile" class="drawer-nav-item" style="--stagger-index: 6;">
++          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
++            stroke-linecap="round" stroke-linejoin="round">
++            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
++            <circle cx="12" cy="7" r="4"></circle>
++          </svg>
++          <span>Account</span>
++        </a>
++        <a href="#" id="drawer-nav-link-cart" class="drawer-nav-item" style="--stagger-index: 7;">
++          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
++            stroke-linecap="round" stroke-linejoin="round">
++            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
++            <line x1="3" y1="6" x2="21" y2="6"></line>
++            <path d="M16 10a4 4 0 0 1-8 0"></path>
++          </svg>
++          <span>Cart</span>
++        </a>
++        <a href="/#wishlist" class="drawer-nav-item" style="--stagger-index: 8;">
++          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
++            stroke-linecap="round" stroke-linejoin="round">
++            <path
++              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
++            </path>
++          </svg>
++          <span>Wishlist</span>
++        </a>
++      </nav>
+     </div>
+-    
+-    <!-- Center Navigation Links -->
+-    <nav class="drawer-nav" aria-label="Mobile Navigation">
+-      <a href="/#home" class="drawer-nav-item" style="--stagger-index: 1;">
+-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+-        <span>Home</span>
+-      </a>
+-      <a href="/collections" class="drawer-nav-item" style="--stagger-index: 2;">
+-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+-        <span>Collections</span>
+-      </a>
+-      <a href="/#reviews" class="drawer-nav-item" style="--stagger-index: 3;">
+-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+-        <span>Reviews</span>
+-      </a>
+-      <a href="/#contact-section" class="drawer-nav-item" style="--stagger-index: 4;">
+-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+-        <span>Contact</span>
+-      </a>
+-      
+-      <div class="drawer-nav-divider" style="--stagger-index: 5;"></div>
+-      
+-      <a href="/#profile" class="drawer-nav-item" style="--stagger-index: 6;">
+-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+-        <span>Account</span>
+-      </a>
+-      <a href="#" id="drawer-nav-link-cart" class="drawer-nav-item" style="--stagger-index: 7;">
+-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+-        <span>Cart</span>
+-      </a>
+-      <a href="/#wishlist" class="drawer-nav-item" style="--stagger-index: 8;">
+-        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+-        <span>Wishlist</span>
+-      </a>
+-    </nav>
+   </div>
+-</div>
+ 
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ PAGE HERO ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<section class="cp-hero">
+-  <!-- Premium Glacier Atmosphere Glow -->
+-  <div class="hero-glow-bg">
+-    <div class="glow-radial-1"></div>
+-    <div class="glow-radial-2"></div>
+-  </div>
++  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ ZERO-POINT THREE.JS WEBGL SHOWCASE HERO ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
++  <section id="zero-point-hero">
+ 
+-  <div class="cp-container">
+-    <span class="cp-hero-label">Aarwins ΓÇö The Complete Range</span>
+-    <h1 class="cp-hero-heading">The Full Collection</h1>
+-    <p class="cp-hero-sub">Six exceptional tropical blends, each crafted to nourish the body and elevate the everyday ritual.</p>
+-  </div>
+-</section>
++    <!-- Three.js WebGL mount point (particles only) -->
++    <div id="hero-webgl-layer-mount"
++      style="position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; z-index: 1 !important; pointer-events: none !important;">
++    </div>
+ 
++    <!-- Background glow layer (updated by JS on slide change) -->
++    <div id="hero-fluid-bg"
++      style="position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; z-index: 2 !important; pointer-events: none !important; transition: background 1000ms ease-in-out !important; background: radial-gradient(circle at center, rgba(14, 165, 233, 0.25) 0%, #ffffff 70%) !important;">
++    </div>
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SECTION 1 ΓÇö Chocolate Coconut | TEXT LEFT / IMAGE RIGHT ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<section class="cp-section" id="chocolate-coconut">
+-  <div class="cp-container">
+-    <div class="cp-editorial-grid">
++    <!-- Watermark text -->
++    <div
++      style="position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; overflow: hidden !important; z-index: 3 !important; pointer-events: none !important; opacity: 0.18 !important;">
++      <h1 id="wt-mask"
++        style="font-family: var(--font-display) !important; font-size: 13vw !important; font-weight: 900 !important; letter-spacing: 0.1em !important; text-align: center !important; color: #000000 !important; white-space: nowrap !important; text-transform: uppercase !important; transition: all 700ms ease-out !important; margin: 0 !important; line-height: 1 !important;">
++        PINEAPPLE
++      </h1>
++    </div>
+ 
+-      <!-- LEFT: Copy -->
+-      <div class="cp-copy cp-reveal">
+-        <span class="cp-label">Collection No. 01</span>
+-        <h2 class="cp-heading">Chocolate Coconut<br>Wellness</h2>
+-        <p class="cp-body">A rich, indulgent fusion where the earthiness of raw cacao meets the silky sweetness of young coconut. Crafted for moments of calm restoration ΓÇö a daily ritual reimagined as a luxury experience.</p>
+-        <a href="/product/1" class="cp-btn">Discover</a>
+-      </div>
++    <!-- ΓòÉΓòÉΓòÉ PRODUCT IMAGE LAYER ΓÇö native HTML <img> for pixel-perfect PNG transparency ΓòÉΓòÉΓòÉ -->
++    <div id="hero-product-img-layer">
++      <img id="hero-img-plasma"  class="hero-product-img hero-product-img--active" src="/images/hero/pineapple_can.png"  alt="Pineapple Boost bottle" />
++      <img id="hero-img-titan"   class="hero-product-img"                          src="/images/hero/mango_can.png"   alt="Coconut Mango bottle" />
++      <img id="hero-img-nebula"  class="hero-product-img"                          src="/images/hero/watermelon_can.png" alt="Watermelon Mint bottle" />
++      <img id="hero-img-quantum" class="hero-product-img"                          src="/images/hero/orange_can.png" alt="Orange Zest bottle" />
++    </div>
+ 
+-      <!-- RIGHT: Visual -->
+-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
+-        <div class="cp-ph cp-ph--tall">
+-          <div class="cp-bottle-wrap">
+-            <svg viewBox="0 0 180 380" width="160" aria-label="Chocolate Coconut Bottle">
+-              <defs>
+-                <linearGradient id="chocoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#C8B4A0"/>
+-                  <stop offset="30%" stop-color="#EDE0D4"/>
+-                  <stop offset="60%" stop-color="#C4A88E"/>
+-                  <stop offset="100%" stop-color="#A8927E"/>
+-                </linearGradient>
+-                <linearGradient id="capChoco" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#4A2C1A"/>
+-                  <stop offset="50%" stop-color="#7A4A2E"/>
+-                  <stop offset="100%" stop-color="#3A1C0E"/>
+-                </linearGradient>
+-                <filter id="softShadow">
+-                  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(90,50,20,0.15)"/>
+-                </filter>
+-              </defs>
+-              <g filter="url(#softShadow)">
+-                <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(90,50,20,0.08)"/>
+-                <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capChoco)"/>
+-                <rect x="74" y="50" width="32" height="7" rx="1" fill="#5A3220"/>
+-                <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#chocoGrad)" opacity="0.9"/>
+-                <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#chocoGrad)"/>
+-                <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.3"/>
+-                <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#D8C4B0" stroke-width="0.8"/>
+-                <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#4A2C1A" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+-                <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" font-weight="400" fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Chocolate</text>
+-                <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" font-weight="400" fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Coconut</text>
+-                <line x1="72" y1="240" x2="108" y2="240" stroke="#D0B8A0" stroke-width="0.6"/>
+-                <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8A7060" text-anchor="middle" letter-spacing="0.8">EST. 2025 ΓÇó 330ML</text>
+-              </g>
+-            </svg>
+-            <!-- Decorative tropical elements -->
+-            <svg viewBox="0 0 300 80" width="260" style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);opacity:0.25;" aria-hidden="true">
+-              <ellipse cx="150" cy="40" rx="140" ry="28" fill="#8B6040" opacity="0.15"/>
+-            </svg>
++    <!-- UI overlay: tagline + title + nav, all pointer-events:none except interactive children -->
++    <div class="zph-overlay">
++
++      <!-- Spacer top -->
++      <div></div>
++
++      <!-- Middle row: tagline left | spacer center | title right -->
++      <div class="zph-middle">
++
++        <!-- LEFT: tagline + CTA -->
++        <div class="zph-left">
++          <div>
++            <p id="sl-tagline"
++              style="font-family: var(--font-body) !important; font-size: 10px !important; font-weight: 700 !important; letter-spacing: 0.3em !important; color: #eab308 !important; text-transform: uppercase !important; margin: 0 !important; transition: color 500ms !important;">
++              SUN-RIPENED REFRESHMENT & FOCUS</p>
++            <div
++              style="display: flex !important; gap: 6px !important; margin-top: 8px !important; font-size: 10px !important; color: #71717a !important;">
++              <span id="ar-accent"
++                style="color: #eab308; transition: color 500ms !important;">&#10097;</span><span>&#10097;</span><span>&#10097;</span><span>&#10097;</span>
++            </div>
+           </div>
+-          <!-- Studio pedestal -->
+-          <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #E8E0D8, #D8D0C8);border-radius:4px 4px 0 0;"></div>
++          <button id="hero-cta-btn" class="cp-btn" onclick="showToast('Added to bag!')"
++            style="pointer-events: auto !important; cursor: pointer !important; width: fit-content !important;">
++            Add to Cart
++          </button>
+         </div>
+-      </div>
+-
+-    </div>
+-  </div>
+-</section>
+-
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SECTION 2 ΓÇö Coconut Coffee | IMAGE LEFT / TEXT RIGHT ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<section class="cp-section" id="coconut-coffee">
+-  <div class="cp-container">
+-    <div class="cp-editorial-grid reversed">
+-
+-      <!-- LEFT: Copy -->
+-      <div class="cp-copy cp-reveal">
+-        <span class="cp-label">Collection No. 02</span>
+-        <h2 class="cp-heading">Coconut Coffee<br>Energy</h2>
+-        <p class="cp-body">Cold-extracted arabica meets the cooling clarity of pure young coconut water. A sophisticated pairing that delivers a sustained, clean energy ΓÇö without the jitter. For the mindful go-getter.</p>
+-        <a href="/product/2" class="cp-btn">Discover</a>
++        <!-- CENTER spacer (product image layer sits behind via absolute) -->
++        <div class="zph-spacer"></div>
++
++        <!-- RIGHT: title + description -->
++        <div class="zph-right">
++          <h2 id="sl-title"
++            style="font-family: var(--font-display) !important; font-weight: 800 !important; letter-spacing: -0.02em !important; color: #111111 !important; line-height: 1.1 !important; text-transform: uppercase !important; white-space: normal !important; word-wrap: break-word !important; transition: all 500ms !important;">
++            PINEAPPLE BOOST
++          </h2>
++          <p id="sl-desc"
++            style="font-size: 12px !important; font-weight: 300 !important; line-height: 1.6 !important; color: #52525b !important; transition: all 500ms !important;">
++            A REFRESHING SUNNY BURST OF PURE PINEAPPLE JUICE AND REJUVENATING BOTANICALS TO ELEVATE YOUR NATURAL ENERGY AND FOCUS.
++          </p>
++        </div>
+       </div>
+ 
+-      <!-- RIGHT: Visual -->
+-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
+-        <div class="cp-ph cp-ph--tall">
+-          <div class="cp-bottle-wrap">
+-            <!-- Hand holding bottle style composition -->
+-            <svg viewBox="0 0 280 460" width="240" aria-label="Coconut Coffee Bottle in Hand">
+-              <defs>
+-                <linearGradient id="coffeeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#C8A07A"/>
+-                  <stop offset="35%" stop-color="#E8D0B0"/>
+-                  <stop offset="65%" stop-color="#BEA06A"/>
+-                  <stop offset="100%" stop-color="#A08050"/>
+-                </linearGradient>
+-                <linearGradient id="capCoffee" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#2A1800"/>
+-                  <stop offset="50%" stop-color="#5A3800"/>
+-                  <stop offset="100%" stop-color="#1E1000"/>
+-                </linearGradient>
+-                <linearGradient id="handGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+-                  <stop offset="0%" stop-color="#F0D8C0"/>
+-                  <stop offset="100%" stop-color="#D8B898"/>
+-                </linearGradient>
+-                <filter id="handShadow">
+-                  <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="rgba(60,30,0,0.12)"/>
+-                </filter>
+-              </defs>
+-              <!-- Hand holding shape -->
+-              <g filter="url(#handShadow)">
+-                <path d="M 100 320 Q 95 380 105 440 Q 120 460 140 455 Q 180 455 185 440 Q 200 420 195 360 Q 190 300 180 260 L 100 260 Z" fill="url(#handGrad)" opacity="0.85"/>
+-                <path d="M 105 440 Q 115 460 140 458 Q 160 458 170 445" fill="none" stroke="#C8A880" stroke-width="1.5" opacity="0.6"/>
+-                <!-- Bottle -->
+-                <rect x="110" y="42" width="60" height="36" rx="3" fill="url(#capCoffee)"/>
+-                <rect x="108" y="74" width="64" height="8" rx="2" fill="#3A2200"/>
+-                <rect x="114" y="82" width="52" height="32" rx="2" fill="url(#coffeeGrad)" opacity="0.9"/>
+-                <path d="M 114 114 Q 78 136 78 170 L 78 310 Q 78 330 140 330 Q 202 330 202 310 L 202 170 Q 202 136 166 114 Z" fill="url(#coffeeGrad)"/>
+-                <path d="M 84 174 L 84 308 Q 84 322 104 324 L 104 160 Z" fill="#FFF" opacity="0.28"/>
+-                <rect x="95" y="200" width="90" height="90" rx="2" fill="rgba(255,255,255,0.9)" stroke="#D8B888" stroke-width="0.8"/>
+-                <text x="140" y="224" font-family="'Syne', sans-serif" font-size="7.5" font-weight="700" fill="#2A1800" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+-                <text x="140" y="248" font-family="'Playfair Display', serif" font-size="9" fill="#1E1000" text-anchor="middle" letter-spacing="0.3" font-style="italic">Coconut Coffee</text>
+-                <line x1="110" y1="258" x2="170" y2="258" stroke="#C8A060" stroke-width="0.6"/>
+-                <text x="140" y="274" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8A6840" text-anchor="middle" letter-spacing="0.8">330ML ΓÇó EST. 2025</text>
+-              </g>
+-            </svg>
+-          </div>
++      <!-- BOTTOM row: nav buttons left | ingredients pill right -->
++      <div class="zph-bottom">
++
++        <div id="nav-triggers-group" class="zph-nav">
++          <button onclick="executeSlideEngine('plasma')" id="btn-plasma"
++            style="font-family: var(--font-display) !important; color: #111111 !important; font-weight: 700 !important; padding-bottom: 8px !important; border: none !important; border-bottom: 2px solid #eab308 !important; transition: all 300ms !important; cursor: pointer !important; background: transparent !important; text-transform: uppercase !important; letter-spacing: 0.15em !important;">PINEAPPLE
++            BOOST</button>
++          <button onclick="executeSlideEngine('titan')" id="btn-titan"
++            style="font-family: var(--font-display) !important; color: inherit !important; padding-bottom: 8px !important; border: none !important; border-bottom: 2px solid transparent !important; transition: all 300ms !important; cursor: pointer !important; background: transparent !important; text-transform: uppercase !important; font-weight: 400 !important; letter-spacing: 0.15em !important;">COCONUT
++            MANGO</button>
++          <button onclick="executeSlideEngine('nebula')" id="btn-nebula"
++            style="font-family: var(--font-display) !important; color: inherit !important; padding-bottom: 8px !important; border: none !important; border-bottom: 2px solid transparent !important; transition: all 300ms !important; cursor: pointer !important; background: transparent !important; text-transform: uppercase !important; font-weight: 400 !important; letter-spacing: 0.15em !important;">WATERMELON
++            MINT</button>
++          <button onclick="executeSlideEngine('quantum')" id="btn-quantum"
++            style="font-family: var(--font-display) !important; color: inherit !important; padding-bottom: 8px !important; border: none !important; border-bottom: 2px solid transparent !important; transition: all 300ms !important; cursor: pointer !important; background: transparent !important; text-transform: uppercase !important; font-weight: 400 !important; letter-spacing: 0.15em !important;">ORANGE
++            ZEST</button>
++        </div>
++
++        <div id="hero-ingredients-pill" class="zph-ingredients" style="background-color: rgba(234, 179, 8, 0.20) !important; backdrop-filter: blur(24px) !important; -webkit-backdrop-filter: blur(24px) !important; padding: 8px 24px !important; border-radius: 9999px !important; border: 1px solid #eab308 !important; pointer-events: auto !important; transition: background-color 800ms ease, border-color 800ms ease !important;">
++          <p id="sl-ingredients"
++            style="font-family: var(--font-body) !important; font-size: 10px !important; font-weight: 500 !important; text-transform: uppercase !important; letter-spacing: 0.15em !important; color: #eab308 !important; margin: 0 !important; transition: color 800ms ease !important;">
++            SUN-RIPENED PINEAPPLE &amp; FRESH BOTANICALS</p>
+         </div>
+       </div>
++    </div>
+ 
++    <!-- Arrow nav buttons -->
++    <div
++      style="position: absolute !important; left: 24px !important; right: 24px !important; top: 50% !important; transform: translateY(-50%) !important; display: flex !important; justify-content: space-between !important; pointer-events: none !important; z-index: 45 !important;">
++      <button onclick="navigateSlide('prev')"
++        style="width: 44px !important; height: 44px !important; border-radius: 9999px !important; border: 1px solid rgba(0,0,0,0.08) !important; background-color: rgba(255,255,255,0.7) !important; color: #111111 !important; display: flex !important; align-items: center !important; justify-content: center !important; transition: all 300ms !important; cursor: pointer !important; backdrop-filter: blur(8px) !important; pointer-events: auto !important;">&#10092;</button>
++      <button onclick="navigateSlide('next')"
++        style="width: 44px !important; height: 44px !important; border-radius: 9999px !important; border: 1px solid rgba(0,0,0,0.08) !important; background-color: rgba(255,255,255,0.7) !important; color: #111111 !important; display: flex !important; align-items: center !important; justify-content: center !important; transition: all 300ms !important; cursor: pointer !important; backdrop-filter: blur(8px) !important; pointer-events: auto !important;">&#10093;</button>
++    </div>
+ 
++    <!-- Bottom fog vignette -->
++    <div
++      style="position: absolute !important; bottom: 0 !important; left: 0 !important; height: 140px !important; width: 100% !important; background: linear-gradient(to top, #ffffff 25%, transparent) !important; z-index: 9 !important; pointer-events: none !important;">
+     </div>
+-  </div>
+-</section>
+ 
++  </section>
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SECTION 3 ΓÇö CENTERED WELLNESS EDITORIAL ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<div class="cp-centered cp-reveal">
+-  <div class="cp-container">
+-    <span class="cp-label">Wellness</span>
+-    <h2 class="cp-centered-heading">Crafted for Modern<br>Tropical Living</h2>
+-    <p class="cp-centered-body">Every Aarwins formula begins with one intention ΓÇö to make your daily hydration feel like the most intentional act of the day. Pure ingredients, minimal processing, maximum presence.</p>
+-    <div class="cp-luxury-divider"></div>
+-    <a href="/#contact" class="cp-btn">Explore the philosophy</a>
+-  </div>
+-</div>
+ 
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SECTION 4 ΓÇö Matcha Coconut | TEXT LEFT / COLLAGE RIGHT ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<section class="cp-section" id="matcha-coconut">
+-  <div class="cp-container">
+-    <div class="cp-editorial-grid">
+ 
+-      <!-- LEFT: Copy -->
+-      <div class="cp-copy cp-reveal">
+-        <span class="cp-label">Collection No. 03</span>
+-        <h2 class="cp-heading">Matcha Coconut<br>Balance</h2>
+-        <p class="cp-body">Ceremonial-grade matcha, dissolved in living coconut water and lightly sweetened with organic coconut sugar. A ritual of calm focus ΓÇö the Japanese art of presence, distilled into a bottle.</p>
+-        <a href="/product/3" class="cp-btn">Discover</a>
+-      </div>
+ 
+-      <!-- RIGHT: Visual -->
+-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
+-        <div class="cp-ph cp-ph--tall">
+-          <div class="cp-bottle-wrap">
+-            <svg viewBox="0 0 180 380" width="160" aria-label="Matcha Coconut Bottle">
+-              <defs>
+-                <linearGradient id="matchaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#A8C880"/>
+-                  <stop offset="35%" stop-color="#D4E8B8"/>
+-                  <stop offset="65%" stop-color="#98B870"/>
+-                  <stop offset="100%" stop-color="#88A860"/>
+-                </linearGradient>
+-                <linearGradient id="capMatcha" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#1A3010"/>
+-                  <stop offset="50%" stop-color="#3A5828"/>
+-                  <stop offset="100%" stop-color="#102008"/>
+-                </linearGradient>
+-                <filter id="matchaShadow">
+-                  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(40,80,20,0.15)"/>
+-                </filter>
+-              </defs>
+-              <g filter="url(#matchaShadow)">
+-                <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(40,80,20,0.06)"/>
+-                <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capMatcha)"/>
+-                <rect x="74" y="50" width="32" height="7" rx="1" fill="#2A4818"/>
+-                <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#matchaGrad)" opacity="0.9"/>
+-                <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#matchaGrad)"/>
+-                <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.32"/>
+-                <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#B8D898" stroke-width="0.8"/>
+-                <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#1A3010" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+-                <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#102008" text-anchor="middle" font-style="italic">Matcha</text>
+-                <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#102008" text-anchor="middle" font-style="italic">Coconut</text>
+-                <line x1="72" y1="240" x2="108" y2="240" stroke="#B8D890" stroke-width="0.6"/>
+-                <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#6A9050" text-anchor="middle" letter-spacing="0.8">330ML ΓÇó EST. 2025</text>
+-              </g>
+-            </svg>
+-          </div>
+-          <!-- Studio pedestal -->
+-          <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #E2E6DF, #D2D6CF);border-radius:4px 4px 0 0;"></div>
+-        </div>
+-      </div>
+ 
+-    </div>
+-  </div>
+-</section>
+ 
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É SECTION 1 ├óΓé¼ΓÇ¥ Chocolate Coconut | TEXT LEFT / IMAGE RIGHT ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <section class="cp-section" id="chocolate-coconut">
++    <div class="cp-container">
++      <div class="cp-editorial-grid">
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SECTION 5 ΓÇö Lavender Coconut | IMAGE LEFT / TEXT RIGHT ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<section class="cp-section" id="lavender-coconut">
+-  <div class="cp-container">
+-    <div class="cp-editorial-grid reversed">
++        <!-- LEFT: Copy -->
++        <div class="cp-copy cp-reveal">
++          <span class="cp-label">Collection No. 01</span>
++          <h2 class="cp-heading">Chocolate Coconut<br>Wellness</h2>
++          <p class="cp-body">A rich, indulgent fusion where the earthiness of raw cacao meets the silky sweetness of
++            young coconut. Crafted for moments of calm restoration ├óΓé¼ΓÇ¥ a daily ritual reimagined as a luxury experience.
++          </p>
++          <a href="/product/1" class="cp-btn">Discover</a>
++        </div>
++
++        <!-- RIGHT: Visual -->
++        <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
++          <div class="cp-ph cp-ph--tall">
++            <div class="cp-bottle-wrap">
++              <svg viewBox="0 0 180 380" width="160" aria-label="Chocolate Coconut Bottle">
++                <defs>
++                  <linearGradient id="chocoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#C8B4A0" />
++                    <stop offset="30%" stop-color="#EDE0D4" />
++                    <stop offset="60%" stop-color="#C4A88E" />
++                    <stop offset="100%" stop-color="#A8927E" />
++                  </linearGradient>
++                  <linearGradient id="capChoco" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#4A2C1A" />
++                    <stop offset="50%" stop-color="#7A4A2E" />
++                    <stop offset="100%" stop-color="#3A1C0E" />
++                  </linearGradient>
++                  <filter id="softShadow">
++                    <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(90,50,20,0.15)" />
++                  </filter>
++                </defs>
++                <g filter="url(#softShadow)">
++                  <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(90,50,20,0.08)" />
++                  <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capChoco)" />
++                  <rect x="74" y="50" width="32" height="7" rx="1" fill="#5A3220" />
++                  <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#chocoGrad)" opacity="0.9" />
++                  <path
++                    d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z"
++                    fill="url(#chocoGrad)" />
++                  <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.3" />
++                  <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#D8C4B0"
++                    stroke-width="0.8" />
++                  <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#4A2C1A"
++                    text-anchor="middle" letter-spacing="1.5">AARWINS</text>
++                  <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" font-weight="400"
++                    fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Chocolate</text>
++                  <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" font-weight="400"
++                    fill="#3A1C0E" text-anchor="middle" letter-spacing="0.3" font-style="italic">Coconut</text>
++                  <line x1="72" y1="240" x2="108" y2="240" stroke="#D0B8A0" stroke-width="0.6" />
++                  <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8A7060"
++                    text-anchor="middle" letter-spacing="0.8">EST. 2025 ├óΓé¼┬ó 330ML</text>
++                </g>
++              </svg>
++              <!-- Decorative tropical elements -->
++              <svg viewBox="0 0 300 80" width="260"
++                style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);opacity:0.25;"
++                aria-hidden="true">
++                <ellipse cx="150" cy="40" rx="140" ry="28" fill="#8B6040" opacity="0.15" />
++              </svg>
++            </div>
++            <!-- Studio pedestal -->
++            <div
++              style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #E8E0D8, #D8D0C8);border-radius:4px 4px 0 0;">
++            </div>
++          </div>
++        </div>
+ 
+-      <!-- RIGHT: Copy -->
+-      <div class="cp-copy cp-reveal">
+-        <span class="cp-label">Collection No. 04</span>
+-        <h2 class="cp-heading">Lavender Coconut<br>Calm</h2>
+-        <p class="cp-body">Where botanical serenity meets tropical purity. Culinary lavender water fused with young coconut ΓÇö a formula designed to soothe the nervous system as much as it nourishes the body. Evening ritual, perfected.</p>
+-        <a href="/product/4" class="cp-btn">Discover</a>
+       </div>
++    </div>
++  </section>
++
++
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É SECTION 2 ├óΓé¼ΓÇ¥ Coconut Coffee | IMAGE LEFT / TEXT RIGHT ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <section class="cp-section" id="coconut-coffee">
++    <div class="cp-container">
++      <div class="cp-editorial-grid reversed">
++
++        <!-- LEFT: Copy -->
++        <div class="cp-copy cp-reveal">
++          <span class="cp-label">Collection No. 02</span>
++          <h2 class="cp-heading">Coconut Coffee<br>Energy</h2>
++          <p class="cp-body">Cold-extracted arabica meets the cooling clarity of pure young coconut water. A
++            sophisticated pairing that delivers a sustained, clean energy ├óΓé¼ΓÇ¥ without the jitter. For the mindful
++            go-getter.</p>
++          <a href="/product/2" class="cp-btn">Discover</a>
++        </div>
+ 
+-      <!-- LEFT: Visual (reversed = appears left visually) -->
+-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
+-        <div class="cp-ph cp-ph--tall">
+-          <div class="cp-bottle-wrap">
+-            <svg viewBox="0 0 180 380" width="150" aria-label="Lavender Coconut Bottle">
+-              <defs>
+-                <linearGradient id="lavGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#C0A8D8"/>
+-                  <stop offset="35%" stop-color="#E0D0F0"/>
+-                  <stop offset="65%" stop-color="#B098C8"/>
+-                  <stop offset="100%" stop-color="#9880B8"/>
+-                </linearGradient>
+-                <linearGradient id="capLav" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#2A1A40"/>
+-                  <stop offset="50%" stop-color="#5A3A78"/>
+-                  <stop offset="100%" stop-color="#1A0A28"/>
+-                </linearGradient>
+-                <filter id="lavShadow">
+-                  <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="rgba(80,40,120,0.12)"/>
+-                </filter>
+-              </defs>
+-              <g filter="url(#lavShadow)">
+-                <ellipse cx="90" cy="366" rx="50" ry="7" fill="rgba(80,40,120,0.07)"/>
+-                <rect x="76" y="24" width="28" height="30" rx="3" fill="url(#capLav)"/>
+-                <rect x="74" y="50" width="32" height="6" rx="1" fill="#3A2050"/>
+-                <rect x="78" y="56" width="24" height="26" rx="1" fill="url(#lavGrad)" opacity="0.9"/>
+-                <path d="M 78 82 Q 46 102 46 136 L 46 320 Q 46 340 90 340 Q 134 340 134 320 L 134 136 Q 134 102 102 82 Z" fill="url(#lavGrad)"/>
+-                <path d="M 51 140 L 51 318 Q 51 332 70 334 L 70 128 Z" fill="#FFF" opacity="0.3"/>
+-                <rect x="60" y="164" width="60" height="108" rx="2" fill="rgba(255,255,255,0.88)" stroke="#C8B0E0" stroke-width="0.8"/>
+-                <text x="90" y="190" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#2A1A40" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+-                <text x="90" y="212" font-family="'Playfair Display', serif" font-size="8.5" fill="#1A0A28" text-anchor="middle" font-style="italic">Lavender</text>
+-                <text x="90" y="228" font-family="'Playfair Display', serif" font-size="8.5" fill="#1A0A28" text-anchor="middle" font-style="italic">Coconut</text>
+-                <line x1="68" y1="238" x2="112" y2="238" stroke="#C0A8D8" stroke-width="0.6"/>
+-                <text x="90" y="254" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8070A0" text-anchor="middle" letter-spacing="0.8">330ML ΓÇó EST. 2025</text>
+-              </g>
+-            </svg>
+-            <!-- Lavender sprigs decorative -->
+-            <svg viewBox="0 0 280 60" width="220" style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);opacity:0.2;" aria-hidden="true">
+-              <path d="M 60 50 L 80 10 L 100 50" stroke="#9070C8" stroke-width="2" fill="none"/>
+-              <path d="M 180 50 L 200 10 L 220 50" stroke="#9070C8" stroke-width="2" fill="none"/>
+-              <circle cx="80" cy="8" r="5" fill="#C0A0D8" opacity="0.8"/>
+-              <circle cx="200" cy="8" r="5" fill="#C0A0D8" opacity="0.8"/>
+-            </svg>
++        <!-- RIGHT: Visual -->
++        <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
++          <div class="cp-ph cp-ph--tall">
++            <div class="cp-bottle-wrap">
++              <!-- Hand holding bottle style composition -->
++              <svg viewBox="0 0 280 460" width="240" aria-label="Coconut Coffee Bottle in Hand">
++                <defs>
++                  <linearGradient id="coffeeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#C8A07A" />
++                    <stop offset="35%" stop-color="#E8D0B0" />
++                    <stop offset="65%" stop-color="#BEA06A" />
++                    <stop offset="100%" stop-color="#A08050" />
++                  </linearGradient>
++                  <linearGradient id="capCoffee" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#2A1800" />
++                    <stop offset="50%" stop-color="#5A3800" />
++                    <stop offset="100%" stop-color="#1E1000" />
++                  </linearGradient>
++                  <linearGradient id="handGrad" x1="0%" y1="0%" x2="0%" y2="100%">
++                    <stop offset="0%" stop-color="#F0D8C0" />
++                    <stop offset="100%" stop-color="#D8B898" />
++                  </linearGradient>
++                  <filter id="handShadow">
++                    <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="rgba(60,30,0,0.12)" />
++                  </filter>
++                </defs>
++                <!-- Hand holding shape -->
++                <g filter="url(#handShadow)">
++                  <path
++                    d="M 100 320 Q 95 380 105 440 Q 120 460 140 455 Q 180 455 185 440 Q 200 420 195 360 Q 190 300 180 260 L 100 260 Z"
++                    fill="url(#handGrad)" opacity="0.85" />
++                  <path d="M 105 440 Q 115 460 140 458 Q 160 458 170 445" fill="none" stroke="#C8A880"
++                    stroke-width="1.5" opacity="0.6" />
++                  <!-- Bottle -->
++                  <rect x="110" y="42" width="60" height="36" rx="3" fill="url(#capCoffee)" />
++                  <rect x="108" y="74" width="64" height="8" rx="2" fill="#3A2200" />
++                  <rect x="114" y="82" width="52" height="32" rx="2" fill="url(#coffeeGrad)" opacity="0.9" />
++                  <path
++                    d="M 114 114 Q 78 136 78 170 L 78 310 Q 78 330 140 330 Q 202 330 202 310 L 202 170 Q 202 136 166 114 Z"
++                    fill="url(#coffeeGrad)" />
++                  <path d="M 84 174 L 84 308 Q 84 322 104 324 L 104 160 Z" fill="#FFF" opacity="0.28" />
++                  <rect x="95" y="200" width="90" height="90" rx="2" fill="rgba(255,255,255,0.9)" stroke="#D8B888"
++                    stroke-width="0.8" />
++                  <text x="140" y="224" font-family="'Syne', sans-serif" font-size="7.5" font-weight="700"
++                    fill="#2A1800" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
++                  <text x="140" y="248" font-family="'Playfair Display', serif" font-size="9" fill="#1E1000"
++                    text-anchor="middle" letter-spacing="0.3" font-style="italic">Coconut Coffee</text>
++                  <line x1="110" y1="258" x2="170" y2="258" stroke="#C8A060" stroke-width="0.6" />
++                  <text x="140" y="274" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8A6840"
++                    text-anchor="middle" letter-spacing="0.8">330ML ├óΓé¼┬ó EST. 2025</text>
++                </g>
++              </svg>
++            </div>
+           </div>
+         </div>
+-      </div>
+ 
++
++      </div>
++    </div>
++  </section>
++
++
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É SECTION 3 ├óΓé¼ΓÇ¥ CENTERED WELLNESS EDITORIAL ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <div class="cp-centered cp-reveal">
++    <div class="cp-container">
++      <span class="cp-label">Wellness</span>
++      <h2 class="cp-centered-heading">Crafted for Modern<br>Tropical Living</h2>
++      <p class="cp-centered-body">Every Aarwins formula begins with one intention ├óΓé¼ΓÇ¥ to make your daily hydration feel
++        like the most intentional act of the day. Pure ingredients, minimal processing, maximum presence.</p>
++      <div class="cp-luxury-divider"></div>
++      <a href="/#contact" class="cp-btn">Explore the philosophy</a>
+     </div>
+   </div>
+-</section>
+ 
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SECTION 6 ΓÇö Coconut Protein+ | TEXT LEFT / IMAGE RIGHT ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<section class="cp-section" id="coconut-protein">
+-  <div class="cp-container">
+-    <div class="cp-editorial-grid">
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É SECTION 4 ├óΓé¼ΓÇ¥ Matcha Coconut | TEXT LEFT / COLLAGE RIGHT ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <section class="cp-section" id="matcha-coconut">
++    <div class="cp-container">
++      <div class="cp-editorial-grid">
+ 
+-      <!-- LEFT: Copy -->
+-      <div class="cp-copy cp-reveal">
+-        <span class="cp-label">Collection No. 05</span>
+-        <h2 class="cp-heading">Coconut<br>Protein+</h2>
+-        <p class="cp-body">Eleven grams of plant-sourced protein, suspended in the purest coconut water, elevated with vanilla bean and a trace of Himalayan salt. Performance nutrition, packaged in the language of luxury.</p>
+-        <a href="/product/5" class="cp-btn">Discover</a>
+-      </div>
++        <!-- LEFT: Copy -->
++        <div class="cp-copy cp-reveal">
++          <span class="cp-label">Collection No. 03</span>
++          <h2 class="cp-heading">Matcha Coconut<br>Balance</h2>
++          <p class="cp-body">Ceremonial-grade matcha, dissolved in living coconut water and lightly sweetened with
++            organic coconut sugar. A ritual of calm focus ├óΓé¼ΓÇ¥ the Japanese art of presence, distilled into a bottle.</p>
++          <a href="/product/3" class="cp-btn">Discover</a>
++        </div>
+ 
+-      <!-- RIGHT: Visual -->
+-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
+-        <div class="cp-ph cp-ph--tall">
+-          <div class="cp-bottle-wrap">
+-            <svg viewBox="0 0 180 380" width="155" aria-label="Coconut Protein+ Bottle">
+-              <defs>
+-                <linearGradient id="protGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#B0B8C0"/>
+-                  <stop offset="35%" stop-color="#D8E0E4"/>
+-                  <stop offset="65%" stop-color="#A0A8B0"/>
+-                  <stop offset="100%" stop-color="#909898"/>
+-                </linearGradient>
+-                <linearGradient id="capProt" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#1A2028"/>
+-                  <stop offset="50%" stop-color="#384050"/>
+-                  <stop offset="100%" stop-color="#0E1418"/>
+-                </linearGradient>
+-              </defs>
+-              <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capProt)"/>
+-              <rect x="74" y="50" width="32" height="7" rx="1" fill="#242C38"/>
+-              <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#protGrad)" opacity="0.9"/>
+-              <path d="M 78 85 Q 46 105 46 138 L 46 322 Q 46 342 90 342 Q 134 342 134 322 L 134 138 Q 134 105 102 85 Z" fill="url(#protGrad)"/>
+-              <path d="M 51 142 L 51 320 Q 51 334 68 336 L 68 130 Z" fill="#FFF" opacity="0.28"/>
+-              <rect x="58" y="162" width="64" height="116" rx="2" fill="rgba(255,255,255,0.88)" stroke="#C0C8D0" stroke-width="0.8"/>
+-              <text x="90" y="188" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#1A2028" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+-              <text x="90" y="212" font-family="'Playfair Display', serif" font-size="9" fill="#0E1418" text-anchor="middle" font-style="italic">Coconut</text>
+-              <text x="90" y="229" font-family="'Syne', sans-serif" font-size="8" fill="#1A2028" text-anchor="middle" font-weight="700" letter-spacing="0.5">PROTEIN+</text>
+-              <line x1="66" y1="240" x2="114" y2="240" stroke="#C0C8D0" stroke-width="0.6"/>
+-              <text x="90" y="257" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#708090" text-anchor="middle" letter-spacing="0.8">11G PROTEIN ΓÇó 330ML</text>
+-            </svg>
++        <!-- RIGHT: Visual -->
++        <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
++          <div class="cp-ph cp-ph--tall">
++            <div class="cp-bottle-wrap">
++              <svg viewBox="0 0 180 380" width="160" aria-label="Matcha Coconut Bottle">
++                <defs>
++                  <linearGradient id="matchaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#A8C880" />
++                    <stop offset="35%" stop-color="#D4E8B8" />
++                    <stop offset="65%" stop-color="#98B870" />
++                    <stop offset="100%" stop-color="#88A860" />
++                  </linearGradient>
++                  <linearGradient id="capMatcha" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#1A3010" />
++                    <stop offset="50%" stop-color="#3A5828" />
++                    <stop offset="100%" stop-color="#102008" />
++                  </linearGradient>
++                  <filter id="matchaShadow">
++                    <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(40,80,20,0.15)" />
++                  </filter>
++                </defs>
++                <g filter="url(#matchaShadow)">
++                  <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(40,80,20,0.06)" />
++                  <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capMatcha)" />
++                  <rect x="74" y="50" width="32" height="7" rx="1" fill="#2A4818" />
++                  <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#matchaGrad)" opacity="0.9" />
++                  <path
++                    d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z"
++                    fill="url(#matchaGrad)" />
++                  <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.32" />
++                  <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#B8D898"
++                    stroke-width="0.8" />
++                  <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#1A3010"
++                    text-anchor="middle" letter-spacing="1.5">AARWINS</text>
++                  <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#102008"
++                    text-anchor="middle" font-style="italic">Matcha</text>
++                  <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#102008"
++                    text-anchor="middle" font-style="italic">Coconut</text>
++                  <line x1="72" y1="240" x2="108" y2="240" stroke="#B8D890" stroke-width="0.6" />
++                  <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#6A9050"
++                    text-anchor="middle" letter-spacing="0.8">330ML ├óΓé¼┬ó EST. 2025</text>
++                </g>
++              </svg>
++            </div>
++            <!-- Studio pedestal -->
++            <div
++              style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #E2E6DF, #D2D6CF);border-radius:4px 4px 0 0;">
++            </div>
+           </div>
+         </div>
+-      </div>
+ 
++      </div>
+     </div>
+-  </div>
+-</section>
+-
++  </section>
++
++
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É SECTION 5 ├óΓé¼ΓÇ¥ Lavender Coconut | IMAGE LEFT / TEXT RIGHT ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <section class="cp-section" id="lavender-coconut">
++    <div class="cp-container">
++      <div class="cp-editorial-grid reversed">
++
++        <!-- RIGHT: Copy -->
++        <div class="cp-copy cp-reveal">
++          <span class="cp-label">Collection No. 04</span>
++          <h2 class="cp-heading">Lavender Coconut<br>Calm</h2>
++          <p class="cp-body">Where botanical serenity meets tropical purity. Culinary lavender water fused with young
++            coconut ├óΓé¼ΓÇ¥ a formula designed to soothe the nervous system as much as it nourishes the body. Evening
++            ritual,
++            perfected.</p>
++          <a href="/product/4" class="cp-btn">Discover</a>
++        </div>
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SECTION 7 ΓÇö Coconut Churro | IMAGE LEFT / TEXT RIGHT ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<section class="cp-section" id="coconut-churro">
+-  <div class="cp-container">
+-    <div class="cp-editorial-grid reversed">
++        <!-- LEFT: Visual (reversed = appears left visually) -->
++        <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
++          <div class="cp-ph cp-ph--tall">
++            <div class="cp-bottle-wrap">
++              <svg viewBox="0 0 180 380" width="150" aria-label="Lavender Coconut Bottle">
++                <defs>
++                  <linearGradient id="lavGrad" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#C0A8D8" />
++                    <stop offset="35%" stop-color="#E0D0F0" />
++                    <stop offset="65%" stop-color="#B098C8" />
++                    <stop offset="100%" stop-color="#9880B8" />
++                  </linearGradient>
++                  <linearGradient id="capLav" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#2A1A40" />
++                    <stop offset="50%" stop-color="#5A3A78" />
++                    <stop offset="100%" stop-color="#1A0A28" />
++                  </linearGradient>
++                  <filter id="lavShadow">
++                    <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="rgba(80,40,120,0.12)" />
++                  </filter>
++                </defs>
++                <g filter="url(#lavShadow)">
++                  <ellipse cx="90" cy="366" rx="50" ry="7" fill="rgba(80,40,120,0.07)" />
++                  <rect x="76" y="24" width="28" height="30" rx="3" fill="url(#capLav)" />
++                  <rect x="74" y="50" width="32" height="6" rx="1" fill="#3A2050" />
++                  <rect x="78" y="56" width="24" height="26" rx="1" fill="url(#lavGrad)" opacity="0.9" />
++                  <path
++                    d="M 78 82 Q 46 102 46 136 L 46 320 Q 46 340 90 340 Q 134 340 134 320 L 134 136 Q 134 102 102 82 Z"
++                    fill="url(#lavGrad)" />
++                  <path d="M 51 140 L 51 318 Q 51 332 70 334 L 70 128 Z" fill="#FFF" opacity="0.3" />
++                  <rect x="60" y="164" width="60" height="108" rx="2" fill="rgba(255,255,255,0.88)" stroke="#C8B0E0"
++                    stroke-width="0.8" />
++                  <text x="90" y="190" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#2A1A40"
++                    text-anchor="middle" letter-spacing="1.5">AARWINS</text>
++                  <text x="90" y="212" font-family="'Playfair Display', serif" font-size="8.5" fill="#1A0A28"
++                    text-anchor="middle" font-style="italic">Lavender</text>
++                  <text x="90" y="228" font-family="'Playfair Display', serif" font-size="8.5" fill="#1A0A28"
++                    text-anchor="middle" font-style="italic">Coconut</text>
++                  <line x1="68" y1="238" x2="112" y2="238" stroke="#C0A8D8" stroke-width="0.6" />
++                  <text x="90" y="254" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#8070A0"
++                    text-anchor="middle" letter-spacing="0.8">330ML ├óΓé¼┬ó EST. 2025</text>
++                </g>
++              </svg>
++              <!-- Lavender sprigs decorative -->
++              <svg viewBox="0 0 280 60" width="220"
++                style="position:absolute;bottom:50px;left:50%;transform:translateX(-50%);opacity:0.2;"
++                aria-hidden="true">
++                <path d="M 60 50 L 80 10 L 100 50" stroke="#9070C8" stroke-width="2" fill="none" />
++                <path d="M 180 50 L 200 10 L 220 50" stroke="#9070C8" stroke-width="2" fill="none" />
++                <circle cx="80" cy="8" r="5" fill="#C0A0D8" opacity="0.8" />
++                <circle cx="200" cy="8" r="5" fill="#C0A0D8" opacity="0.8" />
++              </svg>
++            </div>
++          </div>
++        </div>
+ 
+-      <!-- LEFT: Copy -->
+-      <div class="cp-copy cp-reveal">
+-        <span class="cp-label">Collection No. 06</span>
+-        <h2 class="cp-heading">Coconut Churro<br>Finale</h2>
+-        <p class="cp-body">Sun-baked cinnamon and vanilla, softened by the lightness of young coconut. A celebration of tropical dessert culture ΓÇö indulgent, joyful, and surprisingly clean.</p>
+-        <a href="/product/6" class="cp-btn">Discover</a>
+       </div>
++    </div>
++  </section>
++
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É SECTION 6 ├óΓé¼ΓÇ¥ Coconut Protein+ | TEXT LEFT / IMAGE RIGHT ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <section class="cp-section" id="coconut-protein">
++    <div class="cp-container">
++      <div class="cp-editorial-grid">
++
++        <!-- LEFT: Copy -->
++        <div class="cp-copy cp-reveal">
++          <span class="cp-label">Collection No. 05</span>
++          <h2 class="cp-heading">Coconut<br>Protein+</h2>
++          <p class="cp-body">Eleven grams of plant-sourced protein, suspended in the purest coconut water, elevated with
++            vanilla bean and a trace of Himalayan salt. Performance nutrition, packaged in the language of luxury.</p>
++          <a href="/product/5" class="cp-btn">Discover</a>
++        </div>
+ 
+-      <!-- RIGHT: Visual (reversed = appears left visually) -->
+-      <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
+-        <div class="cp-ph cp-ph--tall">
+-          <div class="cp-bottle-wrap">
+-            <svg viewBox="0 0 180 380" width="160" aria-label="Coconut Churro Bottle">
+-              <defs>
+-                <linearGradient id="churroGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#D8A860"/>
+-                  <stop offset="35%" stop-color="#F0D0A0"/>
+-                  <stop offset="65%" stop-color="#C89050"/>
+-                  <stop offset="100%" stop-color="#B07840"/>
+-                </linearGradient>
+-                <linearGradient id="capChurro" x1="0%" y1="0%" x2="100%" y2="0%">
+-                  <stop offset="0%" stop-color="#5A2800"/>
+-                  <stop offset="50%" stop-color="#8A4820"/>
+-                  <stop offset="100%" stop-color="#3A1800"/>
+-                </linearGradient>
+-                <filter id="churroShadow">
+-                  <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(100,50,0,0.12)"/>
+-                </filter>
+-              </defs>
+-              <g filter="url(#churroShadow)">
+-                <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(100,50,0,0.07)"/>
+-                <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capChurro)"/>
+-                <rect x="74" y="50" width="32" height="7" rx="1" fill="#6A3810"/>
+-                <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#churroGrad)" opacity="0.9"/>
+-                <path d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z" fill="url(#churroGrad)"/>
+-                <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.28"/>
+-                <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#E0C090" stroke-width="0.8"/>
+-                <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#5A2800" text-anchor="middle" letter-spacing="1.5">AARWINS</text>
+-                <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#3A1800" text-anchor="middle" font-style="italic">Coconut</text>
+-                <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#3A1800" text-anchor="middle" font-style="italic">Churro</text>
+-                <line x1="72" y1="240" x2="108" y2="240" stroke="#D8A860" stroke-width="0.6"/>
+-                <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#A07840" text-anchor="middle" letter-spacing="0.8">EST. 2025 ΓÇó 330ML</text>
+-              </g>
+-            </svg>
++        <!-- RIGHT: Visual -->
++        <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
++          <div class="cp-ph cp-ph--tall">
++            <div class="cp-bottle-wrap">
++              <svg viewBox="0 0 180 380" width="155" aria-label="Coconut Protein+ Bottle">
++                <defs>
++                  <linearGradient id="protGrad" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#B0B8C0" />
++                    <stop offset="35%" stop-color="#D8E0E4" />
++                    <stop offset="65%" stop-color="#A0A8B0" />
++                    <stop offset="100%" stop-color="#909898" />
++                  </linearGradient>
++                  <linearGradient id="capProt" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#1A2028" />
++                    <stop offset="50%" stop-color="#384050" />
++                    <stop offset="100%" stop-color="#0E1418" />
++                  </linearGradient>
++                </defs>
++                <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capProt)" />
++                <rect x="74" y="50" width="32" height="7" rx="1" fill="#242C38" />
++                <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#protGrad)" opacity="0.9" />
++                <path
++                  d="M 78 85 Q 46 105 46 138 L 46 322 Q 46 342 90 342 Q 134 342 134 322 L 134 138 Q 134 105 102 85 Z"
++                  fill="url(#protGrad)" />
++                <path d="M 51 142 L 51 320 Q 51 334 68 336 L 68 130 Z" fill="#FFF" opacity="0.28" />
++                <rect x="58" y="162" width="64" height="116" rx="2" fill="rgba(255,255,255,0.88)" stroke="#C0C8D0"
++                  stroke-width="0.8" />
++                <text x="90" y="188" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#1A2028"
++                  text-anchor="middle" letter-spacing="1.5">AARWINS</text>
++                <text x="90" y="212" font-family="'Playfair Display', serif" font-size="9" fill="#0E1418"
++                  text-anchor="middle" font-style="italic">Coconut</text>
++                <text x="90" y="229" font-family="'Syne', sans-serif" font-size="8" fill="#1A2028" text-anchor="middle"
++                  font-weight="700" letter-spacing="0.5">PROTEIN+</text>
++                <line x1="66" y1="240" x2="114" y2="240" stroke="#C0C8D0" stroke-width="0.6" />
++                <text x="90" y="257" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#708090"
++                  text-anchor="middle" letter-spacing="0.8">11G PROTEIN ├óΓé¼┬ó 330ML</text>
++              </svg>
++            </div>
+           </div>
+-          <!-- Studio pedestal -->
+-          <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #F4ECE4, #E4DCD4);border-radius:4px 4px 0 0;"></div>
+         </div>
+-      </div>
+ 
++      </div>
+     </div>
+-  </div>
+-</section>
++  </section>
++
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É SECTION 7 ├óΓé¼ΓÇ¥ Coconut Churro | IMAGE LEFT / TEXT RIGHT ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <section class="cp-section" id="coconut-churro">
++    <div class="cp-container">
++      <div class="cp-editorial-grid reversed">
++
++        <!-- LEFT: Copy -->
++        <div class="cp-copy cp-reveal">
++          <span class="cp-label">Collection No. 06</span>
++          <h2 class="cp-heading">Coconut Churro<br>Finale</h2>
++          <p class="cp-body">Sun-baked cinnamon and vanilla, softened by the lightness of young coconut. A celebration
++            of tropical dessert culture ├óΓé¼ΓÇ¥ indulgent, joyful, and surprisingly clean.</p>
++          <a href="/product/6" class="cp-btn">Discover</a>
++        </div>
+ 
++        <!-- RIGHT: Visual (reversed = appears left visually) -->
++        <div class="cp-visual cp-visual-hover cp-reveal cp-reveal-delay">
++          <div class="cp-ph cp-ph--tall">
++            <div class="cp-bottle-wrap">
++              <svg viewBox="0 0 180 380" width="160" aria-label="Coconut Churro Bottle">
++                <defs>
++                  <linearGradient id="churroGrad" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#D8A860" />
++                    <stop offset="35%" stop-color="#F0D0A0" />
++                    <stop offset="65%" stop-color="#C89050" />
++                    <stop offset="100%" stop-color="#B07840" />
++                  </linearGradient>
++                  <linearGradient id="capChurro" x1="0%" y1="0%" x2="100%" y2="0%">
++                    <stop offset="0%" stop-color="#5A2800" />
++                    <stop offset="50%" stop-color="#8A4820" />
++                    <stop offset="100%" stop-color="#3A1800" />
++                  </linearGradient>
++                  <filter id="churroShadow">
++                    <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(100,50,0,0.12)" />
++                  </filter>
++                </defs>
++                <g filter="url(#churroShadow)">
++                  <ellipse cx="90" cy="368" rx="52" ry="7" fill="rgba(100,50,0,0.07)" />
++                  <rect x="76" y="22" width="28" height="32" rx="3" fill="url(#capChurro)" />
++                  <rect x="74" y="50" width="32" height="7" rx="1" fill="#6A3810" />
++                  <rect x="78" y="57" width="24" height="28" rx="1" fill="url(#churroGrad)" opacity="0.9" />
++                  <path
++                    d="M 78 85 Q 45 105 45 140 L 45 330 Q 45 350 90 350 Q 135 350 135 330 L 135 140 Q 135 105 102 85 Z"
++                    fill="url(#churroGrad)" />
++                  <path d="M 50 145 L 50 330 Q 50 344 72 346 L 72 132 Z" fill="#FFF" opacity="0.28" />
++                  <rect x="60" y="165" width="60" height="120" rx="2" fill="rgba(255,255,255,0.9)" stroke="#E0C090"
++                    stroke-width="0.8" />
++                  <text x="90" y="192" font-family="'Syne', sans-serif" font-size="7" font-weight="700" fill="#5A2800"
++                    text-anchor="middle" letter-spacing="1.5">AARWINS</text>
++                  <text x="90" y="214" font-family="'Playfair Display', serif" font-size="9" fill="#3A1800"
++                    text-anchor="middle" font-style="italic">Coconut</text>
++                  <text x="90" y="231" font-family="'Playfair Display', serif" font-size="9" fill="#3A1800"
++                    text-anchor="middle" font-style="italic">Churro</text>
++                  <line x1="72" y1="240" x2="108" y2="240" stroke="#D8A860" stroke-width="0.6" />
++                  <text x="90" y="256" font-family="'DM Sans', sans-serif" font-size="5.5" fill="#A07840"
++                    text-anchor="middle" letter-spacing="0.8">EST. 2025 ├óΓé¼┬ó 330ML</text>
++                </g>
++              </svg>
++            </div>
++            <!-- Studio pedestal -->
++            <div
++              style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:linear-gradient(to bottom, #F4ECE4, #E4DCD4);border-radius:4px 4px 0 0;">
++            </div>
++          </div>
++        </div>
+ 
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ FOOTER ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<footer class="footer-black" id="contact">
+-  <div class="fb-inner">
+-    <div class="fb-brand">
+-      <div class="fb-logo">
+-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M8 14 Q14 6 20 14 Q14 22 8 14Z" fill="white" opacity="0.8"/></svg>
+-        AARWINS
+       </div>
+-      <p class="fb-tagline">Pure tropical refreshment,<br>crafted with love.</p>
+-      <div class="fb-socials">
+-        <a href="#" aria-label="Instagram" class="fb-social">IG</a>
+-        <a href="#" aria-label="Facebook" class="fb-social">FB</a>
+-        <a href="#" aria-label="Twitter" class="fb-social">TW</a>
++    </div>
++  </section>
++
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É FOOTER ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <footer class="footer-black" id="contact">
++    <div class="fb-inner">
++      <div class="fb-brand">
++        <div class="fb-logo">
++          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
++            <circle cx="14" cy="14" r="13" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" />
++            <path d="M8 14 Q14 6 20 14 Q14 22 8 14Z" fill="white" opacity="0.8" />
++          </svg>
++          AARWINS
++        </div>
++        <p class="fb-tagline">Pure tropical refreshment,<br>crafted with love.</p>
++        <div class="fb-socials">
++          <a href="#" aria-label="Instagram" class="fb-social">IG</a>
++          <a href="#" aria-label="Facebook" class="fb-social">FB</a>
++          <a href="#" aria-label="Twitter" class="fb-social">TW</a>
++        </div>
++        <div class="fb-contact-list">
++          <div>Contact Us</div>
++          <div>Track Order</div>
++          <div>Sign In</div>
++          <div>Store Locator</div>
++        </div>
+       </div>
+-      <div class="fb-contact-list">
+-        <div>Contact Us</div>
+-        <div>Track Order</div>
+-        <div>Sign In</div>
+-        <div>Store Locator</div>
++      <div class="fb-col">
++        <div class="fb-col-title">Company</div>
++        <a href="#">About Us</a>
++        <a href="#">Join Us</a>
++      </div>
++      <div class="fb-col">
++        <div class="fb-col-title">Customer Care</div>
++        <a href="#">FAQ</a>
++        <a href="#">Disposal Instructions</a>
++        <a href="#">Return Policy</a>
++        <a href="#">Promotion Terms &amp; Conditions</a>
++        <div class="fb-col-title" style="margin-top:24px;">Gift Cards</div>
++        <a href="#">Purchase</a>
++        <a href="#">Check Balance</a>
++      </div>
++      <div class="fb-newsletter">
++        <div class="fb-col-title">Let's stay<br>in touch.</div>
++        <form class="fb-form" id="footer-form">
++          <input type="email" placeholder="E-mail address" class="fb-input" required />
++          <div class="fb-form-line"></div>
++        </form>
++        <p class="fb-disclaimer">By clicking on the "Subscribe" button, you agree to the terms.</p>
+       </div>
+     </div>
+-    <div class="fb-col">
+-      <div class="fb-col-title">Company</div>
+-      <a href="#">About Us</a>
+-      <a href="#">Join Us</a>
+-    </div>
+-    <div class="fb-col">
+-      <div class="fb-col-title">Customer Care</div>
+-      <a href="#">FAQ</a>
+-      <a href="#">Disposal Instructions</a>
+-      <a href="#">Return Policy</a>
+-      <a href="#">Promotion Terms &amp; Conditions</a>
+-      <div class="fb-col-title" style="margin-top:24px;">Gift Cards</div>
+-      <a href="#">Purchase</a>
+-      <a href="#">Check Balance</a>
+-    </div>
+-    <div class="fb-newsletter">
+-      <div class="fb-col-title">Let's stay<br>in touch.</div>
+-      <form class="fb-form" id="footer-form">
+-        <input type="email" placeholder="E-mail address" class="fb-input" required/>
+-        <div class="fb-form-line"></div>
+-      </form>
+-      <p class="fb-disclaimer">By clicking on the "Subscribe" button, you agree to the terms.</p>
++    <div class="fb-bottom">
++      <span>&copy; 2025 Aarwins. All rights reserved.</span>
++      <div class="fb-bottom-links">
++        <a href="#">Privacy Policy</a>
++        <a href="#">Terms of Service</a>
++      </div>
+     </div>
+-  </div>
+-  <div class="fb-bottom">
+-    <span>&copy; 2025 Aarwins. All rights reserved.</span>
+-    <div class="fb-bottom-links">
+-      <a href="#">Privacy Policy</a>
+-      <a href="#">Terms of Service</a>
++  </footer>
++
++  <!-- ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É MINI CART OVERLAY & PANEL ├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É├óΓÇó┬É -->
++  <div class="mini-cart-overlay" id="mini-cart-overlay"></div>
++  <div class="mini-cart-panel" id="mini-cart-panel">
++    <div class="mcp-header">
++      <h3 class="mcp-title">Shopping Bag</h3>
++      <button class="mcp-close" id="mcp-close" aria-label="Close cart">├ó┼ôΓÇó</button>
+     </div>
+-  </div>
+-</footer>
+-
+-<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ MINI CART OVERLAY & PANEL ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+-<div class="mini-cart-overlay" id="mini-cart-overlay"></div>
+-<div class="mini-cart-panel" id="mini-cart-panel">
+-  <div class="mcp-header">
+-    <h3 class="mcp-title">Shopping Bag</h3>
+-    <button class="mcp-close" id="mcp-close" aria-label="Close cart">Γ£ò</button>
+-  </div>
+-  
+-  <div class="mcp-body">
+-    <div class="mcp-item">
+-      <div class="mcp-item-thumb">
+-        <img src="/images/about_us_1.png" alt="Product bottle" style="height: 60px; width: auto; object-fit: contain;"/>
+-      </div>
+-      <div class="mcp-item-details">
+-        <span class="mcp-item-name">Matcha Coconut Wellness</span>
+-        <span class="mcp-item-meta">330ml</span>
+-        <div class="mcp-item-qty">
+-          <button class="mcp-item-qty-btn decrease" onclick="updateMcpQty(this, -1)">ΓêÆ</button>
+-          <span class="mcp-item-qty-val">1</span>
+-          <button class="mcp-item-qty-btn increase" onclick="updateMcpQty(this, 1)">+</button>
++
++    <div class="mcp-body">
++      <div class="mcp-item">
++        <div class="mcp-item-thumb">
++          <img src="/images/about_us_1.png" alt="Product bottle"
++            style="height: 60px; width: auto; object-fit: contain;" />
++        </div>
++        <div class="mcp-item-details">
++          <span class="mcp-item-name">Matcha Coconut Wellness</span>
++          <span class="mcp-item-meta">330ml</span>
++          <div class="mcp-item-qty">
++            <button class="mcp-item-qty-btn decrease" onclick="updateMcpQty(this, -1)">├ó╦åΓÇÖ</button>
++            <span class="mcp-item-qty-val">1</span>
++            <button class="mcp-item-qty-btn increase" onclick="updateMcpQty(this, 1)">+</button>
++          </div>
++          <span class="mcp-item-price">$4.99</span>
+         </div>
+-        <span class="mcp-item-price">$4.99</span>
+       </div>
+     </div>
+-  </div>
+ 
+-  <div class="mcp-footer">
+-    <div class="mcp-total-row">
+-      <span class="mcp-total-label">Subtotal</span>
+-      <span class="mcp-total-value">$4.99</span>
++    <div class="mcp-footer">
++      <div class="mcp-total-row">
++        <span class="mcp-total-label">Subtotal</span>
++        <span class="mcp-total-value">$4.99</span>
++      </div>
++      <p class="mcp-tax-info">Shipping and taxes calculated at checkout.</p>
++      <button class="mcp-checkout-btn" onclick="showToast('Proceeding to checkout...');">PROCEED TO CHECKOUT</button>
+     </div>
+-    <p class="mcp-tax-info">Shipping and taxes calculated at checkout.</p>
+-    <button class="mcp-checkout-btn" onclick="showToast('Proceeding to checkout...');">PROCEED TO CHECKOUT</button>
+   </div>
+-</div>
+-
+-<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+-
+-<script src="/js/aarwins.js"></script>
+-<script>
+-  /* Page fade in */
+-  document.addEventListener('DOMContentLoaded', function() {
+-    document.body.classList.add('loaded');
+-  });
+-
+-  /* Scroll reveal */
+-  (function() {
+-    var els = document.querySelectorAll('.cp-reveal');
+-    if (!els.length) return;
+-    var io = new IntersectionObserver(function(entries) {
+-      entries.forEach(function(e) {
+-        if (e.isIntersecting) {
+-          e.target.classList.add('visible');
+-          io.unobserve(e.target);
++
++  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
++  <script src="/js/aarwins.js"></script>
++  <script>
++    (function () {
++      const catalog = {
++        plasma: { index: 0, glow: 0xeab308, opacityGlow: "rgba(234, 179, 8, 0.20)", accent: "#eab308", name: "PINEAPPLE", title: "PINEAPPLE BOOST", tagline: "SUN-RIPENED REFRESHMENT & FOCUS", ingredients: "SUN-RIPENED PINEAPPLE & FRESH BOTANICALS", desc: "A REFRESHING SUNNY BURST OF PURE PINEAPPLE JUICE AND REJUVENATING BOTANICALS TO ELEVATE YOUR NATURAL ENERGY AND FOCUS.", canImg: '/images/hero/pineapple_can.png', fragments: ['≡ƒìì', '≡ƒìï', '≡ƒìâ', '≡ƒìì'] },
++        titan: { index: 1, glow: 0xf59e0b, opacityGlow: "rgba(245, 158, 11, 0.18)", accent: "#f59e0b", name: "MANGO", title: "COCONUT MANGO", tagline: "PURE TROPICAL ENERGY IN EVERY DROP", ingredients: "RIPE MANGO & SILKY COCONUT", desc: "EXPERIENCE THE TROPICAL SUNSHINE WITH COCONUT MANGO, A LUSCIOUS BLEND OF RIPE MANGO, SILKY COCONUT WATER, AND REFRESHING ENERGY BOTANICALS.", canImg: '/images/hero/mango_can.png', fragments: ['≡ƒÑ¡', '≡ƒÑÑ', '≡ƒî┐', '≡ƒÑ¡'] },
++        nebula: { index: 2, glow: 0xff4b6b, opacityGlow: "rgba(255, 75, 107, 0.18)", accent: "#ff4b6b", name: "WATERMELON", title: "WATERMELON MINT", tagline: "CRISP TROPICAL SUMMER REFRESHMENT", ingredients: "JUICY WATERMELON, FRESH MINT & BOTANICALS", desc: "DIVE INTO THE REFRESHING FUSION OF JUICY WATERMELON AND COOL MINT, CRAFTED WITH ENERGY BOTANICALS FOR A CRISP, CLEAN BOOST.", canImg: '/images/hero/watermelon_can.png', fragments: ['≡ƒìë', '≡ƒìâ', '≡ƒÑÑ', '≡ƒìë'] },
++        quantum: { index: 3, glow: 0xf97316, opacityGlow: "rgba(249, 115, 22, 0.18)", accent: "#f97316", name: "ORANGE", title: "ORANGE ZEST", tagline: "VIBRANT AND ZESTY CITRUS REFRESHMENT", ingredients: "FRESH ORANGE, ZESTY CITRUS & BOTANICALS", desc: "IGNITE YOUR SENSES WITH ORANGE ZEST, A SUN-KISSED BLEND OF FRESH ORANGE, ENERGIZING CITRUS EXTRACTS, AND PREMIUM BOTANICALS FOR A CLEAN, VIBRANT BOOST.", canImg: '/images/hero/orange_can.png', fragments: ['≡ƒìè', '≡ƒìï', '≡ƒìâ', '≡ƒìè'] }
++      };
++
++      let activeKey = "plasma";
++      let stateLock = false;
++      let autoTimerTrack = null;
++      const catalogKeys = Object.keys(catalog);
++
++      // --- THREE.JS STAGING LAYER ARCHITECTURE INITIALIZATION (particles + atmosphere only) ---
++      const mountLayer = document.getElementById('hero-webgl-layer-mount');
++      const scene = new THREE.Scene();
++      scene.fog = new THREE.FogExp2(0xffffff, 0.035);
++
++      const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
++      camera.position.set(0, 0, 21);
++
++      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
++      renderer.setSize(window.innerWidth, window.innerHeight);
++      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
++      renderer.toneMapping = THREE.ACESFilmicToneMapping;
++      renderer.toneMappingExposure = 1.35;
++      mountLayer.appendChild(renderer.domElement);
++
++      // Spotlight only ΓÇö no product mesh rendering
++      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); scene.add(ambientLight);
++      const spotlightFocus = new THREE.SpotLight(catalog.plasma.glow, 20, 45, Math.PI / 4, 0.5, 1); spotlightFocus.position.set(0, 6, 12); scene.add(spotlightFocus);
++
++      // --- HTML IMAGE LAYER: switch active product image on slide change ---
++      const heroImgMap = {
++        plasma:  document.getElementById('hero-img-plasma'),
++        titan:   document.getElementById('hero-img-titan'),
++        nebula:  document.getElementById('hero-img-nebula'),
++        quantum: document.getElementById('hero-img-quantum')
++      };
++
++      function switchHeroImage(newKey) {
++        Object.entries(heroImgMap).forEach(([k, el]) => {
++          if (!el) return;
++          if (k === newKey) {
++            el.classList.add('hero-product-img--active');
++          } else {
++            el.classList.remove('hero-product-img--active');
++          }
++        });
++      }
++
++      // --- CYCLIC WEAVING BACKGROUND ATMOSPHERE PARTICLES ---
++      const particlesCount = 300; const particlesGeometry = new THREE.BufferGeometry();
++      const coordinatePositions = new Float32Array(particlesCount * 3); const sinusOffsets = new Float32Array(particlesCount);
++      for (let i = 0; i < particlesCount; i++) {
++        coordinatePositions[i * 3] = (Math.random() - 0.5) * 50; coordinatePositions[i * 3 + 1] = (Math.random() - 0.5) * 25; coordinatePositions[i * 3 + 2] = -6 - Math.random() * 6;
++        sinusOffsets[i] = Math.random() * Math.PI * 2;
++      }
++      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(coordinatePositions, 3));
++
++      const particleTextureCanvas = document.createElement('canvas'); particleTextureCanvas.width = 64; particleTextureCanvas.height = 64;
++      const ctx = particleTextureCanvas.getContext('2d'); const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
++      grad.addColorStop(0, 'rgba(255,255,255,1)'); grad.addColorStop(1, 'rgba(255,255,255,0)');
++      ctx.fillStyle = grad; ctx.fillRect(0, 0, 64, 64);
++
++      const atmospherePointsMaterial = new THREE.PointsMaterial({
++        size: 0.35, map: new THREE.CanvasTexture(particleTextureCanvas), color: catalog.plasma.glow, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending, depthWrite: false
++      });
++      const volumetricParticlesSystem = new THREE.Points(particlesGeometry, atmospherePointsMaterial); scene.add(volumetricParticlesSystem);
++
++      // --- FRAMEWORK RUNTIME ANIMATION TICKER LOOP ---
++      const executionClock = new THREE.Clock();
++      function executionLoopTicker() {
++        requestAnimationFrame(executionLoopTicker);
++        const clockDelta = executionClock.getElapsedTime();
++
++        // Keep camera static at default position
++        camera.position.set(0, 0, 21);
++        camera.lookAt(0, 0, 0);
++
++        // Continuous mutation loops over weaving cosmic background particles lines array
++        const elementsPosArray = volumetricParticlesSystem.geometry.attributes.position.array;
++        for (let i = 0; i < particlesCount; i++) { elementsPosArray[i * 3 + 1] += Math.sin(clockDelta + sinusOffsets[i]) * 0.012; }
++        volumetricParticlesSystem.geometry.attributes.position.needsUpdate = true;
++        volumetricParticlesSystem.rotation.z += 0.0003;
++
++        renderer.render(scene, camera);
++      }
++      executionLoopTicker();
++
++      // --- MASTER SYNCHRONIZED INTERACTIVE CAROUSEL CONTROLLER ---
++      window.executeSlideEngine = function (targetKey) {
++        if (stateLock || targetKey === activeKey) return;
++        stateLock = true;
++        clearTimeout(autoTimerTrack);
++
++        const incoming = catalog[targetKey];
++
++        // Refactor lower interface layout controllers links focus styling blocks indices
++        document.querySelectorAll('#nav-triggers-group button').forEach(btn => {
++          btn.style.color = "#52525b"; btn.style.fontWeight = "400"; btn.style.borderBottom = "2px solid transparent";
++        });
++        const activeLinkBtn = document.getElementById(`btn-${targetKey}`);
++        if (activeLinkBtn) {
++          activeLinkBtn.style.color = "#111111"; activeLinkBtn.style.fontWeight = "700"; activeLinkBtn.style.borderBottom = `2px solid ${incoming.accent}`;
++        }
++
++        // Shift ambient gradient light fields seamlessly
++        const fluidBg = document.getElementById('hero-fluid-bg');
++        if (fluidBg) {
++          fluidBg.style.background = `radial-gradient(circle at center, ${incoming.opacityGlow} 0%, #ffffff 70%)`;
+         }
++
++        const targetHexColorObj = new THREE.Color(incoming.glow);
++        gsap.to(spotlightFocus.color, { r: targetHexColorObj.r, g: targetHexColorObj.g, b: targetHexColorObj.b, duration: 1.0 });
++        gsap.to(atmospherePointsMaterial.color, { r: targetHexColorObj.r, g: targetHexColorObj.g, b: targetHexColorObj.b, duration: 1.0 });
++
++        const tl = gsap.timeline({ onComplete: () => { activeKey = targetKey; stateLock = false; startAutoplayLoop(); } });
++        tl.to(['#wt-mask', '#sl-title', '#sl-tagline', '#sl-desc', '#sl-ingredients'], { opacity: 0, y: -15, duration: 0.35, stagger: 0.015, ease: "power2.in" });
++
++        tl.call(() => {
++          // Switch the visible product image to the incoming slide
++          switchHeroImage(targetKey);
++
++          // Re-populate data content fields metrics properties
++          const wtMask = document.getElementById('wt-mask');
++          const slTitle = document.getElementById('sl-title');
++          const slTagline = document.getElementById('sl-tagline');
++          const slDesc = document.getElementById('sl-desc');
++          const slIngredients = document.getElementById('sl-ingredients');
++          const arAccent = document.getElementById('ar-accent');
++
++          if (wtMask) wtMask.innerText = incoming.name;
++          if (slTitle) slTitle.innerText = incoming.title;
++          if (slTagline) { slTagline.innerText = incoming.tagline; slTagline.style.color = incoming.accent; }
++          if (slDesc) slDesc.innerText = incoming.desc;
++          if (slIngredients) slIngredients.innerText = incoming.ingredients;
++          if (arAccent) arAccent.style.color = incoming.accent;
++          const heroCtaBtn = document.getElementById('hero-cta-btn');
++          if (heroCtaBtn) {
++            heroCtaBtn.style.setProperty('--btn-accent', incoming.accent);
++          }
++          const ingPill = document.getElementById('hero-ingredients-pill');
++          if (ingPill) {
++            ingPill.style.setProperty('background-color', incoming.opacityGlow, 'important');
++            ingPill.style.setProperty('border-color', incoming.accent, 'important');
++          }
++          if (slIngredients) {
++            slIngredients.style.setProperty('color', incoming.accent, 'important');
++          }
++
++          gsap.set(['#wt-mask', '#sl-title', '#sl-tagline', '#sl-desc', '#sl-ingredients'], { y: 15 });
++        });
++
++        tl.to(['#wt-mask', '#sl-title', '#sl-tagline', '#sl-desc', '#sl-ingredients'], { opacity: 1, y: 0, duration: 0.55, stagger: 0.02, ease: "power3.out" });
++      };
++
++      // --- ARROW ROUTING METHODS CONTROLS DIRECTIONS ---
++      window.navigateSlide = function (direction) {
++        let currentIdx = catalogKeys.indexOf(activeKey);
++        if (direction === 'next') { currentIdx = (currentIdx + 1) % catalogKeys.length; }
++        else { currentIdx = (currentIdx - 1 + catalogKeys.length) % catalogKeys.length; }
++        executeSlideEngine(catalogKeys[currentIdx]);
++      };
++
++      // --- AUTOMATED AUTOPLAY RUNTIME SYSTEM TRACKS ---
++      function startAutoplayLoop() { autoTimerTrack = setTimeout(() => { navigateSlide('next'); }, 6000); }
++      function stopAutoplayLoop() { if (autoTimerTrack) clearTimeout(autoTimerTrack); }
++      startAutoplayLoop();
++
++      /* ---- SCROLL REVEAL ---- */
++      (function () {
++        const io = new IntersectionObserver(entries => entries.forEach(en => {
++          if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
++        }), { threshold: 0.12 });
++        document.querySelectorAll('.cp-reveal').forEach(el => io.observe(el));
++      }());
++
++      /* ---- RESIZE ---- */
++      window.addEventListener('resize', () => {
++        camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
++        renderer.setSize(window.innerWidth, window.innerHeight);
+       });
+-    }, { threshold: 0.12 });
+-    els.forEach(function(el) { io.observe(el); });
+-  })();
+ 
+-  /* Mobile drawer inline event listeners removed to use unified aarwins.js logic */
+-</script>
++      /* ---- PAGE FADE IN ---- */
++      if (document.readyState === 'loading') {
++        document.addEventListener('DOMContentLoaded', () => {
++          document.body.classList.add('loaded');
++        });
++      } else {
++        document.body.classList.add('loaded');
++      }
++    })();
++  </script>
++
+ </body>
+-</html>
++
++</html>
+\ No newline at end of file
