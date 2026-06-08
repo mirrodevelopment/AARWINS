@@ -3,7 +3,7 @@
    Color Palette: #447F98 / #629BB6 / #DADEE1 / #B9DBE1 / #D6EBF3
    ════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap');
 
 /* ── Tokens ── */
 :root {
@@ -200,10 +200,10 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: "Futura Display", "Futura-Display", "Futura", "Jost", "League Spartan", var(--font-display), sans-serif !important;
-  font-size: 18px;
-  font-weight: 900 !important;
-  letter-spacing: 0.5px !important;
+  font-family: "Barlow Condensed", sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
   color: #000000 !important;
   text-transform: uppercase !important;
 }

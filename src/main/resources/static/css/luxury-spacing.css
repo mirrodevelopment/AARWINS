@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&display=swap');
+
 /* ═══════════════════════════════════════════════════════════════════
    AARWINS — ROLLS-ROYCE LUXURY SPACING OVERRIDE
    Overrides all spacing, padding, margins, gaps site-wide.
@@ -231,10 +233,10 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: "Futura Display", "Futura-Display", "Futura", "Jost", "League Spartan", var(--font-display), sans-serif !important;
-  font-size: 18px;
-  font-weight: 900 !important;
-  letter-spacing: 0.5px !important;
+  font-family: "Barlow Condensed", sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
   color: #000000 !important;
   text-transform: uppercase !important;
 }
@@ -2046,7 +2048,9 @@ body {
 
 @media (max-width: 900px) {
   .pd-container {
-    padding: 0 0 100px 0;
+    padding: 0 20px 100px 20px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .pd-grid {
@@ -2073,8 +2077,14 @@ body {
 }
 
 @media (max-width: 768px) {
+  .pd-container {
+    padding: 0 16px 80px 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .pd-main-img-wrap {
-    height: 460px;
+    height: 420px;
   }
 
   .pd-thumb {
@@ -2083,26 +2093,34 @@ body {
   }
 
   .pd-title {
-    font-size: 42px;
+    font-size: 36px;
   }
 
   .pd-price {
-    font-size: 34px;
+    font-size: 30px;
   }
 
   .pd-btn-row {
     flex-direction: column;
     gap: 12px;
+    align-items: center;
   }
 
   .pd-btn {
     width: 100%;
+    max-width: 280px;
   }
 }
 
 @media (max-width: 640px) {
+  .pd-container {
+    padding: 0 14px 60px 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .pd-main-img-wrap {
-    height: 340px;
+    height: 320px;
   }
 
   .pd-thumbnails {
@@ -2119,8 +2137,8 @@ body {
 
   .pd-thumb {
     flex-shrink: 0;
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
   }
 
   .pd-title-row {
@@ -2130,15 +2148,19 @@ body {
   }
 
   .pd-title {
-    font-size: 36px;
+    font-size: 30px;
   }
 
   .pd-price {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .pd-section-divider {
     margin: 80px 0 40px 0;
+  }
+
+  .pd-info {
+    gap: 28px;
   }
 }
 

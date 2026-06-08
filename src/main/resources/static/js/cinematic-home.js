@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * AARWINS — Cinematic Homepage Animation Engine v2.0
  * Ultra-premium interactions: Lenis + GSAP + ScrollTrigger + SplitType Fallback
  * Inspired by plus33.in, Awwwards, luxury editorial motion
@@ -26,7 +26,13 @@
     if (!loader) return;
 
     // ── Skip loader on revisits within the same session ──
-    const alreadySeen = sessionStorage.getItem('aw-loader-seen');
+    let alreadySeen = false;
+    try {
+      alreadySeen = sessionStorage.getItem('aw-loader-seen');
+    } catch (e) {
+      console.warn("Storage read failed:", e);
+    }
+
     if (alreadySeen) {
       // Hide the loader instantly and reveal page content
       gsap.set(loader, { autoAlpha: 0, pointerEvents: 'none' });
@@ -35,7 +41,11 @@
       return;
     }
     // Mark as seen for this session
-    sessionStorage.setItem('aw-loader-seen', '1');
+    try {
+      sessionStorage.setItem('aw-loader-seen', '1');
+    } catch (e) {
+      console.warn("Storage write failed:", e);
+    }
 
     // Initially hide core landing elements for soft fade-in reveal
     gsap.set(['.site-header', '.hero-inner', '.hero-glow-bg'], { opacity: 0, y: 30 });

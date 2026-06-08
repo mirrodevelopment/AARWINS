@@ -68,6 +68,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   display: inline-block;
   will-change: transform, opacity, filter;
   line-height: 1;
+  opacity: 0;
 }
 
 .aw-loader-letter:nth-child(1) { color: #447F98; } /* Signature Brand Blue */
@@ -103,6 +104,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   letter-spacing: 0.35em;
   color: rgba(245, 242, 237, 0.6);
   text-transform: uppercase;
+  opacity: 0;
 }
 
 /* ════════════════════════════════════════
@@ -706,7 +708,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   position: relative;
   height: 100vh;
   width: 100%;
-  background: linear-gradient(180deg, #F8F6F2 0%, #F3EFE8 100%);
+  background: #FFFFFF;
   overflow: hidden;
   z-index: 5;
   padding: 0 8vw;

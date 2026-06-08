@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -947,7 +947,7 @@
 
     /* --- SECTION 3: INGREDIENTS STORY --- */
     .aw-ingredients-section {
-      background: var(--pz-soft-teal) !important;
+      background: #FFFFFF !important;
     }
     .aw-ingredients-glow {
       background: radial-gradient(circle, rgba(102, 188, 180, 0.12) 0%, transparent 75%) !important;
@@ -1566,8 +1566,12 @@
 <!-- ════════ CINEMATIC LOADING SCREEN ════════ -->
 <div id="aw-loader" aria-hidden="true">
   <script>
-    if (sessionStorage.getItem('aw-loader-seen')) {
-      document.getElementById('aw-loader').style.display = 'none';
+    try {
+      if (sessionStorage.getItem('aw-loader-seen')) {
+        document.getElementById('aw-loader').style.display = 'none';
+      }
+    } catch (e) {
+      console.warn("Storage blocked:", e);
     }
     // Bulletproof fallback to ensure the page is never locked by a stuck preloader
     setTimeout(function() {
