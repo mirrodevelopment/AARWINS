@@ -690,9 +690,9 @@ body.aw-loaded .aw-loader { pointer-events: none; }
 }
 
 .aw-quote-text {
-  font-family: Impact, 'Arial Narrow', 'Haettenschweiler', sans-serif;
+  font-family: Impact, 'Arial Narrow', 'Haettenschweiler', sans-serif !important;
   font-size: clamp(2.8rem, 6vw, 6.5rem); /* Larger since Impact is condensed */
-  font-weight: 400; /* Impact is inherently ultra-bold — no need for 800 */
+  font-weight: 400 !important; /* Impact is inherently ultra-bold — no need for 800 */
   line-height: 1.05;
   color: #17313B; /* Dark premium text color */
   text-transform: uppercase;
@@ -1069,8 +1069,11 @@ body.aw-loaded .aw-loader { pointer-events: none; }
     display: none !important;
   }
   .aw-quote-text {
-    font-size: clamp(2.2rem, 9.5vw, 3.5rem); /* Impact is condensed — needs bigger size on mobile */
-    letter-spacing: 0.01em;
+    font-family: Impact, 'Arial Narrow', 'Haettenschweiler', sans-serif !important;
+    font-size: clamp(2.2rem, 9.5vw, 3.5rem) !important; /* Impact is condensed — needs bigger size on mobile */
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important;
+    text-transform: uppercase !important;
   }
   .aw-quote-glow, .aw-ingredients-glow, .aw-product-focus-glow {
     width: 500px;
