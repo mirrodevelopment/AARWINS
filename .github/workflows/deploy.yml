@@ -18,15 +18,16 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           port: ${{ secrets.VM_PORT }}
           script: |
-            cd ${{ secrets.VM_PATH }}
+              cd ${{ secrets.VM_PATH }}
 
-            echo "Pulling latest code..."
-            git pull origin main
+              echo "Pulling latest code..."
+              git pull origin main
 
-            echo "Building application..."
-            mvn clean package -DskipTests
+              echo "Building application..."
+              chmod +x mvnw
+              ./mvnw clean package -DskipTests
 
-            echo "Restarting Aarwins..."
-            pm2 restart aarwins
+                echo "Restarting Aarwins..."
+                pm2 restart aarwins
 
-            echo "Deployment completed successfully!"
+                echo "Deployment completed successfully!"
