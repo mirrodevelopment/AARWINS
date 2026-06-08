@@ -59,7 +59,7 @@ function initializeCheckout() {
   setupUpiVerification();
   setupPromoListeners();
   setupPlaceOrderCTA();
-  setupMobileDrawer();
+  setupBreadcrumbNavigation();
   
   // Hide UPI QR box initially
   const qrBox = document.querySelector('.upi-qr-box');
@@ -672,6 +672,45 @@ window.addEventListener('popstate', () => {
   handleRouting(true);
 });
 
+// ── Breadcrumb Click Navigation ──
+function setupBreadcrumbNavigation() {
+  const steps = document.querySelectorAll('.chk-progress-step[data-step]');
+  
+  steps.forEach(step => {
+    step.addEventListener('click', () => {
+      const target = step.dataset.step;
+      
+      // Only allow navigation to completed or active steps (backward navigation)
+      if (!step.classList.contains('completed') && !step.classList.contains('active')) {
+        return; // Cannot skip ahead to a future step
+      }
+      
+      switch (target) {
+        case 'cart':
+          // Navigate back to the collections / cart page
+          window.location.href = '/collections';
+          break;
+        case 'details':
+          // Navigate to Step 1 (Customer Details)
+          navigateToStep('/checkout');
+          break;
+        case 'payment':
+          // Navigate to Step 2 (Delivery & Payment) — only if step is completed/active
+          if (step.classList.contains('completed') || step.classList.contains('active')) {
+            navigateToStep('/checkout/payment');
+          }
+          break;
+        // 'confirmed' is not clickable — no backward navigation from success
+      }
+    });
+    
+    // Also handle keyboard Enter key for accessibility
+    step.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') step.click();
+    });
+  });
+}
+
 function showStep(stepNum, animate = true) {
   const step1 = document.getElementById('checkout-step-1');
   const step2 = document.getElementById('checkout-step-2');
@@ -941,51 +980,4 @@ function showTrackOrderToast(orderNum) {
   setTimeout(() => {
     toastEl.classList.remove('show');
   }, 3000);
-}
-
-// Mobile navigation drawer controller for Checkout page
-function setupMobileDrawer() {
-  const hamburger = document.getElementById('nav-hamburger');
-  const drawer = document.getElementById('nav-drawer');
-  const backdrop = document.getElementById('nav-drawer-backdrop');
-  const closeBtn = document.getElementById('drawer-close');
-
-  if (!hamburger || !drawer) return;
-
-  function openDrawer() {
-    drawer.classList.add('is-open', 'open');
-    hamburger.classList.add('open');
-    if (backdrop) backdrop.classList.add('is-open', 'open');
-    document.body.classList.add('drawer-open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeDrawer() {
-    drawer.classList.remove('is-open', 'open');
-    hamburger.classList.remove('open');
-    if (backdrop) backdrop.classList.remove('is-open', 'open');
-    document.body.classList.remove('drawer-open');
-    document.body.style.overflow = '';
-  }
-
-  hamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (drawer.classList.contains('is-open') || drawer.classList.contains('open')) {
-      closeDrawer();
-    } else {
-      openDrawer();
-    }
-  });
-
-  if (backdrop) {
-    backdrop.addEventListener('click', closeDrawer);
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeDrawer);
-  }
-
-  drawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', closeDrawer);
-  });
 }

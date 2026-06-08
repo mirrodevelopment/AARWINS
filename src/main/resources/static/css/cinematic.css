@@ -36,7 +36,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #17313B; /* Luxury Dark Overlay */
+  background: #F7F3EE; /* Warm cream — matches hero section */
   pointer-events: all;
   will-change: opacity, filter;
 }
@@ -45,7 +45,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 70% 60% at 50% 50%,
-    rgba(68, 127, 152, 0.35) 0%,
+    rgba(68, 127, 152, 0.1) 0%,
     transparent 70%);
   opacity: 0;
   pointer-events: none;
@@ -64,7 +64,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   font-size: clamp(2.8rem, 8vw, 6rem);
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: #F5F2ED; /* Luxury Cream */
+  color: #17313B; /* Dark text on cream background */
   display: inline-block;
   will-change: transform, opacity, filter;
   line-height: 1;
@@ -72,17 +72,17 @@ body.aw-loaded .aw-loader { pointer-events: none; }
 }
 
 .aw-loader-letter:nth-child(1) { color: #447F98; } /* Signature Brand Blue */
-.aw-loader-letter:nth-child(2) { color: #F5F2ED; }
-.aw-loader-letter:nth-child(3) { color: #F5F2ED; }
-.aw-loader-letter:nth-child(4) { color: #F5F2ED; }
-.aw-loader-letter:nth-child(5) { color: #F5F2ED; }
-.aw-loader-letter:nth-child(6) { color: #F5F2ED; }
-.aw-loader-letter:nth-child(7) { color: #F5F2ED; }
+.aw-loader-letter:nth-child(2) { color: #17313B; }
+.aw-loader-letter:nth-child(3) { color: #17313B; }
+.aw-loader-letter:nth-child(4) { color: #17313B; }
+.aw-loader-letter:nth-child(5) { color: #17313B; }
+.aw-loader-letter:nth-child(6) { color: #17313B; }
+.aw-loader-letter:nth-child(7) { color: #17313B; }
 
 .aw-loader-bar-wrap {
   width: min(200px, 50vw);
   height: 2px;
-  background: rgba(245, 242, 237, 0.15);
+  background: rgba(23, 49, 59, 0.12); /* Subtle dark track on cream */
   position: relative;
   overflow: hidden;
 }
@@ -90,7 +90,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
 .aw-loader-bar-fill {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, #447F98, #8ECFDE);
+  background: linear-gradient(90deg, #447F98, #5FA8BA);
   transform-origin: left center;
   transform: scaleX(0);
   will-change: transform;
@@ -102,7 +102,7 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.35em;
-  color: rgba(245, 242, 237, 0.6);
+  color: rgba(23, 49, 59, 0.45); /* Dark text at reduced opacity on cream */
   text-transform: uppercase;
   opacity: 0;
 }
@@ -690,14 +690,14 @@ body.aw-loaded .aw-loader { pointer-events: none; }
 }
 
 .aw-quote-text {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2.0rem, 4.2vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.1;
+  font-family: Impact, 'Arial Narrow', 'Haettenschweiler', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 6.5rem); /* Larger since Impact is condensed */
+  font-weight: 400; /* Impact is inherently ultra-bold — no need for 800 */
+  line-height: 1.05;
   color: #17313B; /* Dark premium text color */
   text-transform: uppercase;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em; /* Impact looks best with slight positive tracking */
   will-change: transform, opacity, filter;
 }
 
@@ -1037,16 +1037,40 @@ body.aw-loaded .aw-loader { pointer-events: none; }
 }
 
 @media (max-width: 768px) {
+  /* ── QUOTE SECTION: clean white, text overlaps video bottom ── */
   .aw-quote-section {
-    height: 80vh;
-  }
-  .aw-quote-text {
-    font-size: clamp(1.8rem, 7.2vw, 3.15rem);
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
   .aw-quote-video-wrap {
-    width: 120% !important;
-    max-width: 120% !important;
-    margin-left: -10% !important;
+    margin-top: 0 !important;
+    margin-bottom: -60px !important; /* Pull text 5% higher into the video */
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: #FFFFFF !important;
+  }
+  .aw-quote-container {
+    background: #FFFFFF !important;
+    padding: 0 24px 40px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    z-index: 10 !important; /* Text sits above the video */
+  }
+  .aw-quote-glow {
+    display: none !important;
+  }
+  .aw-quote-text {
+    font-size: clamp(2.2rem, 9.5vw, 3.5rem); /* Impact is condensed — needs bigger size on mobile */
+    letter-spacing: 0.01em;
   }
   .aw-quote-glow, .aw-ingredients-glow, .aw-product-focus-glow {
     width: 500px;

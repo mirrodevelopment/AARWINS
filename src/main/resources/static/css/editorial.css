@@ -608,3 +608,37 @@
     margin-top: 10% !important;
   }
 }
+
+/* ════════ ABOUT US TAGLINE SECTION ════════ */
+.aw-about-tagline-section {
+  background-color: #FFFFFF;
+  padding: 100px 40px; /* Increased vertical padding to increase section size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.aw-about-tagline-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px; /* Elegant premium font size */
+  font-weight: 300; /* Clean, modern minimalist weight */
+  color: #17313B;
+  text-align: center; /* Center alignment */
+  max-width: 900px;
+  line-height: 1.6;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .aw-about-tagline-section {
+    padding: 60px 24px; /* Generous white section padding on mobile */
+  }
+  .aw-about-tagline-text {
+    font-size: 22px;
+    line-height: 1.5;
+  }
+}
+
