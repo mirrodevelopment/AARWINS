@@ -951,6 +951,9 @@
 }
 
 @media (max-width: 600px) {
+  .checkout-back-link span {
+    display: none;
+  }
   .form-grid {
     grid-template-columns: 1fr;
     gap: 15px;

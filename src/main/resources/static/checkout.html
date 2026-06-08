@@ -28,13 +28,18 @@
           <img src="/images/logo.png" alt="Aarwins Logo" style="height: 44px; width: 44px; border-radius: 50%; object-fit: contain;">
           <span>AARWINS</span>
         </a>
-        <a href="/collections" class="checkout-back-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to Collections
-        </a>
+        <div class="checkout-header-right" style="display: flex; align-items: center; gap: 15px;">
+          <a href="/collections" class="checkout-back-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Collections</span>
+          </a>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -376,6 +381,51 @@
   <div id="success-screen-container" style="display: none;"></div>
 
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
+    <!-- Gradient Orbs & Lighting -->
+    <div class="drawer-glow-container" aria-hidden="true">
+      <div class="drawer-glow-orb orb-blue"></div>
+      <div class="drawer-glow-orb orb-pink"></div>
+      <div class="drawer-glow-orb orb-lavender"></div>
+      <div class="drawer-glow-orb orb-teal"></div>
+    </div>
+    
+    <!-- Grain Overlay inside menu panel -->
+    <div class="drawer-grain" aria-hidden="true"></div>
+    
+    <div class="drawer-content">
+      <!-- Top Area -->
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <span class="drawer-logo-text">AARWINS</span>
+          <span class="drawer-editorial-label">Tropical Wellness</span>
+        </div>
+        <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drawer-close-svg">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Center Navigation Links -->
+      <nav class="drawer-nav" aria-label="Mobile Navigation">
+        <a href="/" class="drawer-nav-item" style="--stagger-index: 1;">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Home</span>
+        </a>
+        <a href="/collections" class="drawer-nav-item" style="--stagger-index: 2;">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Collections</span>
+        </a>
+      </nav>
+    </div>
+  </div>
 
   <script src="/js/checkout.js"></script>
 </body>
