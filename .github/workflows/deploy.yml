@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to VM
+      - name: Deploy to Google Cloud VM
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VM_HOST }}
@@ -23,10 +23,10 @@ jobs:
             echo "Pulling latest code..."
             git pull origin main
 
-            echo "Building project..."
+            echo "Building application..."
             mvn clean package -DskipTests
 
-            echo "Restarting application..."
+            echo "Restarting Aarwins..."
             pm2 restart aarwins
 
-            echo "Deployment completed!"
+            echo "Deployment completed successfully!"
