@@ -200,11 +200,11 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: Impact, 'Arial Narrow', 'Haettenschweiler', sans-serif !important;
-  font-size: 41px !important; /* +20% from 34px */
-  font-weight: 100 !important; /* Thinnest possible */
-  letter-spacing: 0.05em !important;
-  color: #1a1a1a !important; /* Slightly off-black for lighter feel */
+  font-family: 'Syne', sans-serif !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  color: #1a1a1a !important;
   text-transform: uppercase !important;
 }
 

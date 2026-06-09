@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Manage your AARWINS account — orders, addresses, security settings and more."/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>My Account — AARWINS Tropical Beverages</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317313B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5'/></svg>"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="/css/aarwins.css?v=2.2"/>
+  <link rel="stylesheet" href="/css/cart-checkout.css?v=1.1"/>
+  <link rel="stylesheet" href="/css/account.css?v=3.5"/>
+
+  <!-- GSAP, ScrollTrigger, Lenis (required by aarwins.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+</head>
+<body class="account-page">
+
+<!-- Atmospheric grain texture -->
+<div class="acc-grain" aria-hidden="true"></div>
+
+<!-- Background ambient orbs -->
+<div class="acc-bg-orb acc-bg-orb-1" aria-hidden="true"></div>
+<div class="acc-bg-orb acc-bg-orb-2" aria-hidden="true"></div>
+<div class="acc-bg-orb acc-bg-orb-3" aria-hidden="true"></div>
+
+<!-- ════════════════════════════════════════
+     MINI CART OVERLAY & PANEL
+════════════════════════════════════════ -->
+<div class="mini-cart-overlay" id="mini-cart-overlay"></div>
+<div class="mini-cart-panel" id="mini-cart-panel">
+  <div class="mcp-header">
+    <h3 class="mcp-title">Shopping Bag</h3>
+    <button class="mcp-close" id="mcp-close" aria-label="Close cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mcp-close-svg">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="mcp-body"></div>
+  <div class="mcp-footer"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════ -->
+<header class="site-header" id="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="nav-logo" href="/">
+      <img src="/images/logo.png" alt="Aarwins Logo" class="nav-logo-img" style="height: 58px; width: 58px; object-fit: contain; border-radius: 50%;"/>
+      <span>AARWINS</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/collections">Collections</a>
+    </div>
+
+    <div class="nav-right">
+      <span class="nav-lang">UA | EN</span>
+      <div class="nav-search-wrapper" id="nav-search-wrapper">
+        <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Search..." autocomplete="off"/>
+        <span class="nav-search-divider"></span>
+        <button class="nav-search-btn" id="nav-search-btn" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
+      <div class="nav-user-container" style="position: relative; display: inline-block;">
+        <button class="nav-icon-btn" id="nav-user-btn" aria-label="Account">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </button>
+        <div class="account-dropdown" id="account-dropdown">
+          <a href="/account#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+          <a href="/account#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>Orders</a>
+          <div class="dropdown-divider"></div>
+          <a href="#logout" class="logout-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Logout</a>
+        </div>
+      </div>
+      <button class="nav-icon-btn" id="nav-cart-btn" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span id="cart-badge" class="cart-badge">0</span>
+      </button>
+    </div>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Drawer Backdrop Overlay -->
+<div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer" aria-label="Mobile menu">
+  <div class="drawer-glow-container" aria-hidden="true">
+    <div class="drawer-glow-orb orb-blue"></div>
+    <div class="drawer-glow-orb orb-pink"></div>
+    <div class="drawer-glow-orb orb-lavender"></div>
+    <div class="drawer-glow-orb orb-teal"></div>
+  </div>
+  <div class="drawer-grain" aria-hidden="true"></div>
+  <div class="drawer-content">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <span class="drawer-logo-text">AARWINS</span>
+        <span class="drawer-editorial-label">Tropical Wellness</span>
+      </div>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drawer-close-svg">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="drawer-nav" aria-label="Mobile Navigation">
+      <a href="/" class="drawer-nav-item" style="--stagger-index: 1;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Home</span>
+      </a>
+      <a href="/collections" class="drawer-nav-item" style="--stagger-index: 2;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Collections</span>
+      </a>
+      <div class="drawer-nav-divider" style="--stagger-index: 3;"></div>
+      <a href="/account" class="drawer-nav-item" style="--stagger-index: 4;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Account</span>
+      </a>
+      <a href="#" id="drawer-nav-link-cart" class="drawer-nav-item" style="--stagger-index: 5;">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span>Cart</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     MAIN PAGE CONTENT
+════════════════════════════════════════ -->
+<div class="acc-page-wrapper">
+  <div class="acc-inner">
+
+    <!-- ═══════════════════
+         HERO WELCOME SECTION
+    ═══════════════════ -->
+    <section class="acc-hero acc-anim-in" aria-labelledby="acc-hero-title">
+      <div class="acc-hero-glow-1" aria-hidden="true"></div>
+      <div class="acc-hero-glow-2" aria-hidden="true"></div>
+
+      <div class="acc-hero-inner">
+        <!-- Avatar -->
+        <div class="acc-avatar-wrap">
+          <div class="acc-avatar-ring" role="img" aria-label="User avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div class="acc-avatar-status" aria-hidden="true"></div>
+        </div>
+
+        <!-- Greeting -->
+        <div class="acc-hero-text">
+          <span class="acc-hero-greeting-label">Your Dashboard</span>
+          <h1 class="acc-hero-title" id="acc-hero-title">
+            Welcome Back, <span id="acc-user-display-name">Arjun</span>
+          </h1>
+          <p class="acc-hero-subtitle">Manage your profile, orders, and preferences in one premium space.</p>
+          <div class="acc-membership-badge">
+            <span class="acc-badge-dot" aria-hidden="true"></span>
+            Coconut Gold Member
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="acc-hero-stats" role="region" aria-label="Account statistics">
+        <div class="acc-stat-card">
+          <div class="acc-stat-icon acc-stat-icon--orders" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </div>
+          <div class="acc-stat-num" id="stat-orders">12</div>
+          <div class="acc-stat-label">Orders</div>
+        </div>
+
+        <div class="acc-stat-card">
+          <div class="acc-stat-icon acc-stat-icon--address" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="acc-stat-num" id="stat-addresses">2</div>
+          <div class="acc-stat-label">Addresses</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════
+         DASHBOARD LAYOUT
+    ═══════════════════ -->
+    <div class="acc-dashboard-grid">
+
+      <!-- ─── SIDEBAR NAV ─── -->
+      <aside class="acc-sidebar" aria-label="Account navigation">
+        <div class="acc-sidebar-card">
+          <nav class="acc-sidebar-nav" role="tablist" aria-label="Account sections">
+            <span class="acc-nav-section-label">Account</span>
+
+            <button class="acc-nav-item active" data-panel="profile" role="tab" aria-selected="true" aria-controls="panel-profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Profile
+            </button>
+
+            <button class="acc-nav-item" data-panel="addresses" role="tab" aria-selected="false" aria-controls="panel-addresses">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Addresses
+            </button>
+
+            <div class="acc-nav-divider" aria-hidden="true"></div>
+            <span class="acc-nav-section-label">Shopping</span>
+
+            <button class="acc-nav-item" data-panel="orders" role="tab" aria-selected="false" aria-controls="panel-orders">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              Orders
+            </button>
+
+
+
+            <div class="acc-nav-divider" aria-hidden="true"></div>
+            <span class="acc-nav-section-label">Security</span>
+
+            <button class="acc-nav-item" data-panel="security" role="tab" aria-selected="false" aria-controls="panel-security">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Security
+            </button>
+
+
+
+            <div class="acc-nav-divider" aria-hidden="true"></div>
+            <span class="acc-nav-section-label">Manage</span>
+
+            <button class="acc-nav-item" data-panel="danger" role="tab" aria-selected="false" aria-controls="panel-danger">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              Account Actions
+            </button>
+
+            <div class="acc-nav-divider" aria-hidden="true"></div>
+
+            <button class="acc-nav-item danger" id="acc-logout-btn" aria-label="Log out of account">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+              Sign Out
+            </button>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- ─── MAIN PANELS ─── -->
+      <main class="acc-main" id="acc-main-content">
+
+        <!-- ══════════════════════════════
+             PANEL 1: PROFILE MANAGEMENT
+        ══════════════════════════════ -->
+        <section class="acc-panel acc-anim-in acc-anim-delay-1 expanded" id="panel-profile" role="tabpanel" aria-labelledby="nav-profile">
+          <div class="acc-panel-header">
+            <div class="acc-panel-title-wrap">
+              <div class="acc-panel-icon acc-panel-icon--profile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="acc-panel-title">Profile Information</h2>
+                <p class="acc-panel-subtitle">Manage your personal details</p>
+              </div>
+            </div>
+            <div class="acc-panel-actions">
+              <button type="button" class="acc-btn-ghost" id="acc-edit-profile-btn" aria-label="Edit profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Edit
+              </button>
+              <button type="button" class="acc-panel-toggle-btn" aria-label="Toggle section">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="acc-panel-body" id="acc-profile-panel-body">
+            <!-- VIEW MODE -->
+            <div id="acc-profile-view" class="acc-profile-view">
+              <form class="acc-form-grid" id="acc-profile-display-form" aria-label="Profile information">
+                <!-- First Name -->
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap has-value">
+                    <label for="view-first-name">First Name</label>
+                    <input type="text" id="view-first-name" value="Arjun" disabled autocomplete="given-name"/>
+                    <span class="acc-field-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <!-- Last Name -->
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap has-value">
+                    <label for="view-last-name">Last Name</label>
+                    <input type="text" id="view-last-name" value="Mehra" disabled autocomplete="family-name"/>
+                  </div>
+                </div>
+                <!-- Email -->
+                <div class="acc-form-group acc-col-span-2">
+                  <div class="acc-field-wrap has-value">
+                    <label for="view-email">Email Address</label>
+                    <input type="email" id="view-email" value="arjun.mehra@example.com" disabled autocomplete="email"/>
+                    <span class="acc-field-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <!-- Phone -->
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap has-value">
+                    <label for="view-phone">Phone Number</label>
+                    <input type="tel" id="view-phone" value="+91 98765 43210" disabled autocomplete="tel"/>
+                    <span class="acc-field-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.72 9.08 19.79 19.79 0 01.67 0.41 2 2 0 012.75.02h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.09 6.09l1.07-1.08a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <!-- Date of Birth -->
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap has-value">
+                    <label for="view-dob">Date of Birth</label>
+                    <input type="text" id="view-dob" value="15 March 1993" disabled/>
+                    <span class="acc-field-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <!-- Gender -->
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap has-value is-select">
+                    <label for="view-gender">Gender</label>
+                    <select id="view-gender" disabled>
+                      <option value="male" selected>Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- EDIT MODE (hidden by default) -->
+            <div id="acc-profile-edit" style="display:none;">
+              <form class="acc-form-grid" id="acc-profile-edit-form" aria-label="Edit profile information" novalidate>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="edit-first-name">First Name</label>
+                    <input type="text" id="edit-first-name" name="firstName" autocomplete="given-name" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="edit-last-name">Last Name</label>
+                    <input type="text" id="edit-last-name" name="lastName" autocomplete="family-name" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group acc-col-span-2">
+                  <div class="acc-field-wrap">
+                    <label for="edit-email">Email Address</label>
+                    <input type="email" id="edit-email" name="email" autocomplete="email" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="edit-phone">Phone Number</label>
+                    <input type="tel" id="edit-phone" name="phone" autocomplete="tel"/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="edit-dob">Date of Birth</label>
+                    <input type="date" id="edit-dob" name="dob"/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap is-select">
+                    <label for="edit-gender">Gender</label>
+                    <select id="edit-gender" name="gender">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+
+              <div class="acc-profile-actions">
+                <button class="acc-btn-primary" id="acc-save-profile-btn" aria-label="Save profile changes">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Save Changes
+                </button>
+                <button class="acc-btn-secondary" id="acc-cancel-edit-btn" aria-label="Cancel editing">
+                  Cancel
+                </button>
+                <button class="acc-btn-danger" id="acc-delete-account-btn" style="margin-left:auto" aria-label="Delete account">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+                  </svg>
+                  Delete Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             PANEL 2: ADDRESSES
+        ══════════════════════════════ -->
+        <section class="acc-panel acc-anim-in acc-anim-delay-2" id="panel-addresses" role="tabpanel" aria-labelledby="nav-addresses">
+          <div class="acc-panel-header">
+            <div class="acc-panel-title-wrap">
+              <div class="acc-panel-icon acc-panel-icon--address" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="acc-panel-title">Saved Addresses</h2>
+                <p class="acc-panel-subtitle">Manage your delivery locations</p>
+              </div>
+            </div>
+            <button type="button" class="acc-panel-toggle-btn" aria-label="Toggle section">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="acc-panel-body">
+            <!-- Address Cards -->
+            <div class="acc-address-grid" id="acc-address-grid" role="list">
+
+              <!-- Address Card 1 -->
+              <div class="acc-address-card is-default" role="listitem">
+                <div class="acc-address-default-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Default
+                </div>
+                <div class="acc-address-name">Arjun Mehra</div>
+                <div class="acc-address-text">
+                  24, Orchid Villa, Palm Grove Lane<br/>
+                  Coimbatore, Tamil Nadu — 641001
+                </div>
+                <div class="acc-address-phone">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.72 9.08a19.79 19.79 0 01-3.07-8.63A2 2 0 012.75.02h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.09 6.09l1.07-1.08a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                  </svg>
+                  +91 98765 43210
+                </div>
+                <div class="acc-address-actions">
+                  <button class="acc-addr-action-btn acc-addr-action-btn--edit" aria-label="Edit this address">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Edit
+                  </button>
+                  <button class="acc-addr-action-btn acc-addr-action-btn--delete" aria-label="Delete this address">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                    </svg>
+                    Delete
+                  </button>
+                </div>
+              </div>
+
+              <!-- Address Card 2 -->
+              <div class="acc-address-card" role="listitem">
+                <div class="acc-address-name">Priya Mehra</div>
+                <div class="acc-address-text">
+                  7B, Lotus Heights, MG Road<br/>
+                  Chennai, Tamil Nadu — 600032
+                </div>
+                <div class="acc-address-phone">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.72 9.08a19.79 19.79 0 01-3.07-8.63A2 2 0 012.75.02h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.09 6.09l1.07-1.08a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                  </svg>
+                  +91 91234 56789
+                </div>
+                <div class="acc-address-actions">
+                  <button class="acc-addr-action-btn acc-addr-action-btn--edit" aria-label="Edit this address">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Edit
+                  </button>
+                  <button class="acc-addr-action-btn acc-addr-action-btn--default" aria-label="Set as default address">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                      <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    Set Default
+                  </button>
+                  <button class="acc-addr-action-btn acc-addr-action-btn--delete" aria-label="Delete this address">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                    </svg>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add New Address Button -->
+            <button class="acc-add-addr-btn" id="acc-add-address-btn" aria-expanded="false" aria-controls="acc-addr-form">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Add New Address
+            </button>
+
+            <!-- New Address Form (hidden) -->
+            <div class="acc-addr-form-wrap" id="acc-addr-form" aria-hidden="true">
+              <h3 class="acc-addr-form-title">New Address</h3>
+              <form id="acc-new-address-form" class="acc-form-grid" aria-label="New address form" novalidate>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="addr-full-name">Full Name</label>
+                    <input type="text" id="addr-full-name" name="fullName" autocomplete="name" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="addr-mobile">Mobile Number</label>
+                    <input type="tel" id="addr-mobile" name="mobile" autocomplete="tel" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group acc-col-span-2">
+                  <div class="acc-field-wrap">
+                    <label for="addr-line1">Address Line 1</label>
+                    <input type="text" id="addr-line1" name="line1" autocomplete="address-line1" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group acc-col-span-2">
+                  <div class="acc-field-wrap">
+                    <label for="addr-line2">Address Line 2</label>
+                    <input type="text" id="addr-line2" name="line2" autocomplete="address-line2"/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="addr-city">City</label>
+                    <input type="text" id="addr-city" name="city" autocomplete="address-level2" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="addr-state">State</label>
+                    <input type="text" id="addr-state" name="state" autocomplete="address-level1" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap is-select">
+                    <label for="addr-country">Country</label>
+                    <select id="addr-country" name="country" autocomplete="country-name">
+                      <option value="IN" selected>India</option>
+                      <option value="US">United States</option>
+                      <option value="GB">United Kingdom</option>
+                      <option value="AE">UAE</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="acc-form-group">
+                  <div class="acc-field-wrap">
+                    <label for="addr-postal">Postal Code</label>
+                    <input type="text" id="addr-postal" name="postal" autocomplete="postal-code" required/>
+                  </div>
+                </div>
+                <div class="acc-form-group acc-col-span-2" style="flex-direction:row;align-items:center;gap:10px;">
+                  <input type="checkbox" id="addr-set-default" style="width:18px;height:18px;cursor:pointer;accent-color:var(--pz-tropical-orange);"/>
+                  <label for="addr-set-default" style="font-size:14px;cursor:pointer;color:var(--text-body);font-weight:500;">Set as default address</label>
+                </div>
+                <div class="acc-form-group acc-col-span-2" style="flex-direction:row;gap:12px;margin-top:8px;">
+                  <button type="submit" class="acc-btn-primary" aria-label="Save new address">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Save Address
+                  </button>
+                  <button type="button" class="acc-btn-secondary" id="acc-cancel-addr-btn" aria-label="Cancel adding address">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             PANEL 3: ORDER HISTORY
+        ══════════════════════════════ -->
+        <section class="acc-panel acc-anim-in acc-anim-delay-2" id="panel-orders" role="tabpanel" aria-labelledby="nav-orders">
+          <div class="acc-panel-header">
+            <div class="acc-panel-title-wrap">
+              <div class="acc-panel-icon acc-panel-icon--orders" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                  <line x1="3" y1="6" x2="21" y2="6"/>
+                  <path d="M16 10a4 4 0 01-8 0"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="acc-panel-title">Order History</h2>
+                <p class="acc-panel-subtitle">Track and manage your purchases</p>
+              </div>
+            </div>
+            <button type="button" class="acc-panel-toggle-btn" aria-label="Toggle section">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="acc-panel-body">
+            <div class="acc-orders-list" role="list" aria-label="Your orders">
+
+              <!-- Order 1 — Delivered -->
+              <article class="acc-order-card" role="listitem">
+                <div class="acc-order-header">
+                  <div>
+                    <div class="acc-order-id">#AWN-20240581</div>
+                    <div class="acc-order-date">5 June 2026 · UPI Payment</div>
+                  </div>
+                  <div class="acc-order-status acc-order-status--delivered" role="status" aria-label="Order status: Delivered">
+                    <span class="acc-order-status-dot" aria-hidden="true"></span>
+                    Delivered
+                  </div>
+                </div>
+                <div class="acc-order-body">
+                  <div class="acc-order-items-preview">
+                    <div class="acc-order-item-thumb">
+                      <div class="acc-order-thumb-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="acc-order-item-thumb">
+                      <div class="acc-order-thumb-placeholder" style="background:linear-gradient(135deg,var(--pz-soft-mango),var(--pz-light-coconut));">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="acc-order-meta">
+                    <div class="acc-order-product-name">Coconut Mango Burst — Pack of 6</div>
+                    <div class="acc-order-product-meta">2 items · Standard Delivery</div>
+                  </div>
+                  <div class="acc-order-amount">&#8377;648</div>
+                </div>
+                <div class="acc-order-actions">
+                  <button class="acc-order-action-btn acc-order-action-btn--view" aria-label="View order details">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                  <button class="acc-order-action-btn acc-order-action-btn--invoice" aria-label="Download invoice">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Invoice
+                  </button>
+                  <button class="acc-order-action-btn acc-order-action-btn--reorder" aria-label="Reorder this item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="1 4 1 10 7 10"/>
+                      <path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+                    </svg>
+                    Reorder
+                  </button>
+                </div>
+              </article>
+
+              <!-- Order 2 — Shipped -->
+              <article class="acc-order-card" role="listitem">
+                <div class="acc-order-header">
+                  <div>
+                    <div class="acc-order-id">#AWN-20240574</div>
+                    <div class="acc-order-date">1 June 2026 · COD</div>
+                  </div>
+                  <div class="acc-order-status acc-order-status--shipped" role="status" aria-label="Order status: Shipped">
+                    <span class="acc-order-status-dot" aria-hidden="true"></span>
+                    Shipped
+                  </div>
+                </div>
+                <div class="acc-order-body">
+                  <div class="acc-order-items-preview">
+                    <div class="acc-order-item-thumb">
+                      <div class="acc-order-thumb-placeholder" style="background:linear-gradient(135deg,var(--pz-soft-orange),var(--pz-soft-mango));">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="acc-order-meta">
+                    <div class="acc-order-product-name">Avocado Lychee Refresher — Pack of 12</div>
+                    <div class="acc-order-product-meta">1 item · Express Delivery</div>
+                  </div>
+                  <div class="acc-order-amount">&#8377;1,188</div>
+                </div>
+                <div class="acc-order-actions">
+                  <button class="acc-order-action-btn acc-order-action-btn--view" aria-label="View order details">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                  <button class="acc-order-action-btn acc-order-action-btn--track" aria-label="Track order">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    Track Order
+                  </button>
+                  <button class="acc-order-action-btn acc-order-action-btn--invoice" aria-label="Download invoice">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Invoice
+                  </button>
+                </div>
+              </article>
+
+              <!-- Order 3 — Processing -->
+              <article class="acc-order-card" role="listitem">
+                <div class="acc-order-header">
+                  <div>
+                    <div class="acc-order-id">#AWN-20240591</div>
+                    <div class="acc-order-date">8 June 2026 · UPI Payment</div>
+                  </div>
+                  <div class="acc-order-status acc-order-status--processing" role="status" aria-label="Order status: Processing">
+                    <span class="acc-order-status-dot" aria-hidden="true"></span>
+                    Processing
+                  </div>
+                </div>
+                <div class="acc-order-body">
+                  <div class="acc-order-items-preview">
+                    <div class="acc-order-item-thumb">
+                      <div class="acc-order-thumb-placeholder" style="background:linear-gradient(135deg,var(--glacier),var(--ice));">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="acc-order-item-thumb">
+                      <div class="acc-order-thumb-placeholder" style="background:linear-gradient(135deg,var(--pz-soft-teal),var(--glacier));">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 22C12 12 6 8 2 9c4-1 8 0 10 5m0-5c0-6-6-8-10-7 4-1 8 1 10 7m0-7c0-6 6-8 10-7-4-1-8 1-10 7m0-7c0 4 6 8 10 9-4 1-8 0-10-5"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="acc-order-item-thumb" style="background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:56px;height:56px;">
+                      <span style="font-family:var(--font-display);font-size:12px;font-weight:700;color:var(--text-meta);">+1</span>
+                    </div>
+                  </div>
+                  <div class="acc-order-meta">
+                    <div class="acc-order-product-name">Coconut Wellness Bundle — 3 Flavours</div>
+                    <div class="acc-order-product-meta">3 items · Standard Delivery</div>
+                  </div>
+                  <div class="acc-order-amount">&#8377;1,944</div>
+                </div>
+                <div class="acc-order-actions">
+                  <button class="acc-order-action-btn acc-order-action-btn--view" aria-label="View order details">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+        <!-- ══════════════════════════════
+             PANEL 4: SECURITY
+        ══════════════════════════════ -->
+        <section class="acc-panel acc-anim-in acc-anim-delay-3" id="panel-security" role="tabpanel" aria-labelledby="nav-security">
+          <div class="acc-panel-header">
+            <div class="acc-panel-title-wrap">
+              <div class="acc-panel-icon acc-panel-icon--security" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="acc-panel-title">Security Settings</h2>
+                <p class="acc-panel-subtitle">Keep your account safe and protected</p>
+              </div>
+            </div>
+            <button type="button" class="acc-panel-toggle-btn" aria-label="Toggle section">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="acc-panel-body">
+            <div class="acc-security-items">
+
+              <!-- Change Password -->
+              <div class="acc-security-item">
+                <div class="acc-security-item-left">
+                  <div class="acc-security-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                      <path d="M7 11V7a5 5 0 0110 0v4"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="acc-security-title">Password</div>
+                    <div class="acc-security-desc">Last changed 3 months ago</div>
+                  </div>
+                </div>
+                <button class="acc-btn-ghost" id="acc-change-pwd-btn" aria-label="Change password" aria-expanded="false" aria-controls="acc-pwd-form">
+                  Change
+                </button>
+              </div>
+
+              <!-- Password Change Form -->
+              <div class="acc-pwd-form" id="acc-pwd-form" aria-hidden="true">
+                <form id="acc-password-form" class="acc-form-grid" aria-label="Change password form" novalidate>
+                  <div class="acc-form-group acc-col-span-2">
+                    <div class="acc-field-wrap">
+                      <label for="pwd-current">Current Password</label>
+                      <input type="password" id="pwd-current" name="currentPassword" autocomplete="current-password" required/>
+                    </div>
+                  </div>
+                  <div class="acc-form-group">
+                    <div class="acc-field-wrap">
+                      <label for="pwd-new">New Password</label>
+                      <input type="password" id="pwd-new" name="newPassword" autocomplete="new-password" required minlength="8"/>
+                    </div>
+                  </div>
+                  <div class="acc-form-group">
+                    <div class="acc-field-wrap">
+                      <label for="pwd-confirm">Confirm New Password</label>
+                      <input type="password" id="pwd-confirm" name="confirmPassword" autocomplete="new-password" required/>
+                    </div>
+                  </div>
+                  <div class="acc-form-group acc-col-span-2" style="flex-direction:row;gap:12px;margin-top:4px;">
+                    <button type="submit" class="acc-btn-primary" aria-label="Update password">
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      Update Password
+                    </button>
+                    <button type="button" class="acc-btn-secondary" id="acc-cancel-pwd-btn" aria-label="Cancel password change">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Two-Factor Auth -->
+              <div class="acc-security-item">
+                <div class="acc-security-item-left">
+                  <div class="acc-security-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                      <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="acc-security-title">Two-Factor Authentication</div>
+                    <div class="acc-security-desc">Add an extra layer of security via SMS or authenticator app</div>
+                  </div>
+                </div>
+                <label class="acc-toggle" aria-label="Toggle two-factor authentication">
+                  <input type="checkbox" id="toggle-2fa" aria-checked="false"/>
+                  <span class="acc-toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Login Notifications -->
+              <div class="acc-security-item">
+                <div class="acc-security-item-left">
+                  <div class="acc-security-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                      <path d="M13.73 21a2 2 0 01-3.46 0"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="acc-security-title">Login Notifications</div>
+                    <div class="acc-security-desc">Get alerts when a new device signs in</div>
+                  </div>
+                </div>
+                <label class="acc-toggle" aria-label="Toggle login notifications">
+                  <input type="checkbox" id="toggle-login-notif" checked aria-checked="true"/>
+                  <span class="acc-toggle-slider"></span>
+                </label>
+              </div>
+
+            </div>
+
+            <!-- Active Sessions -->
+            <div style="margin-top:28px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                <div>
+                  <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--dark);">Active Sessions</div>
+                  <div style="font-size:12px;color:var(--text-meta);margin-top:2px;">Devices currently signed in to your account</div>
+                </div>
+                <button class="acc-btn-danger" style="height:36px;font-size:12px;" aria-label="Sign out from all other devices">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;">
+                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                  </svg>
+                  Sign Out All
+                </button>
+              </div>
+              <div class="acc-devices-list" role="list">
+                <div class="acc-device-item" role="listitem">
+                  <div class="acc-device-left">
+                    <div class="acc-device-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="acc-device-name">
+                        Chrome on Windows
+                        <span class="acc-device-current">Current</span>
+                      </div>
+                      <div class="acc-device-meta">Coimbatore, Tamil Nadu · Just now</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="acc-device-item" role="listitem">
+                  <div class="acc-device-left">
+                    <div class="acc-device-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                        <line x1="12" y1="18" x2="12.01" y2="18"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="acc-device-name">Safari on iPhone 14 Pro</div>
+                      <div class="acc-device-meta">Chennai, Tamil Nadu · 2 days ago</div>
+                    </div>
+                  </div>
+                  <button class="acc-device-revoke" aria-label="Revoke access for this device">Revoke</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             PANEL 5: ACCOUNT ACTIONS (DANGER ZONE)
+        ══════════════════════════════ -->
+        <section class="acc-panel acc-anim-in acc-anim-delay-4" id="panel-danger" role="tabpanel" aria-labelledby="nav-danger">
+          <div class="acc-panel-header">
+            <div class="acc-panel-title-wrap">
+              <div class="acc-panel-icon acc-panel-icon--danger" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="acc-panel-title">Account Actions</h2>
+                <p class="acc-panel-subtitle">Data management and account controls</p>
+              </div>
+            </div>
+            <button type="button" class="acc-panel-toggle-btn" aria-label="Toggle section">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="acc-panel-body">
+            <div class="acc-danger-grid">
+              <!-- Export Data -->
+              <div class="acc-danger-item">
+                <div class="acc-danger-item-left">
+                  <div class="acc-danger-item-title">Export My Data</div>
+                  <div class="acc-danger-item-desc">Download all your account data</div>
+                </div>
+                <button class="acc-btn-ghost" aria-label="Export account data">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Export
+                </button>
+              </div>
+
+              <!-- Purchase History Download -->
+              <div class="acc-danger-item">
+                <div class="acc-danger-item-left">
+                  <div class="acc-danger-item-title">Purchase History</div>
+                  <div class="acc-danger-item-desc">Download full purchase records as PDF</div>
+                </div>
+                <button class="acc-btn-ghost" aria-label="Download purchase history">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                  Download
+                </button>
+              </div>
+
+              <!-- Sign Out -->
+              <div class="acc-danger-item">
+                <div class="acc-danger-item-left">
+                  <div class="acc-danger-item-title">Sign Out</div>
+                  <div class="acc-danger-item-desc">Sign out of your current session</div>
+                </div>
+                <button class="acc-btn-secondary" style="height:38px;font-size:12px;" aria-label="Sign out of account">
+                  Sign Out
+                </button>
+              </div>
+
+              <!-- Delete Account — Critical -->
+              <div class="acc-danger-item danger-critical">
+                <div class="acc-danger-item-left">
+                  <div class="acc-danger-item-title">Delete Account</div>
+                  <div class="acc-danger-item-desc">Permanently remove your account and data</div>
+                </div>
+                <button class="acc-btn-danger" id="acc-danger-delete-btn" aria-label="Delete account permanently">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                  </svg>
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div><!-- end .acc-dashboard-grid -->
+
+  </div><!-- end .acc-inner -->
+</div><!-- end .acc-page-wrapper -->
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="footer-black" id="contact">
+  <div class="fb-inner">
+    <div class="fb-brand">
+      <div class="fb-brand-name" style="font-weight: 800; font-size: 24px; letter-spacing: 1.5px; color: #fff; margin-bottom: 14px; font-family: 'Syne', sans-serif;">AARWINS</div>
+      <p class="fb-tagline">Pure tropical refreshment,<br>crafted with love.</p>
+      <div class="fb-socials">
+        <a href="#" aria-label="Instagram" class="fb-social">IG</a>
+        <a href="#" aria-label="Facebook" class="fb-social">FB</a>
+        <a href="#" aria-label="Twitter" class="fb-social">TW</a>
+      </div>
+      <div class="fb-contact-list">
+        <div>Contact Us</div>
+        <div>Track Order</div>
+        <div>Sign In</div>
+        <div>Store Locator</div>
+      </div>
+    </div>
+    <div class="fb-col">
+      <div class="fb-col-title">Company</div>
+      <a href="#">About Us</a>
+      <a href="#">Join Us</a>
+    </div>
+    <div class="fb-col">
+      <div class="fb-col-title">Customer Care</div>
+      <a href="#">FAQ</a>
+      <a href="#">Disposal Instructions</a>
+      <a href="#">Return Policy</a>
+      <a href="#">Promotion Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="fb-bottom">
+    <span>&copy; 2025 <strong>Aarwins</strong>. All rights reserved.</span>
+    <div class="fb-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═════════════════
+     DELETE CONFIRM MODAL
+═════════════════ -->
+<div class="acc-modal-overlay" id="acc-delete-modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title" aria-hidden="true">
+  <div class="acc-modal">
+    <h2 class="acc-modal-title" id="delete-modal-title">Delete Your Account?</h2>
+    <p class="acc-modal-desc">
+      This action is permanent and cannot be undone. All your orders, addresses, rewards points and personal data will be permanently removed from AARWINS.
+    </p>
+    <div class="acc-modal-actions">
+      <button class="acc-btn-secondary" id="acc-modal-cancel" aria-label="Cancel account deletion">
+        Keep Account
+      </button>
+      <button class="acc-btn-danger" id="acc-modal-confirm" aria-label="Confirm account deletion">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+        </svg>
+        Yes, Delete Forever
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════
+     GENERAL CONFIRM MODAL (For Address deletion, etc.)
+     ═════════════════ -->
+<div class="acc-modal-overlay" id="acc-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title" aria-hidden="true">
+  <div class="acc-modal">
+    <h2 class="acc-modal-title" id="confirm-modal-title">Delete Address?</h2>
+    <p class="acc-modal-desc" id="confirm-modal-desc">
+      Are you sure you want to remove this address?
+    </p>
+    <div class="acc-modal-actions">
+      <button type="button" class="acc-btn-secondary" id="acc-confirm-cancel">
+        Cancel
+      </button>
+      <button type="button" class="acc-btn-danger" id="acc-confirm-submit">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════
+     ORDER DETAIL MODAL
+═════════════════ -->
+<div class="acc-modal-overlay" id="acc-order-detail-modal" role="dialog" aria-modal="true" aria-labelledby="order-modal-title" aria-hidden="true">
+  <div class="acc-modal" style="max-width: 600px; width: 95%;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; border-bottom:1px solid var(--acc-border); padding-bottom:12px;">
+      <h2 class="acc-modal-title" id="order-modal-title" style="margin-bottom:0; font-size: 20px;">Order Details</h2>
+      <button class="acc-btn-ghost" id="acc-order-modal-close" aria-label="Close modal" style="height:36px; padding:0 12px; min-width:unset;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;margin:0;">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="acc-order-modal-content" id="acc-order-modal-content" style="max-height: 60vh; overflow-y: auto; text-align: left;">
+      <!-- Loaded dynamically via AJAX -->
+    </div>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="acc-toast" id="acc-toast" role="alert" aria-live="polite" aria-atomic="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+  <span id="acc-toast-msg">Saved successfully</span>
+</div>
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script src="/js/aarwins.js"></script>
+<script src="/js/cart.js"></script>
+<script>
+'use strict';
+
+// ─── UTILS ───
+const $ = id => document.getElementById(id);
+const $$ = sel => document.querySelectorAll(sel);
+
+// Global State
+let editingAddressId = null;
+let currentConfirmAction = null;
+
+function showConfirm(title, message, onConfirm) {
+  const titleEl = $('confirm-modal-title');
+  const descEl = $('confirm-modal-desc');
+  if (titleEl) titleEl.textContent = title;
+  if (descEl) descEl.textContent = message;
+  const modal = $('acc-confirm-modal');
+  if (modal) {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+  currentConfirmAction = onConfirm;
+}
+
+function closeConfirmModal() {
+  const modal = $('acc-confirm-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+  currentConfirmAction = null;
+}
+
+function showToast(msg, isError = false) {
+  const toast = $('acc-toast');
+  const msgEl = $('acc-toast-msg');
+  if (!toast || !msgEl) return;
+  msgEl.textContent = msg;
+  toast.style.background = isError ? '#c62828' : '#17313B';
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 3200);
+}
+
+// Show/Hide Loading Indicator
+function toggleLoading(show) {
+  let loader = $('acc-loading-bar');
+  if (!loader) {
+    loader = document.createElement('div');
+    loader.id = 'acc-loading-bar';
+    loader.className = 'acc-loading-bar';
+    document.body.appendChild(loader);
+  }
+  loader.style.width = show ? '60%' : '100%';
+  if (show) {
+    loader.style.opacity = '1';
+  } else {
+    setTimeout(() => { loader.style.opacity = '0'; }, 300);
+  }
+}
+
+// Format date helper from YYYY-MM-DD to DD Month YYYY
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return dateStr;
+  const date = new Date(parts[0], parts[1] - 1, parts[2]);
+  if (isNaN(date.getTime())) return dateStr;
+  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+// Translate database bottle URL to clean product tin image to match cart/checkout
+function getProductImage(url) {
+  if (!url) return '/images/tin-splash-watermelon.png';
+  if (url.includes('melonbottle') || url.includes('watermelon')) return '/images/tin-watermelon.png';
+  if (url.includes('orangebottle') || url.includes('orange')) return '/images/tin-orange.png';
+  if (url.includes('blueberrybottle') || url.includes('blueberry')) return '/images/tin-blueberry.png';
+  if (url.includes('lycheebottle') || url.includes('lychee')) return '/images/tin-lychee.png';
+  if (url.includes('Avacadobottle') || url.includes('avocado')) return '/images/tin-avocado.png';
+  if (url.includes('mangobottle') || url.includes('mango')) return '/images/tin-mago.png';
+  return url;
+}
+
+// Floating Labels hook helper
+function setupFloatingLabels(container) {
+  const inputs = (container || document).querySelectorAll('.acc-field-wrap input, .acc-field-wrap select, .acc-field-wrap textarea');
+  inputs.forEach(input => {
+    const wrap = input.closest('.acc-field-wrap');
+    if (!wrap) return;
+    const check = () => {
+      if (input.value && input.value.trim() !== '') {
+        wrap.classList.add('has-value');
+      } else {
+        wrap.classList.remove('has-value');
+      }
+    };
+    input.addEventListener('input', check);
+    input.addEventListener('change', check);
+    check();
+  });
+}
+window._setupFloatingLabels = setupFloatingLabels;
+
+// ─── DOM INJECTED ON DOM CONTENT LOAD ───
+document.addEventListener('DOMContentLoaded', async () => {
+  setupFloatingLabels(); // Initialize static inputs labels state
+  await loadAllDashboardData();
+  setupEventListeners();
+  
+  // Check hash on load to trigger scroll to specific section
+  const hash = window.location.hash;
+  if (hash) {
+    const targetPanel = hash.substring(1);
+    const navBtn = document.querySelector(`.acc-nav-item[data-panel="${targetPanel}"]`);
+    if (navBtn) {
+      setTimeout(() => {
+        navBtn.click();
+      }, 300);
+    }
+  }
+});
+
+// ─── FETCH & RENDER ALL SECTIONS ───
+async function loadAllDashboardData() {
+  toggleLoading(true);
+  try {
+    await Promise.all([
+      loadProfile(),
+      loadAddresses(),
+      loadOrders()
+    ]);
+  } catch (err) {
+    console.error("Error loading account data:", err);
+    showToast("Error loading account details. Please try again.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+// ─── PROFILE LOAD & SUBMIT ───
+async function loadProfile() {
+  const res = await fetch('/api/account/profile');
+  const data = await res.json();
+  if (data.success) {
+    const user = data.data;
+    
+    // Welcome display
+    $('acc-user-display-name').textContent = user.firstName || 'User';
+    const statPoints = $('stat-points');
+    if (statPoints) statPoints.textContent = user.rewardPoints || '0';
+
+    // View inputs
+    $('view-first-name').value = user.firstName || '';
+    $('view-last-name').value = user.lastName || '';
+    $('view-email').value = user.email || '';
+    $('view-phone').value = user.phone || '';
+    $('view-dob').value = formatDate(user.dob) || '';
+    
+    const viewGender = $('view-gender');
+    if (viewGender) viewGender.value = user.gender || 'other';
+
+    // Edit inputs
+    $('edit-first-name').value = user.firstName || '';
+    $('edit-last-name').value = user.lastName || '';
+    $('edit-email').value = user.email || '';
+    $('edit-phone').value = user.phone || '';
+    $('edit-dob').value = user.dob || '';
+    
+    const editGender = $('edit-gender');
+    if (editGender) editGender.value = user.gender || 'other';
+
+    window._setupFloatingLabels($('panel-profile'));
+  }
+}
+
+async function saveProfile() {
+  const payload = {
+    firstName: $('edit-first-name').value.trim(),
+    lastName: $('edit-last-name').value.trim(),
+    email: $('edit-email').value.trim(),
+    phone: $('edit-phone').value.trim(),
+    dob: $('edit-dob').value,
+    gender: $('edit-gender').value
+  };
+
+  if (!payload.firstName || !payload.lastName || !payload.email) {
+    showToast("First name, last name, and email are required.", true);
+    return;
+  }
+
+  toggleLoading(true);
+  try {
+    const res = await fetch('/api/account/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast("Profile saved successfully!");
+      await loadProfile();
+      exitProfileEditMode();
+    } else {
+      showToast(data.message, true);
+    }
+  } catch (err) {
+    showToast("Failed to save profile.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+// ─── ADDRESSES CRUD ───
+async function loadAddresses() {
+  const res = await fetch('/api/account/addresses');
+  const data = await res.json();
+  if (data.success) {
+    const addresses = data.data;
+    const grid = $('acc-address-grid');
+    grid.innerHTML = '';
+    
+    $('stat-addresses').textContent = addresses.length;
+
+    if (addresses.length === 0) {
+      grid.innerHTML = `
+        <div class="acc-empty-state acc-col-span-2" style="padding: 30px;">
+          <p style="color:var(--text-meta);">No addresses saved yet.</p>
+        </div>`;
+      return;
+    }
+
+    addresses.forEach(addr => {
+      const card = document.createElement('div');
+      card.className = `acc-address-card ${addr.isDefault ? 'is-default' : ''}`;
+      card.role = 'listitem';
+      
+      card.innerHTML = `
+        ${addr.isDefault ? `
+        <div class="acc-address-default-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Default
+        </div>` : ''}
+        <div class="acc-address-name">${escapeHTML(addr.fullName)} (${escapeHTML(addr.addressType)})</div>
+        <div class="acc-address-text">
+          ${escapeHTML(addr.flatHouse)}, ${escapeHTML(addr.areaStreet)}${addr.landmark ? `, ${escapeHTML(addr.landmark)}` : ''}<br/>
+          ${escapeHTML(addr.city)}, ${escapeHTML(addr.state)} — ${escapeHTML(addr.pincode)}
+        </div>
+        <div class="acc-address-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.72 9.08a19.79 19.79 0 01-3.07-8.63A2 2 0 012.75.02h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.09 6.09l1.07-1.08a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          ${escapeHTML(addr.phone)}
+        </div>
+        <div class="acc-address-actions">
+          <button class="acc-addr-action-btn acc-addr-action-btn--edit" onclick="editAddress(${addr.id})" aria-label="Edit address">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            Edit
+          </button>
+          ${!addr.isDefault ? `
+          <button class="acc-addr-action-btn acc-addr-action-btn--default" onclick="setDefaultAddress(${addr.id})" aria-label="Set default">
+            Set Default
+          </button>` : ''}
+          <button class="acc-addr-action-btn acc-addr-action-btn--delete" onclick="deleteAddress(${addr.id})" aria-label="Delete address">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+            </svg>
+            Delete
+          </button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+}
+
+async function saveAddress(e) {
+  e.preventDefault();
+  const form = $('acc-new-address-form');
+  const payload = {
+    fullName: $('addr-full-name').value.trim(),
+    phone: $('addr-mobile').value.trim(),
+    flatHouse: $('addr-line1').value.trim(),
+    areaStreet: $('addr-line2').value.trim(),
+    landmark: $('addr-landmark')?.value.trim() || '',
+    city: $('addr-city').value.trim(),
+    state: $('addr-state').value.trim(),
+    pincode: $('addr-postal').value.trim(),
+    country: $('addr-country').value,
+    addressType: form.querySelector('input[name="addressType"]:checked')?.value || 'Home',
+    isDefault: $('addr-set-default').checked
+  };
+
+  if (!payload.fullName || !payload.phone || !payload.flatHouse || !payload.areaStreet || !payload.city || !payload.state || !payload.pincode) {
+    showToast("Please fill in all required fields.", true);
+    return;
+  }
+
+  toggleLoading(true);
+  try {
+    const url = editingAddressId ? `/api/account/addresses/${editingAddressId}` : '/api/account/addresses';
+    const method = editingAddressId ? 'PUT' : 'POST';
+    
+    const res = await fetch(url, {
+      method: method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    const data = await res.json();
+    if (data.success) {
+      showToast(editingAddressId ? "Address updated successfully!" : "Address saved successfully!");
+      form.reset();
+      editingAddressId = null;
+      $('acc-addr-form').classList.remove('open');
+      $('acc-add-address-btn').setAttribute('aria-expanded', 'false');
+      await loadAddresses();
+    } else {
+      showToast(data.message, true);
+    }
+  } catch (err) {
+    showToast("Failed to save address.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+async function editAddress(id) {
+  toggleLoading(true);
+  try {
+    const res = await fetch('/api/account/addresses');
+    const data = await res.json();
+    if (data.success) {
+      const address = data.data.find(a => a.id === id);
+      if (address) {
+        editingAddressId = id;
+        
+        $('addr-full-name').value = address.fullName;
+        $('addr-mobile').value = address.phone;
+        $('addr-line1').value = address.flatHouse;
+        $('addr-line2').value = address.areaStreet;
+        $('addr-landmark').value = address.landmark || '';
+        $('addr-city').value = address.city;
+        $('addr-state').value = address.state;
+        $('addr-postal').value = address.pincode;
+        $('addr-country').value = address.country;
+        $('addr-set-default').checked = address.isDefault;
+
+        // Set Address Type Radio
+        const radio = document.querySelector(`input[name="addressType"][value="${address.addressType}"]`);
+        if (radio) radio.checked = true;
+
+        $('acc-addr-form').classList.add('open');
+        $('acc-add-address-btn').setAttribute('aria-expanded', 'true');
+        window._setupFloatingLabels($('acc-addr-form'));
+        $('acc-addr-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  } catch (err) {
+    showToast("Failed to edit address details.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+function deleteAddress(id) {
+  showConfirm(
+    "Delete Address?",
+    "Are you sure you want to remove this address?",
+    async () => {
+      toggleLoading(true);
+      try {
+        const res = await fetch(`/api/account/addresses/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          showToast("Address deleted successfully.");
+          await loadAddresses();
+        } else {
+          showToast(data.message, true);
+        }
+      } catch (err) {
+        showToast("Failed to delete address.", true);
+      } finally {
+        toggleLoading(false);
+      }
+    }
+  );
+}
+
+async function setDefaultAddress(id) {
+  toggleLoading(true);
+  try {
+    const res = await fetch(`/api/account/addresses/${id}/default`, { method: 'PUT' });
+    const data = await res.json();
+    if (data.success) {
+      showToast("Default address updated.");
+      await loadAddresses();
+    } else {
+      showToast(data.message, true);
+    }
+  } catch (err) {
+    showToast("Failed to update default address.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+// ─── ORDERS HISTORY & MODAL DETAILED VIEW ───
+async function loadOrders() {
+  const res = await fetch('/api/account/orders');
+  const data = await res.json();
+  if (data.success) {
+    const orders = data.data;
+    const list = $('acc-main').querySelector('.acc-orders-list');
+    list.innerHTML = '';
+    
+    $('stat-orders').textContent = orders.length;
+
+    if (orders.length === 0) {
+      list.innerHTML = `
+        <div class="acc-empty-state">
+          <p style="color:var(--text-meta);">No purchase orders found.</p>
+        </div>`;
+      return;
+    }
+
+    orders.forEach(order => {
+      const orderDate = new Date(order.orderDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      const card = document.createElement('article');
+      card.className = 'acc-order-card';
+      card.role = 'listitem';
+      
+      const firstItem = order.items && order.items.length > 0 ? order.items[0] : null;
+      const totalItemsQty = order.items ? order.items.reduce((sum, i) => sum + i.quantity, 0) : 0;
+      
+      // Build thumbnail previews
+      let thumbsHtml = '';
+      if (order.items) {
+        order.items.slice(0, 2).forEach((item, idx) => {
+          const imgUrl = getProductImage(item.product.imageUrl);
+          thumbsHtml += `
+            <div class="acc-order-item-thumb">
+              <img src="${imgUrl}" alt="${escapeHTML(item.product.name)}" onerror="this.src='/images/tin-splash-watermelon.png'"/>
+            </div>`;
+        });
+        if (order.items.length > 2) {
+          thumbsHtml += `
+            <div class="acc-order-item-thumb" style="background:rgba(0,0,0,0.06); font-family:var(--font-display); font-size:12px; font-weight:700; color:var(--text-meta); display:flex; align-items:center; justify-content:center;">
+              +${order.items.length - 2}
+            </div>`;
+        }
+      }
+
+      card.innerHTML = `
+        <div class="acc-order-header">
+          <div>
+            <div class="acc-order-id">#${escapeHTML(order.orderNumber)}</div>
+            <div class="acc-order-date">${orderDate} · ${escapeHTML(order.paymentMethod)}</div>
+          </div>
+          <div class="acc-order-status acc-order-status--${order.status.toLowerCase()}" role="status">
+            <span class="acc-order-status-dot"></span>
+            ${escapeHTML(order.status)}
+          </div>
+        </div>
+        <div class="acc-order-body">
+          <div class="acc-order-items-preview">
+            ${thumbsHtml}
+          </div>
+          <div class="acc-order-meta">
+            <div class="acc-order-product-name">${firstItem ? escapeHTML(firstItem.product.name) : 'AARWINS Refreshers'} ${order.items && order.items.length > 1 ? 'and more' : ''}</div>
+            <div class="acc-order-product-meta">${totalItemsQty} ${totalItemsQty === 1 ? 'item' : 'items'} · Standard Delivery</div>
+          </div>
+          <div class="acc-order-amount">&#8377;${order.amount.toFixed(0)}</div>
+        </div>
+        <div class="acc-order-actions">
+          <button class="acc-order-action-btn acc-order-action-btn--view" onclick="viewOrderDetails(${order.id})" aria-label="View order details">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            View Details
+          </button>
+          <button class="acc-order-action-btn acc-order-action-btn--invoice" onclick="showToast('Invoice PDF generated. Downloading...')" aria-label="Invoice">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Invoice
+          </button>
+          <button class="acc-order-action-btn acc-order-action-btn--reorder" onclick="reorderItems(${order.id})" aria-label="Reorder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+            </svg>
+            Reorder
+          </button>
+        </div>
+      `;
+      list.appendChild(card);
+    });
+  }
+}
+
+async function viewOrderDetails(orderId) {
+  toggleLoading(true);
+  try {
+    const res = await fetch(`/api/account/orders/${orderId}`);
+    const data = await res.json();
+    if (data.success) {
+      const order = data.data;
+      const content = $('acc-order-modal-content');
+      
+      const orderDate = new Date(order.orderDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      
+      // Calculate subtotals
+      const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const discount = subtotal * 0.0; // Assume 0 discount for past mock orders
+      const gst = (subtotal - discount) * 0.18;
+      const shipping = subtotal >= 999 ? 0 : 50;
+
+      let productsHtml = '';
+      order.items.forEach(item => {
+        const imgUrl = getProductImage(item.product.imageUrl);
+        productsHtml += `
+          <div class="acc-order-modal-prod-item">
+            <div class="acc-order-modal-prod-img">
+              <img src="${imgUrl}" alt="${escapeHTML(item.product.name)}"/>
+            </div>
+            <div class="acc-order-modal-prod-info">
+              <div class="acc-order-modal-prod-name">${escapeHTML(item.product.name)}</div>
+              <div class="acc-order-modal-prod-qty">Qty: ${item.quantity} · &#8377;${item.price.toFixed(0)} each</div>
+            </div>
+            <div class="acc-order-modal-prod-price">&#8377;${(item.price * item.quantity).toFixed(0)}</div>
+          </div>`;
+      });
+
+      content.innerHTML = `
+        <div class="acc-order-modal-section">
+          <div class="acc-order-modal-sec-title">Status & Metadata</div>
+          <div class="acc-order-modal-details-grid">
+            <div class="acc-order-modal-detail-item">
+              <div class="acc-order-modal-detail-label">Order Reference</div>
+              <div class="acc-order-modal-detail-val">#${escapeHTML(order.orderNumber)}</div>
+            </div>
+            <div class="acc-order-modal-detail-item">
+              <div class="acc-order-modal-detail-label">Placed On</div>
+              <div class="acc-order-modal-detail-val">${orderDate}</div>
+            </div>
+            <div class="acc-order-modal-detail-item">
+              <div class="acc-order-modal-detail-label">Payment Method</div>
+              <div class="acc-order-modal-detail-val">${escapeHTML(order.paymentMethod)}</div>
+            </div>
+            <div class="acc-order-modal-detail-item">
+              <div class="acc-order-modal-detail-label">Fulfillment Status</div>
+              <div class="acc-order-modal-detail-val" style="color:var(--pz-tropical-orange)">${escapeHTML(order.status)}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-order-modal-section">
+          <div class="acc-order-modal-sec-title">Botanical Items</div>
+          <div class="acc-order-modal-products">
+            ${productsHtml}
+          </div>
+        </div>
+
+        <div class="acc-order-modal-section" style="margin-bottom: 0;">
+          <div class="acc-order-modal-sec-title">Order Total Details</div>
+          <div class="acc-order-modal-pricing">
+            <div class="acc-order-modal-price-row">
+              <span>Subtotal</span>
+              <span>&#8377;${subtotal.toFixed(0)}</span>
+            </div>
+            <div class="acc-order-modal-price-row" style="display:none;">
+              <span>Promo Discount</span>
+              <span>-&#8377;${discount.toFixed(0)}</span>
+            </div>
+            <div class="acc-order-modal-price-row">
+              <span>GST (18%)</span>
+              <span>&#8377;${gst.toFixed(0)}</span>
+            </div>
+            <div class="acc-order-modal-price-row">
+              <span>Standard Shipping</span>
+              <span>${shipping === 0 ? 'Free' : `&#8377;${shipping.toFixed(0)}`}</span>
+            </div>
+            <div class="acc-order-modal-price-row grand-total">
+              <span>Grand Total</span>
+              <span style="color:var(--pz-tropical-orange)">&#8377;${order.amount.toFixed(0)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      $('acc-order-detail-modal').classList.add('open');
+      $('acc-order-detail-modal').setAttribute('aria-hidden', 'false');
+    } else {
+      showToast(data.message, true);
+    }
+  } catch (err) {
+    showToast("Failed to fetch order details.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+async function reorderItems(orderId) {
+  toggleLoading(true);
+  try {
+    const res = await fetch(`/api/account/orders/${orderId}`);
+    const data = await res.json();
+    if (data.success && data.data.items) {
+      data.data.items.forEach(item => {
+        if (typeof addToCart === 'function') {
+          addToCart(item.product.id, item.quantity);
+        }
+      });
+      showToast("Items added to your cart!");
+    } else {
+      showToast("Failed to reorder items.", true);
+    }
+  } catch (err) {
+    showToast("Error processing reorder.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+
+// ─── SECURITY PASSWORD CHANGE ───
+async function updatePassword(e) {
+  e.preventDefault();
+  const currentPassword = $('pwd-current').value;
+  const newPassword = $('pwd-new').value;
+  const confirmPassword = $('pwd-confirm').value;
+
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    showToast("Please fill in all password fields.", true);
+    return;
+  }
+  if (newPassword.length < 8) {
+    showToast("New password must be at least 8 characters.", true);
+    return;
+  }
+  if (newPassword !== confirmPassword) {
+    showToast("New passwords do not match.", true);
+    return;
+  }
+
+  toggleLoading(true);
+  try {
+    const res = await fetch('/api/account/security/change-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ currentPassword, newPassword })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast("Password updated successfully!");
+      $('acc-password-form').reset();
+      $('acc-pwd-form').classList.remove('open');
+      $('acc-change-pwd-btn').setAttribute('aria-expanded', 'false');
+    } else {
+      showToast(data.message, true);
+    }
+  } catch (err) {
+    showToast("Failed to update password.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+// ─── DELETE USER PROFILE ───
+async function deleteUserForever() {
+  toggleLoading(true);
+  try {
+    const res = await fetch('/api/account/profile', { method: 'DELETE' });
+    const data = await res.json();
+    if (data.success) {
+      showToast("Account deleted successfully. Goodbye.");
+      setTimeout(() => { window.location.href = '/'; }, 2000);
+    } else {
+      showToast(data.message, true);
+    }
+  } catch (err) {
+    showToast("Failed to delete account.", true);
+  } finally {
+    toggleLoading(false);
+  }
+}
+
+// ─── EVENT LISTENERS & INTERACTION CONTROLS ───
+function setupEventListeners() {
+  // Navigation tabs active highlight scroll scrolling spy
+  const navItems = $$('.acc-nav-item[data-panel]');
+  navItems.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.panel;
+      navItems.forEach(n => {
+        n.classList.remove('active');
+        n.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const panel = $('panel-' + target);
+      if (panel) {
+        // Expand the target panel when clicking sidebar nav items
+        panel.classList.add('expanded');
+        
+        const offset = 120;
+        const top = panel.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Accordion Toggle for Panels
+  const accPanels = $$('.acc-panel');
+  accPanels.forEach(panel => {
+    const header = panel.querySelector('.acc-panel-header');
+    if (header) {
+      header.addEventListener('click', (e) => {
+        // Don't toggle if the user clicks the edit profile button inside the header
+        if (e.target.closest('#acc-edit-profile-btn')) {
+          return;
+        }
+        
+        const isExpanded = panel.classList.contains('expanded');
+        if (isExpanded) {
+          panel.classList.remove('expanded');
+        } else {
+          panel.classList.add('expanded');
+        }
+      });
+    }
+  });
+
+  // Floating Labels initialization
+  setupFloatingLabels();
+
+  // Profile Edit button actions
+  const editBtn = $('acc-edit-profile-btn');
+  if (editBtn) {
+    editBtn.addEventListener('click', () => {
+      if ($('acc-profile-edit').style.display === 'none') {
+        enterProfileEditMode();
+      } else {
+        exitProfileEditMode();
+      }
+    });
+  }
+  $('acc-cancel-edit-btn')?.addEventListener('click', exitProfileEditMode);
+  $('acc-save-profile-btn')?.addEventListener('click', saveProfile);
+
+  // Address form toggle buttons
+  const addAddrBtn = $('acc-add-address-btn');
+  addAddrBtn?.addEventListener('click', () => {
+    editingAddressId = null;
+    $('acc-new-address-form').reset();
+    const wrap = $('acc-addr-form');
+    const isOpen = wrap.classList.contains('open');
+    if (isOpen) {
+      wrap.classList.remove('open');
+      wrap.setAttribute('aria-hidden', 'true');
+      addAddrBtn.setAttribute('aria-expanded', 'false');
+    } else {
+      wrap.classList.add('open');
+      wrap.setAttribute('aria-hidden', 'false');
+      addAddrBtn.setAttribute('aria-expanded', 'true');
+      setupFloatingLabels(wrap);
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+  $('acc-cancel-addr-btn')?.addEventListener('click', () => {
+    $('acc-addr-form').classList.remove('open');
+    $('acc-addr-form').setAttribute('aria-hidden', 'true');
+    addAddrBtn.setAttribute('aria-expanded', 'false');
+  });
+  $('acc-new-address-form')?.addEventListener('submit', saveAddress);
+
+
+
+  // Password change toggle
+  const changePwdBtn = $('acc-change-pwd-btn');
+  changePwdBtn?.addEventListener('click', () => {
+    const wrap = $('acc-pwd-form');
+    const isOpen = wrap.classList.contains('open');
+    if (isOpen) {
+      wrap.classList.remove('open');
+      wrap.setAttribute('aria-hidden', 'true');
+      changePwdBtn.setAttribute('aria-expanded', 'false');
+    } else {
+      wrap.classList.add('open');
+      wrap.setAttribute('aria-hidden', 'false');
+      changePwdBtn.setAttribute('aria-expanded', 'true');
+      setupFloatingLabels(wrap);
+    }
+  });
+  $('acc-cancel-pwd-btn')?.addEventListener('click', () => {
+    $('acc-pwd-form').classList.remove('open');
+    $('acc-pwd-form').setAttribute('aria-hidden', 'true');
+    changePwdBtn.setAttribute('aria-expanded', 'false');
+  });
+  $('acc-password-form')?.addEventListener('submit', updatePassword);
+
+
+  // Delete modal overlays triggers
+  const deleteModal = $('acc-delete-modal');
+  const openDeleteBtns = [$('acc-delete-account-btn'), $('acc-danger-delete-btn')];
+  openDeleteBtns.forEach(btn => btn?.addEventListener('click', () => {
+    deleteModal.classList.add('open');
+    deleteModal.setAttribute('aria-hidden', 'false');
+    $('acc-modal-cancel')?.focus();
+  }));
+  $('acc-modal-cancel')?.addEventListener('click', () => {
+    deleteModal.classList.remove('open');
+    deleteModal.setAttribute('aria-hidden', 'true');
+  });
+  deleteModal?.addEventListener('click', e => {
+    if (e.target === deleteModal) {
+      deleteModal.classList.remove('open');
+      deleteModal.setAttribute('aria-hidden', 'true');
+    }
+  });
+  $('acc-modal-confirm')?.addEventListener('click', () => {
+    deleteModal.classList.remove('open');
+    deleteModal.setAttribute('aria-hidden', 'true');
+    deleteUserForever();
+  });
+
+  // General Confirm Modal Event Listeners
+  const confirmModal = $('acc-confirm-modal');
+  $('acc-confirm-cancel')?.addEventListener('click', closeConfirmModal);
+  $('acc-confirm-submit')?.addEventListener('click', () => {
+    if (typeof currentConfirmAction === 'function') {
+      currentConfirmAction();
+    }
+    closeConfirmModal();
+  });
+  confirmModal?.addEventListener('click', e => {
+    if (e.target === confirmModal) {
+      closeConfirmModal();
+    }
+  });
+
+  // Order Details Modal closes
+  const orderModal = $('acc-order-detail-modal');
+  $('acc-order-modal-close')?.addEventListener('click', () => {
+    orderModal.classList.remove('open');
+    orderModal.setAttribute('aria-hidden', 'true');
+  });
+  orderModal?.addEventListener('click', e => {
+    if (e.target === orderModal) {
+      orderModal.classList.remove('open');
+      orderModal.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Escape key overlay closes
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (deleteModal?.classList.contains('open')) {
+        deleteModal.classList.remove('open');
+        deleteModal.setAttribute('aria-hidden', 'true');
+      }
+      if (orderModal?.classList.contains('open')) {
+        orderModal.classList.remove('open');
+        orderModal.setAttribute('aria-hidden', 'true');
+      }
+      if (confirmModal?.classList.contains('open')) {
+        closeConfirmModal();
+      }
+    }
+  });
+
+  // Sidebar Scroll Spy Intersection Observer
+  const panels = $$('[id^="panel-"]');
+  if (panels.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+          const panelId = entry.target.id.replace('panel-', '');
+          navItems.forEach(item => {
+            if (item.dataset.panel === panelId) {
+              item.classList.add('active');
+              item.setAttribute('aria-selected', 'true');
+            } else {
+              item.classList.remove('active');
+              item.setAttribute('aria-selected', 'false');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.25 });
+    panels.forEach(p => observer.observe(p));
+  }
+
+  // Revoke device activity listeners
+  $$('.acc-device-revoke').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.acc-device-item');
+      if (item) {
+        item.style.transition = 'opacity 0.3s';
+        item.style.opacity = '0';
+        setTimeout(() => item.remove(), 300);
+        showToast("Device session revoked.");
+      }
+    });
+  });
+
+  // Sign out triggers
+  const logoutBtn = $('acc-logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      showToast("Signed out successfully. Redirecting...");
+      setTimeout(() => { window.location.href = '/'; }, 1800);
+    });
+  }
+}
+
+// ─── PROFILE PANEL VISIBILITY MODES ───
+function enterProfileEditMode() {
+  $('acc-profile-view').style.display = 'none';
+  $('acc-profile-edit').style.display = 'block';
+  const editBtn = $('acc-edit-profile-btn');
+  editBtn.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;margin-right:4px;">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg> Cancel`;
+  window._setupFloatingLabels($('acc-profile-edit'));
+}
+
+function exitProfileEditMode() {
+  $('acc-profile-view').style.display = '';
+  $('acc-profile-edit').style.display = 'none';
+  const editBtn = $('acc-edit-profile-btn');
+  editBtn.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;margin-right:4px;">
+      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </svg> Edit`;
+}
+
+// Helper to escape HTML tags to prevent XSS
+function escapeHTML(str) {
+  if (!str) return '';
+  return str.replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
+}
+</script>
+</body>
+</html>

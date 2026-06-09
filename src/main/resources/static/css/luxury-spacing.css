@@ -233,10 +233,10 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: Impact, 'Arial Narrow', 'Haettenschweiler', sans-serif !important;
-  font-size: 41px !important;
-  font-weight: 100 !important;
-  letter-spacing: 0.05em !important;
+  font-family: 'Syne', sans-serif !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
   color: #1a1a1a !important;
   text-transform: uppercase !important;
 }
@@ -1035,7 +1035,10 @@ body {
   }
 
   .nav-logo {
-    font-size: 28px !important; /* Reduce logo font height/size on mobile */
+    font-family: 'Syne', sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
   }
 
   .nav-logo-img {

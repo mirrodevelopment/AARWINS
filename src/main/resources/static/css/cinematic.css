@@ -35,8 +35,10 @@ body.aw-loaded .aw-loader { pointer-events: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: #F7F3EE; /* Warm cream — matches hero section */
+  justify-content: flex-end;
+  padding-bottom: 10vh;
+  background: #F7F3EE url('/images/loading-page-desktop.png') no-repeat center center;
+  background-size: cover;
   pointer-events: all;
   will-change: opacity, filter;
 }
@@ -486,6 +488,9 @@ body.aw-loaded .aw-loader { pointer-events: none; }
    20. TABLET / MOBILE OVERRIDES
 ════════════════════════════════════════ */
 @media (max-width: 767px) {
+  #aw-loader {
+    background-image: url('/images/loading-page-mob.png') !important;
+  }
   .aw-loader-brand {
     gap: 2px !important;
     margin-bottom: 24px !important;
@@ -1912,7 +1917,6 @@ body.aw-loaded .aw-loader { pointer-events: none; }
 @media (min-width: 769px) {
   .nav-links a[href*="editorial"],
   .nav-links a[href*="Philosophy"],
-  .nav-user-container,
   #nav-wishlist-btn {
     display: none !important;
   }

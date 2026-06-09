@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/css/aarwins.css?v=2.2"/>
   <link rel="stylesheet" href="/css/editorial.css?v=3.1"/>
   <link rel="stylesheet" href="/css/luxury-spacing.css?v=1.4"/>
-  <link rel="stylesheet" href="/css/cinematic.css?v=2.1"/>
+  <link rel="stylesheet" href="/css/cinematic.css?v=2.4"/>
   <link rel="stylesheet" href="/css/flavour-modal.css?v=1.1"/>
   <link rel="stylesheet" href="/css/cart-checkout.css?v=1.1"/>
 
@@ -1175,7 +1175,6 @@
       pointer-events: none;
       z-index: 1; /* sits behind the hand */
       mix-blend-mode: multiply;
-      filter: drop-shadow(0px 15px 15px rgba(23, 49, 59, 0.08));
     }
     
     .showcase-glow-bg {
@@ -1675,9 +1674,8 @@
         </button>
         <!-- Minimal luxury dropdown design -->
         <div class="account-dropdown" id="account-dropdown">
-          <a href="#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
-          <a href="#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>Orders</a>
-          <a href="#wishlist"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>Wishlist</a>
+          <a href="/account#profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+          <a href="/account#orders"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>Orders</a>
           <div class="dropdown-divider"></div>
           <a href="#logout" class="logout-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Logout</a>
         </div>
@@ -1740,7 +1738,7 @@
       </a>
       <div class="drawer-nav-divider" style="--stagger-index: 3;"></div>
       
-      <a href="/#profile" class="drawer-nav-item" style="--stagger-index: 4;">
+      <a href="/account" class="drawer-nav-item" style="--stagger-index: 4;">
         <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         <span>Account</span>
       </a>
@@ -2228,8 +2226,8 @@
         <!-- Card 1: Coconut -->
         <div class="aw-ingredient-card" data-index="1">
           <picture>
-            <source media="(max-width: 768px)" srcset="/images/Story%201-mob.png">
-            <img src="/images/Story%20Card%201%20.png" alt="Coconut story card" class="aw-card-img" />
+            <source media="(max-width: 768px)" srcset="/images/Story-1-mob.png">
+            <img src="/images/Story-Card-1.png" alt="Coconut story card" class="aw-card-img" />
           </picture>
           <div class="aw-card-overlay">
             <span class="aw-card-num">01</span>
@@ -2240,8 +2238,8 @@
         <!-- Card 2: Lavender -->
         <div class="aw-ingredient-card" data-index="2">
           <picture>
-            <source media="(max-width: 768px)" srcset="/images/Story%202-mob.png">
-            <img src="/images/stort%20card%202.png" alt="Story card 2" class="aw-card-img" />
+            <source media="(max-width: 768px)" srcset="/images/Story-2-mob.png">
+            <img src="/images/Story-Card-2.png" alt="Story card 2" class="aw-card-img" />
           </picture>
           <div class="aw-card-overlay">
             <span class="aw-card-num">02</span>
@@ -2252,8 +2250,8 @@
         <!-- Card 3: Matcha -->
         <div class="aw-ingredient-card" data-index="3">
           <picture>
-            <source media="(max-width: 768px)" srcset="/images/Story%203-mob.png">
-            <img src="/images/stort%20card%203.png" alt="Story card 3" class="aw-card-img" />
+            <source media="(max-width: 768px)" srcset="/images/Story-3-mob.png">
+            <img src="/images/Story-Card-3.png" alt="Story card 3" class="aw-card-img" />
           </picture>
           <div class="aw-card-overlay">
             <span class="aw-card-num">03</span>
@@ -2264,8 +2262,8 @@
         <!-- Card 4: Coffee -->
         <div class="aw-ingredient-card" data-index="4">
           <picture>
-            <source media="(max-width: 768px)" srcset="/images/Story%204-mob.png">
-            <img src="/images/stort%20card%204.png" alt="Story card 4" class="aw-card-img" />
+            <source media="(max-width: 768px)" srcset="/images/Story-4-mob.png">
+            <img src="/images/Story-Card-4.png" alt="Story card 4" class="aw-card-img" />
           </picture>
           <div class="aw-card-overlay">
             <span class="aw-card-num">04</span>
@@ -2276,8 +2274,8 @@
         <!-- Card 5: Cocoa -->
         <div class="aw-ingredient-card" data-index="5">
           <picture>
-            <source media="(max-width: 768px)" srcset="/images/Story%205-mob.png">
-            <img src="/images/stort%20card%205.png" alt="Story card 5" class="aw-card-img" />
+            <source media="(max-width: 768px)" srcset="/images/Story-5-mob.png">
+            <img src="/images/Story-Card-5.png" alt="Story card 5" class="aw-card-img" />
           </picture>
           <div class="aw-card-overlay">
             <span class="aw-card-num">05</span>
@@ -2288,8 +2286,8 @@
         <!-- Card 6: Ginger -->
         <div class="aw-ingredient-card" data-index="6">
           <picture>
-            <source media="(max-width: 768px)" srcset="/images/Story%206-mob.png">
-            <img src="/images/stort%20card%206.png" alt="Story card 6" class="aw-card-img" />
+            <source media="(max-width: 768px)" srcset="/images/Story-6-mob.png">
+            <img src="/images/Story-Card-6.png" alt="Story card 6" class="aw-card-img" />
           </picture>
           <div class="aw-card-overlay">
             <span class="aw-card-num">06</span>
@@ -2576,17 +2574,7 @@ document.querySelectorAll('.ed-cat').forEach(function(btn) {
 
 /* Mobile drawer inline event listeners removed to use unified aarwins.js logic */
 
-/* ─── Account Dropdown Interactions ─── */
-var userBtn = document.getElementById('nav-user-btn');
-var accountDropdown = document.getElementById('account-dropdown');
 
-if (userBtn && accountDropdown) {
-  userBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    accountDropdown.classList.toggle('active');
-  });
-}
 
 /* ─── Mini-Cart Panel Interactions ─── */
 var cartBtn = document.getElementById('nav-cart-btn');

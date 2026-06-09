@@ -4,41 +4,49 @@
 
 function initSite() {
 
-  // 1. DYNAMICALLY INJECT OVERLAYS & ELEMENTS
-  injectCinematicElements();
+  // ── Skip cinematic engine on account page ──
+  const isAccountPage = document.body.classList.contains('account-page');
+
+  // 1. DYNAMICALLY INJECT OVERLAYS & ELEMENTS (skip on account page)
+  if (!isAccountPage) {
+    injectCinematicElements();
+  } else {
+    // On account page — inject only the Noko mascot bot
+    injectNokoMascot();
+  }
 
   // 2. CHECK PRELOADER STATE & INITIATE INTRO
-  if (!document.getElementById('home')) {
+  if (!isAccountPage && !document.getElementById('home')) {
     document.body.classList.add('cinematic-active');
     triggerHeroIntro();
   }
 
-  // 3. INITIALIZE LENIS SMOOTH SCROLL (IF PRESENT)
+  // 3. INITIALIZE LENIS SMOOTH SCROLL (skip on account — breaks native scroll)
   let lenisInstance = null;
-  if (!document.getElementById('home')) {
+  if (!isAccountPage && !document.getElementById('home')) {
     lenisInstance = initSmoothScroll();
   }
 
-  // 4. PAGE TRANSITIONS (EXIT & ENTRANCE)
-  if (!document.getElementById('home')) {
+  // 4. PAGE TRANSITIONS (skip on account — interferes with navigation)
+  if (!isAccountPage && !document.getElementById('home')) {
     initPageTransitions();
   }
 
   // 5. 3D CURSOR AND ATMOSPHERIC GLOW
-  if (!document.getElementById('home')) {
+  if (!isAccountPage && !document.getElementById('home')) {
     initCustomCursor();
   }
 
-  // 6. NOKO MASCOT INTERACTIONS & SKELETAL MOTOR
+  // 6. NOKO MASCOT INTERACTIONS & SKELETAL MOTOR (runs on all pages incl. account)
   initNokoMascot();
 
   // 7. 3D CARD TILT
-  if (!document.getElementById('home')) {
+  if (!isAccountPage && !document.getElementById('home')) {
     initCardTilt();
   }
 
   // 8. MAGNETIC CTA BUTTONS
-  if (!document.getElementById('home')) {
+  if (!isAccountPage && !document.getElementById('home')) {
     initMagneticElements();
   }
 
@@ -190,6 +198,21 @@ function initSite() {
         accountDropdown.classList.remove('active');
       }
     }
+  });
+
+  // Global Logout click handler
+  document.querySelectorAll('.logout-link').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (typeof showToast === 'function') {
+        showToast("Signed out successfully. Redirecting...");
+      } else {
+        alert("Signed out successfully. Redirecting...");
+      }
+      setTimeout(function() {
+        window.location.href = '/';
+      }, 1500);
+    });
   });
 
   // Universal Escape key event to close overlays
@@ -356,6 +379,34 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initSite);
 } else {
   initSite();
+}
+
+/* ── Inject ONLY Noko Mascot (for account page) ── */
+function injectNokoMascot() {
+  if (!document.getElementById('cinematic-mascot-container')) {
+    const container = document.createElement('div');
+    container.id = 'cinematic-mascot-container';
+    container.innerHTML = `
+      <div class="mascot-bubble" id="noko-bubble">Need help? I'm Noko!</div>
+      <svg viewBox="0 0 60 60" class="mascot-svg" id="noko-svg">
+        <ellipse cx="30" cy="54" rx="14" ry="3" fill="rgba(0,0,0,0.06)" />
+        <path id="noko-body" d="M30,14 C18,14 12,24 12,39 C12,48 20,53 30,53 C40,53 48,48 48,39 C48,24 42,14 30,14 Z" fill="#faf9f6" stroke="#00c9b8" stroke-width="1.8" />
+        <g id="noko-face">
+          <ellipse id="noko-eye-l" cx="23" cy="33" rx="2.2" ry="3.2" fill="#1a302b" />
+          <ellipse id="noko-eye-r" cx="37" cy="33" rx="2.2" ry="3.2" fill="#1a302b" />
+          <circle cx="18" cy="36" r="1.8" fill="#ffb4a2" opacity="0.6" />
+          <circle cx="42" cy="36" r="1.8" fill="#ffb4a2" opacity="0.6" />
+          <path d="M29,37 Q30,38.5 31,37" stroke="#1a302b" stroke-width="1.5" fill="none" stroke-linecap="round" />
+        </g>
+        <g id="noko-sprout" transform="translate(30, 14)">
+          <path d="M0,0 Q-1,-6 2,-9" stroke="#00c9b8" stroke-width="1.8" fill="none" />
+          <path id="noko-leaf-l" d="M0,-8 C-5,-10 -6,-4 0,0" fill="#9ef01a" transform="scale(0.9) rotate(-15)" />
+          <path id="noko-leaf-r" d="M0,-8 C5,-10 6,-4 0,0" fill="#9ef01a" transform="scale(0.9) rotate(15)" />
+        </g>
+      </svg>
+    `;
+    document.body.appendChild(container);
+  }
 }
 
 /* ── Cinematic Elements Injection ── */

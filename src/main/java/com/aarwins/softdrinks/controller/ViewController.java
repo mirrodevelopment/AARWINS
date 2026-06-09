@@ -33,5 +33,13 @@ public class ViewController {
         return "forward:/checkout.html";
     }
 
+    /**
+     * Map /account to the premium user account dashboard page.
+     */
+    @GetMapping("/account")
+    public String getAccountPage() {
+        return "forward:/account.html";
+    }
+
 }
 

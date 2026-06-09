@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .requestMatchers("/product/**", "/product-details.html").permitAll()
                 .requestMatchers("/collections", "/collections.html").permitAll()
                 .requestMatchers("/checkout", "/checkout/**", "/checkout.html").permitAll()
+                .requestMatchers("/account", "/account.html", "/api/account/**").permitAll()
 
                 // Static frontend resources
                 .requestMatchers(
