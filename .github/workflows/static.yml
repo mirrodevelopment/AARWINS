@@ -29,10 +29,10 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload website files
+      - name: Upload AARWINS static website
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: src/main/resources/static
 
       - name: Deploy to GitHub Pages
         id: deployment
